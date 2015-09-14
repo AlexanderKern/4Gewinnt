@@ -17,7 +17,7 @@ public class Controller
 {
 
 	@FXML
-	public Button ok;
+	public Button statistic;
 	
 	@FXML
 	public Button play;
@@ -36,18 +36,18 @@ public class Controller
 ////		tableView.rowFactoryProperty();
 //	}
 
-	public void onClicked(ActionEvent event)
+	public void onStatistic(ActionEvent event)
 	{
-		ok.setText("BÄÄÄM");
+		statistic.setText("BÄÄÄM");
 		
 	}
 	
-	public void goPlay(ActionEvent event)
+	public void onPlay(ActionEvent event)
 	{
 		play.setText("you pressed play");
 	}
 	
-	public void goExit(ActionEvent event)
+	public void onExit(ActionEvent event)
 	{
 		exit.setText("you pressed exit");
 		

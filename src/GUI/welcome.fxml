@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="340.0" layoutX="83.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+             <Image url ="@.4Gewinnt/Assets/Pictures/4gewinnt.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="play" layoutX="449.0" layoutY="94.0" mnemonicParsing="false" onAction="#onPlay" text="Spielen" />
+      <Button fx:id="statistic" layoutX="448.0" layoutY="174.0" mnemonicParsing="false" onAction="#onStatistic" text="Statistik" />
+      <Button fx:id="exit" layoutX="446.0" layoutY="271.0" mnemonicParsing="false" onAction="#onExit" text="Beenden" />
+   </children>
+</Pane>
