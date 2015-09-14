@@ -16,7 +16,8 @@ import javafx.scene.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-public class Controller 
+
+public class PlayController 
 {
 
 	@FXML
@@ -31,25 +32,13 @@ public class Controller
 	@FXML
 	public TableView tableView = new TableView<>();
 	
-	
-//	public Controller(TableView tableView)
-//	{
-//		super();
-//		this.tableView = tableView;
-////		tableView.rowFactoryProperty();
-//	}
 
-	public void onStatistic(ActionEvent event)
-	{
-		statistic.setText("BÄÄÄM");
-		
-	}
 	
 	public void onPlay(ActionEvent event) throws IOException
 	{
 		play.setText("you pressed play");
 		
-		 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("spielfeld.fxml"));
+		 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("table2.fxml"));
          Parent root1 = (Parent) fxmlLoader.load();
          Stage stage = new Stage();
          stage.initModality(Modality.APPLICATION_MODAL);
@@ -63,8 +52,8 @@ public class Controller
 	
 	public void onExit(ActionEvent event)
 	{
-		exit.setText("you pressed exit");
 		
+		((Node)(event.getSource())).getScene().getWindow().hide();
 	}
 	
 	

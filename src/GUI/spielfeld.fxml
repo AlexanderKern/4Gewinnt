@@ -6,10 +6,10 @@
 <?import javafx.scene.layout.*?>
 
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.PlayController">
    <children>
-      <Button fx:id="play" layoutX="380.0" layoutY="231.0" mnemonicParsing="false" onAction="#goPlay" text="Play" />
-      <Button fx:id="exit" layoutX="145.0" layoutY="231.0" mnemonicParsing="false" onAction="#goExit" text="Exit" />
+      <Button fx:id="play" layoutX="380.0" layoutY="231.0" mnemonicParsing="false" onAction="#onPlay" text="Play" />
+      <Button fx:id="exit" layoutX="145.0" layoutY="231.0" mnemonicParsing="false" onAction="#onExit" text="Exit" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="225.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../../../Pictures/922869_4229729360173_1253120534_n.jpg" />

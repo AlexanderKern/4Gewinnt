@@ -10,7 +10,7 @@
    <children>
       <ImageView fitHeight="400.0" fitWidth="340.0" layoutX="83.0" pickOnBounds="true" preserveRatio="true">
          <image>
-             <Image url ="@.4Gewinnt/Assets/Pictures/4gewinnt.jpg" />
+             <Image url ="@4gewinnt.jpg" />
          </image>
       </ImageView>
       <Button fx:id="play" layoutX="449.0" layoutY="94.0" mnemonicParsing="false" onAction="#onPlay" text="Spielen" />
