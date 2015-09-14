@@ -9,13 +9,13 @@
    <children>
       <TableView fx:id="tab" layoutX="39.0" layoutY="131.0" prefHeight="206.0" prefWidth="523.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
-            <TableColumn prefWidth="75.0" text="C3" />
-            <TableColumn prefWidth="75.0" text="C4" />
-            <TableColumn prefWidth="75.0" text="C5" />
-            <TableColumn prefWidth="75.0" text="C6" />
-            <TableColumn prefWidth="75.0" text="C7" />
+          <TableColumn prefWidth="75.0" text="0" />
+          <TableColumn prefWidth="75.0" text="1" />
+            <TableColumn prefWidth="75.0" text="2" />
+            <TableColumn prefWidth="75.0" text="3" />
+            <TableColumn prefWidth="75.0" text="4" />
+            <TableColumn prefWidth="75.0" text="5" />
+            <TableColumn prefWidth="75.0" text="6" />
         </columns>
       </TableView>
    </children>
