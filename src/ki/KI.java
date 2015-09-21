@@ -22,9 +22,9 @@ public class KI {
 		while(ergebnis == 99){ //beginn endlosschleife
 			
 		
-		//Pruefe ob 3 eigene in einer Reihe
+		//Prüfe ob 3 eigene in einer Reihe
 		for(zeile = 0; zeile < 6; zeile++){
-			for(spalte = 0; spalte < 5; spalte++){				// nur bis fuenf, weil danach nicht relevant, da sonst auch spalte 5&6 voll sind
+			for(spalte = 0; spalte < 5; spalte++){				// nur bis fünf, weil danach nicht relevant, da sonst auch spalte 5&6 voll sind
 				
 				switch (spalte) {
 					
@@ -72,13 +72,13 @@ public class KI {
 		} //end for zeile
 		
 		
-		if(ergebnis != 99){ 
+		if(ergebnis != 99){
 			break;
 		}//valides Ergebnis?
 		
 		
 		
-		//Pruefe ob drei eigene in einer Spalte
+		//Prüfe ob drei eigene in einer Spalte
 		for(spalte = 0; spalte < 7; spalte++){
 			for(zeile = 5; zeile > 2; zeile--){
 				
@@ -95,11 +95,11 @@ public class KI {
 		}//valides Ergebnis?
 		
 		
-		//pruefe ob drei oder 2_1 oder 1_2 eigene diagonal sind
+		//prüfe ob drei oder 2_1 oder 1_2 eigene diagonal sind
 		
 		
 		
-		//Pruefe ob 3 eigene diagonal
+		//Prüfe ob 3 eigene diagonal
 		
 		for(spalte = 0; spalte < 7; spalte++){
 			for(zeile = 0; zeile < 6; zeile++){
@@ -158,39 +158,100 @@ public class KI {
 						}
 					case 2:
 						if(feld[zeile][spalte] == 1){
-							if(feld[zeile+1][spalte+1] == 1 && feld[zeile+2][spalte+2] == 1 && feld[zeile+3][spalte+3] == 0 ){
+							if(feld[zeile+1][spalte+1] == 1 && feld[zeile+2][spalte+2] == 1 && feld[zeile+3][spalte+3] == 0 ){ //1110 unten rechts
 								ergebnis = spalte+3;
 							}
 						} else if(feld[zeile][spalte] == 0){
-							if(feld[zeile+1][spalte+1] == 1 && feld[zeile+2][spalte+2] == 1 && feld[zeile+3][spalte+3] == 1 && feld[zeile+1][spalte] != 0 ){
+							if(feld[zeile+1][spalte+1] == 1 && feld[zeile+2][spalte+2] == 1 && feld[zeile+3][spalte+3] == 1 && feld[zeile+1][spalte] != 0 ){ // 0111 unten rechts
 								ergebnis = spalte;
-							} else if(feld[zeile+1][spalte+1] == 1 && feld[zeile+2][spalte+2] == 1 && feld[zeile-1][spalte-1] == 1 && feld[zeile+1][spalte] != 0 ){
+							} else if(feld[zeile-1][spalte-1] == 1 && feld[zeile+2][spalte+2] == 1 && feld[zeile+1][spalte+1] == 1 && feld[zeile+1][spalte] != 0 ){ //1011schräg unten rechts
 								ergebnis = spalte;
-							} else if(feld[zeile+1][spalte-1] == 1 && feld[zeile-1][spalte-1] == 1 && feld[zeile-2][spalte-2] == 1 && feld[zeile+1][spalte] != 0 ){
+							} else if(feld[zeile+1][spalte-1] == 1 && feld[zeile-1][spalte+1] == 1 && feld[zeile-2][spalte+2] == 1 && feld[zeile+1][spalte] != 0 ){ //1011schräg oben recht
 								ergebnis = spalte;
 							}	
 						}
 					case 3:
 						if(feld[zeile][spalte] == 1){
-							if(feld[zeile-1][spalte+1] == 1 && feld[zeile-2][spalte+2] == 1 && feld[zeile-3][spalte+3] == 0 && feld[zeile-2][spalte+3] != 0 ){
+							if(feld[zeile-1][spalte+1] == 1 && feld[zeile-2][spalte+2] == 1 && feld[zeile-3][spalte+3] == 0 && feld[zeile-2][spalte+3] != 0 ){ //1110 oben rechts
 								ergebnis = spalte+3;
 							}
-						} else if(feld[zeile][spalte] == 0){//////////bearbeiten
-							if(feld[zeile+1][spalte+1] == 1 && feld[zeile+2][spalte+2] == 1 && feld[zeile+3][spalte+3] == 1 && feld[zeile+1][spalte] != 0 ){
+						} else if(feld[zeile][spalte] == 0){
+							if(feld[zeile-1][spalte+1] == 1 && feld[zeile-2][spalte+2] == 1 && feld[zeile-3][spalte+3] == 1 && feld[zeile+1][spalte] != 0 ){ //0111 oben rechts
 								ergebnis = spalte;
-							} else if(feld[zeile+1][spalte+1] == 1 && feld[zeile+2][spalte+2] == 1 && feld[zeile-1][spalte-1] == 1 && feld[zeile+1][spalte] != 0 ){
+							} else if(feld[zeile-1][spalte-1] == 1 && feld[zeile+2][spalte+2] == 1 && feld[zeile+1][spalte+1] == 1 && feld[zeile+1][spalte] != 0 ){ //1011schräg unten rechts
 								ergebnis = spalte;
-							} else if(feld[zeile+1][spalte-1] == 1 && feld[zeile-1][spalte-1] == 1 && feld[zeile-2][spalte-2] == 1 && feld[zeile+1][spalte] != 0 ){
+							} else if(feld[zeile+1][spalte-1] == 1 && feld[zeile-1][spalte+1] == 1 && feld[zeile-2][spalte+2] == 1 && feld[zeile+1][spalte] != 0 ){ //1011schräg oben recht
 								ergebnis = spalte;
 							}	
 						}
 					case 4:
+						if(feld[zeile][spalte] == 1){
+							if(feld[zeile-1][spalte+1] == 1 && feld[zeile-2][spalte+2] == 1 && feld[zeile-3][spalte+3] == 0 && feld[zeile-2][spalte+3] != 0 ){ //1110 oben rechts
+								ergebnis = spalte+3;
+							}
+						} else if(feld[zeile][spalte] == 0){
+							if(feld[zeile-1][spalte+1] == 1 && feld[zeile-2][spalte+2] == 1 && feld[zeile-3][spalte+3] == 1 && feld[zeile+1][spalte] != 0 ){ //0111 oben rechts
+								ergebnis = spalte;
+							} else if(feld[zeile+1][spalte-1] == 1 && feld[zeile-2][spalte+2] == 1 && feld[zeile-1][spalte+1] == 1 && feld[zeile+1][spalte] != 0 ){ //1011 oben rechts
+								ergebnis = spalte;
+							}
+						}
 					case 5:
+						if(feld[zeile][spalte] == 1){
+							if(feld[zeile-1][spalte+1] == 1 && feld[zeile-2][spalte+2] == 1 && feld[zeile-3][spalte+3] == 0 && feld[zeile-2][spalte+3] != 0 ){ //1110 oben rechts
+								ergebnis = spalte+3;
+							}
+						} else if(feld[zeile][spalte] == 0){
+							if(feld[zeile-1][spalte+1] == 1 && feld[zeile-2][spalte+2] == 1 && feld[zeile-3][spalte+3] == 1 ){ //0111oben rechts
+								ergebnis = spalte;
+							} 							
+						}
 					
 					}
 					
 					
 				case 2:	
+					
+					switch (zeile){
+					
+					case 0:
+						if(feld[zeile][spalte] == 1){
+							if(feld[zeile+1][spalte+1] == 1 && feld[zeile+2][spalte+2] == 1 && feld[zeile+3][spalte+3] == 0 && feld[zeile+4][spalte+3] != 0 ){
+								ergebnis = spalte+3;
+							}
+						} else if(feld[zeile][spalte] == 0){
+							if(feld[zeile+1][spalte+1] == 1 && feld[zeile+2][spalte+2] == 1 && feld[zeile+3][spalte+3] == 1 && feld[zeile+1][spalte] != 0 ){
+								ergebnis = spalte;
+							} 							
+						}
+					case 1:
+						
+						
+						
+					case 2:
+						
+						
+						
+					case 3:
+						
+						
+						
+					case 4:
+						
+						
+						
+					case 5:
+						if(feld[zeile][spalte] == 1){
+							if(feld[zeile-1][spalte+1] == 1 && feld[zeile-2][spalte+2] == 1 && feld[zeile-3][spalte+3] == 0 && feld[zeile-2][spalte+3] != 0 ){ //1110 oben rechts
+								ergebnis = spalte+3;
+							}
+						} else if(feld[zeile][spalte] == 0){
+							if(feld[zeile-1][spalte+1] == 1 && feld[zeile-2][spalte+2] == 1 && feld[zeile-3][spalte+3] == 1 ){ //0111oben rechts
+								ergebnis = spalte;
+							} 							
+						}
+					
+					}
 					
 					
 					
@@ -250,9 +311,9 @@ public class KI {
 		
 		
 		
-		//Prï¿½fe ob 3 FREMDE in einer Reihe
+		//Prüfe ob 3 FREMDE in einer Reihe
 		for(zeile = 0; zeile < 6; zeile++){
-			for(spalte = 0; spalte < 5; spalte++){				// nur bis fï¿½nf, weil danach nicht relevant, da sonst auch spalte 5&6 voll sind
+			for(spalte = 0; spalte < 5; spalte++){				// nur bis fünf, weil danach nicht relevant, da sonst auch spalte 5&6 voll sind
 				
 				switch (spalte) {
 					
@@ -306,7 +367,7 @@ public class KI {
 		
 		
 		
-		//Prï¿½fe ob drei FREMDE in einer Spalte
+		//Prüfe ob drei FREMDE in einer Spalte
 		for(spalte = 0; spalte < 7; spalte++){
 			for(zeile = 5; zeile > 2; zeile--){
 				
