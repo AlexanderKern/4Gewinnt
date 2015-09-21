@@ -22,13 +22,36 @@ public class db {
 			Class.forName("org.hsqldb.jdbcDriver");
 			//Connect to the database, load the db files and start database if it isn't already running
 			conn = DriverManager.getConnection(
-					"jdbc:hsqldb:DB" , // filenames
+					"jdbc:hsqldb:db_file" , // filenames
 					"sa", //username
 					""); //password
 		}catch (ClassNotFoundException | SQLException e) {
 		e.printStackTrace();
 		}// catch
+		
 	}
+	
+	//create table person, spiel, satz, zug 
+	public void create_table(db db) throws SQLException{
+		
+		String stmt_person_table = "CREATE TABLE person ( id INTEGER IDENTITY PRIMARY KEY,  name VARCHAR(256) UNIQUE )";
+		String stmt_spiel_table = "CREATE TABLE spiel ( id INTEGER IDENTITY PRIMARY KEY, punkte VARCHAR(256) , gegner VARCHAR(256), date DATE)";
+		String stmt_satz_table = "CREATE TABLE satz ( id INTEGER IDENTITY PRIMARY KEY, spiel_id INTEGER , FOREIGN KEY (spiel_id) REFERENCES spiel(id) , punkte integer) ";
+		String stmt_zug_table = "CREATE TABLE zug ( id INTEGER IDENTITY  PRIMARY KEY, satz_id INTEGER, FOREIGN KEY (satz_id) REFERENCES satz(id) , spalte Integer, gegner BOOLEAN ) ";
+		
+		//db.doQuery("DROP table person");
+		//db.doQuery("DROP table spiel");
+		//db.doQuery("DROP table satz");
+		//db.doQuery("DROP table person");
+	
+		//db.update(stmt_person_table);
+		//db.update(stmt_spiel_table);
+		//db.update(stmt_satz_table);
+		//db.update(stmt_zug_table);
+	}
+	
+	//delete table
+//	db.doQuery("DROP table person");
 	
 	public void shutdown() throws SQLException{
 		// performs a clean shutdown and close the database connection
@@ -37,6 +60,7 @@ public class db {
 		conn.close();
 	}
 	
+	//Select,...
 	public ResultSet doQuery( String query) throws SQLException{
 		// use for SQL command SELECT
 		Statement st = null;
@@ -62,10 +86,18 @@ public class db {
 
 			while(rs.next()){ // setz Zeiger auf nächste Zeile
 				
+			
+				
 				for (i = 0; i < colmax; ++i) { //setzt Zeiger auf nächste Spalte
 					o = rs.getObject(i + 1); // Is SQL the first column is indexed
-					query_result.add( o.toString() );
+				
+					
+						query_result.add(o.toString());
+					
+					
+					//System.out.println("print"+o.toString());
 				}
+				
 			}
 			
 			rs.close();
@@ -80,6 +112,7 @@ public class db {
 		stmt = conn.createStatement();
 		//run sql_command
 		
+		//stmt.execute(sql_command);
 		stmt.executeUpdate(sql_command);
 		stmt.close(); 
 		

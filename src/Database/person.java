@@ -1,41 +1,46 @@
 package Database;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class person {
 	
 	public String name;
-	public String passwort;
 	
+	//Create a person: 1. Call Constructor, 2. call create for new database entry 
+
 	// constructor
-	public person(String name, String passwort){
+	public person(String name){
 		this.name = name;
-		this.passwort = passwort;
 	}
 	
-	//Create a person
-	//First call constructor and than create for insert a new database entry
+
 	public void create(person person, db db) throws SQLException{
 		
 		String stmt_person;
-		stmt_person = "INSERT INTO person(name, password) VALUES( '" +person.name +"' , '"+ person.passwort +"' )";
+		//Check if a data entry already exists
+		
+		//If false
+		stmt_person = "INSERT INTO person(name) VALUES( '" +person.name +"' , ')";
 		db.update(stmt_person);
+		// if true return;
 	}
 	
 	public void delete(person person, db db) throws SQLException{
 		String stmt_person;
-		stmt_person = "DELETE FROM person WHERE name = '" +person.name + "' AND password = '" +person.passwort+"'";
+		stmt_person = "DELETE FROM person WHERE name = '" +person.name + "'";
 		System.out.println(stmt_person);
-		
 		db.update(stmt_person);
 		System.out.println("User"+ person.name +"wurde gelöscht");
 		
 	}
 
-	public String show_all(){
+	public ResultSet show_all(db db ) throws SQLException{
 		// Show all users
 		String stmt = "SELECT * FROM person";
+		ResultSet rs = null; 
 		System.out.println(stmt);
-		return stmt;
+		rs = db.doQuery(stmt);
+		return rs;
 	}
 }
