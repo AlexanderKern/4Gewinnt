@@ -52,7 +52,7 @@ public class PlayController
 	
 	public void onExit(ActionEvent event)
 	{
-		
+		//Schließt das Fenster welches gerade geöffnet ist
 		((Node)(event.getSource())).getScene().getWindow().hide();
 	}
 	

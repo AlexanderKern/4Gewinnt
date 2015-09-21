@@ -23,12 +23,13 @@ public class Main extends Application
         stage.setScene(scene);
         stage.sizeToScene();
         
-        //
+        //Show stage
         stage.show();
-		} 
+		} // end of start
 	
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) 
+	{
 		launch(args);
-	}
-}
+	}// end of Main
+}// end of class
