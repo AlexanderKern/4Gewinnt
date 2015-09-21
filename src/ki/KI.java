@@ -22,9 +22,9 @@ public class KI {
 		while(ergebnis == 99){ //beginn endlosschleife
 			
 		
-		//Prüfe ob 3 eigene in einer Reihe
+		//Pruefe ob 3 eigene in einer Reihe
 		for(zeile = 0; zeile < 6; zeile++){
-			for(spalte = 0; spalte < 5; spalte++){				// nur bis fünf, weil danach nicht relevant, da sonst auch spalte 5&6 voll sind
+			for(spalte = 0; spalte < 5; spalte++){				// nur bis fuenf, weil danach nicht relevant, da sonst auch spalte 5&6 voll sind
 				
 				switch (spalte) {
 					
@@ -72,13 +72,13 @@ public class KI {
 		} //end for zeile
 		
 		
-		if(ergebnis != 99){
+		if(ergebnis != 99){ 
 			break;
 		}//valides Ergebnis?
 		
 		
 		
-		//Prüfe ob drei eigene in einer Spalte
+		//Pruefe ob drei eigene in einer Spalte
 		for(spalte = 0; spalte < 7; spalte++){
 			for(zeile = 5; zeile > 2; zeile--){
 				
@@ -95,11 +95,11 @@ public class KI {
 		}//valides Ergebnis?
 		
 		
-		//prüfe ob drei oder 2_1 oder 1_2 eigene diagonal sind
+		//pruefe ob drei oder 2_1 oder 1_2 eigene diagonal sind
 		
 		
 		
-		//Prüfe ob 3 eigene diagonal
+		//Pruefe ob 3 eigene diagonal
 		
 		for(spalte = 0; spalte < 7; spalte++){
 			for(zeile = 0; zeile < 6; zeile++){
@@ -250,9 +250,9 @@ public class KI {
 		
 		
 		
-		//Prüfe ob 3 FREMDE in einer Reihe
+		//Prï¿½fe ob 3 FREMDE in einer Reihe
 		for(zeile = 0; zeile < 6; zeile++){
-			for(spalte = 0; spalte < 5; spalte++){				// nur bis fünf, weil danach nicht relevant, da sonst auch spalte 5&6 voll sind
+			for(spalte = 0; spalte < 5; spalte++){				// nur bis fï¿½nf, weil danach nicht relevant, da sonst auch spalte 5&6 voll sind
 				
 				switch (spalte) {
 					
@@ -306,7 +306,7 @@ public class KI {
 		
 		
 		
-		//Prüfe ob drei FREMDE in einer Spalte
+		//Prï¿½fe ob drei FREMDE in einer Spalte
 		for(spalte = 0; spalte < 7; spalte++){
 			for(zeile = 5; zeile > 2; zeile--){
 				

@@ -36,7 +36,7 @@ public class person {
 	}
 
 	public ResultSet show_all(db db ) throws SQLException{
-		// Show all users
+		// Show all spieler
 		String stmt = "SELECT * FROM person";
 		ResultSet rs = null; 
 		System.out.println(stmt);

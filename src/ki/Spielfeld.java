@@ -7,11 +7,7 @@ public class Spielfeld {
 	private int spalte;
 	private boolean gegner;
 	private int [] letzter_zug = new int [2];
-	
-	
-	
 
-	
 
 	//Konstruktor
 	public Spielfeld(){
