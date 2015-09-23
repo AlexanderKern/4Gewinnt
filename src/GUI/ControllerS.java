@@ -6,9 +6,18 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 //import javax.swing.Timer;
+
+
+
+
+
+
+
+
 
 
 
@@ -21,58 +30,66 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-
+//Controller Select
 public class ControllerS 
 {
 @FXML
-Button button;
+Button bCancel, bSelect, bStart;
 
 @FXML
-Label lab00, lab01, lab02 ,lab03, lab04, lab05;
-@FXML
-Label lab10, lab11, lab12 ,lab13, lab14, lab15;
-@FXML
-Label lab20, lab21, lab22 ,lab23, lab24, lab25;
-@FXML
-Label lab30, lab41, lab42 ,lab43, lab44, lab45;
-@FXML
-Label lab50, lab51, lab52 ,lab53, lab54, lab55;
-@FXML
-Label lab60, lab61, lab62 ,lab63, lab64, lab65;
+CheckBox cO, cX;
 
-public void clicked()
+@FXML
+TextField tfPath, tfEnemy;
+
+//Spielfeld soll aufgerufen werden
+public void onStart(ActionEvent event) throws IOException
 {
-	Image imageY = new Image(getClass().getResourceAsStream("coinYel.png"));
-	Image imageR = new Image(getClass().getResourceAsStream("coinRed.png"));
+	
+	 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("spielfeld2.fxml"));
+     Parent root1 = (Parent) fxmlLoader.load();
+     Stage stage = new Stage();
+     stage.initModality(Modality.APPLICATION_MODAL);
+     stage.initStyle(StageStyle.UNDECORATED);
+     stage.setTitle("ABC");
+     stage.setScene(new Scene(root1));  
+     stage.show();
+     
+     ((Node)(event.getSource())).getScene().getWindow().hide();
+}
 
+public void onCancel()
+{
 	
-	String lab ="lab";
-	
+}
 
-	for (int i = 0; i <3; i++) 
-	{
-		for (int j = 0; j < 4; j++) 
-		{
-			String label = lab+i+j;
-			Label l = new Label("");
-			System.out.println(l.);
-			l.setGraphic(new ImageView(imageR));
-		}//end of first for
-	}// end of secound for
+public void onSelect()
+{
+	JFileChooser fc = new JFileChooser();
 	
-	//lab00.setGraphic(new ImageView(imageY));
-	//lab01.setGraphic(new ImageView(imageR));
-	
-}// end of clicked()
+}
 
+public void onX()
+
+{
+	
+}
+
+public void onO()
+{
+	
+}
 }// END OF class
