@@ -32,6 +32,7 @@ public class Spiel {
 		 
 		//INSERT INTO spiel(gegner, date) VALUES(   'Feind' , '2015-09-16') 
 	    String stmt = "INSERT INTO spiel(gegner, date) VALUES( " + "  '" +spiel.gegner +"' , "+dateString+")";
+	    System.out.println(stmt);
 		db.update(stmt);	
 		
 	

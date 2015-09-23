@@ -8,9 +8,7 @@ public class Start {
 	
 		//needed for database connection
 		db db = new db();
-	
-	
-		
+			
 		//creates all database, if they doesnt exist
 		try {
 			db.create_table(db);
