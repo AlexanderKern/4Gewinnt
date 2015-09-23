@@ -76,9 +76,17 @@ public void onCancel()
 	
 }
 
-public void onSelect()
+public void onSelect(ActionEvent e)
 {
 	JFileChooser fc = new JFileChooser();
+	fc.setCurrentDirectory(new java.io.File("."));
+	fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+	fc.setAcceptAllFileFilterUsed(false);
+	
+	if (fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+		tfPath.setText(fc.getSelectedFile().toString()
+				+ System.getProperty("file.separator"));
+	}
 	
 }
 
