@@ -22,7 +22,7 @@ public class db {
 			Class.forName("org.hsqldb.jdbcDriver");
 			//Connect to the database, load the db files and start database if it isn't already running
 			conn = DriverManager.getConnection(
-					"jdbc:hsqldb:db_file" , // filenames
+					"jdbc:hsqldb:MyDB" , // filenames
 					"sa", //username
 					""); //password
 		}catch (ClassNotFoundException | SQLException e) {
@@ -44,10 +44,10 @@ public class db {
 		//db.doQuery("DROP table satz");
 		//db.doQuery("DROP table person");
 	
-		//db.update(stmt_person_table);
-		//db.update(stmt_spiel_table);
-		//db.update(stmt_satz_table);
-		//db.update(stmt_zug_table);
+		db.update(stmt_person_table);
+		db.update(stmt_spiel_table);
+		db.update(stmt_satz_table);
+		db.update(stmt_zug_table);
 	}
 	
 	//delete table
