@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane id="tv00" fx:id="table" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ControllerF">
+   <children>
+      <GridPane fx:id="grid" alignment="TOP_CENTER" gridLinesVisible="true" layoutX="83.0" layoutY="107.0" prefHeight="286.0" prefWidth="428.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label fx:id="lab00" text="" GridPane.halignment="CENTER" />
+            <Label fx:id="lab01" text="" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <Label fx:id="lab02" text="" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+            <Label fx:id="lab10" text="" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+            <Label fx:id="lab20" text="" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+            <Label fx:id="lab30" text="" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
+            <Label fx:id="lab40" text="" GridPane.columnIndex="4" GridPane.halignment="CENTER" />
+            <Label fx:id="lab50" text="" GridPane.columnIndex="5" GridPane.halignment="CENTER" />
+            <Label fx:id="lab60" text="" GridPane.columnIndex="6" GridPane.halignment="CENTER" />
+            <Label fx:id="lab03" text="" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+            <Label fx:id="lab11" text="" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <Label fx:id="lab04" text="" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+            <Label fx:id="lab05" text="" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+            <Label fx:id="lab12" text="" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+            <Label fx:id="lab13" text="" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+            <Label fx:id="lab14" text="" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+            <Label fx:id="lab15" text="" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+            <Label fx:id="lab21" text="" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <Label fx:id="lab22" text="" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+            <Label fx:id="lab23" text="" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+            <Label fx:id="lab24" text="" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+            <Label fx:id="lab25" text="" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+            <Label fx:id="lab31" text="" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <Label fx:id="lab32" text="" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+            <Label fx:id="lab33" text="" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+            <Label fx:id="lab34" text="" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+            <Label fx:id="lab35" text="" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+            <Label fx:id="lab41" alignment="CENTER" text="" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <Label fx:id="lab42" alignment="CENTER" text="" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+            <Label fx:id="lab51" text="" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <Label fx:id="lab61" text="" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <Label fx:id="lab52" text="" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+            <Label fx:id="lab62" text="" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+            <Label fx:id="lab43" text="" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+            <Label fx:id="lab44" text="" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+            <Label fx:id="lab45" text="" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+            <Label fx:id="lab54" text="" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+            <Label fx:id="lab63" text="" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+            <Label fx:id="lab64" text="" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+            <Label fx:id="lab55" text="" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+           <!--  <Label fx:id="lab65" text="" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="5" />  -->
+            <Label fx:id="lab53" text="" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+         </children>
+      </GridPane>
+      <Label contentDisplay="CENTER" layoutX="282.0" layoutY="14.0" prefHeight="19.0" prefWidth="60.0" text="Satz" textAlignment="CENTER" />
+      <Button fx:id="button" layoutX="502.0" layoutY="20.0" mnemonicParsing="false" onAction="#clicked" text="Button" />
+   </children>
+</Pane>

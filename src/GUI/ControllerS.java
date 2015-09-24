@@ -6,9 +6,18 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 //import javax.swing.Timer;
+
+
+
+
+
+
+
+
 
 
 
@@ -21,33 +30,74 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-
+//Controller Select
 public class ControllerS 
 {
 @FXML
-Button button;
+Button bCancel, bSelect, bStart;
 
 @FXML
-Label lab00, lab01;
+CheckBox cO, cX;
 
+@FXML
+TextField tfPath, tfEnemy;
 
-
-public void clicked()
+//Spielfeld soll aufgerufen werden
+public void onStart(ActionEvent event) throws IOException
 {
-	Image imageY = new Image(getClass().getResourceAsStream("coinYel.png"));
-	Image imageR = new Image(getClass().getResourceAsStream("coinRed.png"));
+	
+	 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("spielfeld2.fxml"));
+     Parent root1 = (Parent) fxmlLoader.load();
+     Stage stage = new Stage();
+     stage.initModality(Modality.APPLICATION_MODAL);
+     stage.initStyle(StageStyle.UNDECORATED);
+     stage.setTitle("ABC");
+     stage.setScene(new Scene(root1));  
+     stage.show();
+     
+     ((Node)(event.getSource())).getScene().getWindow().hide();
+}
 
-	lab00.setGraphic(new ImageView(imageY));
-	lab01.setGraphic(new ImageView(imageR));
+public void onCancel()
+{
+	
+}
+
+public void onSelect(ActionEvent e)
+{
+	JFileChooser fc = new JFileChooser();
+	fc.setCurrentDirectory(new java.io.File("."));
+	fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+	fc.setAcceptAllFileFilterUsed(false);
+	
+	if (fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+		tfPath.setText(fc.getSelectedFile().toString()
+				+ System.getProperty("file.separator"));
+	}
+	
+}
+
+public void onX()
+
+{
+	
+}
+
+public void onO()
+{
+	
 }
 }// END OF class
