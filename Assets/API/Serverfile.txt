@@ -1,0 +1,6 @@
+{
+"freigabe":"true", 
+"satzstatus":"Satz spielen",
+"gegnerzug":"-1",
+"sieger":"offen"
+}
