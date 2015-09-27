@@ -9,5 +9,8 @@
 	<classpathentry kind="lib" path="externalJar/org.eclipse.fx.ide.css.jfx8_2.0.0.201506111511.jar"/>
 	<classpathentry kind="lib" path="externalJar/pusher-java-client-0.3.3-jar-with-dependencies.jar"/>
 	<classpathentry kind="lib" path="externalJar/slf4j-simple-1.7.12.jar"/>
+	<classpathentry kind="lib" path="lib/jackson-all-1.9.0.jar"/>
+	<classpathentry kind="lib" path="lib/pusher-java-client-0.3.3-jar-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="lib/slf4j-simple-1.7.12.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
