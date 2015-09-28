@@ -62,11 +62,11 @@ public class Test_class {
 		
 		
 		
-		Spielfeld spielfeld = new Spielfeld(feld);
 		
-		KI2 ki = new KI2(spielfeld);
+		
+		KI2 ki = new KI2(feld);
 		ki.berechne();
-		System.out.println(ki.gib_spalte());
+		System.out.println(ki.get_spalte());
 		
 		
 		

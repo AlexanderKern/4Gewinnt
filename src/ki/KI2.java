@@ -10,27 +10,70 @@ public class KI2 {
 	
 	public int [][] feld = new int [6][7];
 	
+	private int spalte_rueckgabe;
+	private boolean gegner;
+	private int [] letzter_zug = new int [2];
+	
 	
 	
 	//Konstruktor
-	public KI2(Spielfeld feld){
-	
-		for (spalte = 0; spalte <= 6; spalte++){
-			for (zeile = 0; zeile <= 5; zeile++){
-				
-				 this.feld[zeile][spalte] = feld.feld[zeile][spalte] ;
-				
-			}
-		}
+	public KI2(int[][] feld){
 		
+		this.feld = feld;
 		
 	}// end Konstruktor
+
 	
-	public int gib_spalte(){
+	
+	// Setter (feld: 0=unbelegt,1=spieler,2=gegner)
+		public void setStein(int spalte, boolean gegner) {
+			
+			spalte_rueckgabe = spalte;
+			this.gegner = gegner;
+			
+			if (this.gegner = true) {
+				for (int zeile = 5; zeile >= 0; zeile--){
+					if ( feld [zeile][spalte_rueckgabe] == 0){	
+						feld [zeile][spalte_rueckgabe] = 2;
+						letzter_zug[1] = spalte_rueckgabe;
+						letzter_zug[0] = zeile;
+						break;
+					}//endif
+				}//endfor
+			} else {
+				for (int zeile = 5; zeile >= 0; zeile--){
+					if ( feld [zeile][spalte_rueckgabe] == 0){	
+						feld [zeile][spalte_rueckgabe] = 1;
+						letzter_zug[1] = spalte_rueckgabe;
+						letzter_zug[0] = zeile;
+						break;
+					}//endif
+				}//endfor
+				
+			}
+			
+					
+		}// end setter
+	
+	public int get_spalte(){
 		
 		return ergebnis;
 		
-	}
+	}// end get spalte
+	
+	
+	
+	
+	public int[] getletzter_zug(){
+		
+		return letzter_zug;
+		
+	}// get letzter zug
+	
+	
+	
+	
+	
 	
 	public void berechne(){
 		while (true){
