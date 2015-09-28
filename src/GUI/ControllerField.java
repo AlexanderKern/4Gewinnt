@@ -1,23 +1,15 @@
 package GUI;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.HashMap;
+import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-//import javax.swing.Timer;
-
-
-
-
-
-
-
-
-
 
 import com.sun.javafx.collections.MappingChange.Map;
 
@@ -26,6 +18,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -40,7 +33,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 //Controller Field
-public class ControllerF 
+public class ControllerField implements Initializable  
 {
 @FXML
 Button button, bExit, bBack;
@@ -55,14 +48,17 @@ TextField colR, colY, rowR,rowY;
 ImageView ivOne, ivTwo, ivThree;
 
 
-Image imageY = new Image(getClass().getResourceAsStream("coinYel.png"));
-Image imageR = new Image(getClass().getResourceAsStream("coinRed.png"));
-Image imageG = new Image(getClass().getResourceAsStream("coinGrey.png"));
-
-
 @SuppressWarnings("static-access")
-public void clicked()
+@Override
+public void initialize(URL fxmlFileLocation, ResourceBundle resources) 
+
 {
+	Image imageY = new Image(getClass().getResourceAsStream("coinYel.png"));
+	Image imageR = new Image(getClass().getResourceAsStream("coinRed.png"));
+	Image imageG = new Image(getClass().getResourceAsStream("coinGrey.png"));
+
+button.setOnAction((ev)-> 
+{	
 	ReuseableSpiel reuse = new ReuseableSpiel();
 	System.out.println("name:" + reuse.getName());
 	int row = (int)(Math.random() * 5);
@@ -74,29 +70,35 @@ public void clicked()
 
 
 	grid.getChildren().addAll(l);
-	
-	
-}// end of clicked()
+}); //end of button
 
-public void onBack(ActionEvent event) throws IOException
-{
-	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("selectScreen.fxml"));
-    Parent root1 = (Parent) fxmlLoader.load();
-    Stage stage = new Stage();
-    stage.initModality(Modality.APPLICATION_MODAL);
-    stage.initStyle(StageStyle.UNDECORATED);
-    stage.setTitle("ABC");
-    stage.setScene(new Scene(root1));  
-    stage.show();
-    
-    ((Node)(event.getSource())).getScene().getWindow().hide();
-}
+bBack.setOnAction((ev)-> 
+{	
+	try {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("selectScreen.fxml"));
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setTitle("ABC");
+        stage.setScene(new Scene(root1));  
+        stage.show();
+        
+        ((Node)(ev.getSource())).getScene().getWindow().hide();
+		} 
+		
+		catch (Exception e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+}); //end of cancel
 
+bExit.setOnAction((ev)-> 
+{	
+	((Node) (ev.getSource())).getScene().getWindow().hide();
+}); //end of cancel
 
-public void onExit(ActionEvent event)
-{
-    ((Node)(event.getSource())).getScene().getWindow().hide();
-
-}
+}// end of init
 
 }// END OF class
