@@ -36,9 +36,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-//Controller Select
+/*
+ * Dieser Controller kontrolliert den Select Bildschirm!
+ */
 public class ControllerS 
 {
+	
 @FXML
 Button bCancel, bSelect, bStart;
 
@@ -53,6 +56,7 @@ TextField tfPath, tfEnemy;
 
 @FXML
 Button bExit;
+
 
 //Spielfeld soll aufgerufen werden
 public void onStart(ActionEvent event) throws IOException

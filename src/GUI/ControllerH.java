@@ -38,12 +38,26 @@ public class ControllerH
 {
 
 @FXML
-Button bExit;
+Button bExit, bBack;
 
 public void onExit(ActionEvent event)
 {
     ((Node)(event.getSource())).getScene().getWindow().hide();
 
+}
+
+public void onBack(ActionEvent event) throws IOException
+{
+	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("welcome.fxml"));
+    Parent root1 = (Parent) fxmlLoader.load();
+    Stage stage = new Stage();
+    stage.initModality(Modality.APPLICATION_MODAL);
+    stage.initStyle(StageStyle.UNDECORATED);
+    stage.setTitle("ABC");
+    stage.setScene(new Scene(root1));  
+    stage.show();
+    
+    ((Node)(event.getSource())).getScene().getWindow().hide();
 }
 
 
