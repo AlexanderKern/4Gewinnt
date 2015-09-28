@@ -19,23 +19,23 @@ public class Start {
 		System.out.println("check");
 		
 		//Neuen Person eintrag erstellen
-		/*
-		person spieler = new person("SuperBrian");
+		
+		spieler spieler = new spieler("SuperBrian");
 		 try {
 			spieler.create(spieler, db);
 			System.out.println("user: "+ spieler.name + " konnte angelegt werden");
-		/*	
+		
 			
 		//Delete user
 			//user.delete(user , db);
 			// Alle personen anzeigen
 		//	System.out.println(db.print_out(spieler.show_all(db)).toString()); 
-			
+		
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
-		*/
 		
+		/*
 		
 		//Neues Spiel Anlegen
 				Spiel spiel = new Spiel("blödes anderes Team");
@@ -62,7 +62,7 @@ public class Start {
 			 satz = new Satz(db, spiel.id);
 			 satz.changeWinner(spiel, db, satz, gewonnen);
 			 */
-			
+	
 		
 		//Datenbank Connection schließen
 		try {	

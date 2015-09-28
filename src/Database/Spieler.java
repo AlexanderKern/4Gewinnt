@@ -9,8 +9,16 @@ public class Spieler {
 	
 	//Create a person: 1. Call Constructor, 2. call create for new database entry 
 
+<<<<<<< Updated upstream:src/Database/Spieler.java
 	// constructor
 	public Spieler(String name){
+=======
+	/* 
+	 * Konstruktor Spieler 
+	 */
+	public spieler(String name){
+		System.out.println(name);
+>>>>>>> Stashed changes:src/Database/spieler.java
 		this.name = name;
 	}
 	
