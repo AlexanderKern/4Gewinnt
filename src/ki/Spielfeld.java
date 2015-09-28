@@ -3,20 +3,16 @@ package ki;
 public class Spielfeld {
 	
 	//Variablen
-	private int [][] feld = new int [7][6];
-	private int spalte;
+	public int [][] feld = new int [6][7];
+	private int spalte_rueckgabe;
 	private boolean gegner;
 	private int [] letzter_zug = new int [2];
 
 
 	//Konstruktor
-	public Spielfeld(){
+	public Spielfeld( int[][] feld ){
 		
-		for (int a = 7; a >= 0; a--){
-			for (int b = 6; b >= 0; b--){
-				feld [a][b] = 0;
-			}
-		}
+		this.feld = feld;
 		
 	}
 	
@@ -24,24 +20,24 @@ public class Spielfeld {
 	// Setter (feld: 0=unbelegt,1=spieler,2=gegner)
 	public void setStein(int spalte, boolean gegner) {
 		
-		spalte = this.spalte;
-		gegner = this.gegner;
+		spalte_rueckgabe = spalte;
+		this.gegner = gegner;
 		
-		if (gegner = true) {
+		if (this.gegner = true) {
 			for (int zeile = 5; zeile >= 0; zeile--){
-				if ( feld [spalte][zeile] == 0){	
-					feld [spalte][zeile] = 2;
-					letzter_zug[0] = spalte;
-					letzter_zug[1] = zeile;
+				if ( feld [zeile][spalte_rueckgabe] == 0){	
+					feld [zeile][spalte_rueckgabe] = 2;
+					letzter_zug[1] = spalte_rueckgabe;
+					letzter_zug[0] = zeile;
 					break;
 				}//endif
 			}//endfor
 		} else {
 			for (int zeile = 5; zeile >= 0; zeile--){
-				if ( feld [spalte][zeile] == 0){	
-					feld [spalte][zeile] = 1;
-					letzter_zug[0] = spalte;
-					letzter_zug[1] = zeile;
+				if ( feld [zeile][spalte_rueckgabe] == 0){	
+					feld [zeile][spalte_rueckgabe] = 1;
+					letzter_zug[1] = spalte_rueckgabe;
+					letzter_zug[0] = zeile;
 					break;
 				}//endif
 			}//endfor
@@ -54,7 +50,7 @@ public class Spielfeld {
 	//getter
 	public int getStein() {
 		
-		return spalte;
+		return spalte_rueckgabe;
 		
 	}
 	
