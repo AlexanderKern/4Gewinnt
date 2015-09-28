@@ -62,6 +62,7 @@ public void initialize(URL fxmlFileLocation, ResourceBundle resources)
 	
 	lPlayerR.setText("Claire");
 
+	//setze stein
 button.setOnAction((ev)-> 
 {	
 	ReuseableSpiel reuse = new ReuseableSpiel();

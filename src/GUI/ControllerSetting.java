@@ -70,9 +70,11 @@ Button bExit;
 		
 		bStart.setOnAction((ev)-> 
 		{	
-			/**DatabaseCreate db = new DatabaseCreate();
+			
+			DatabaseCreate db = new DatabaseCreate();
 			try {
 				db.create_table(db);
+				System.out.println("db erstellt");
 			} catch (SQLException e2) {
 				System.out.println("Tabellen sind bereits angelegt");
 			}
@@ -91,7 +93,9 @@ Button bExit;
 				System.out.println("Es ist ein Fehler bei dem Erstellen eines Spiels aufgetreten!");
 			}
 			ReuseableSpiel reuse = new ReuseableSpiel();
-			reuse.setName(spieler.name);**/
+			reuse.setName(spieler.name);
+			
+			
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("spielfeld2.fxml"));
 			Parent root1;
 			try {
