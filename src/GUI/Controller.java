@@ -64,12 +64,18 @@ public class Controller
 		//}
 	}// end of constructor
 
-	public void onStatistic(ActionEvent event)
+	public void onStatistic(ActionEvent event) throws IOException
 	{
-		statistic.setText("BÄÄÄM");
-		int randomX = -20 + (int) (Math.random() * ((660 - -20) + 1));
-		coinYel.setLayoutX(randomX);
-		movingLabels();
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("history.fxml"));
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setTitle("ABC");
+        stage.setScene(new Scene(root1));  
+        stage.show();
+        
+        ((Node)(event.getSource())).getScene().getWindow().hide();
 		
 	}//end of onStatistic
 	

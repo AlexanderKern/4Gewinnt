@@ -28,6 +28,6 @@
             <RadioButton fx:id="rPath" layoutX="29.0" layoutY="198.0" mnemonicParsing="false" onAction="#onPath" text="Path" />
          </children>
       </Group>
-      <Label fx:id="lExit" layoutX="279.0" layoutY="6.0" onDragDetected="#onExit" text="X" />
+      <Button fx:id="bExit" layoutX="273.0" layoutY="1.0" mnemonicParsing="false" onAction="#onExit" text="X" />
    </children>
 </Pane>
