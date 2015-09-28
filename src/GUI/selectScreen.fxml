@@ -23,8 +23,8 @@
         	<ToggleGroup fx:id="ToggleGroupPlayer"/>
     	</fx:define>
     <children>
-        <RadioButton fx:id="cX" layoutX="23.0" layoutY="142.0" mnemonicParsing="false" onAction="#onX" text="X (Rot)" toggleGroup="$ToggleGroupAPI"/>
-        <RadioButton fx:id="cO" layoutX="23.0" layoutY="120.0" mnemonicParsing="false" onAction="#onO" text="O (Gelb)" toggleGroup="$ToggleGroupAPI"/>
+        <RadioButton fx:id="cX" layoutX="23.0" layoutY="142.0" mnemonicParsing="false" onAction="#onX" text="X (Rot)" toggleGroup="$ToggleGroupPlayer"/>
+        <RadioButton fx:id="cO" layoutX="23.0" layoutY="120.0" mnemonicParsing="false" onAction="#onO" text="O (Gelb)" toggleGroup="$ToggleGroupPlayer"/>
     </children>
       </Group>
       <Label layoutX="23.0" layoutY="88.0" text="Clarie ist:" />
