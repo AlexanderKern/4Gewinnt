@@ -15,23 +15,7 @@
       <Button fx:id="play" layoutX="449.0" layoutY="94.0" mnemonicParsing="false" onAction="#onPlay" text="Spielen" />
       <Button fx:id="statistic" layoutX="448.0" layoutY="174.0" mnemonicParsing="false" onAction="#onStatistic" text="Statistik" />
       <Button fx:id="exit" layoutX="446.0" layoutY="271.0" mnemonicParsing="false" onAction="#onExit" text="Beenden" />
-      <Label fx:id="coinYel" layoutX="404.0" layoutY="21.0">
-         <graphic>
-            <ImageView fitHeight="87.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@coinYel.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Label>
-      <Label fx:id="coinRed" layoutX="204.0" layoutY="21.0">
-         <graphic>
-            <ImageView fitHeight="87.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@coinRed.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Label>
+      <Label fx:id="coinYel" layoutX="404.0" layoutY="21.0" />
+      <Label fx:id="coinRed" layoutX="204.0" layoutY="21.0" />
    </children>
 </Pane>

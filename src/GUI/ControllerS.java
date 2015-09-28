@@ -23,6 +23,8 @@ import javax.swing.JLabel;
 
 
 
+
+
 import com.sun.javafx.collections.MappingChange.Map;
 
 import javafx.collections.ObservableList;
@@ -32,6 +34,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -53,7 +56,13 @@ Button bCancel, bSelect, bStart;
 CheckBox cO, cX;
 
 @FXML
+RadioButton rSocket, rPath;
+
+@FXML
 TextField tfPath, tfEnemy;
+
+@FXML
+Label lExit;
 
 //Spielfeld soll aufgerufen werden
 public void onStart(ActionEvent event) throws IOException
@@ -99,5 +108,20 @@ public void onX()
 public void onO()
 {
 	
+}
+
+public void onSocket()
+{
+	
+}
+
+public void onPath()
+{
+	
+}
+
+public void onExit(ActionEvent event)
+{
+	((Node)(event.getSource())).getScene().getWindow().hide();
 }
 }// END OF class

@@ -92,6 +92,7 @@ public class Controller
 	public void onExit(ActionEvent event)
 	{
 		exit.setText("you pressed exit");
+		((Node)(event.getSource())).getScene().getWindow().hide();
 		
 	}// end of onExit
 	

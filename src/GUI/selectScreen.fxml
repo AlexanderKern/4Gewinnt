@@ -5,16 +5,15 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="414.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ControllerS">
    <children>
       <Label layoutX="26.0" layoutY="58.0" text="Gegnername: " />
       <TextField fx:id="tfEnemy" layoutX="123.0" layoutY="53.0" />
-      <Label layoutX="25.0" layoutY="166.0" text="Dateipfad:" />
-      <TextField fx:id="tfPath" layoutX="25.0" layoutY="182.0" prefHeight="26.0" prefWidth="258.0" />
-      <Button fx:id="bCancel" layoutX="26.0" layoutY="216.0" mnemonicParsing="false" onAction="#onCancel" text="Abbrechen" />
-      <Button fx:id="bSelect" layoutX="200.0" layoutY="216.0" mnemonicParsing="false" onAction="#onSelect" text="Auswählen" />
-      <Button fx:id="bStart" layoutX="225.0" layoutY="359.0" mnemonicParsing="false" onAction="#onStart" text="Staren" />
+      <Label layoutX="17.0" layoutY="256.0" text="Dateipfad:" />
+      <TextField fx:id="tfPath" layoutX="18.0" layoutY="278.0" prefHeight="26.0" prefWidth="258.0" />
+      <Button fx:id="bCancel" layoutX="18.0" layoutY="317.0" mnemonicParsing="false" onAction="#onCancel" text="Abbrechen" />
+      <Button fx:id="bSelect" layoutX="201.0" layoutY="317.0" mnemonicParsing="false" onAction="#onSelect" text="Auswählen" />
+      <Button fx:id="bStart" layoutX="225.0" layoutY="359.0" mnemonicParsing="false" onAction="#onStart" text="Starten" />
       <Group layoutX="50.0" layoutY="-16.0">
          <children>
             <CheckBox fx:id="cX" layoutX="23.0" layoutY="142.0" mnemonicParsing="false" onAction="#onX" text="X (Rot)" />
@@ -22,5 +21,13 @@
          </children>
       </Group>
       <Label layoutX="23.0" layoutY="88.0" text="Clarie ist:" />
+      <Label layoutX="23.0" layoutY="171.0" text="Welche Schnittstelle möchten Sie verwenden?" />
+      <Group>
+         <children>
+            <RadioButton fx:id="rSocket" layoutX="29.0" layoutY="225.0" mnemonicParsing="false" onAction="#onSocket" text="Web Socket" />
+            <RadioButton fx:id="rPath" layoutX="29.0" layoutY="198.0" mnemonicParsing="false" onAction="#onPath" text="Path" />
+         </children>
+      </Group>
+      <Label fx:id="lExit" layoutX="279.0" layoutY="6.0" onDragDetected="#onExit" text="X" />
    </children>
 </Pane>
