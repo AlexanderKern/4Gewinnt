@@ -2,6 +2,7 @@ package GUI;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.Timer;
@@ -12,9 +13,14 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 //import javax.swing.Timer;
+import javax.swing.UIManager;
 
 import com.sun.javafx.collections.MappingChange.Map;
 
+import Database.DatabaseCreate;
+import Database.ReuseableSpiel;
+import Database.Spiel;
+import Database.Spieler;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -39,94 +45,106 @@ import javafx.stage.StageStyle;
 /*
  * Dieser Controller kontrolliert den Select Bildschirm!
  */
-public class ControllerS 
-{
-	
-@FXML
-Button bCancel, bSelect, bStart;
+public class ControllerS {
 
-@FXML
-RadioButton cO, cX;
+	@FXML
+	Button bCancel, bSelect, bStart;
 
-@FXML
-RadioButton rSocket, rPath;
+	@FXML
+	RadioButton cO, cX;
 
-@FXML
-TextField tfPath, tfEnemy;
+	@FXML
+	RadioButton rSocket, rPath;
 
-@FXML
-Button bExit;
+	@FXML
+	TextField tfPath, tfEnemy;
 
+	@FXML
+	Button bExit;
 
-//Spielfeld soll aufgerufen werden
-public void onStart(ActionEvent event) throws IOException
-{
-	
-	 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("spielfeld2.fxml"));
-     Parent root1 = (Parent) fxmlLoader.load();
-     Stage stage = new Stage();
-     stage.initModality(Modality.APPLICATION_MODAL);
-     stage.initStyle(StageStyle.UNDECORATED);
-     stage.setTitle("ABC");
-     stage.setScene(new Scene(root1));  
-     stage.show();
-     
-     ((Node)(event.getSource())).getScene().getWindow().hide();
-}
+	// Spielfeld soll aufgerufen werden
+	public void onStart(ActionEvent event) throws IOException {
 
-public void onCancel(ActionEvent event) throws IOException
-{
-	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("welcome.fxml"));
-    Parent root1 = (Parent) fxmlLoader.load();
-    Stage stage = new Stage();
-    stage.initModality(Modality.APPLICATION_MODAL);
-    stage.initStyle(StageStyle.UNDECORATED);
-    stage.setTitle("ABC");
-    stage.setScene(new Scene(root1));  
-    stage.show();
-    
-    ((Node)(event.getSource())).getScene().getWindow().hide();
-}
+		DatabaseCreate db = new DatabaseCreate();
+		try {
+			db.create_table(db);
+		} catch (SQLException e2) {
+			System.out.println("Tabellen sind bereits angelegt");
+		}
+		
+		Spieler spieler = new Spieler(tfEnemy.getText());
+		try {
+			spieler.create(spieler, db);
+		} catch (SQLException e1) {
+			System.out.println(spieler.name + " konnte nicht angelegt werden!!!");
+		}
+		
+		Spiel spiel = new Spiel(spieler.name);
+		try {
+			spiel.create(db, spiel);
+		} catch (SQLException e3) {
+			System.out.println("Es ist ein Fehler bei dem Erstellen eines Spiels aufgetreten!");
+		}
+		ReuseableSpiel reuse = new ReuseableSpiel();
+		reuse.setName(spieler.name);
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("spielfeld2.fxml"));
+		Parent root1 = (Parent) fxmlLoader.load();
+		Stage stage = new Stage();
+		stage.initModality(Modality.APPLICATION_MODAL);
+		stage.initStyle(StageStyle.UNDECORATED);
+		stage.setTitle("ABC");
+		stage.setScene(new Scene(root1));
+		stage.show();
 
-public void onSelect(ActionEvent e)
-{
-	JFileChooser fc = new JFileChooser();
-	fc.setCurrentDirectory(new java.io.File("."));
-	fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-	fc.setAcceptAllFileFilterUsed(false);
-	
-	if (fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-		tfPath.setText(fc.getSelectedFile().toString()
-				+ System.getProperty("file.separator"));
+		((Node) (event.getSource())).getScene().getWindow().hide();
 	}
-	
-}
 
-public void onX()
+	public void onCancel(ActionEvent event) throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("welcome.fxml"));
+		Parent root1 = (Parent) fxmlLoader.load();
+		Stage stage = new Stage();
+		stage.initModality(Modality.APPLICATION_MODAL);
+		stage.initStyle(StageStyle.UNDECORATED);
+		stage.setTitle("ABC");
+		stage.setScene(new Scene(root1));
+		stage.show();
 
-{
-	
-}
+		((Node) (event.getSource())).getScene().getWindow().hide();
+	}
 
-public void onO()
-{
-	
-}
+	public void onSelect(ActionEvent e) {
+		JFileChooser fc = new JFileChooser();
+		fc.setCurrentDirectory(new java.io.File("."));
+		fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		fc.setAcceptAllFileFilterUsed(false);
 
-public void onSocket()
-{
-	
-}
+		if (fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+			tfPath.setText(fc.getSelectedFile().toString() + System.getProperty("file.separator"));
+		}
 
-public void onPath()
-{
-	
-}
+	}
 
-public void onExit(ActionEvent event)
-{
-	((Node)(event.getSource())).getScene().getWindow().hide();;
-}
+	public void onX()
 
+	{
+
+	}
+
+	public void onO() {
+
+	}
+
+	public void onSocket() {
+
+	}
+
+	public void onPath() {
+
+	}
+
+	public void onExit(ActionEvent event) {
+		((Node) (event.getSource())).getScene().getWindow().hide();
+		;
+	}
 
 }// END OF class

@@ -7,7 +7,7 @@ public class Start {
 	public static void main(String[] args) throws SQLException {
 	
 		//needed for database connection
-		db db = new db();
+		DatabaseCreate db = new DatabaseCreate();
 			
 		//creates all database, if they doesnt exist
 		try {

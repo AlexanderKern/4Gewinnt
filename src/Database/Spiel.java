@@ -26,7 +26,7 @@ public class Spiel {
 	//this.date = date.toString();	
 	}
 	
-	public void create(db db , Spiel spiel) throws SQLException{
+	public void create(DatabaseCreate db , Spiel spiel) throws SQLException{
 		 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		  GregorianCalendar now = new GregorianCalendar(); 
 		 String dateString = dateFormat.format(now.getTime());
@@ -54,7 +54,7 @@ public class Spiel {
 	}
 
 	//Spielausgang eintragen
-	public void update_Spiel(Spiel spiel ,int punkte, db db, Satz satz) throws SQLException{
+	public void update_Spiel(Spiel spiel ,int punkte, DatabaseCreate db, Satz satz) throws SQLException{
 		
 		String stmt = "UPDATE spiel SET punkte =" + punkte + "WHERE id = " +satz.spiel_id;
 		System.out.println(stmt);

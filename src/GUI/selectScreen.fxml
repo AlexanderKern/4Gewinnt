@@ -30,7 +30,7 @@
       <Label layoutX="23.0" layoutY="88.0" text="Clarie ist:" />
       <Label layoutX="23.0" layoutY="171.0" text="Welche Schnittstelle möchten Sie verwenden?" />
       <Group>
-      <fx:define>
+      	<fx:define>
         	<ToggleGroup fx:id="ToggleGroupAPI"/>
     	</fx:define>
          <children>

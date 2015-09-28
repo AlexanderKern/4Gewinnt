@@ -9,7 +9,7 @@ public class Zug {
 	boolean gegner; 
 	int spalte; 
 	
-	public Zug(int satz_id, boolean gegner, int spalte, db db) throws SQLException{
+	public Zug(int satz_id, boolean gegner, int spalte, DatabaseCreate db) throws SQLException{
 		this.satz_id = satz_id; 
 		this.gegner = gegner;
 		this.spalte = spalte;

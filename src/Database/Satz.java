@@ -11,7 +11,7 @@ public class Satz {
 	Boolean gewonnen;
 
 	//constructor
-	public Satz(db db, int spiel_id) throws SQLException{
+	public Satz(DatabaseCreate db, int spiel_id) throws SQLException{
 		//benötigt spiel id des zugehörigen Spiels um erzeugt zuwerden
 		this.spiel_id = spiel_id;
 		String stmt = "INSERT INTO satz(spiel_id) VALUES( '" +this.spiel_id+"')";
@@ -29,7 +29,7 @@ public class Satz {
 	}// end of constructor
 	
 	//setWinner /or change winner =) 
-	public void changeWinner(Spiel spiel, db db, Satz satz ,boolean gewonnen) throws SQLException{
+	public void changeWinner(Spiel spiel, DatabaseCreate db, Satz satz ,boolean gewonnen) throws SQLException{
 		int gewonneneSätze ; 
 	    int AnzahlSätze ;
 		ResultSet rs = null;

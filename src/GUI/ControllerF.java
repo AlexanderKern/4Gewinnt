@@ -21,6 +21,7 @@ import javax.swing.JLabel;
 
 import com.sun.javafx.collections.MappingChange.Map;
 
+import Database.ReuseableSpiel;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -62,7 +63,8 @@ Image imageG = new Image(getClass().getResourceAsStream("coinGrey.png"));
 @SuppressWarnings("static-access")
 public void clicked()
 {
-	
+	ReuseableSpiel reuse = new ReuseableSpiel();
+	System.out.println("name:" + reuse.getName());
 	int row = (int)(Math.random() * 5);
 	int col = (int)(Math.random() * 5);
 	Label l = new Label("");

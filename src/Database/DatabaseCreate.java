@@ -9,13 +9,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class db {
+public class DatabaseCreate {
 	
 // connection to the database, presist fpr the life of the programm
 	public static Connection conn;
 	 
 // constructor
-	public db(){
+	public DatabaseCreate(){
 		
 // Load the HSQL Database Engine JDBC driver
 		try {
@@ -32,7 +32,7 @@ public class db {
 	}
 	
 	//create table person, spiel, satz, zug 
-	public void create_table(db db) throws SQLException{
+	public void create_table(DatabaseCreate db) throws SQLException{
 		
 		String stmt_person_table = "CREATE TABLE person ( id INTEGER IDENTITY PRIMARY KEY,  name VARCHAR(256) UNIQUE )";
 		String stmt_spiel_table = "CREATE TABLE spiel ( id INTEGER IDENTITY PRIMARY KEY, punkte VARCHAR(256) , gegner VARCHAR(256), date DATE)";
