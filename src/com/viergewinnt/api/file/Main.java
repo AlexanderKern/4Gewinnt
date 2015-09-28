@@ -47,15 +47,19 @@ public class Main {
 									switch (values.getTagName()) {
 									case "freigabe":
 										message.setFreigabe(Boolean.valueOf(values.getTextContent()));
+										break;
 
 									case "satzstatus":
 										message.setSatzstatus(values.getTextContent());
+										break;
 
 									case "gegnerzug":
 										message.setGegnerzug(values.getTextContent());
+										break;
 
 									case "sieger":
 										message.setSieger(values.getTextContent());
+										break;
 									}
 
 									if (message.getFreigabe()) {
