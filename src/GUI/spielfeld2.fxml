@@ -72,25 +72,37 @@
             <Label fx:id="lab53" text="" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
          </children>
       </GridPane>
-      <Label contentDisplay="CENTER" layoutX="83.0" layoutY="37.0" prefHeight="19.0" prefWidth="41.0" text="Satz: " textAlignment="CENTER" />
-      <Button fx:id="button" layoutX="420.0" layoutY="57.0" mnemonicParsing="false" onAction="#clicked" text="Stein setzen" />
-      <Label fx:id="lSatz" layoutX="120.0" layoutY="38.0" text="1" />
-      <ImageView fx:id="ivOne" fitHeight="50.0" fitWidth="50.0" layoutX="80.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+      <Button fx:id="button" layoutX="496.0" layoutY="360.0" mnemonicParsing="false" onAction="#clicked" text="Stein setzen" />
+      <Label contentDisplay="CENTER" layoutX="273.0" layoutY="78.0" prefHeight="19.0" prefWidth="41.0" text="Satz: " textAlignment="CENTER" />
+      <Label fx:id="lSatz" layoutX="313.0" layoutY="79.0" text="1" />
+      <ImageView fx:id="ivOne" fitHeight="50.0" fitWidth="50.0" layoutX="212.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@coinGrey.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="ivTwo" fitHeight="50.0" fitWidth="50.0" layoutX="140.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="ivTwo" fitHeight="50.0" fitWidth="50.0" layoutX="272.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@coinGrey.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="ivThree" fitHeight="50.0" fitWidth="50.0" layoutX="200.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="ivThree" fitHeight="50.0" fitWidth="50.0" layoutX="332.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@coinGrey.png" />
          </image>
       </ImageView>
       <Button fx:id="BExit" layoutX="574.0" mnemonicParsing="false" onAction="#onExit" text="X" />
       <Button fx:id="bBack" layoutY="1.0" mnemonicParsing="false" onAction="#onBack" text="&lt; Zurück" />
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@coinRed.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="lPlayerR" layoutX="67.0" layoutY="40.0" prefHeight="19.0" prefWidth="80.0" />
+      <ImageView fx:id="lPlayerY" fitHeight="50.0" fitWidth="50.0" layoutX="541.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@coinYel.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="lPlayerR1" layoutX="456.0" layoutY="40.0" prefHeight="19.0" prefWidth="80.0" />
    </children>
 </Pane>
