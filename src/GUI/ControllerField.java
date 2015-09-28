@@ -47,6 +47,9 @@ TextField colR, colY, rowR,rowY;
 @FXML
 ImageView ivOne, ivTwo, ivThree;
 
+@FXML
+Label lPlayerY, lPlayerR;
+
 
 @SuppressWarnings("static-access")
 @Override
@@ -56,6 +59,8 @@ public void initialize(URL fxmlFileLocation, ResourceBundle resources)
 	Image imageY = new Image(getClass().getResourceAsStream("coinYel.png"));
 	Image imageR = new Image(getClass().getResourceAsStream("coinRed.png"));
 	Image imageG = new Image(getClass().getResourceAsStream("coinGrey.png"));
+	
+	lPlayerR.setText("Claire");
 
 button.setOnAction((ev)-> 
 {	
