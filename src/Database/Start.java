@@ -20,7 +20,7 @@ public class Start {
 		
 		//Neuen Person eintrag erstellen
 		
-		spieler spieler = new spieler("SuperBrian");
+		Spieler spieler = new Spieler("SuperBrian");
 		 try {
 			spieler.create(spieler, db);
 			System.out.println("user: "+ spieler.name + " konnte angelegt werden");
