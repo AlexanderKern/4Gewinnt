@@ -43,90 +43,106 @@ public class KI2 {
 							ergebnis = spalte;
 							
 						}
-						
+					} catch (ArrayIndexOutOfBoundsException e){}
 						
 						// 3 horizontal
+					try{
 						if(feld[zeile][spalte-1] == 1 && feld[zeile][spalte-2] == 1 && feld[zeile][spalte-3] == 1){ //0111 links
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+							} else if (zeile ==5 ){
+								ergebnis = spalte;
 							}
-							ergebnis = spalte;
+							
+					
 							
 						} else if(feld[zeile][spalte+1] == 1 && feld[zeile][spalte+2] == 1 && feld[zeile][spalte+3] == 1){ //0111 rechts
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+							} else if (zeile ==5 ){
+								ergebnis = spalte;
 							}
-							ergebnis = spalte;
 							
 						} else if(feld[zeile][spalte-1] == 1 && feld[zeile][spalte+1] == 1 && feld[zeile][spalte+2] == 1){ //1011 rechts
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+							} else if (zeile ==5 ){
+								ergebnis = spalte;
 							}
-							ergebnis = spalte;
 							
 						} else if(feld[zeile][spalte-2] == 1 && feld[zeile][spalte-1] == 1 && feld[zeile][spalte+1] == 1){ //1101 rechts
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+							} else if (zeile ==5 ){
+								ergebnis = spalte;
 							}
-							ergebnis = spalte;
 							
 						}
-						
+					} catch (ArrayIndexOutOfBoundsException e){}	
 						
 						
 						// 3 diagonal
+					try{
 						if(feld[zeile-1][spalte-1] == 1 && feld[zeile+2][spalte+2] == 1 && feld[zeile+1][spalte+1] == 1){ //1011 unten rechts
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+							} else if (zeile ==5 ){
+								ergebnis = spalte;
 							}
-							ergebnis = spalte;
 							
 						} else if(feld[zeile-1][spalte+1] == 1 && feld[zeile+2][spalte-2] == 1 && feld[zeile+1][spalte-1] == 1){ //1011 unten links
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+							} else if (zeile ==5 ){
+								ergebnis = spalte;
 							}
-							ergebnis = spalte;
 							
 						} else if(feld[zeile+1][spalte+1] == 1 && feld[zeile+2][spalte+2] == 1 && feld[zeile+3][spalte+3] == 1){ //0111 unten rechts
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+							} else if (zeile ==5 ){
+								ergebnis = spalte;
 							}
-							ergebnis = spalte;
 							
 						} else if(feld[zeile-1][spalte-1] == 1 && feld[zeile-2][spalte-2] == 1 && feld[zeile+1][spalte+1] == 1){ //1101 unten rechts
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+							} else if (zeile ==5 ){
+								ergebnis = spalte;
 							}
-							ergebnis = spalte;
 							
 						} else if(feld[zeile-1][spalte+1] == 1 && feld[zeile-2][spalte+2] == 1 && feld[zeile+1][spalte-1] == 1){ //1101 unten links
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+							} else if (zeile ==5 ){
+								ergebnis = spalte;
 							}
-							ergebnis = spalte;
 							
 						} else if(feld[zeile+1][spalte-1] == 1 && feld[zeile+2][spalte-2] == 1 && feld[zeile+3][spalte-3] == 1){ // 0111 unten links
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+							} else if (zeile ==5 ){
+								ergebnis = spalte;
 							}
-							ergebnis = spalte;
 							
 						} else if(feld[zeile-1][spalte+1] == 1 && feld[zeile-2][spalte+2] == 1 && feld[zeile-3][spalte+3] == 1){ //0111 oben rechts
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+							} else if (zeile ==5 ){
+								ergebnis = spalte;
 							}
-							ergebnis = spalte;
 							
 						} else if(feld[zeile-1][spalte-1] == 1 && feld[zeile-2][spalte-2] == 1 && feld[zeile-3][spalte-3] == 1){ // 0111 oben links
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+							} else if (zeile ==5 ){
+								ergebnis = spalte;
 							}
-							ergebnis = spalte;
 							
 						}
 					
+					} catch (ArrayIndexOutOfBoundsException e){}	
 					
-					} catch (ArrayIndexOutOfBoundsException e){}
 				
 				} // end zeile
 			
@@ -147,85 +163,100 @@ public class KI2 {
 							ergebnis = spalte;
 							
 						}
-						
+					} catch (ArrayIndexOutOfBoundsException e){}		
 						
 						// 3 horizontal
+					try{
 						if(feld[zeile][spalte-1] == 2 && feld[zeile][spalte-2] == 2 && feld[zeile][spalte-3] == 2){ //0111 links
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+							} else if (zeile ==5 ){
+								ergebnis = spalte;
 							}
-							ergebnis = spalte;
 							
 						} else if(feld[zeile][spalte+1] == 2 && feld[zeile][spalte+2] == 2 && feld[zeile][spalte+3] == 2){ //0111 rechts
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+							} else if (zeile ==5 ){
+								ergebnis = spalte;
 							}
-							ergebnis = spalte;
 							
 						} else if(feld[zeile][spalte-1] == 2 && feld[zeile][spalte+1] == 2 && feld[zeile][spalte+2] == 2){ //1011 rechts
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+							} else if (zeile ==5 ){
+								ergebnis = spalte;
 							}
-							ergebnis = spalte;
 							
 						} else if(feld[zeile][spalte-2] == 2 && feld[zeile][spalte-1] == 2 && feld[zeile][spalte+1] == 2){ //1101 rechts
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+							} else if (zeile ==5 ){
+								ergebnis = spalte;
 							}
-							ergebnis = spalte;
 							
 						}
+					} catch (ArrayIndexOutOfBoundsException e){}	
 						
 						
 						
 						// 3 diagonal
+					try{
 						if(feld[zeile-1][spalte-1] == 2 && feld[zeile+2][spalte+2] == 2 && feld[zeile+1][spalte+1] == 2){ //1011 unten rechts
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+							} else if (zeile ==5 ){
+								ergebnis = spalte;
 							}
-							ergebnis = spalte;
 							
 						} else if(feld[zeile-1][spalte+1] == 2 && feld[zeile+2][spalte-2] == 2 && feld[zeile+1][spalte-1] == 2){ //1011 unten links
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+							} else if (zeile ==5 ){
+								ergebnis = spalte;
 							}
-							ergebnis = spalte;
 							
 						} else if(feld[zeile+1][spalte+1] == 2 && feld[zeile+2][spalte+2] == 2 && feld[zeile+3][spalte+3] == 2){ //0111 unten rechts
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+							} else if (zeile ==5 ){
+								ergebnis = spalte;
 							}
-							ergebnis = spalte;
 							
 						} else if(feld[zeile-1][spalte-1] == 2 && feld[zeile-2][spalte-2] == 2 && feld[zeile+1][spalte+1] == 2){ //1101 unten rechts
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+							} else if (zeile ==5 ){
+								ergebnis = spalte;
 							}
-							ergebnis = spalte;
 							
 						} else if(feld[zeile-1][spalte+1] == 2 && feld[zeile-2][spalte+2] == 2 && feld[zeile+1][spalte-1] == 2){ //1101 unten links
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+							} else if (zeile ==5 ){
+								ergebnis = spalte;
 							}
-							ergebnis = spalte;
 							
 						} else if(feld[zeile+1][spalte-1] == 2 && feld[zeile+2][spalte-2] == 2 && feld[zeile+3][spalte-3] == 2){ // 0111 unten links
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+							} else if (zeile ==5 ){
+								ergebnis = spalte;
 							}
-							ergebnis = spalte;
 							
 						} else if(feld[zeile-1][spalte+1] == 2 && feld[zeile-2][spalte+2] == 2 && feld[zeile-3][spalte+3] == 2){ //0111 oben rechts
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+							} else if (zeile ==5 ){
+								ergebnis = spalte;
 							}
-							ergebnis = spalte;
 							
 						} else if(feld[zeile-1][spalte-1] == 2 && feld[zeile-2][spalte-2] == 2 && feld[zeile-3][spalte-3] == 2){ // 0111 oben links
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+							} else if (zeile ==5 ){
+								ergebnis = spalte;
 							}
-							ergebnis = spalte;
 							
 						}
 					

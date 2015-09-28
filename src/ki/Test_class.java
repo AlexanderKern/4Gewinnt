@@ -14,21 +14,21 @@ public class Test_class {
 		feld [2][0] = 0;
 		feld [3][0] = 0;
 		feld [4][0] = 0;
-		feld [5][0] = 1;
+		feld [5][0] = 0;
 		
 		feld [0][1] = 0;
 		feld [1][1] = 0;
 		feld [2][1] = 0;
 		feld [3][1] = 0;
 		feld [4][1] = 0;
-		feld [5][1] = 1;
+		feld [5][1] = 0;
 		
 		feld [0][2] = 0;
 		feld [1][2] = 0;
 		feld [2][2] = 0;
 		feld [3][2] = 0;
 		feld [4][2] = 0;
-		feld [5][2] = 1;
+		feld [5][2] = 0;
 		
 		feld [0][3] = 0;
 		feld [1][3] = 0;
@@ -54,9 +54,9 @@ public class Test_class {
 		feld [0][4] = 0;
 		feld [1][4] = 0;
 		feld [2][4] = 0;
-		feld [3][4] = 0;
-		feld [4][4] = 0;
-		feld [5][4] = 0;
+		feld [3][4] = 1;
+		feld [4][4] = 1;
+		feld [5][4] = 1;
 		
 		feld [0][5] = 0;
 		feld [1][5] = 0;
