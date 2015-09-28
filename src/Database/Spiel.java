@@ -1,5 +1,10 @@
 package Database;
 
+/**
+*
+* @author Majken Pluegge
+*/
+
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

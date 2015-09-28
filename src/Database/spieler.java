@@ -3,19 +3,19 @@ package Database;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class person {
+public class spieler {
 	
 	public String name;
 	
 	//Create a person: 1. Call Constructor, 2. call create for new database entry 
 
 	// constructor
-	public person(String name){
+	public spieler(String name){
 		this.name = name;
 	}
 	
 
-	public void create(person person, db db) throws SQLException{
+	public void create(spieler person, db db) throws SQLException{
 		
 		String stmt_person;
 		//Check if a data entry already exists
@@ -26,7 +26,7 @@ public class person {
 		// if true return;
 	}
 	
-	public void delete(person person, db db) throws SQLException{
+	public void delete(spieler person, db db) throws SQLException{
 		String stmt_person;
 		stmt_person = "DELETE FROM person WHERE name = '" +person.name + "'";
 		System.out.println(stmt_person);
