@@ -4,6 +4,10 @@
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="414.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ControllerS">
    <children>
@@ -15,17 +19,23 @@
       <Button fx:id="bSelect" layoutX="201.0" layoutY="317.0" mnemonicParsing="false" onAction="#onSelect" text="Auswählen" />
       <Button fx:id="bStart" layoutX="225.0" layoutY="359.0" mnemonicParsing="false" onAction="#onStart" text="Starten" />
       <Group layoutX="50.0" layoutY="-16.0">
-         <children>
-            <CheckBox fx:id="cX" layoutX="23.0" layoutY="142.0" mnemonicParsing="false" onAction="#onX" text="X (Rot)" />
-            <CheckBox fx:id="cO" layoutX="23.0" layoutY="120.0" mnemonicParsing="false" onAction="#onO" text="O (Gelb)" />
-         </children>
+         <fx:define>
+        	<ToggleGroup fx:id="ToggleGroupPlayer"/>
+    	</fx:define>
+    <children>
+        <RadioButton fx:id="cX" layoutX="23.0" layoutY="142.0" mnemonicParsing="false" onAction="#onX" text="X (Rot)" toggleGroup="$ToggleGroupAPI"/>
+        <RadioButton fx:id="cO" layoutX="23.0" layoutY="120.0" mnemonicParsing="false" onAction="#onO" text="O (Gelb)" toggleGroup="$ToggleGroupAPI"/>
+    </children>
       </Group>
       <Label layoutX="23.0" layoutY="88.0" text="Clarie ist:" />
       <Label layoutX="23.0" layoutY="171.0" text="Welche Schnittstelle möchten Sie verwenden?" />
       <Group>
+      <fx:define>
+        	<ToggleGroup fx:id="ToggleGroupAPI"/>
+    	</fx:define>
          <children>
-            <RadioButton fx:id="rSocket" layoutX="29.0" layoutY="225.0" mnemonicParsing="false" onAction="#onSocket" text="Web Socket" />
-            <RadioButton fx:id="rPath" layoutX="29.0" layoutY="198.0" mnemonicParsing="false" onAction="#onPath" text="Path" />
+            <RadioButton fx:id="rSocket" layoutX="29.0" layoutY="225.0" mnemonicParsing="false" onAction="#onSocket" text="Web Socket" toggleGroup="$ToggleGroupAPI" />
+            <RadioButton fx:id="rPath" layoutX="29.0" layoutY="198.0" mnemonicParsing="false" onAction="#onPath" text="Path" toggleGroup="$ToggleGroupAPI" />
          </children>
       </Group>
       <Button fx:id="bExit" layoutX="273.0" layoutY="1.0" mnemonicParsing="false" onAction="#onExit" text="X" />

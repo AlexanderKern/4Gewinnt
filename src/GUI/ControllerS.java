@@ -46,7 +46,7 @@ public class ControllerS
 Button bCancel, bSelect, bStart;
 
 @FXML
-CheckBox cO, cX;
+RadioButton cO, cX;
 
 @FXML
 RadioButton rSocket, rPath;
