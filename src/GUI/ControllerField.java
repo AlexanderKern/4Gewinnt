@@ -93,10 +93,8 @@ button.setOnAction((ev)->
 
 	grid.getChildren().addAll(l);
 	
-	
+	//Aktuellen Zug in Datenbank speichern
 	ReuseableSatz reuseSatz = new ReuseableSatz();
-	System.out.println("Die aktuelle Satz Id --> "+reuseSatz.id + "Nun wird der ZUg in DB gespeichert");
-	//Zug in Datenbank speichern hier?
 	Boolean gegner = true; // false wenn wir den Zug machnen :) 
 	int spalte = col;
 	Zug zug;
