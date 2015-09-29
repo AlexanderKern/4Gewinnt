@@ -30,7 +30,4 @@ public class Zug {
 	
 	// TODO Check ob schon 7*8 = 56 Züge für diesen Satz_id = satz.id gespielt  worden sind 
 	
-	
-	
-
 }
