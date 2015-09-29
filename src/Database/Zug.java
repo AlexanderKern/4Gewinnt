@@ -13,11 +13,8 @@ public class Zug {
 		this.satz_id = satz_id; 
 		this.gegner = gegner;
 		this.spalte = spalte;
-		
-		
-//String stmt_zug_table = "CREATE TABLE zug ( id INTEGER IDENTITY  PRIMARY KEY, satz_id INTEGER, FOREIGN KEY (satz_id) REFERENCES satz(id) , spalte Integer, gegner BOOLEAN ) ";
-				String stmt = "INSERT INTO zug(satz_id, spalte, gegner) VALUES( '" +this.satz_id+"' , '"+ this.spalte +"' , '"+ this.gegner + "')";
-	//System.out.println(stmt);
+	
+	String stmt = "INSERT INTO zug(satz_id, spalte, gegner) VALUES( '" +this.satz_id+"' , '"+ this.spalte +"' , '"+ this.gegner + "')";
 	db.update(stmt);
 	
 	//Get Id for actual/ this zug

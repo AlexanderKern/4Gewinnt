@@ -22,25 +22,21 @@ public class Spiel {
 	
 	//Constructor
 	public Spiel(String gegner){
-	this.gegner = gegner;
-	//this.date = date.toString();	
+	this.gegner = gegner;	
 	}
 	
 	public void create(DatabaseCreate db , Spiel spiel) throws SQLException{
+		
 		 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		  GregorianCalendar now = new GregorianCalendar(); 
+		 GregorianCalendar now = new GregorianCalendar(); 
 		 String dateString = dateFormat.format(now.getTime());
 		 java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
 		 dateString = "'"+ sqlDate.toString()+"'";
-		// dateString = sqlDate.toString();
-		 //DATE '9999-12-31'
 		 
 		//INSERT INTO spiel(gegner, date) VALUES(   'Feind' , '2015-09-16') 
 	    String stmt = "INSERT INTO spiel(gegner, date) VALUES( " + "  '" +spiel.gegner +"' , "+dateString+")";
-	    System.out.println(stmt);
 		db.update(stmt);	
 		
-	
 		//Get Id for actual/ this game
 		ResultSet rs =db.doQuery("CALL IDENTITY();");
 		int id;
@@ -50,6 +46,7 @@ public class Spiel {
 			spiel.id = id;
 			}
 		
+		//Speichern der notwendigen Information für einen globalen Zugriff
 		ReuseableSpiel reusespiel = new ReuseableSpiel();
 		reusespiel.setId(spiel.id);
 		reusespiel.setName(spiel.gegner);
@@ -62,7 +59,7 @@ public class Spiel {
 		String stmt = "UPDATE spiel SET punkte =" + punkte + "WHERE id = " +satz.spiel_id;
 		System.out.println(stmt);
 		db.update(stmt);
-		
+
 		System.out.println(spiel.id +"geupdatet");
 		
 		

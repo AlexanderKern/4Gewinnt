@@ -5,6 +5,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+/**
+ * 
+ * @author MajkenPlugge
+ *
+ */
+
 public class Satz {
 	public int id;
 	public int spiel_id;
@@ -41,7 +47,7 @@ public class Satz {
 		
 		db.update(stmt);
 	
-		//Check ob 3 Sätze bereitsgespielt sind
+		//Check ob 3 Sätze bereits gespielt sind
 		stmt = "SELECT * FROM satz WHERE spiel_id =  "+ satz.spiel_id;
 		rs = db.doQuery(stmt);
 		
