@@ -72,7 +72,11 @@ button.setOnAction((ev)->
 {	
 	ReuseableSpiel reuse = new ReuseableSpiel();
 	System.out.println("name:" + reuse.getName());
-	//Zug in Datenbank speichern hier? 
+	//Zug in Datenbank speichern hier?
+	/*Boolean gegner = true; 
+	int spalte = 1; 
+	Zug zug = new Zug(satz.id, gegner,  spalte, db);
+	System.out.println(zug.id); */
 	
 	
 	
