@@ -58,7 +58,8 @@ public void initialize(URL fxmlFileLocation, ResourceBundle resources)
 
 {
 	/*Satz in Datenbank anlegen*/ 
-	
+	//Satz satz = new Satz(db, spiel.id); --> benötigen spiel.id vom Objekt spiel
+	//System.out.println("Satz id main" + satz.id);
 	
 	Image imageY = new Image(getClass().getResourceAsStream("coinYel.png"));
 	Image imageR = new Image(getClass().getResourceAsStream("coinRed.png"));
@@ -72,8 +73,7 @@ button.setOnAction((ev)->
 	ReuseableSpiel reuse = new ReuseableSpiel();
 	System.out.println("name:" + reuse.getName());
 	//Zug in Datenbank speichern hier? 
-	//Satz satz = new Satz(db, spiel.id); --> benötigen spiel.id vom Objekt spiel
-	//System.out.println("Satz id main" + satz.id);
+	
 	
 	
 	int row = (int)(Math.random() * 5);
