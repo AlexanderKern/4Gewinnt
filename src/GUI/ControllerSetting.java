@@ -74,7 +74,6 @@ Button bExit;
 			DatabaseCreate db = new DatabaseCreate();
 			try {
 				db.create_table(db);
-				System.out.println("db erstellt");
 			} catch (SQLException e2) {
 				System.out.println("Tabellen sind bereits angelegt");
 			}
