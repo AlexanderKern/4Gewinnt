@@ -6,8 +6,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class Satz {
-	int id;
-	int spiel_id;
+	public int id;
+	public int spiel_id;
 	Boolean gewonnen;
 
 	//constructor
@@ -26,6 +26,10 @@ public class Satz {
 			this.id = id;
 			
 			}	
+		
+		ReuseableSatz reuseSatz = new ReuseableSatz();
+		reuseSatz.setId(this.id);
+		
 	}// end of constructor
 	
 	//setWinner /or change winner =) 

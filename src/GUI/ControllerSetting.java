@@ -92,8 +92,10 @@ Button bExit;
 			} catch (SQLException e3) {
 				System.out.println("Es ist ein Fehler bei dem Erstellen eines Spiels aufgetreten!");
 			}
-			ReuseableSpiel reuse = new ReuseableSpiel();
-			reuse.setName(spieler.name);
+			
+			// mit in Klasse Spiel drinnen 
+			//ReuseableSpiel reuse = new ReuseableSpiel();
+			//reuse.setName(spieler.name);
 			
 			
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("spielfeld2.fxml"));

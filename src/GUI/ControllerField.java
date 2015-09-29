@@ -2,6 +2,7 @@ package GUI;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.Timer;
@@ -13,8 +14,11 @@ import javax.swing.JLabel;
 
 import com.sun.javafx.collections.MappingChange.Map;
 
+import Database.DatabaseCreate;
+import Database.ReuseableSatz;
 import Database.ReuseableSpiel;
 import Database.Satz;
+import Database.Zug;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -58,8 +62,16 @@ public void initialize(URL fxmlFileLocation, ResourceBundle resources)
 
 {
 	/*Satz in Datenbank anlegen*/ 
-	//Satz satz = new Satz(db, spiel.id); --> benötigen spiel.id vom Objekt spiel
-	//System.out.println("Satz id main" + satz.id);
+	ReuseableSpiel reuseSpiel = new ReuseableSpiel();
+	DatabaseCreate db = new DatabaseCreate(); // funktioniert das wenn hier neue db-Verbindung angelegt wird? 
+	try {
+		Satz satz = new Satz(db, reuseSpiel.id);
+		System.out.println("Satz mit der Id = " + satz.id +" wurde angelegt und gehört zum Spiel mit der ID " + satz.spiel_id);
+	} catch (SQLException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	} 
+	
 	
 	Image imageY = new Image(getClass().getResourceAsStream("coinYel.png"));
 	Image imageR = new Image(getClass().getResourceAsStream("coinRed.png"));
@@ -70,16 +82,7 @@ public void initialize(URL fxmlFileLocation, ResourceBundle resources)
 /* Setze Stein */ 
 button.setOnAction((ev)-> 
 {	
-	ReuseableSpiel reuse = new ReuseableSpiel();
-	System.out.println("name:" + reuse.getName());
-	//Zug in Datenbank speichern hier?
-	/*Boolean gegner = true; 
-	int spalte = 1; 
-	Zug zug = new Zug(satz.id, gegner,  spalte, db);
-	System.out.println(zug.id); */
-	
-	
-	
+
 	int row = (int)(Math.random() * 5);
 	int col = (int)(Math.random() * 5);
 	Label l = new Label("");
@@ -89,6 +92,23 @@ button.setOnAction((ev)->
 
 
 	grid.getChildren().addAll(l);
+	
+	
+	ReuseableSatz reuseSatz = new ReuseableSatz();
+	System.out.println("Die aktuelle Satz Id --> "+reuseSatz.id + "Nun wird der ZUg in DB gespeichert");
+	//Zug in Datenbank speichern hier?
+	Boolean gegner = true; // false wenn wir den Zug machnen :) 
+	int spalte = col;
+	Zug zug;
+	try {
+		zug = new Zug(reuseSatz.id , gegner,  spalte, db);
+		System.out.println("Der angelegte Zug hat die Id" + zug.id);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	
 }); //end of button
 
 bBack.setOnAction((ev)-> 

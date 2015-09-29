@@ -50,6 +50,9 @@ public class Spiel {
 			spiel.id = id;
 			}
 		
+		ReuseableSpiel reusespiel = new ReuseableSpiel();
+		reusespiel.setId(spiel.id);
+		reusespiel.setName(spiel.gegner);
 	
 	}
 
