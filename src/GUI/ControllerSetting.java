@@ -43,6 +43,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 /*
+ * @author  Cara Damm
  * Dieser Controller kontrolliert den Select Bildschirm!
  */
 public class ControllerSetting implements Initializable  
@@ -75,7 +76,7 @@ Button bExit;
 			try {
 				db.create_table(db);
 			} catch (SQLException e2) {
-				System.out.println("Tabellen sind bereits angelegt");
+				//System.out.println("Tabellen sind bereits angelegt");
 			}
 			
 			Spieler spieler = new Spieler(tfEnemy.getText());

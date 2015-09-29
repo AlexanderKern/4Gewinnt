@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import com.sun.javafx.collections.MappingChange.Map;
 
 import Database.ReuseableSpiel;
+import Database.Satz;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -56,17 +57,25 @@ Label lPlayerY, lPlayerR;
 public void initialize(URL fxmlFileLocation, ResourceBundle resources) 
 
 {
+	/*Satz in Datenbank anlegen*/ 
+	
+	
 	Image imageY = new Image(getClass().getResourceAsStream("coinYel.png"));
 	Image imageR = new Image(getClass().getResourceAsStream("coinRed.png"));
 	Image imageG = new Image(getClass().getResourceAsStream("coinGrey.png"));
 	
 	lPlayerR.setText("Claire");
 
-	//setze stein
+/* Setze Stein */ 
 button.setOnAction((ev)-> 
 {	
 	ReuseableSpiel reuse = new ReuseableSpiel();
 	System.out.println("name:" + reuse.getName());
+	//Zug in Datenbank speichern hier? 
+	//Satz satz = new Satz(db, spiel.id); --> benötigen spiel.id vom Objekt spiel
+	//System.out.println("Satz id main" + satz.id);
+	
+	
 	int row = (int)(Math.random() * 5);
 	int col = (int)(Math.random() * 5);
 	Label l = new Label("");
