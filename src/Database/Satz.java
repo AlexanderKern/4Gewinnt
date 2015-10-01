@@ -2,8 +2,6 @@ package Database;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 
 /**
  * 
@@ -67,7 +65,6 @@ public class Satz {
 	 
 				}//end of if
 		}// end of while
-
 	}//end of changeWinner
 
 	

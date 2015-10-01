@@ -1,7 +1,5 @@
 package Database;
 
-import java.sql.ResultSet;
-
 public class ReuseableSpiel {
 	
 	private static String name;
