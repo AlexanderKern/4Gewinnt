@@ -12,9 +12,9 @@
              <Image url="@4gewinnt.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="play" layoutX="64.0" layoutY="323.0" mnemonicParsing="false" text="Spiel starten" />
+      <Button fx:id="play" layoutX="475.0" layoutY="323.0" mnemonicParsing="false" text="Spiel starten" />
       <Button fx:id="statistic" layoutX="248.0" layoutY="323.0" mnemonicParsing="false" text="Historie betrachten" />
-      <Button fx:id="exit" layoutX="478.0" layoutY="323.0" mnemonicParsing="false" text="Beenden" />
+      <Button fx:id="exit" layoutX="79.0" layoutY="323.0" mnemonicParsing="false" text="Beenden" />
       <Label fx:id="coinYel" layoutX="404.0" layoutY="21.0" />
       <Label fx:id="coinRed" layoutX="204.0" layoutY="21.0" />
    </children>
