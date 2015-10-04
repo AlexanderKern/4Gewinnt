@@ -3,6 +3,7 @@ package Database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -73,6 +74,14 @@ public class DatabaseCreate {
 		
 	}
 	
+	//Prepared Stmnt
+	public ResultSet doQueryPrepStmnt( PreparedStatement stmnt) throws SQLException{
+	ResultSet rs = 	stmnt.executeQuery();
+	return rs;
+	
+	
+	}
+	
 	public ArrayList<String> print_out(ResultSet rs) throws SQLException{
 		
 		//Save result of the query in a String Array List
@@ -104,6 +113,26 @@ public class DatabaseCreate {
 			return query_result;
 			
 	}
+	
+	
+	  public void outputResultSet(ResultSet rs) throws Exception {
+		    ResultSetMetaData rsMetaData = rs.getMetaData();
+		    int numberOfColumns = rsMetaData.getColumnCount();
+		    for (int i = 1; i < numberOfColumns + 1; i++) {
+		      String columnName = rsMetaData.getColumnName(i);
+		      System.out.print(columnName + "   ");
+		    }
+		    
+		    System.out.println();
+		    System.out.println("----------------------");
+
+		    while (rs.next()) {
+		      for (int i = 1; i < numberOfColumns + 1; i++) {
+		        System.out.print(rs.getString(i) + "   ");
+		      }
+		      System.out.println();
+		    }
+	  }
 	
 	public synchronized void update(String sql_command) throws SQLException{
 		

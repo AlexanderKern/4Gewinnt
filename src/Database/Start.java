@@ -1,5 +1,9 @@
 package Database;
 
+import java.net.ConnectException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
 public class Start {
@@ -20,7 +24,7 @@ public class Start {
 		
 		//Neuen Person eintrag erstellen
 		
-		Spieler spieler = new Spieler("SuperBrian");
+		Spieler spieler = new Spieler("SuperHirn");
 		 try {
 			spieler.create(spieler, db);
 			System.out.println("user: "+ spieler.name + " konnte angelegt werden");
@@ -32,7 +36,7 @@ public class Start {
 		//	System.out.println(db.print_out(spieler.show_all(db)).toString()); 
 		
 		} catch (SQLException e1) {
-			e1.printStackTrace();
+		//	e1.printStackTrace();
 		}
 		
 		/*
@@ -62,7 +66,28 @@ public class Start {
 			 satz = new Satz(db, spiel.id);
 			 satz.changeWinner(spiel, db, satz, gewonnen);
 			 */
-	
+		 
+		 /*
+		  * Select Staments
+		  * 1. Alle gespielten Spiele anzeigen 
+		  */
+		 
+		 PreparedStatement pstmt = db.conn.prepareStatement("SELECT punkte, gegner, date FROM spiel");
+		// pstmt.setNString(1, "*" );
+		 
+		ResultSet rs = db.doQueryPrepStmnt(pstmt);
+		System.out.println("rs erfolgrecih");
+		
+		try {
+			db.outputResultSet(rs);	
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		/*2. Alle Züge eines Spiels*/
+		
+		/*3. Wie viel % mit Gelben wie viel % mit roten Steinen gewonnen ( Auf Satz oder SPiel bezogen?)*/
 		
 		//Datenbank Connection schließen
 		try {	
@@ -72,6 +97,7 @@ public class Start {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		
 		
 		
