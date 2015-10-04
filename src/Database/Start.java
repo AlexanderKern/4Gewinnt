@@ -75,28 +75,19 @@ public class Start {
 		 PreparedStatement pstmt = db.conn.prepareStatement("SELECT punkte, gegner, date FROM spiel");
 		// pstmt.setNString(1, "*" );
 		 
-		 
 		ResultSet rs = db.doQueryPrepStmnt(pstmt);
 		System.out.println("rs erfolgrecih");
 		
 		try {
-			db.outputResultSet(rs);
-			
+			db.outputResultSet(rs);	
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		//rs.g
-		/*ResultSetMetaData meta = rs.getMetaData();
-		int colmax = meta.getColumnCount();
-		System.out.println("anzahl der einträge"+colmax);
-		int i;
-		System.out.println(rs.getObject(1));
-		for( i = 1; i<= colmax ;  i++){
-		String result = rs.getString(i);
-		System.out.println(result);
-		}
-		*/
+		
+		/*2. Alle Züge eines Spiels*/
+		
+		/*3. Wie viel % mit Gelben wie viel % mit roten Steinen gewonnen ( Auf Satz oder SPiel bezogen?)*/
 		
 		//Datenbank Connection schließen
 		try {	
@@ -106,6 +97,7 @@ public class Start {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		
 		
 		
