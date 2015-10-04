@@ -9,7 +9,12 @@
 
 <Pane id="tv00" fx:id="table" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ControllerField">
    <children>
-      <GridPane fx:id="grid" alignment="TOP_CENTER" gridLinesVisible="true" layoutX="83.0" layoutY="107.0" prefHeight="286.0" prefWidth="428.0">
+      <ImageView fitHeight="301.0" fitWidth="449.0" layoutX="47.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@spielfeld.png" />
+         </image>
+      </ImageView>
+      <GridPane fx:id="grid" alignment="TOP_CENTER" layoutX="107.0" layoutY="115.0" prefHeight="248.0" prefWidth="291.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
@@ -54,7 +59,7 @@
          </image>
       </ImageView>
       <Label fx:id="lPlayerR" layoutX="67.0" layoutY="40.0" prefHeight="19.0" prefWidth="80.0" />
-      <ImageView  fitHeight="50.0" fitWidth="50.0" layoutX="541.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="541.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@coinYel.png" />
          </image>
