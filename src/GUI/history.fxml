@@ -4,7 +4,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ControllerH">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@welcome.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ControllerH">
    <children>
       <Label layoutX="217.0" layoutY="23.0" text="Spiele die gespielt wurden" />
       <Label layoutX="256.0" layoutY="212.0" text="Zugübersicht" />
@@ -24,7 +24,7 @@
             <TableColumn prefWidth="219.0" text="C2" />
          </columns>
       </TableView>
-      <Button fx:id="bExit" layoutX="570.0" mnemonicParsing="false" onAction="#onExit" text="X" />
+      <Button fx:id="bExit" layoutX="542.0" layoutY="1.0" mnemonicParsing="false" onAction="#onExit" text="X" />
       <Button fx:id="bBack" layoutX="1.0" layoutY="2.0" mnemonicParsing="false" onAction="#onBack" text="&lt; Zurück" />
    </children>
 </Pane>

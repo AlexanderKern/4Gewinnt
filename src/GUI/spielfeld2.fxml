@@ -7,7 +7,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane id="tv00" fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ControllerField">
+<Pane id="tv00" fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@welcome.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ControllerField">
    <children>
       <ImageView fitHeight="301.0" fitWidth="449.0" layoutX="47.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -33,7 +33,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
       </GridPane>
-      <Button fx:id="button" layoutX="496.0" layoutY="360.0" mnemonicParsing="false" text="Stein setzen" />
+      <Button fx:id="button" layoutX="454.0" layoutY="293.0" mnemonicParsing="false" text="Stein setzen" />
       <Label contentDisplay="CENTER" layoutX="273.0" layoutY="78.0" prefHeight="19.0" prefWidth="41.0" text="Satz:" textAlignment="CENTER" />
       <Label fx:id="lSatz" layoutX="313.0" layoutY="79.0" text="1" />
       <ImageView fx:id="ivOne" fitHeight="50.0" fitWidth="50.0" layoutX="212.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
@@ -51,8 +51,8 @@
             <Image url="@coinGrey.png" />
          </image>
       </ImageView>
-      <Button fx:id="bExit" layoutX="574.0" mnemonicParsing="false" text="X" />
-      <Button fx:id="bBack" layoutY="1.0" mnemonicParsing="false" text="&lt; Zurück" />
+      <Button fx:id="bExit" layoutX="543.0" mnemonicParsing="false" text="X" />
+      <Button fx:id="bBack" mnemonicParsing="false" text="&lt; Zurück" />
       <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@coinRed.png" />

@@ -5,16 +5,16 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ControllerStart">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@welcome.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ControllerStart">
    <children>
       <ImageView fitHeight="400.0" fitWidth="488.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true">
          <image>
              <Image url="@4gewinnt.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="play" layoutX="475.0" layoutY="323.0" mnemonicParsing="false" text="Spiel starten" />
-      <Button fx:id="statistic" layoutX="248.0" layoutY="323.0" mnemonicParsing="false" text="Historie betrachten" />
-      <Button fx:id="exit" layoutX="79.0" layoutY="323.0" mnemonicParsing="false" text="Beenden" />
+      <Button fx:id="play" layoutX="433.0" layoutY="323.0" mnemonicParsing="false" text="Spiel starten" />
+      <Button fx:id="statistic" layoutX="210.0" layoutY="323.0" mnemonicParsing="false" text="Historie betrachten" />
+      <Button fx:id="exit" layoutX="55.0" layoutY="323.0" mnemonicParsing="false" text="Beenden" />
       <Label fx:id="coinYel" layoutX="404.0" layoutY="21.0" />
       <Label fx:id="coinRed" layoutX="204.0" layoutY="21.0" />
    </children>

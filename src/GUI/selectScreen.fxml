@@ -9,28 +9,28 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="414.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ControllerSetting">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="414.0" prefWidth="300.0" styleClass="background" stylesheets="@welcome.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ControllerSetting">
    <children>
-      <Label layoutX="26.0" layoutY="58.0" text="Gegnername: " />
-      <TextField fx:id="tfEnemy" layoutX="123.0" layoutY="53.0" />
+      <Label layoutX="5.0" layoutY="58.0" text="Gegnername: " />
+      <TextField fx:id="tfEnemy" layoutX="85.0" layoutY="53.0" />
       <Label layoutX="17.0" layoutY="256.0" text="Dateipfad:" />
       <TextField fx:id="tfPath" layoutX="18.0" layoutY="278.0" prefHeight="26.0" prefWidth="258.0" />
       <Button fx:id="bCancel" layoutX="18.0" layoutY="317.0" mnemonicParsing="false" text="Abbrechen" />
-      <Button fx:id="bSelect" layoutX="201.0" layoutY="317.0" mnemonicParsing="false" text="Auswählen" />
-      <Button fx:id="bStart" layoutX="225.0" layoutY="359.0" mnemonicParsing="false" text="Starten" />
+      <Button fx:id="bSelect" layoutX="178.0" layoutY="317.0" mnemonicParsing="false" text="Auswählen" />
+      <Button fx:id="bStart" layoutX="198.0" layoutY="359.0" mnemonicParsing="false" text="Starten" />
       <Group layoutX="50.0" layoutY="-16.0">
-         <fx:define>
+        <fx:define>
         	<ToggleGroup fx:id="ToggleGroupPlayer"/>
     	</fx:define>
     <children>
-        <RadioButton fx:id="cX" layoutX="23.0" layoutY="142.0" mnemonicParsing="false" text="X (Rot)" toggleGroup="$ToggleGroupPlayer"/>
-        <RadioButton fx:id="cO" layoutX="23.0" layoutY="120.0" mnemonicParsing="false" text="O (Gelb)" toggleGroup="$ToggleGroupPlayer"/>
+        <RadioButton fx:id="cX" layoutX="23.0" layoutY="142.0" mnemonicParsing="false" text="X (Rot)" toggleGroup="$ToggleGroupPlayer" />
+        <RadioButton fx:id="cO" layoutX="23.0" layoutY="120.0" mnemonicParsing="false" text="O (Gelb)" toggleGroup="$ToggleGroupPlayer" />
     </children>
       </Group>
       <Label layoutX="23.0" layoutY="88.0" text="Clarie ist:" />
-      <Label layoutX="23.0" layoutY="171.0" text="Welche Schnittstelle möchten Sie verwenden?" />
+      <Label layoutX="8.0" layoutY="171.0" text="Welche Schnittstelle möchten Sie verwenden?" />
       <Group>
-      	<fx:define>
+    	<fx:define>
         	<ToggleGroup fx:id="ToggleGroupAPI"/>
     	</fx:define>
          <children>
@@ -38,6 +38,6 @@
             <RadioButton fx:id="rPath" layoutX="29.0" layoutY="198.0" mnemonicParsing="false" text="Path" toggleGroup="$ToggleGroupAPI" />
          </children>
       </Group>
-      <Button fx:id="bExit" layoutX="273.0" layoutY="1.0" mnemonicParsing="false" text="X" />
+      <Button fx:id="bExit" layoutX="242.0" layoutY="1.0" mnemonicParsing="false" text="X" />
    </children>
 </Pane>
