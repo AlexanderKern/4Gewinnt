@@ -10,7 +10,10 @@ import com.pusher.client.connection.ConnectionState;
 import com.viergewinnt.api.common.util.Function;
 import com.viergewinnt.api.common.util.Message;
 
+import Database.DatabaseCreate;
+import Database.ReuseableSatz;
 import Database.Satzgewinner;
+import Database.Zug;
 import ki.KI2;
 
 public class PusherMain {
@@ -33,9 +36,20 @@ public class PusherMain {
 							if(Integer.parseInt(message.getGegnerzug())< 0){
 								ki.berechne();
 								channel.trigger("client-event", "{\"move\":\"" + ki.get_spalte() + "\"}");
-								ki.setStein(ki.get_spalte(), false);
-								//GUI und Datenbank Zug speichern weil björn cool
 								
+								// Aktuellen Zug in Datenbank speichern
+								ReuseableSatz reuseSatz = new ReuseableSatz();
+								int [] letzterZug = ki.getletzter_zug();
+								DatabaseCreate db = new DatabaseCreate();
+								Zug zug;
+								try {
+									zug = new Zug(reuseSatz.id, false, letzterZug[1], letzterZug[0], db);
+									System.out.println("Der angelegte Zug hat die Id" + zug.id);
+								} catch (Exception e) {
+									e.printStackTrace();
+								}
+								
+								ki.setStein(ki.get_spalte(), false);
 								
 							}
 								else{

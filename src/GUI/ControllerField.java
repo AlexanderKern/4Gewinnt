@@ -54,6 +54,7 @@ public class ControllerField implements Initializable {
 		DatabaseCreate db = new DatabaseCreate(); // funktioniert das wenn hier
 													// neue db-Verbindung
 													// angelegt wird?
+		//TODO muss bei neuen satz auch wieder angelegt werden
 		try {
 			Satz satz = new Satz(db, reuseSpiel.id);
 			System.out.println("Satz mit der Id = " + satz.id + " wurde angelegt und gehört zum Spiel mit der ID "
@@ -79,19 +80,6 @@ public class ControllerField implements Initializable {
 			grid.setColumnIndex(l, col);
 
 			grid.getChildren().addAll(l);
-
-			// Aktuellen Zug in Datenbank speichern
-			ReuseableSatz reuseSatz = new ReuseableSatz();
-			Boolean gegner = true; // false wenn wir den Zug machnen :)
-			int spalte = col;
-			int zeile = row;
-			Zug zug;
-			try {
-				zug = new Zug(reuseSatz.id, gegner, spalte, zeile, db);
-				System.out.println("Der angelegte Zug hat die Id" + zug.id);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 
 		}); // end of button
 
