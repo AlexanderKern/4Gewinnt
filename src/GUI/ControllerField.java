@@ -44,6 +44,10 @@ public class ControllerField implements Initializable {
 	@FXML
 	Pane pane;
 
+	Image imageY = new Image(getClass().getResourceAsStream("coinYel.png"));
+	Image imageR = new Image(getClass().getResourceAsStream("coinRed.png"));
+	Image imageG = new Image(getClass().getResourceAsStream("coinGrey.png"));
+	
 	@SuppressWarnings("static-access")
 	@Override
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources)
@@ -62,24 +66,26 @@ public class ControllerField implements Initializable {
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
-
-		Image imageY = new Image(getClass().getResourceAsStream("coinYel.png"));
-		Image imageR = new Image(getClass().getResourceAsStream("coinRed.png"));
-		Image imageG = new Image(getClass().getResourceAsStream("coinGrey.png"));
-
 		lPlayerR.setText("Claire");
 
 		/* Setze Stein */
 		button.setOnAction((ev) -> {
 
-			int row = (int) (Math.random() * 5);
-			int col = (int) (Math.random() * 5);
-			Label l = new Label("");
-			l.setGraphic(new ImageView(imageY));
-			grid.setRowIndex(l, row);
-			grid.setColumnIndex(l, col);
 
-			grid.getChildren().addAll(l);
+			int row = (int) (Math.random() * 7);
+			int col = (int) (Math.random() * 6);
+			Label l = new Label("");
+			boolean bol;
+			
+			int random = (int) (Math.random()*10);
+			if(random <5)
+			{
+				bol = true;
+			}
+			else{bol = false;}
+			
+			
+			setStone(row, col, bol);
 
 		}); // end of button
 
@@ -107,5 +113,32 @@ public class ControllerField implements Initializable {
 		}); // end of cancel
 
 	}// end of init
+	
+	public void setStone(int row, int col, boolean coin)
+	{
+		//coin red = true coin yellow = false
+		
+			if(coin == true)
+			{
+				Label l = new Label("");
+				l.setGraphic(new ImageView(imageR));
+				grid.setRowIndex(l, row);
+				grid.setColumnIndex(l, col);
+
+				grid.getChildren().addAll(l);
+			}
+				
+			else 
+			{
+
+				Label l = new Label("");
+				l.setGraphic(new ImageView(imageY));
+				grid.setRowIndex(l, row);
+				grid.setColumnIndex(l, col);
+
+				grid.getChildren().addAll(l);
+			}
+					
+	}// end of setStone
 
 }// END OF class

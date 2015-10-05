@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -25,11 +26,14 @@ public class ControllerStart implements Initializable {
 
 	@FXML
 	public Label coinYel, coinRed;
+	
+	@FXML
+	public Pane pane;
 
 	@Override
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
-
-		play.setOnAction((ev) -> {
+		
+				play.setOnAction((ev) -> {
 			try {
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("selectScreen.fxml"));
 				Parent root1 = (Parent) fxmlLoader.load();
@@ -41,6 +45,7 @@ public class ControllerStart implements Initializable {
 				stage.show();
 
 				((Node) (ev.getSource())).getScene().getWindow().hide();
+				
 			}
 
 			catch (Exception e) {
@@ -59,7 +64,7 @@ public class ControllerStart implements Initializable {
 				stage.setTitle("ABC");
 				stage.setScene(new Scene(root1));
 				stage.show();
-
+				
 				((Node) (ev.getSource())).getScene().getWindow().hide();
 			}
 
@@ -76,5 +81,7 @@ public class ControllerStart implements Initializable {
 		}); // end of exit()
 
 	}// end of initialize
+	
+	
 
 }// end of Class

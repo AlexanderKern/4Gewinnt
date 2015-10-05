@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -11,6 +12,11 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="414.0" prefWidth="300.0" styleClass="background" stylesheets="@welcome.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ControllerSetting">
    <children>
+      <ImageView fitHeight="430.0" fitWidth="636.0" layoutX="-105.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@background.jpg" />
+         </image>
+      </ImageView>
       <Label layoutX="5.0" layoutY="58.0" text="Gegnername: " />
       <TextField fx:id="tfEnemy" layoutX="85.0" layoutY="53.0" />
       <Label layoutX="17.0" layoutY="256.0" text="Dateipfad:" />
@@ -19,22 +25,28 @@
       <Button fx:id="bSelect" layoutX="178.0" layoutY="317.0" mnemonicParsing="false" text="Auswählen" />
       <Button fx:id="bStart" layoutX="198.0" layoutY="359.0" mnemonicParsing="false" text="Starten" />
       <Group layoutX="50.0" layoutY="-16.0">
-        <fx:define>
+       <!-- <fx:define>
         	<ToggleGroup fx:id="ToggleGroupPlayer"/>
-    	</fx:define>
+    	</fx:define> -->
     <children>
-        <RadioButton fx:id="cX" layoutX="23.0" layoutY="142.0" mnemonicParsing="false" text="X (Rot)" toggleGroup="$ToggleGroupPlayer" />
+        <RadioButton fx:id="cX" layoutX="23.0" layoutY="142.0" mnemonicParsing="false" text="X (Rot)">
+               <toggleGroup>
+                  <ToggleGroup fx:id="ToggleGroupPlayer" />
+               </toggleGroup></RadioButton>
         <RadioButton fx:id="cO" layoutX="23.0" layoutY="120.0" mnemonicParsing="false" text="O (Gelb)" toggleGroup="$ToggleGroupPlayer" />
     </children>
       </Group>
       <Label layoutX="23.0" layoutY="88.0" text="Clarie ist:" />
       <Label layoutX="8.0" layoutY="171.0" text="Welche Schnittstelle möchten Sie verwenden?" />
       <Group>
-    	<fx:define>
+    	<!-- <fx:define>
         	<ToggleGroup fx:id="ToggleGroupAPI"/>
-    	</fx:define>
+    	</fx:define> -->
          <children>
-            <RadioButton fx:id="rSocket" layoutX="29.0" layoutY="225.0" mnemonicParsing="false" text="Web Socket" toggleGroup="$ToggleGroupAPI" />
+            <RadioButton fx:id="rSocket" layoutX="29.0" layoutY="225.0" mnemonicParsing="false" text="Web Socket">
+               <toggleGroup>
+                  <ToggleGroup fx:id="ToggleGroupAPI" />
+               </toggleGroup></RadioButton>
             <RadioButton fx:id="rPath" layoutX="29.0" layoutY="198.0" mnemonicParsing="false" text="Path" toggleGroup="$ToggleGroupAPI" />
          </children>
       </Group>
