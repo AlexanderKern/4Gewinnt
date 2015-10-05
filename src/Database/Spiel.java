@@ -23,6 +23,7 @@ public class Spiel {
 	public Spiel(String gegner, boolean farbe){
 	this.gegner = gegner;	
 	this.farbe = farbe;
+	System.out.println("Farbe "+this.farbe);
 	}
 	
 	public void create(DatabaseCreate db , Spiel spiel) throws SQLException{
