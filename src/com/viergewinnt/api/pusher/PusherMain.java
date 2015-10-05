@@ -26,6 +26,8 @@ public class PusherMain {
 	public String pusher() {
 		KI2 ki = new KI2();
 		
+		System.out.println("Pusher");
+		
 		final PusherConnectionHandler pch = new PusherConnectionHandler()
 				.registerHandler("MoveToAgent", new Function <Pusher,PrivateChannel,String>(){
 					public void execute(Pusher pusher,PrivateChannel channel,String data) throws IOException {

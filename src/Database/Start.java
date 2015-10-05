@@ -41,13 +41,14 @@ public class Start {
 		} catch (SQLException e1) {
 		e1.printStackTrace();
 		}
+		*/
 		
 		
 		
 		
 		
 		//Neues Spiel Anlegen
-			/*	Spiel spiel = new Spiel("blödes anderes Team", true);
+				Spiel spiel = new Spiel("blödes anderes Team", true);
 				spiel.create(db, spiel);
 		//Neuen Satz anlegen:
 		/*	Satz satz = new Satz(db, spiel.id);

@@ -14,7 +14,7 @@ import java.util.GregorianCalendar;
 public class Spiel {
 	
 	int id;
-	String gegner;
+	public String gegner;
 	String date;
 	int punkte;
 	boolean farbe;

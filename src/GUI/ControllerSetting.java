@@ -75,8 +75,15 @@ public class ControllerSetting implements Initializable {
 					 spiel = new Spiel(spieler.name, false); //gelb
 				}
 				spiel.create(db, spiel);
+				System.out.println("Spiel angelgt"+ spiel.gegner);
 			} catch (SQLException e3) {
 				System.out.println("Es ist ein Fehler bei dem Erstellen eines Spiels aufgetreten!");
+			}
+			try {
+				db.shutdown();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
 
 			pusherMain.pusher();
