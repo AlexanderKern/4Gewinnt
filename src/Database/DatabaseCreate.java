@@ -26,7 +26,7 @@ public class DatabaseCreate {
 			Class.forName("org.hsqldb.jdbcDriver");
 			//Connect to the database, load the db files and start database if it isn't already running
 			conn = DriverManager.getConnection(
-					"jdbc:hsqldb:MyDB" , // filenames
+					"jdbc:hsqldb:MyDatabase" , // filenames
 					"sa", //username
 					""); //password
 		}catch (ClassNotFoundException | SQLException e) {

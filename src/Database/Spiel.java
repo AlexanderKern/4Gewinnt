@@ -20,8 +20,9 @@ public class Spiel {
 	boolean farbe;
 	
 	//Constructor
-	public Spiel(String gegner){
+	public Spiel(String gegner, boolean farbe){
 	this.gegner = gegner;	
+	this.farbe = farbe;
 	}
 	
 	public void create(DatabaseCreate db , Spiel spiel) throws SQLException{

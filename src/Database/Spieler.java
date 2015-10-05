@@ -22,12 +22,10 @@ public class Spieler {
 	public void create(Spieler spieler, DatabaseCreate db) throws SQLException{
 		
 		String stmt_person;
-		//Check if a data entry already exists
-		
-		//If false
+
 		stmt_person = "INSERT INTO person(name) VALUES( '" +spieler.name +"');";
 		db.update(stmt_person);
-		// if true return;
+	
 	}
 	
 	public void delete(Spieler person, DatabaseCreate db) throws SQLException{

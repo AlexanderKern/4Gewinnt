@@ -7,6 +7,8 @@ import java.util.ResourceBundle;
 import javax.swing.JFileChooser;
 //import javax.swing.Timer;
 
+import com.viergewinnt.api.pusher.PusherMain;
+
 import Database.DatabaseCreate;
 import Database.Spiel;
 import Database.Spieler;
@@ -40,6 +42,8 @@ public class ControllerSetting implements Initializable {
 
 	@FXML
 	Button bExit;
+	
+	PusherMain pusherMain;
 
 	@Override
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
@@ -62,13 +66,20 @@ public class ControllerSetting implements Initializable {
 				System.out.println(spieler.name + " konnte nicht angelegt werden!!!");
 			}
 
-			Spiel spiel = new Spiel(spieler.name);
+			Spiel spiel;
 			try {
+				if (cX.isSelected()){
+					 spiel = new Spiel(spieler.name, true); // Rot
+				}
+				else {
+					 spiel = new Spiel(spieler.name, false); //gelb
+				}
 				spiel.create(db, spiel);
 			} catch (SQLException e3) {
 				System.out.println("Es ist ein Fehler bei dem Erstellen eines Spiels aufgetreten!");
 			}
 
+			pusherMain.pusher();
 			// mit in Klasse Spiel drinnen
 			// ReuseableSpiel reuse = new ReuseableSpiel();
 			// reuse.setName(spieler.name);

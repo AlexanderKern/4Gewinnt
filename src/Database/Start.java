@@ -27,20 +27,20 @@ public class Start {
 		
 		//Neuen Person eintrag erstellen
 		
-		/*Spieler spieler = new Spieler("SuperHirn");
+		Spieler spieler = new Spieler("SuperHirn");
 		 try {
 			spieler.create(spieler, db);
 			System.out.println("user: "+ spieler.name + " konnte angelegt werden");
-		*/
+	
 			
 		//Delete user
 			//user.delete(user , db);
 			// Alle personen anzeigen
 		//	System.out.println(db.print_out(spieler.show_all(db)).toString()); 
 		
-		/*} catch (SQLException e1) {
-		//	e1.printStackTrace();
-		}*/
+		} catch (SQLException e1) {
+		e1.printStackTrace();
+		}
 		
 		
 		

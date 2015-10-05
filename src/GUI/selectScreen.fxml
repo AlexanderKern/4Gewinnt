@@ -25,9 +25,9 @@
       <Button fx:id="bSelect" layoutX="178.0" layoutY="317.0" mnemonicParsing="false" text="Auswählen" />
       <Button fx:id="bStart" layoutX="198.0" layoutY="359.0" mnemonicParsing="false" text="Starten" />
       <Group layoutX="50.0" layoutY="-16.0">
-       <!-- <fx:define>
+       <fx:define>
         	<ToggleGroup fx:id="ToggleGroupPlayer"/>
-    	</fx:define> -->
+    	</fx:define>
     <children>
         <RadioButton fx:id="cX" layoutX="23.0" layoutY="142.0" mnemonicParsing="false" text="X (Rot)">
                <toggleGroup>
@@ -39,9 +39,9 @@
       <Label layoutX="23.0" layoutY="88.0" text="Clarie ist:" />
       <Label layoutX="8.0" layoutY="171.0" text="Welche Schnittstelle möchten Sie verwenden?" />
       <Group>
-    	<!-- <fx:define>
+    	<fx:define>
         	<ToggleGroup fx:id="ToggleGroupAPI"/>
-    	</fx:define> -->
+    	</fx:define>
          <children>
             <RadioButton fx:id="rSocket" layoutX="29.0" layoutY="225.0" mnemonicParsing="false" text="Web Socket">
                <toggleGroup>

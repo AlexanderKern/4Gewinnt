@@ -32,7 +32,6 @@ public class ControllerStart implements Initializable {
 	@FXML
 	public Pane pane;
 	
-	PusherMain pusherMain;
 
 	@Override
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
@@ -49,7 +48,7 @@ public class ControllerStart implements Initializable {
 				stage.show();
 
 				((Node) (ev.getSource())).getScene().getWindow().hide();
-				pusherMain.pusher();
+				
 			}
 
 			catch (Exception e) {
