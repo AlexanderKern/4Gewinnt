@@ -77,6 +77,15 @@ public class Start {
 		  * 1. Alle gespielten Spiele anzeigen 
 		  */
 		PreparedStatement pstmtCount = db.conn.prepareStatement("SELECT COUNT(*) FROM spiel");
+		ResultSet rsCount = db.doQueryPrepStmnt(pstmtCount);
+		//rsCount.getInt(i);
+		int count = 0;
+		while(rsCount.next()){
+			count = rsCount.getInt(1);
+			
+		}
+		
+		System.out.println(count);
 		 
 		 PreparedStatement pstmt = db.conn.prepareStatement("SELECT punkte, gegner, date FROM spiel");
 		// pstmt.setNString(1, "*" );
@@ -85,7 +94,7 @@ public class Start {
 		System.out.println("rs erfolgrecih");
 		
 		try {
-			db.outputResultSet(rs);	
+			db.outputResultSet(rs, count);	
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

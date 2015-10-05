@@ -97,18 +97,11 @@ public class DatabaseCreate {
 		int i;
 		Object o = null;
 
-			while(rs.next()){ // setz Zeiger auf nächste Zeile
-				
-			
-				
+			while(rs.next()){ // setz Zeiger auf nächste Zeile		
 				for (i = 0; i < colmax; ++i) { //setzt Zeiger auf nächste Spalte
 					o = rs.getObject(i + 1); // Is SQL the first column is indexed
-				
 					
 						query_result.add(o.toString());
-					
-					
-					//System.out.println("print"+o.toString());
 				}
 				
 			}
@@ -119,13 +112,13 @@ public class DatabaseCreate {
 	}
 	
 	
-	  public void outputResultSet(ResultSet rs) throws Exception {
+	  public String[][] outputResultSet(ResultSet rs, int count) throws Exception {
 		  
 		    ResultSetMetaData rsMetaData = rs.getMetaData();
 		    //Anzahl der Spalten
 		    int anzahlSpalten = rsMetaData.getColumnCount();
 		    //[anzahlZeilen] [anzahlSpalten]
-		    String[][] spiele = new String[100][anzahlSpalten];
+		    String[][] spiele = new String[count+1][anzahlSpalten];
 		    int spalte = 0;
 		    int zeile = 0;
 		    
@@ -145,6 +138,8 @@ public class DatabaseCreate {
 		    	  spalte = spalte+1;
 		      }		   
 		    }
+		    
+		    return spiele;
 	  }
 	  
 	
