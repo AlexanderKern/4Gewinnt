@@ -8,7 +8,7 @@ public class KI2 {
 	int zeile;
 	int spalte;
 	
-	public int [][] feld = new int [6][7];
+	private int [][] feld = new int [6][7];
 	
 	private int spalte_rueckgabe;
 	private boolean gegner;
@@ -17,10 +17,9 @@ public class KI2 {
 	
 	
 	//Konstruktor
-	public KI2(int[][] feld){
+	public KI2(){
 		
-		this.feld = feld;
-		
+				
 	}// end Konstruktor
 
 	
