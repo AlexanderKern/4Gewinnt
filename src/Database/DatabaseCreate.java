@@ -39,20 +39,20 @@ public class DatabaseCreate {
 	public void create_table(DatabaseCreate db) throws SQLException{
 		
 		String stmt_person_table = "CREATE TABLE person ( id INTEGER IDENTITY PRIMARY KEY,  name VARCHAR(256) UNIQUE )";
-		String stmt_spiel_table = "CREATE TABLE spiel ( id INTEGER IDENTITY PRIMARY KEY, punkte VARCHAR(256) , gegner VARCHAR(256), date DATE)";
-		String stmt_satz_table = "CREATE TABLE satz ( id INTEGER IDENTITY PRIMARY KEY, spiel_id INTEGER , FOREIGN KEY (spiel_id) REFERENCES spiel(id) , punkte integer, farbe BOOLEAN) ";
+		String stmt_spiel_table = "CREATE TABLE spiel ( id INTEGER IDENTITY PRIMARY KEY, punkte VARCHAR(256) , gegner VARCHAR(256), date DATE, farbe BOOLEAN )";
+		String stmt_satz_table = "CREATE TABLE satz ( id INTEGER IDENTITY PRIMARY KEY, spiel_id INTEGER , FOREIGN KEY (spiel_id) REFERENCES spiel(id) , punkte integer) ";
 		String stmt_zug_table = "CREATE TABLE zug ( id INTEGER IDENTITY  PRIMARY KEY, satz_id INTEGER, FOREIGN KEY (satz_id) REFERENCES satz(id) , spalte Integer, zeile Integer, gegner BOOLEAN ) ";
 		
 		//db.doQuery("DROP table person");
-		//db.doQuery("DROP table spiel"); System.out.println("Spiel gelöscht");
+		db.doQuery("DROP table spiel"); 
 		//db.doQuery("DROP table satz");
 		//db.doQuery("DROP table person");
 		//db.doQuery("DROP table zug");
 	
-		db.update(stmt_person_table);
+		/*db.update(stmt_person_table);*/
 		db.update(stmt_spiel_table);
-		db.update(stmt_satz_table);
-		db.update(stmt_zug_table);
+		/*db.update(stmt_satz_table);
+		db.update(stmt_zug_table);*/
 		
 	}
 	

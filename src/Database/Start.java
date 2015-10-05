@@ -27,7 +27,7 @@ public class Start {
 		
 		//Neuen Person eintrag erstellen
 		
-		Spieler spieler = new Spieler("SuperHirn");
+		/*Spieler spieler = new Spieler("SuperHirnii");
 		 try {
 			spieler.create(spieler, db);
 			System.out.println("user: "+ spieler.name + " konnte angelegt werden");
@@ -44,13 +44,13 @@ public class Start {
 		
 		
 		
-		/*
+		
 		
 		//Neues Spiel Anlegen
-				Spiel spiel = new Spiel("blödes anderes Team");
+			/*	Spiel spiel = new Spiel("blödes anderes Team", true);
 				spiel.create(db, spiel);
 		//Neuen Satz anlegen:
-			Satz satz = new Satz(db, spiel.id);
+		/*	Satz satz = new Satz(db, spiel.id);
 			System.out.println("Satz id main" + satz.id);
 			
 		// Neuen Zug anlegen --> int satz_id, boolean gegner, int spalte, db db
@@ -76,7 +76,7 @@ public class Start {
 		  * Select Staments
 		  * 1. Alle gespielten Spiele anzeigen 
 		  */
-		PreparedStatement pstmtCount = db.conn.prepareStatement("SELECT COUNT(*) FROM spiel");
+		/*PreparedStatement pstmtCount = db.conn.prepareStatement("SELECT COUNT(*) FROM spiel");
 		ResultSet rsCount = db.doQueryPrepStmnt(pstmtCount);
 		//rsCount.getInt(i);
 		int count = 0;
