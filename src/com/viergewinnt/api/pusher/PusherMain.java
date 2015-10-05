@@ -17,11 +17,11 @@ import Database.Zug;
 import ki.KI2;
 
 public class PusherMain {
-	private String team;
-
-	public PusherMain(String team){
-		this.team = team;
-	}
+//	private String team;
+//
+//	public PusherMain(String team){
+//		this.team = team;
+//	}
 
 	public String pusher() {
 		KI2 ki = new KI2();
@@ -34,7 +34,11 @@ public class PusherMain {
 						Message message = mapper.readValue(data, Message.class);
 						if(message.getFreigabe() && message.getSatzstatus().equals("Satz spielen") && message.getSieger().equals("offen") ){
 							if(Integer.parseInt(message.getGegnerzug())< 0){
+								
+								//KI berechnet Zug
 								ki.berechne();
+								
+								//Zug an Server senden
 								channel.trigger("client-event", "{\"move\":\"" + ki.get_spalte() + "\"}");
 								
 								// Aktuellen Zug in Datenbank speichern
@@ -49,16 +53,43 @@ public class PusherMain {
 									e.printStackTrace();
 								}
 								
+								//Stein in KI setzen
 								ki.setStein(ki.get_spalte(), false);
 								
 							}
 								else{
+									//Gegnerzug in KI setzen
 									ki.setStein(Integer.parseInt(message.getGegnerzug()), true);
-									//GUI und Datenbank Zug speichern weil björn cool
+									
+									// Aktuellen Zug in Datenbank speichern
+									ReuseableSatz reuseSatz = new ReuseableSatz();
+									int [] letzterZug = ki.getletzter_zug();
+									DatabaseCreate db = new DatabaseCreate();
+									Zug zug;
+									try {
+										zug = new Zug(reuseSatz.id, true, letzterZug[1], letzterZug[0], db);
+										System.out.println("Der angelegte Zug hat die Id" + zug.id);
+									} catch (Exception e) {
+										e.printStackTrace();
+									}
+									
+									//Berechne nächsten Zug
 									ki.berechne();
-									channel.trigger("client-event", "{\"move\":\"" + ki.get_spalte() + "\"}");
+									
+									//Stein in KI setzen
 									ki.setStein(ki.get_spalte(), false);
-									//GUI und Datenbank Zug speichern weil björn cool
+									
+									//Nächsten Zug an Server senden
+									channel.trigger("client-event", "{\"move\":\"" + ki.get_spalte() + "\"}");
+									
+									//Zug in Datenbank speichern
+									letzterZug = ki.getletzter_zug();
+									try {
+										zug = new Zug(reuseSatz.id, false, letzterZug[1], letzterZug[0], db);
+										System.out.println("Der angelegte Zug hat die Id" + zug.id);
+									} catch (Exception e) {
+										e.printStackTrace();
+									}
 								}
 								
 							
