@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
+import javax.swing.plaf.synth.SynthSpinnerUI;
+
 public class Start {
 
 	public static void main(String[] args) throws SQLException {
@@ -18,26 +20,29 @@ public class Start {
 			db.create_table(db);
 			System.out.println("datenbanken angelegt");
 		} catch (SQLException e2) {
+			System.out.println("db existieren");
 		// database tables allready exist--> nothing happens
 		}
 		System.out.println("check");
 		
 		//Neuen Person eintrag erstellen
 		
-		Spieler spieler = new Spieler("SuperHirn");
+		/*Spieler spieler = new Spieler("SuperHirn");
 		 try {
 			spieler.create(spieler, db);
 			System.out.println("user: "+ spieler.name + " konnte angelegt werden");
-		
+		*/
 			
 		//Delete user
 			//user.delete(user , db);
 			// Alle personen anzeigen
 		//	System.out.println(db.print_out(spieler.show_all(db)).toString()); 
 		
-		} catch (SQLException e1) {
+		/*} catch (SQLException e1) {
 		//	e1.printStackTrace();
-		}
+		}*/
+		
+		
 		
 		/*
 		
@@ -71,6 +76,7 @@ public class Start {
 		  * Select Staments
 		  * 1. Alle gespielten Spiele anzeigen 
 		  */
+		PreparedStatement pstmtCount = db.conn.prepareStatement("SELECT COUNT(*) FROM spiel");
 		 
 		 PreparedStatement pstmt = db.conn.prepareStatement("SELECT punkte, gegner, date FROM spiel");
 		// pstmt.setNString(1, "*" );

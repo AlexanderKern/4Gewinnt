@@ -84,9 +84,10 @@ public class ControllerField implements Initializable {
 			ReuseableSatz reuseSatz = new ReuseableSatz();
 			Boolean gegner = true; // false wenn wir den Zug machnen :)
 			int spalte = col;
+			int zeile = row;
 			Zug zug;
 			try {
-				zug = new Zug(reuseSatz.id, gegner, spalte, db);
+				zug = new Zug(reuseSatz.id, gegner, spalte, zeile, db);
 				System.out.println("Der angelegte Zug hat die Id" + zug.id);
 			} catch (Exception e) {
 				e.printStackTrace();
