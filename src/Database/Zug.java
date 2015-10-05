@@ -8,13 +8,15 @@ public class Zug {
 	int satz_id;
 	boolean gegner; 
 	int spalte; 
+	int zeile;
 	
-	public Zug(int satz_id, boolean gegner, int spalte, DatabaseCreate db) throws SQLException{
+	public Zug(int satz_id, boolean gegner, int spalte,int zeile, DatabaseCreate db) throws SQLException{
 		this.satz_id = satz_id; 
 		this.gegner = gegner;
 		this.spalte = spalte;
+		this.zeile = zeile;
 	
-	String stmt = "INSERT INTO zug(satz_id, spalte, gegner) VALUES( '" +this.satz_id+"' , '"+ this.spalte +"' , '"+ this.gegner + "')";
+	String stmt = "INSERT INTO zug(satz_id, spalte, zeile, gegner) VALUES( '" +this.satz_id+"' , '"+ this.spalte +"' , '"+this.zeile+ "' , '"+ this.gegner + "')";
 	db.update(stmt);
 	
 	//Get Id for actual/ this zug

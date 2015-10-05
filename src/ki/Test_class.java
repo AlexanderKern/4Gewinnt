@@ -64,7 +64,7 @@ public class Test_class {
 		
 		
 		
-		KI2 ki = new KI2(feld);
+		KI2 ki = new KI2();
 		ki.berechne();
 		System.out.println(ki.get_spalte());
 		

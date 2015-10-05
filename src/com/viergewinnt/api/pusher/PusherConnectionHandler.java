@@ -17,7 +17,7 @@ import com.viergewinnt.api.common.util.Function;
 public class PusherConnectionHandler implements ConnectionEventListener, PrivateChannelEventListener {
 
 	private static final String CHANNEL_NAME = "private-channel";
-	private static final String EVENT_NAME = "private-event";
+	private static final String EVENT_NAME = "MoveToAgent";
 	private static final String API_KEY = "7f0b8e49143ae72cc42c";
 	private static final String APPSECRET = "fe6c6faf981f752c36f3";
 	private static final Function <Pusher,PrivateChannel,String> DEFAULT_HANDLER = new Function <Pusher,PrivateChannel,String>() {

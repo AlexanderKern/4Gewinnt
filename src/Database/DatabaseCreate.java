@@ -9,6 +9,9 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Map;
+
+import org.hsqldb.lib.HashMap;
 
 public class DatabaseCreate {
 	
@@ -37,22 +40,23 @@ public class DatabaseCreate {
 		
 		String stmt_person_table = "CREATE TABLE person ( id INTEGER IDENTITY PRIMARY KEY,  name VARCHAR(256) UNIQUE )";
 		String stmt_spiel_table = "CREATE TABLE spiel ( id INTEGER IDENTITY PRIMARY KEY, punkte VARCHAR(256) , gegner VARCHAR(256), date DATE)";
-		String stmt_satz_table = "CREATE TABLE satz ( id INTEGER IDENTITY PRIMARY KEY, spiel_id INTEGER , FOREIGN KEY (spiel_id) REFERENCES spiel(id) , punkte integer) ";
-		String stmt_zug_table = "CREATE TABLE zug ( id INTEGER IDENTITY  PRIMARY KEY, satz_id INTEGER, FOREIGN KEY (satz_id) REFERENCES satz(id) , spalte Integer, gegner BOOLEAN ) ";
+		String stmt_satz_table = "CREATE TABLE satz ( id INTEGER IDENTITY PRIMARY KEY, spiel_id INTEGER , FOREIGN KEY (spiel_id) REFERENCES spiel(id) , punkte integer, farbe BOOLEAN) ";
+		String stmt_zug_table = "CREATE TABLE zug ( id INTEGER IDENTITY  PRIMARY KEY, satz_id INTEGER, FOREIGN KEY (satz_id) REFERENCES satz(id) , spalte Integer, zeile Integer, gegner BOOLEAN ) ";
 		
 		//db.doQuery("DROP table person");
-		//db.doQuery("DROP table spiel");
+		//db.doQuery("DROP table spiel"); System.out.println("Spiel gelöscht");
 		//db.doQuery("DROP table satz");
 		//db.doQuery("DROP table person");
+		//db.doQuery("DROP table zug");
 	
 		db.update(stmt_person_table);
 		db.update(stmt_spiel_table);
 		db.update(stmt_satz_table);
 		db.update(stmt_zug_table);
+		
 	}
 	
-	//delete table
-//	db.doQuery("DROP table person");
+
 	
 	public void shutdown() throws SQLException{
 		// performs a clean shutdown and close the database connection
@@ -116,23 +120,33 @@ public class DatabaseCreate {
 	
 	
 	  public void outputResultSet(ResultSet rs) throws Exception {
+		  
 		    ResultSetMetaData rsMetaData = rs.getMetaData();
-		    int numberOfColumns = rsMetaData.getColumnCount();
-		    for (int i = 1; i < numberOfColumns + 1; i++) {
-		      String columnName = rsMetaData.getColumnName(i);
-		      System.out.print(columnName + "   ");
-		    }
+		    //Anzahl der Spalten
+		    int anzahlSpalten = rsMetaData.getColumnCount();
+		    //[anzahlZeilen] [anzahlSpalten]
+		    String[][] spiele = new String[100][anzahlSpalten];
+		    int spalte = 0;
+		    int zeile = 0;
 		    
-		    System.out.println();
-		    System.out.println("----------------------");
-
+		  //Zeilenname
+		    for (int i = 1; i < anzahlSpalten + 1; i++) {
+		      String columnName = rsMetaData.getColumnName(i);
+		      spiele[0][spalte] = columnName;
+		      spalte=spalte+1;
+		    }
+		  
 		    while (rs.next()) {
-		      for (int i = 1; i < numberOfColumns + 1; i++) {
-		        System.out.print(rs.getString(i) + "   ");
-		      }
-		      System.out.println();
+		    	spalte = 0;
+		    	zeile = zeile +1;  	
+		      for (int i = 1; i < anzahlSpalten + 1; i++) {
+		    	 //[anzahlZeilen] [anzahlSpalten]
+		    	  spiele[zeile][spalte] = rs.getString(i);
+		    	  spalte = spalte+1;
+		      }		   
 		    }
 	  }
+	  
 	
 	public synchronized void update(String sql_command) throws SQLException{
 		

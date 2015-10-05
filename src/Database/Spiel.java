@@ -17,6 +17,7 @@ public class Spiel {
 	String gegner;
 	String date;
 	int punkte;
+	boolean farbe;
 	
 	//Constructor
 	public Spiel(String gegner){
@@ -32,7 +33,7 @@ public class Spiel {
 		 dateString = "'"+ sqlDate.toString()+"'";
 		 
 		//INSERT INTO spiel(gegner, date) VALUES(   'Feind' , '2015-09-16') 
-	    String stmt = "INSERT INTO spiel(gegner, date) VALUES( " + "  '" +spiel.gegner +"' , "+dateString+")";
+	    String stmt = "INSERT INTO spiel(gegner, date, farbe) VALUES( " + "  '" +spiel.gegner +"' , "+dateString+" , " +spiel.farbe +")";
 		db.update(stmt);	
 		
 		//Get Id for actual/ this game
