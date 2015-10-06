@@ -15,8 +15,6 @@ import GUI.ControllerField;
 import ki.KI2;
 
 public class PusherMain {
-	// private String team;
-	//
 	ControllerField cf;
 
 	public PusherMain(ControllerField cf) {
@@ -62,7 +60,7 @@ public class PusherMain {
 								int[] zug = ki.getletzter_zug();
 								cf.setStone(zug[0], zug[1], true);
 
-								// Berechne n‰chsten Zug
+								// Berechne n√§chsten Zug
 								ki.berechne();
 
 								// Zug in KI setzen
@@ -72,7 +70,7 @@ public class PusherMain {
 								zug = ki.getletzter_zug();
 								cf.setStone(zug[0], zug[1], false);
 
-								// N‰chsten Zug an Server senden
+								// N√§chsten Zug an Server senden
 								channel.trigger("client-event", "{\"move\":\"" + ki.get_spalte() + "\"}");
 							}
 

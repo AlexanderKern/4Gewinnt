@@ -1,8 +1,10 @@
 package GUI;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.viergewinnt.api.file.FileMain;
 import com.viergewinnt.api.pusher.PusherMain;
 
 import Database.ReuseServermethode;
@@ -46,6 +48,7 @@ public class ControllerField implements Initializable {
 	Image imageG = new Image(getClass().getResourceAsStream("coinGrey.png"));
 
 	PusherMain pusherMain;
+	FileMain fileMain;
 
 	@SuppressWarnings("static-access")
 	@Override
@@ -73,6 +76,13 @@ public class ControllerField implements Initializable {
 		if(ReuseServermethode.getMethode().equals("Pusher")){
 			pusherMain = new PusherMain(this);
 			pusherMain.pusher(ReuseServermethode.getTeam(), 1);
+		}else if(ReuseServermethode.getMethode().equals("File")){
+			fileMain = new FileMain(this);
+			try {
+				fileMain.file(1);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 
 		/* Setze Stein */
