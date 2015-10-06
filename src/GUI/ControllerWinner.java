@@ -20,18 +20,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class ControllerWinner implements Initializable {
-	@FXML
-	public Button statistic, play, exit;
 
-	@FXML
-	public TableView tableView = new TableView<>();
-
-	@FXML
-	public Label coinYel, coinRed;
-	
-	@FXML
-	public Pane pane;
-	
 
 	@Override
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources)
