@@ -7,7 +7,7 @@ import java.io.IOException;
 import javax.xml.parsers.DocumentBuilderFactory;
 import com.viergewinnt.api.common.util.Message;
 
-public class Main {
+public class FileMain {
 	private static final String DIRECTORYPATH = "D:\\test\\";
 	private static final String TEAM = "x";
 	private static final String CLIENT_FILENAME = "spieler" + TEAM + "2server.txt";
@@ -32,10 +32,10 @@ public class Main {
 							writer = new FileWriter(clientFile);
 							writer.write("3");
 							writer.close();
+							//cf.setStone();
 							serverFile.delete();
 						}
 					} catch (Exception e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}

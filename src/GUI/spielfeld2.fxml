@@ -55,13 +55,13 @@
       <Button fx:id="bBack" mnemonicParsing="false" text="&lt; Zurück" />
       <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@coinRed.png" />
+            <Image url="@coinYel.png" />
          </image>
       </ImageView>
       <Label fx:id="lPlayerR" layoutX="67.0" layoutY="40.0" prefHeight="19.0" prefWidth="80.0" />
       <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="541.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@coinYel.png" />
+            <Image url="@coinRed.png" />
          </image>
       </ImageView>
       <Label fx:id="lPlayerY" layoutX="456.0" layoutY="40.0" prefHeight="19.0" prefWidth="80.0" />

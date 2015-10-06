@@ -2,6 +2,7 @@ package com.viergewinnt.api.common.util;
 
 public class Message {
 	
+	private String message;
 	private boolean freigabe;
 	private String satzstatus;
 	private String gegnerzug;
@@ -18,6 +19,12 @@ public class Message {
 		
 	}
 	
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
+	}
 	public boolean getFreigabe() {
 		return freigabe;
 	}

@@ -32,7 +32,8 @@
         <RadioButton fx:id="cX" layoutX="23.0" layoutY="142.0" mnemonicParsing="false" text="X (Rot)">
                <toggleGroup>
                   <ToggleGroup fx:id="ToggleGroupPlayer" />
-               </toggleGroup></RadioButton>
+               </toggleGroup>
+        </RadioButton>
         <RadioButton fx:id="cO" layoutX="23.0" layoutY="120.0" mnemonicParsing="false" text="O (Gelb)" toggleGroup="$ToggleGroupPlayer" />
     </children>
       </Group>

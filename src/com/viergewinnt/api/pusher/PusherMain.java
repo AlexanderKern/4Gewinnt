@@ -2,6 +2,7 @@ package com.viergewinnt.api.pusher;
 
 import java.awt.Toolkit;
 import java.io.IOException;
+
 import org.codehaus.jackson.map.ObjectMapper;
 import com.pusher.client.Pusher;
 import com.pusher.client.channel.PrivateChannel;
@@ -10,116 +11,97 @@ import com.pusher.client.connection.ConnectionState;
 import com.viergewinnt.api.common.util.Function;
 import com.viergewinnt.api.common.util.Message;
 
-import Database.DatabaseCreate;
-import Database.ReuseableSatz;
-import Database.Satzgewinner;
-import Database.Zug;
+import GUI.ControllerField;
 import ki.KI2;
 
 public class PusherMain {
-//	private String team;
-//
-//	public PusherMain(String team){
-//		this.team = team;
-//	}
+	// private String team;
+	//
+	ControllerField cf;
 
-	public String pusher() {
+	public PusherMain(ControllerField cf) {
+		this.cf = cf;
+	}
+
+	public void pusher(String team, int sequenceNumber) {
 		KI2 ki = new KI2();
-		
-		final PusherConnectionHandler pch = new PusherConnectionHandler()
-				.registerHandler("MoveToAgent", new Function <Pusher,PrivateChannel,String>(){
-					public void execute(Pusher pusher,PrivateChannel channel,String data) throws IOException {
-						//Parsen
+
+		final PusherConnectionHandler pch = new PusherConnectionHandler().registerHandler("MoveToAgent",
+				new Function<Pusher, PrivateChannel, String>() {
+					public void execute(Pusher pusher, PrivateChannel channel, String data) throws IOException {
+						// Parsen
 						ObjectMapper mapper = new ObjectMapper();
 						Message message = mapper.readValue(data, Message.class);
-						if(message.getFreigabe() && message.getSatzstatus().equals("Satz spielen") && message.getSieger().equals("offen") ){
-							if(Integer.parseInt(message.getGegnerzug())< 0){
-								
-								//KI berechnet Zug
+						String[] messageParts = message.getMessage().split(" # ");
+						message.setFreigabe(Boolean.valueOf(messageParts[0]));
+						message.setSatzstatus(messageParts[1]);
+						message.setGegnerzug(messageParts[2]);
+						message.setSieger(messageParts[3]);
+						if (message.getFreigabe() && message.getSatzstatus().equals("Satz spielen")
+								&& message.getSieger().equals("offen")) {
+							if (Integer.parseInt(message.getGegnerzug()) < 0) {
+
+								// KI berechnet Zug
 								ki.berechne();
-								
-								//Zug an Server senden
+
+								// Zug an Server senden
 								channel.trigger("client-event", "{\"move\":\"" + ki.get_spalte() + "\"}");
+
+								// Stein in KI setzen
+								ki.setStein(ki.get_spalte(), false);
+
+								int[] zug = ki.getletzter_zug();
+								// ControllerField cf = new ControllerField();
+								cf.setStone(zug[0], zug[1], false);
+
+							} else {
+								// Gegnerzug in KI setzen
+								ki.setStein(Integer.parseInt(message.getGegnerzug()), true);
 								
-								// Aktuellen Zug in Datenbank speichern
-								ReuseableSatz reuseSatz = new ReuseableSatz();
-								int [] letzterZug = ki.getletzter_zug();
-								DatabaseCreate db = new DatabaseCreate();
-								Zug zug;
-								try {
-									zug = new Zug(reuseSatz.id, false, letzterZug[1], letzterZug[0], db);
-									System.out.println("Der angelegte Zug hat die Id" + zug.id);
-								} catch (Exception e) {
-									e.printStackTrace();
-								}
-								
-								//Stein in KI setzen
+								//Gegnerzug in GUI setzen
+								int[] zug = ki.getletzter_zug();
+								cf.setStone(zug[0], zug[1], true);
+
+								// Berechne nächsten Zug
+								ki.berechne();
+
+								// Zug in KI setzen
 								ki.setStein(ki.get_spalte(), false);
 								
+								//Zug in GUI setzen
+								zug = ki.getletzter_zug();
+								cf.setStone(zug[0], zug[1], false);
+
+								// Nächsten Zug an Server senden
+								channel.trigger("client-event", "{\"move\":\"" + ki.get_spalte() + "\"}");
 							}
-								else{
-									//Gegnerzug in KI setzen
-									ki.setStein(Integer.parseInt(message.getGegnerzug()), true);
-									
-									// Aktuellen Zug in Datenbank speichern
-									ReuseableSatz reuseSatz = new ReuseableSatz();
-									int [] letzterZug = ki.getletzter_zug();
-									DatabaseCreate db = new DatabaseCreate();
-									Zug zug;
-									try {
-										zug = new Zug(reuseSatz.id, true, letzterZug[1], letzterZug[0], db);
-										System.out.println("Der angelegte Zug hat die Id" + zug.id);
-									} catch (Exception e) {
-										e.printStackTrace();
-									}
-									
-									//Berechne nÃ¤chsten Zug
-									ki.berechne();
-									
-									//Stein in KI setzen
-									ki.setStein(ki.get_spalte(), false);
-									
-									//NÃ¤chsten Zug an Server senden
-									channel.trigger("client-event", "{\"move\":\"" + ki.get_spalte() + "\"}");
-									
-									//Zug in Datenbank speichern
-									letzterZug = ki.getletzter_zug();
-									try {
-										zug = new Zug(reuseSatz.id, false, letzterZug[1], letzterZug[0], db);
-										System.out.println("Der angelegte Zug hat die Id" + zug.id);
-									} catch (Exception e) {
-										e.printStackTrace();
-									}
-								}
-								
-							
-						}else{
-							Satzgewinner gewinner = new Satzgewinner();
-							gewinner.setGewinner(message.getSieger());
+
+						} else {
+							cf.setResult(message.getSieger(), sequenceNumber);
 							pusher.disconnect();
 						}
-						System.out.println(message.getFreigabe());
 						Toolkit.getDefaultToolkit().beep();
-						
+
 					}
 				});
-		
+
 		final Connection con = pch.connect();
 
-		System.out.println(con.getState().name());
-
 		// Connection zu Pusher offen halten.
-		do {
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+		new Thread(new Runnable() {
+
+			public void run() {
+				do {
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				} while (con.getState() == ConnectionState.CONNECTED || con.getState() == ConnectionState.CONNECTING);
+				
 			}
-		} while (con.getState() == ConnectionState.CONNECTED || con.getState() == ConnectionState.CONNECTING);
+		}).start();
 		
-		Satzgewinner gewinner = new Satzgewinner();
-		
-		return gewinner.getGewinner();
 
 	}
 

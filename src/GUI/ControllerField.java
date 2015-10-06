@@ -1,14 +1,12 @@
 package GUI;
 
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import Database.DatabaseCreate;
-import Database.ReuseableSatz;
-import Database.ReuseableSpiel;
-import Database.Satz;
-import Database.Zug;
+import com.viergewinnt.api.pusher.PusherMain;
+
+import Database.ReuseServermethode;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,7 +15,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.*;
@@ -47,47 +44,56 @@ public class ControllerField implements Initializable {
 	Image imageY = new Image(getClass().getResourceAsStream("coinYel.png"));
 	Image imageR = new Image(getClass().getResourceAsStream("coinRed.png"));
 	Image imageG = new Image(getClass().getResourceAsStream("coinGrey.png"));
-	
+
+	PusherMain pusherMain;
+
 	@SuppressWarnings("static-access")
 	@Override
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources)
 
 	{
-		/* Satz in Datenbank anlegen */
-		ReuseableSpiel reuseSpiel = new ReuseableSpiel();
-		DatabaseCreate db = new DatabaseCreate(); // funktioniert das wenn hier
-													// neue db-Verbindung
-													// angelegt wird?
-		//TODO muss bei neuen satz auch wieder angelegt werden
-		try {
-			Satz satz = new Satz(db, reuseSpiel.id);
-			System.out.println("Satz mit der Id = " + satz.id + " wurde angelegt und gehört zum Spiel mit der ID "
-					+ satz.spiel_id);
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-		}
+		// /* Satz in Datenbank anlegen */
+		// ReuseableSpiel reuseSpiel = new ReuseableSpiel();
+		// DatabaseCreate db = new DatabaseCreate(); // funktioniert das wenn
+		// hier
+		// // neue db-Verbindung
+		// // angelegt wird?
+		// //TODO muss bei neuen satz auch wieder angelegt werden
+		// try {
+		// Satz satz = new Satz(db, reuseSpiel.id);
+		// System.out.println("Satz mit der Id = " + satz.id + " wurde angelegt
+		// und gehört zum Spiel mit der ID "
+		// + satz.spiel_id);
+		// } catch (SQLException e1) {
+		// e1.printStackTrace();
+		// }
+
 		lPlayerR.setText("Claire");
+		
+		if(ReuseServermethode.getMethode().equals("Pusher")){
+			pusherMain = new PusherMain(this);
+			pusherMain.pusher(ReuseServermethode.getTeam(), 1);
+		}
 
 		/* Setze Stein */
-		button.setOnAction((ev) -> {
-
-
-			int row = (int) (Math.random() * 7);
-			int col = (int) (Math.random() * 6);
-			Label l = new Label("");
-			boolean bol;
-			
-			int random = (int) (Math.random()*10);
-			if(random <5)
-			{
-				bol = true;
-			}
-			else{bol = false;}
-			
-			
-			setStone(row, col, bol);
-
-		}); // end of button
+//		button.setOnAction((ev) -> {
+//			
+//			 int row = (int) (Math.random() * 7);
+//			 int col = (int) (Math.random() * 6);
+//			 Label l = new Label("");
+//			 boolean bol;
+//			
+//			 int random = (int) (Math.random()*10);
+//			 if(random <5)
+//			 {
+//			 bol = true;
+//			 }
+//			 else{bol = false;}
+//			
+//			
+//			 setStone(row, col, bol);
+//
+//		}); // end of button
 
 		bBack.setOnAction((ev) -> {
 			try {
@@ -113,32 +119,63 @@ public class ControllerField implements Initializable {
 		}); // end of cancel
 
 	}// end of init
+
+	public void setStone(int row, int col, boolean coin) {
+		// coin red = true coin yellow = false
+		Platform.runLater(new Runnable() {
+			public void run() {
+				if (coin == true) {
+					Label l = new Label("");
+					l.setGraphic(new ImageView(imageR));
+					grid.setRowIndex(l, row);
+					grid.setColumnIndex(l, col);
+
+					grid.getChildren().addAll(l);
+				}
+
+				else {
+					Label l = new Label("");
+					l.setGraphic(new ImageView(imageY));
+					grid.setRowIndex(l, row);
+					grid.setColumnIndex(l, col);
+
+					grid.getChildren().addAll(l);
+				}
+			}
+		});
+	}
 	
-	public void setStone(int row, int col, boolean coin)
-	{
-		//coin red = true coin yellow = false
-		
-			if(coin == true)
-			{
-				Label l = new Label("");
-				l.setGraphic(new ImageView(imageR));
-				grid.setRowIndex(l, row);
-				grid.setColumnIndex(l, col);
-
-				grid.getChildren().addAll(l);
+	public void setResult(String result, int sequenceNumber) {
+		Platform.runLater(new Runnable() {
+			public void run() {
+				ivOne.setImage(imageY);
+				if(result.equals(ReuseServermethode.getTeam())){
+					if(sequenceNumber == 1){
+						ivOne.setImage(imageY);
+					} else if(sequenceNumber == 2){
+						ivTwo.setImage(imageY);
+					}else{
+						ivThree.setImage(imageY);
+					}
+				}else if(result != ReuseServermethode.getTeam() && result != "offen"){
+					if(sequenceNumber == 1){
+						ivOne.setImage(imageR);
+					} else if(sequenceNumber == 2){
+						ivTwo.setImage(imageR);
+					}else{
+						ivThree.setImage(imageR);
+					}
+				}else{
+					if(sequenceNumber == 1){
+						ivOne.setImage(imageG);
+					} else if(sequenceNumber == 2){
+						ivTwo.setImage(imageG);
+					}else{
+						ivThree.setImage(imageG);
+					}
+				}
 			}
-				
-			else 
-			{
+		});
+	}
 
-				Label l = new Label("");
-				l.setGraphic(new ImageView(imageY));
-				grid.setRowIndex(l, row);
-				grid.setColumnIndex(l, col);
-
-				grid.getChildren().addAll(l);
-			}
-					
-	}// end of setStone
-
-}// END OF class
+}

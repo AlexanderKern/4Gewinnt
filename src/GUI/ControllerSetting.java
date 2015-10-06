@@ -1,17 +1,13 @@
 package GUI;
 
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import javax.swing.JFileChooser;
-//import javax.swing.Timer;
 
 import com.viergewinnt.api.pusher.PusherMain;
 
-import Database.DatabaseCreate;
-import Database.Spiel;
-import Database.Spieler;
+import Database.ReuseServermethode;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -52,37 +48,53 @@ public class ControllerSetting implements Initializable {
 
 		bStart.setOnAction((ev) -> {
 
-			DatabaseCreate db = new DatabaseCreate();
-			try {
-				db.create_table(db);
-			} catch (SQLException e2) {
-				// System.out.println("Tabellen sind bereits angelegt");
-			}
+//			DatabaseCreate db = new DatabaseCreate();
+//			try {
+//				db.create_table(db);
+//			} catch (SQLException e2) {
+//				// System.out.println("Tabellen sind bereits angelegt");
+//			}
+//
+//			Spieler spieler = new Spieler(tfEnemy.getText());
+//			try {
+//				spieler.create(spieler, db);
+//			} catch (SQLException e1) {
+//				System.out.println(spieler.name + " konnte nicht angelegt werden!!!");
+//			}
+//
+//			Spiel spiel;
+//			try {
+//				if (cX.isSelected()){
+//					 spiel = new Spiel(spieler.name, true); // Rot
+//				}
+//				else {
+//					 spiel = new Spiel(spieler.name, false); //gelb
+//				}
+//				spiel.create(db, spiel);
+//			} catch (SQLException e3) {
+//				System.out.println("Es ist ein Fehler bei dem Erstellen eines Spiels aufgetreten!");
+//			}
 
-			Spieler spieler = new Spieler(tfEnemy.getText());
-			try {
-				spieler.create(spieler, db);
-			} catch (SQLException e1) {
-				System.out.println(spieler.name + " konnte nicht angelegt werden!!!");
-			}
-
-			Spiel spiel;
-			try {
-				if (cX.isSelected()){
-					 spiel = new Spiel(spieler.name, true); // Rot
-				}
-				else {
-					 spiel = new Spiel(spieler.name, false); //gelb
-				}
-				spiel.create(db, spiel);
-			} catch (SQLException e3) {
-				System.out.println("Es ist ein Fehler bei dem Erstellen eines Spiels aufgetreten!");
-			}
-
-			pusherMain.pusher();
+//			pusherMain = new PusherMain();
+//			pusherMain.pusher();
 			// mit in Klasse Spiel drinnen
 			// ReuseableSpiel reuse = new ReuseableSpiel();
 			// reuse.setName(spieler.name);
+			
+			//Settingsparameter setzen
+			if(cX.isSelected()){
+				ReuseServermethode.setTeam("X");
+			}
+			else{
+				ReuseServermethode.setTeam("O");
+			}
+			if(rSocket.isSelected()){
+				ReuseServermethode.setMethode("Pusher");
+			}
+			else{
+				ReuseServermethode.setMethode("File");
+				ReuseServermethode.setPfad(tfPath.getText());
+			}
 
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("spielfeld2.fxml"));
 			Parent root1;
