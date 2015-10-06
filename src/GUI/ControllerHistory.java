@@ -10,12 +10,15 @@ import javax.swing.JFileChooser;
 import Database.DatabaseCreate;
 import Database.Spiel;
 import Database.Spieler;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.*;
@@ -32,14 +35,15 @@ Button bBack,bExit;
 TableView tGames, tZuege;
 
 @FXML
-TableColumn col1, col2, col3;
+TableColumn<ControllerHistory,String> col1;
 
-	@Override
+
+TableColumn col2, col3;
+
+@Override
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources) 
 	{
-		
-		col1.setText("Test3");
-		
+
 		bBack.setOnAction((ev) -> {
 			try {
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("welcome.fxml"));
@@ -67,5 +71,6 @@ TableColumn col1, col2, col3;
 		}); // end of bExit
 		
 	}// end of method
+
 
 }// end of class
