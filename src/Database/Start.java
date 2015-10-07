@@ -49,8 +49,8 @@ public class Start {
 		//Neues Spiel Anlegen
 		 * 
 		 */
-			Spiel spiel = new Spiel("blödes anderes Team", true);
-			spiel.create(db, spiel);
+			//Spiel spiel = new Spiel("blödes anderes Team", true);
+			//spiel.create(db, spiel);
 				
 		//Neuen Satz anlegen:
 		/*	Satz satz = new Satz(db, spiel.id);
@@ -103,9 +103,42 @@ public class Start {
 			e1.printStackTrace();
 		}
 		
-		/*2. Alle Züge eines Spiels*/
+		/*2. Alle Züge eines Satzes*/
+		PreparedStatement stZuege = db.conn.prepareStatement("Select * FROM zug where satz_id = ?");
+		String satzId = "1";
+		stZuege.setString(1, satzId);
 		
-		/*3. Wie viel % mit Gelben wie viel % mit roten Steinen gewonnen ( Auf Satz oder SPiel bezogen?)*/
+		
+		/*3. Wie viel % mit Gelben wie viel % mit roten Steinen gewonnen */
+		boolean x = true; // true for yellow false for red
+		int anzahlGewonnen = 0;
+		int anzahlSpiel = 0;
+		
+		PreparedStatement stAnzahlSpiele = db.conn.prepareStatement("SELECT COUNT(*) FROM spiel WHERE farbe = ?");
+		stAnzahlSpiele.setString(1, Boolean.toString(x));
+		ResultSet rsAnzahlSpiele = db.doQueryPrepStmnt(stAnzahlSpiele);
+		
+		while(rsAnzahlSpiele.next()){
+			anzahlSpiel = rsAnzahlSpiele.getInt(1);
+		}
+		
+		
+		PreparedStatement prst = db.conn.prepareStatement("SELECT COUNT(*) FROM Spiel WHERE farbe = ? AND punkte BETWEEN 1 AND 2" );
+		prst.setString(1, Boolean.toString(x));
+		ResultSet rs = db.doQueryPrepStmnt(prst);
+		
+		while(rs.next()){
+			 anzahlGewonnen = rs.getInt(1);
+			System.out.println(anzahlGewonnen);
+		}
+		
+			// Errechene Prozent der gewonnen SPiele mit farbe x
+		int prozent = (anzahlSpiel/ 100 ) * anzahlGewonnen;
+		System.out.println("Sie haben "+ prozent +"% mit der Frabe"+ x +" gewonnen");
+		System.out.println("insgesamt wurden "+ anzahlSpiel +" mit dieser Farbe gespielt");
+		
+		
+		
 		
 		//Datenbank Connection schließen
 		try {	
