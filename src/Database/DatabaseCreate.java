@@ -44,15 +44,15 @@ public class DatabaseCreate {
 		String stmt_zug_table = "CREATE TABLE zug ( id INTEGER IDENTITY  PRIMARY KEY, satz_id INTEGER, FOREIGN KEY (satz_id) REFERENCES satz(id) , spalte Integer, zeile Integer, gegner BOOLEAN ) ";
 		
 		//db.doQuery("DROP table person");
-		db.doQuery("DROP table spiel"); 
+		//db.doQuery("DROP table spiel"); 
 		//db.doQuery("DROP table satz");
 		//db.doQuery("DROP table person");
 		//db.doQuery("DROP table zug");
 	
-		/*db.update(stmt_person_table);*/
+		db.update(stmt_person_table);
 		db.update(stmt_spiel_table);
-		/*db.update(stmt_satz_table);
-		db.update(stmt_zug_table);*/
+		db.update(stmt_satz_table);
+		db.update(stmt_zug_table);
 		
 	}
 	

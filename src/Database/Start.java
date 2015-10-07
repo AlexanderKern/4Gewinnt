@@ -47,8 +47,11 @@ public class Start {
 		
 		
 		//Neues Spiel Anlegen
-			/*	Spiel spiel = new Spiel("blödes anderes Team", true);
-				spiel.create(db, spiel);
+		 * 
+		 */
+			Spiel spiel = new Spiel("blödes anderes Team", true);
+			spiel.create(db, spiel);
+				
 		//Neuen Satz anlegen:
 		/*	Satz satz = new Satz(db, spiel.id);
 			System.out.println("Satz id main" + satz.id);
