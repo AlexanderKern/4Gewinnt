@@ -9,9 +9,8 @@
    <children>
       <ImageView fitHeight="407.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
          <image>
-             <Image url="@start.jpg" />
+             <Image url="@win.jpg" />
          </image>
       </ImageView>
-      <Label fx:id="coinRed" layoutX="212.0" layoutY="327.0" text="Wir gratulieren dem Gewinner :" />
    </children>
 </Pane>

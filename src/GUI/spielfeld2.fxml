@@ -9,9 +9,9 @@
 
 <Pane id="tv00" fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@welcome.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ControllerField">
    <children>
-      <ImageView fitHeight="301.0" fitWidth="449.0" layoutX="47.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@spielfeld.png" />
+            <Image url="@spielfeld.jpg" />
          </image>
       </ImageView>
       <GridPane fx:id="grid" alignment="TOP_CENTER" layoutX="107.0" layoutY="115.0" prefHeight="248.0" prefWidth="291.0">
@@ -33,35 +33,35 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
       </GridPane>
-      <Button fx:id="button" layoutX="454.0" layoutY="293.0" mnemonicParsing="false" text="Stein setzen" />
-      <Label contentDisplay="CENTER" layoutX="273.0" layoutY="78.0" prefHeight="19.0" prefWidth="41.0" text="Satz:" textAlignment="CENTER" />
-      <Label fx:id="lSatz" layoutX="313.0" layoutY="79.0" text="1" />
-      <ImageView fx:id="ivOne" fitHeight="50.0" fitWidth="50.0" layoutX="212.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+      <Button fx:id="button" layoutX="408.0" layoutY="53.0" mnemonicParsing="false" text="Stein setzen" />
+      <Label contentDisplay="CENTER" layoutX="271.0" layoutY="14.0" prefHeight="19.0" prefWidth="41.0" text="Satz:" textAlignment="CENTER" />
+      <Label fx:id="lSatz" layoutX="318.0" layoutY="16.0" text="1" />
+      <ImageView fx:id="ivOne" fitHeight="50.0" fitWidth="50.0" layoutX="212.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@coinGrey.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="ivTwo" fitHeight="50.0" fitWidth="50.0" layoutX="272.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="ivTwo" fitHeight="50.0" fitWidth="50.0" layoutX="272.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@coinGrey.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="ivThree" fitHeight="50.0" fitWidth="50.0" layoutX="332.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="ivThree" fitHeight="50.0" fitWidth="50.0" layoutX="332.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@coinGrey.png" />
          </image>
       </ImageView>
       <Button fx:id="bExit" layoutX="543.0" mnemonicParsing="false" text="X" />
       <Button fx:id="bBack" mnemonicParsing="false" text="&lt; Zurück" />
-      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@coinYel.png" />
+            <Image url="@coinBlue.jpg" />
          </image>
       </ImageView>
       <Label fx:id="lPlayerR" layoutX="67.0" layoutY="40.0" prefHeight="19.0" prefWidth="80.0" />
-      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="541.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="545.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@coinRed.png" />
+            <Image url="@coinGreen.jpg" />
          </image>
       </ImageView>
       <Label fx:id="lPlayerY" layoutX="456.0" layoutY="40.0" prefHeight="19.0" prefWidth="80.0" />

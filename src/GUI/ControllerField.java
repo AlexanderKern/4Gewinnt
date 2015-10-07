@@ -43,8 +43,8 @@ public class ControllerField implements Initializable {
 	@FXML
 	Pane pane;
 
-	Image imageY = new Image(getClass().getResourceAsStream("coinYel.png"));
-	Image imageR = new Image(getClass().getResourceAsStream("coinRed.png"));
+	Image imageBlue = new Image(getClass().getResourceAsStream("coinBlue.jpg"));
+	Image imageGreen = new Image(getClass().getResourceAsStream("coinGreen.jpg"));
 	Image imageG = new Image(getClass().getResourceAsStream("coinGrey.png"));
 
 	PusherMain pusherMain;
@@ -131,12 +131,12 @@ public class ControllerField implements Initializable {
 	}// end of init
 
 	public void setStone(int row, int col, boolean coin) {
-		// coin red = true coin yellow = false
+		// coin green = true coin blue = false
 		Platform.runLater(new Runnable() {
 			public void run() {
 				if (coin == true) {
 					Label l = new Label("");
-					l.setGraphic(new ImageView(imageR));
+					l.setGraphic(new ImageView(imageGreen));
 					grid.setRowIndex(l, row);
 					grid.setColumnIndex(l, col);
 
@@ -145,7 +145,7 @@ public class ControllerField implements Initializable {
 
 				else {
 					Label l = new Label("");
-					l.setGraphic(new ImageView(imageY));
+					l.setGraphic(new ImageView(imageBlue));
 					grid.setRowIndex(l, row);
 					grid.setColumnIndex(l, col);
 
@@ -158,22 +158,22 @@ public class ControllerField implements Initializable {
 	public void setResult(String result, int sequenceNumber) {
 		Platform.runLater(new Runnable() {
 			public void run() {
-				ivOne.setImage(imageY);
+				ivOne.setImage(imageBlue);
 				if(result.equals(ReuseServermethode.getTeam())){
 					if(sequenceNumber == 1){
-						ivOne.setImage(imageY);
+						ivOne.setImage(imageBlue);
 					} else if(sequenceNumber == 2){
-						ivTwo.setImage(imageY);
+						ivTwo.setImage(imageBlue);
 					}else{
-						ivThree.setImage(imageY);
+						ivThree.setImage(imageBlue);
 					}
 				}else if(result != ReuseServermethode.getTeam() && result != "offen"){
 					if(sequenceNumber == 1){
-						ivOne.setImage(imageR);
+						ivOne.setImage(imageGreen);
 					} else if(sequenceNumber == 2){
-						ivTwo.setImage(imageR);
+						ivTwo.setImage(imageGreen);
 					}else{
-						ivThree.setImage(imageR);
+						ivThree.setImage(imageGreen);
 					}
 				}else{
 					if(sequenceNumber == 1){
