@@ -24,6 +24,7 @@ public class FileMain {
 		KI2 ki = new KI2();
 
 		// Variables
+		System.out.println("halo");
 		final String team = ReuseServermethode.getTeam();
 		final String filePath = ReuseServermethode.getPfad();
 		final String clientFilename = "spieler" + team + "2server.txt";
@@ -32,76 +33,80 @@ public class FileMain {
 		final File clientFile = new File(filePath + clientFilename);
 		final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 
-		while (true) {
-			if (serverFile.exists()) {
+		//Neuer Thread um GUI nicht einzufrieren
+		new Thread(new Runnable() {
+			public void run() {
+				while (true) {
+					if (serverFile.exists()) {
+						Message message = FileConnectionHandler.handleXml(factory, filePath, serverFilename);
 
-				Message message = FileConnectionHandler.handleXml(factory, filePath, serverFilename);
+						if (message.getFreigabe() && message.getSatzstatus().equals("Satz spielen")
+								&& message.getSieger().equals("offen")) {
+							if (Integer.parseInt(message.getGegnerzug()) < 0) {
 
-				if (message.getFreigabe() && message.getSatzstatus().equals("Satz spielen")
-						&& message.getSieger().equals("offen")) {
-					if (Integer.parseInt(message.getGegnerzug()) < 0) {
+								// KI berechnet Zug
+								ki.berechne();
 
-						// KI berechnet Zug
-						ki.berechne();
+								// Zug an Server senden
+								try {
+									if (!clientFile.exists()) {
+										clientFile.createNewFile();
+										writer = new FileWriter(clientFile);
+										writer.write(ki.get_spalte());
+										writer.close();
+										serverFile.delete();
+									}
+								} catch (Exception e) {
+									e.printStackTrace();
+								}
 
-						// Zug an Server senden
-						try {
-							if (!clientFile.exists()) {
-								clientFile.createNewFile();
-								writer = new FileWriter(clientFile);
-								writer.write(ki.get_spalte());
-								writer.close();
-								serverFile.delete();
+								// Stein in KI setzen
+								ki.setStein(ki.get_spalte(), false);
+
+								int[] zug = ki.getletzter_zug();
+								cf.setStone(zug[0], zug[1], false);
+
+							} else {
+								// Gegnerzug in KI setzen
+								ki.setStein(Integer.parseInt(message.getGegnerzug()), true);
+
+								// Gegnerzug in GUI setzen
+								int[] zug = ki.getletzter_zug();
+								cf.setStone(zug[0], zug[1], true);
+
+								// Berechne nächsten Zug
+								ki.berechne();
+
+								// Zug in KI setzen
+								ki.setStein(ki.get_spalte(), false);
+
+								// Zug in GUI setzen
+								zug = ki.getletzter_zug();
+								cf.setStone(zug[0], zug[1], false);
+
+								// Nächsten Zug an Server senden
+								// Zug an Server senden
+								try {
+									if (!clientFile.exists()) {
+										clientFile.createNewFile();
+										writer = new FileWriter(clientFile);
+										writer.write(ki.get_spalte());
+										writer.close();
+										serverFile.delete();
+									}
+								} catch (Exception e) {
+									e.printStackTrace();
+								}
 							}
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
 
-						// Stein in KI setzen
-						ki.setStein(ki.get_spalte(), false);
-
-						int[] zug = ki.getletzter_zug();
-						cf.setStone(zug[0], zug[1], false);
-
-					} else {
-						// Gegnerzug in KI setzen
-						ki.setStein(Integer.parseInt(message.getGegnerzug()), true);
-
-						// Gegnerzug in GUI setzen
-						int[] zug = ki.getletzter_zug();
-						cf.setStone(zug[0], zug[1], true);
-
-						// Berechne nächsten Zug
-						ki.berechne();
-
-						// Zug in KI setzen
-						ki.setStein(ki.get_spalte(), false);
-
-						// Zug in GUI setzen
-						zug = ki.getletzter_zug();
-						cf.setStone(zug[0], zug[1], false);
-
-						// Nächsten Zug an Server senden
-						// Zug an Server senden
-						try {
-							if (!clientFile.exists()) {
-								clientFile.createNewFile();
-								writer = new FileWriter(clientFile);
-								writer.write(ki.get_spalte());
-								writer.close();
-								serverFile.delete();
-							}
-						} catch (Exception e) {
-							e.printStackTrace();
+						} else {
+							cf.setResult(message.getSieger(), sequenceNumber);
+							// Schleife verlassen
+							break;
 						}
 					}
-
-				} else {
-					cf.setResult(message.getSieger(), sequenceNumber);
-					// Schleife verlassen
-					break;
 				}
 			}
-		}
+		}).start();
 	}
 }
