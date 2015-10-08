@@ -14,7 +14,7 @@
             <Image url="@spielfeld.jpg" />
          </image>
       </ImageView>
-      <GridPane fx:id="grid" alignment="TOP_CENTER" layoutX="33.0" layoutY="92.0" prefHeight="303.0" prefWidth="534.0">
+      <GridPane fx:id="grid" alignment="TOP_CENTER" layoutX="33.0" layoutY="92.0" prefHeight="303.0" prefWidth="529.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="73.0" minWidth="10.0" prefWidth="70.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="84.0" minWidth="10.0" prefWidth="84.0" />
