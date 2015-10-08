@@ -1,5 +1,6 @@
 package GUI;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -15,6 +16,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.*;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -133,14 +136,26 @@ public class ControllerSetting implements Initializable {
 		}); // end of cancel
 
 		bSelect.setOnAction((ev) -> {
-			JFileChooser fc = new JFileChooser();
-			fc.setCurrentDirectory(new java.io.File("."));
-			fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-			fc.setAcceptAllFileFilterUsed(false);
+			
+			
+			DirectoryChooser directoryChooser = new DirectoryChooser(); 
 
-			if (fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-				tfPath.setText(fc.getSelectedFile().toString() + System.getProperty("file.separator"));
-			}
+            directoryChooser.setTitle("This is my file ch");
+
+            //Show open file dialog
+
+            File file = directoryChooser.showDialog(null);
+            tfPath.setText(file.getPath() + System.getProperty("file.separator"));
+
+			
+//			JFileChooser fc = new JFileChooser();
+//			fc.setCurrentDirectory(new java.io.File("."));
+//			fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+//			fc.setAcceptAllFileFilterUsed(false);
+//
+//			if (fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+//				tfPath.setText(fc.getSelectedFile().toString() + System.getProperty("file.separator"));
+//			}
 
 		}); // end of select
 
