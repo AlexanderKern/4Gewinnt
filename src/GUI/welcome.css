@@ -9,7 +9,7 @@
     -fx-opacity: 0.6;
 }
 
-.radio-button Text {
+.Radiobutton{
     -fx-font-size: 9pt;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: #CEBCA5;
