@@ -43,8 +43,8 @@ public class ControllerField implements Initializable {
 	@FXML
 	Pane pane;
 
-	Image imageBlue = new Image(getClass().getResourceAsStream("coinBlue.jpg"));
-	Image imageGreen = new Image(getClass().getResourceAsStream("coinGreen.jpg"));
+	Image imageBlue = new Image(getClass().getResourceAsStream("coinBlue.png"));
+	Image imageGreen = new Image(getClass().getResourceAsStream("coinGreen.png"));
 	Image imageG = new Image(getClass().getResourceAsStream("coinGrey.png"));
 
 	PusherMain pusherMain;
