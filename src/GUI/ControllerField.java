@@ -137,6 +137,8 @@ public class ControllerField implements Initializable {
 				if (coin == true) {
 					Label l = new Label("");
 					l.setGraphic(new ImageView(imageGreen));
+					l.setMaxHeight(58);
+					l.setMaxWidth(65);
 					grid.setRowIndex(l, row);
 					grid.setColumnIndex(l, col);
 
@@ -146,6 +148,8 @@ public class ControllerField implements Initializable {
 				else {
 					Label l = new Label("");
 					l.setGraphic(new ImageView(imageBlue));
+					l.setMaxHeight(58);
+					l.setMaxWidth(65);
 					grid.setRowIndex(l, row);
 					grid.setColumnIndex(l, col);
 
