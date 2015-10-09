@@ -4,7 +4,6 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javax.swing.JFileChooser;
 
 import com.viergewinnt.api.pusher.PusherMain;
 
@@ -17,7 +16,6 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.*;
 import javafx.stage.DirectoryChooser;
-import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -137,16 +135,10 @@ public class ControllerSetting implements Initializable {
 
 		bSelect.setOnAction((ev) -> {
 			
-			
 			DirectoryChooser directoryChooser = new DirectoryChooser(); 
-
-            directoryChooser.setTitle("This is my file ch");
-
-            //Show open file dialog
-
+            directoryChooser.setTitle("Directory for FILE-API");
             File file = directoryChooser.showDialog(null);
             tfPath.setText(file.getPath() + System.getProperty("file.separator"));
-
 			
 //			JFileChooser fc = new JFileChooser();
 //			fc.setCurrentDirectory(new java.io.File("."));
