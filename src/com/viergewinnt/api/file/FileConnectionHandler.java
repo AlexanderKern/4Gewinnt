@@ -12,11 +12,12 @@ import com.viergewinnt.api.common.util.Message;
 
 public class FileConnectionHandler {
 	public static Message handleXml(DocumentBuilderFactory factory, String directorypath, String serverFilename) {
-		Message message = null;
 		try {
 			final DocumentBuilder builder = factory.newDocumentBuilder();
 			final Document doc = builder.parse(directorypath + serverFilename);
 			final NodeList list = doc.getElementsByTagName("content");
+			final Message message = new Message();
+			
 			for (int i = 0; i < list.getLength(); i++) {
 				final Node p = list.item(i);
 				if (p.getNodeType() == Node.ELEMENT_NODE) {
@@ -25,37 +26,36 @@ public class FileConnectionHandler {
 					for (int j = 0; j < attributes.getLength(); j++) {
 						final Node n = attributes.item(j);
 						if (n.getNodeType() == Node.ELEMENT_NODE) {
-							final Element values = (Element) n;
-							System.out.println(values.getTagName() + " - " + values.getTextContent());
-							//final Message message = new Message();
-							message = new Message();
-							switch (values.getTagName()) {
-							case "freigabe":
-								message.setFreigabe(Boolean.valueOf(values.getTextContent()));
-								break;
-
-							case "satzstatus":
-								message.setSatzstatus(values.getTextContent());
-								break;
-
-							case "gegnerzug":
-								message.setGegnerzug(values.getTextContent());
-								break;
-
-							case "sieger":
-								message.setSieger(values.getTextContent());
-								break;
-							}
-
+							set(message, (Element) n);
 						}
 					}
 				}
 			}
 			
+			return message;
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return message;
+		return null;
+	}
+
+	private static void set(Message message, Element values) {
+		switch (values.getTagName()) {
+			case "freigabe":
+				message.setFreigabe(Boolean.valueOf(values.getTextContent()));
+				break;
+	
+			case "satzstatus":
+				message.setSatzstatus(values.getTextContent());
+				break;
+	
+			case "gegnerzug":
+				message.setGegnerzug(values.getTextContent());
+				break;
+			case "sieger":
+				message.setSieger(values.getTextContent());
+				break;
+		}
 	}
 }

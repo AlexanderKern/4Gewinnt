@@ -47,9 +47,6 @@ public class ControllerField implements Initializable {
 	Image imageGreen = new Image(getClass().getResourceAsStream("coinGreen.png"));
 	Image imageG = new Image(getClass().getResourceAsStream("coinGrey.png"));
 
-	PusherMain pusherMain;
-	FileMain fileMain;
-
 	@SuppressWarnings("static-access")
 	@Override
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources)
@@ -74,15 +71,10 @@ public class ControllerField implements Initializable {
 		lPlayerR.setText("Claire");
 		
 		if(ReuseServermethode.getMethode().equals("Pusher")){
-			pusherMain = new PusherMain(this);
+			final PusherMain pusherMain = new PusherMain(this);
 			pusherMain.pusher(ReuseServermethode.getTeam(), 1);
 		}else if(ReuseServermethode.getMethode().equals("File")){
-			fileMain = new FileMain(this);
-			try {
-				fileMain.file(1);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			new FileMain(this, 1).start();
 		}
 
 		/* Setze Stein */

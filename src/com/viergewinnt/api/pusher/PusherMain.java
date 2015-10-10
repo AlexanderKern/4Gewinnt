@@ -37,8 +37,8 @@ public class PusherMain {
 						message.setSieger(messageParts[3]);
 						if (message.getFreigabe() && message.getSatzstatus().equals("Satz spielen")
 								&& message.getSieger().equals("offen")) {
-							if (Integer.parseInt(message.getGegnerzug()) < 0) {
-
+							if (message.getGegnerzug() < 0) {
+ 
 								// KI berechnet Zug
 								ki.berechne();
 
@@ -54,7 +54,7 @@ public class PusherMain {
 
 							} else {
 								// Gegnerzug in KI setzen
-								ki.setStein(Integer.parseInt(message.getGegnerzug()), true);
+								ki.setStein(message.getGegnerzug(), true);
 								
 								//Gegnerzug in GUI setzen
 								int[] zug = ki.getletzter_zug();
