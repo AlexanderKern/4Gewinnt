@@ -78,12 +78,13 @@ public class KI2 {
 		while (true){
 			for (spalte = 0; spalte < 7; spalte++){
 				for (zeile = 0; zeile < 6; zeile++){
+					
+					if(feld[zeile][spalte] == 0){
 				
 					try{
 						// 3 vertikal
 						if(feld[zeile][spalte] == 0 && feld[zeile+1][spalte] == 1 && feld[zeile+2][spalte] == 1 && feld[zeile+3][spalte] == 1){
-							ergebnis = spalte;
-							
+							ergebnis = spalte;						
 						}
 					} catch (ArrayIndexOutOfBoundsException e){}
 						
@@ -94,31 +95,37 @@ public class KI2 {
 								ergebnis = spalte;
 							} else if (zeile ==5 ){
 								ergebnis = spalte;
-							}
-							
+							}														
+						}
+					} catch (ArrayIndexOutOfBoundsException e){}	
 					
-							
-						} else if(feld[zeile][spalte+1] == 1 && feld[zeile][spalte+2] == 1 && feld[zeile][spalte+3] == 1){ //0111 rechts
+					try{	
+						if(feld[zeile][spalte+1] == 1 && feld[zeile][spalte+2] == 1 && feld[zeile][spalte+3] == 1){ //0111 rechts
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
 							} else if (zeile ==5 ){
 								ergebnis = spalte;
-							}
-							
-						} else if(feld[zeile][spalte-1] == 1 && feld[zeile][spalte+1] == 1 && feld[zeile][spalte+2] == 1){ //1011 rechts
+							}							
+						}
+					} catch (ArrayIndexOutOfBoundsException e){}	
+					
+					try{	
+						if(feld[zeile][spalte-1] == 1 && feld[zeile][spalte+1] == 1 && feld[zeile][spalte+2] == 1){ //1011 rechts
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
 							} else if (zeile ==5 ){
 								ergebnis = spalte;
-							}
-							
-						} else if(feld[zeile][spalte-2] == 1 && feld[zeile][spalte-1] == 1 && feld[zeile][spalte+1] == 1){ //1101 rechts
+							}							
+						}
+					} catch (ArrayIndexOutOfBoundsException e){}	
+					
+					try{	
+						if(feld[zeile][spalte-2] == 1 && feld[zeile][spalte-1] == 1 && feld[zeile][spalte+1] == 1){ //1101 rechts
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
 							} else if (zeile ==5 ){
 								ergebnis = spalte;
-							}
-							
+							}							
 						}
 					} catch (ArrayIndexOutOfBoundsException e){}	
 						
@@ -130,59 +137,78 @@ public class KI2 {
 								ergebnis = spalte;
 							} else if (zeile ==5 ){
 								ergebnis = spalte;
-							}
-							
-						} else if(feld[zeile-1][spalte+1] == 1 && feld[zeile+2][spalte-2] == 1 && feld[zeile+1][spalte-1] == 1){ //1011 unten links
-							if (zeile < 5 && feld[zeile+1][spalte] != 0){
-								ergebnis = spalte;
-							} else if (zeile ==5 ){
-								ergebnis = spalte;
-							}
-							
-						} else if(feld[zeile+1][spalte+1] == 1 && feld[zeile+2][spalte+2] == 1 && feld[zeile+3][spalte+3] == 1){ //0111 unten rechts
-							if (zeile < 5 && feld[zeile+1][spalte] != 0){
-								ergebnis = spalte;
-							} else if (zeile ==5 ){
-								ergebnis = spalte;
-							}
-							
-						} else if(feld[zeile-1][spalte-1] == 1 && feld[zeile-2][spalte-2] == 1 && feld[zeile+1][spalte+1] == 1){ //1101 unten rechts
-							if (zeile < 5 && feld[zeile+1][spalte] != 0){
-								ergebnis = spalte;
-							} else if (zeile ==5 ){
-								ergebnis = spalte;
-							}
-							
-						} else if(feld[zeile-1][spalte+1] == 1 && feld[zeile-2][spalte+2] == 1 && feld[zeile+1][spalte-1] == 1){ //1101 unten links
-							if (zeile < 5 && feld[zeile+1][spalte] != 0){
-								ergebnis = spalte;
-							} else if (zeile ==5 ){
-								ergebnis = spalte;
-							}
-							
-						} else if(feld[zeile+1][spalte-1] == 1 && feld[zeile+2][spalte-2] == 1 && feld[zeile+3][spalte-3] == 1){ // 0111 unten links
-							if (zeile < 5 && feld[zeile+1][spalte] != 0){
-								ergebnis = spalte;
-							} else if (zeile ==5 ){
-								ergebnis = spalte;
-							}
-							
-						} else if(feld[zeile-1][spalte+1] == 1 && feld[zeile-2][spalte+2] == 1 && feld[zeile-3][spalte+3] == 1){ //0111 oben rechts
-							if (zeile < 5 && feld[zeile+1][spalte] != 0){
-								ergebnis = spalte;
-							} else if (zeile ==5 ){
-								ergebnis = spalte;
-							}
-							
-						} else if(feld[zeile-1][spalte-1] == 1 && feld[zeile-2][spalte-2] == 1 && feld[zeile-3][spalte-3] == 1){ // 0111 oben links
-							if (zeile < 5 && feld[zeile+1][spalte] != 0){
-								ergebnis = spalte;
-							} else if (zeile ==5 ){
-								ergebnis = spalte;
-							}
-							
+							}							
 						}
+					} catch (ArrayIndexOutOfBoundsException e){}	
 					
+					try{	
+						if(feld[zeile-1][spalte+1] == 1 && feld[zeile+2][spalte-2] == 1 && feld[zeile+1][spalte-1] == 1){ //1011 unten links
+							if (zeile < 5 && feld[zeile+1][spalte] != 0){
+								ergebnis = spalte;
+							} else if (zeile ==5 ){
+								ergebnis = spalte;
+							}							
+						}
+					} catch (ArrayIndexOutOfBoundsException e){}	
+					
+					try{	
+						if(feld[zeile+1][spalte+1] == 1 && feld[zeile+2][spalte+2] == 1 && feld[zeile+3][spalte+3] == 1){ //0111 unten rechts
+							if (zeile < 5 && feld[zeile+1][spalte] != 0){
+								ergebnis = spalte;
+							} else if (zeile ==5 ){
+								ergebnis = spalte;
+							}							
+						}
+					} catch (ArrayIndexOutOfBoundsException e){}	
+					
+					try{	
+						if(feld[zeile-1][spalte-1] == 1 && feld[zeile-2][spalte-2] == 1 && feld[zeile+1][spalte+1] == 1){ //1101 unten rechts
+							if (zeile < 5 && feld[zeile+1][spalte] != 0){
+								ergebnis = spalte;
+							} else if (zeile ==5 ){
+								ergebnis = spalte;
+							}							
+						}
+					} catch (ArrayIndexOutOfBoundsException e){}	
+						
+					try{
+						if(feld[zeile-1][spalte+1] == 1 && feld[zeile-2][spalte+2] == 1 && feld[zeile+1][spalte-1] == 1){ //1101 unten links
+							if (zeile < 5 && feld[zeile+1][spalte] != 0){
+								ergebnis = spalte;
+							} else if (zeile ==5 ){
+								ergebnis = spalte;
+							}							
+						}
+					} catch (ArrayIndexOutOfBoundsException e){}	
+						
+					try{
+						if(feld[zeile+1][spalte-1] == 1 && feld[zeile+2][spalte-2] == 1 && feld[zeile+3][spalte-3] == 1){ // 0111 unten links
+							if (zeile < 5 && feld[zeile+1][spalte] != 0){
+								ergebnis = spalte;
+							} else if (zeile ==5 ){
+								ergebnis = spalte;
+							}							
+						}
+					} catch (ArrayIndexOutOfBoundsException e){}	
+					
+					try{	
+						if(feld[zeile-1][spalte+1] == 1 && feld[zeile-2][spalte+2] == 1 && feld[zeile-3][spalte+3] == 1){ //0111 oben rechts
+							if (zeile < 5 && feld[zeile+1][spalte] != 0){
+								ergebnis = spalte;
+							} else if (zeile ==5 ){
+								ergebnis = spalte;
+							}							
+						}
+					} catch (ArrayIndexOutOfBoundsException e){}	
+					
+					try{	
+						if(feld[zeile-1][spalte-1] == 1 && feld[zeile-2][spalte-2] == 1 && feld[zeile-3][spalte-3] == 1){ // 0111 oben links
+							if (zeile < 5 && feld[zeile+1][spalte] != 0){
+								ergebnis = spalte;
+							} else if (zeile ==5 ){
+								ergebnis = spalte;
+							}							
+						}			
 					} catch (ArrayIndexOutOfBoundsException e){}	
 					
 				
@@ -192,7 +218,7 @@ public class KI2 {
 			
 			if(ergebnis != 99){
 				break;
-			}//valides Ergebnis?
+			}//valides Ergebnis? Sonst wird der Gegner überprüft
 			
 			///Gegner
 			
@@ -202,8 +228,7 @@ public class KI2 {
 					try{
 						// 3 vertikal
 						if(feld[zeile][spalte] == 0 && feld[zeile+1][spalte] == 2 && feld[zeile+2][spalte] == 2 && feld[zeile+3][spalte] == 2){
-							ergebnis = spalte;
-							
+							ergebnis = spalte;						
 						}
 					} catch (ArrayIndexOutOfBoundsException e){}		
 						
@@ -214,29 +239,37 @@ public class KI2 {
 								ergebnis = spalte;
 							} else if (zeile ==5 ){
 								ergebnis = spalte;
-							}
-							
-						} else if(feld[zeile][spalte+1] == 2 && feld[zeile][spalte+2] == 2 && feld[zeile][spalte+3] == 2){ //0111 rechts
+							}							
+						}
+					} catch (ArrayIndexOutOfBoundsException e){}	
+					
+					try{	
+						if(feld[zeile][spalte+1] == 2 && feld[zeile][spalte+2] == 2 && feld[zeile][spalte+3] == 2){ //0111 rechts
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
 							} else if (zeile ==5 ){
 								ergebnis = spalte;
-							}
-							
-						} else if(feld[zeile][spalte-1] == 2 && feld[zeile][spalte+1] == 2 && feld[zeile][spalte+2] == 2){ //1011 rechts
+							}							
+						}
+					} catch (ArrayIndexOutOfBoundsException e){}	
+						
+					try{
+						if(feld[zeile][spalte-1] == 2 && feld[zeile][spalte+1] == 2 && feld[zeile][spalte+2] == 2){ //1011 rechts
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
 							} else if (zeile ==5 ){
 								ergebnis = spalte;
-							}
-							
-						} else if(feld[zeile][spalte-2] == 2 && feld[zeile][spalte-1] == 2 && feld[zeile][spalte+1] == 2){ //1101 rechts
+							}							
+						}
+					} catch (ArrayIndexOutOfBoundsException e){}	
+						
+					try{
+						if(feld[zeile][spalte-2] == 2 && feld[zeile][spalte-1] == 2 && feld[zeile][spalte+1] == 2){ //1101 rechts
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
 							} else if (zeile ==5 ){
 								ergebnis = spalte;
-							}
-							
+							}						
 						}
 					} catch (ArrayIndexOutOfBoundsException e){}	
 						
@@ -249,61 +282,81 @@ public class KI2 {
 								ergebnis = spalte;
 							} else if (zeile ==5 ){
 								ergebnis = spalte;
-							}
-							
-						} else if(feld[zeile-1][spalte+1] == 2 && feld[zeile+2][spalte-2] == 2 && feld[zeile+1][spalte-1] == 2){ //1011 unten links
-							if (zeile < 5 && feld[zeile+1][spalte] != 0){
-								ergebnis = spalte;
-							} else if (zeile ==5 ){
-								ergebnis = spalte;
-							}
-							
-						} else if(feld[zeile+1][spalte+1] == 2 && feld[zeile+2][spalte+2] == 2 && feld[zeile+3][spalte+3] == 2){ //0111 unten rechts
-							if (zeile < 5 && feld[zeile+1][spalte] != 0){
-								ergebnis = spalte;
-							} else if (zeile ==5 ){
-								ergebnis = spalte;
-							}
-							
-						} else if(feld[zeile-1][spalte-1] == 2 && feld[zeile-2][spalte-2] == 2 && feld[zeile+1][spalte+1] == 2){ //1101 unten rechts
-							if (zeile < 5 && feld[zeile+1][spalte] != 0){
-								ergebnis = spalte;
-							} else if (zeile ==5 ){
-								ergebnis = spalte;
-							}
-							
-						} else if(feld[zeile-1][spalte+1] == 2 && feld[zeile-2][spalte+2] == 2 && feld[zeile+1][spalte-1] == 2){ //1101 unten links
-							if (zeile < 5 && feld[zeile+1][spalte] != 0){
-								ergebnis = spalte;
-							} else if (zeile ==5 ){
-								ergebnis = spalte;
-							}
-							
-						} else if(feld[zeile+1][spalte-1] == 2 && feld[zeile+2][spalte-2] == 2 && feld[zeile+3][spalte-3] == 2){ // 0111 unten links
-							if (zeile < 5 && feld[zeile+1][spalte] != 0){
-								ergebnis = spalte;
-							} else if (zeile ==5 ){
-								ergebnis = spalte;
-							}
-							
-						} else if(feld[zeile-1][spalte+1] == 2 && feld[zeile-2][spalte+2] == 2 && feld[zeile-3][spalte+3] == 2){ //0111 oben rechts
-							if (zeile < 5 && feld[zeile+1][spalte] != 0){
-								ergebnis = spalte;
-							} else if (zeile ==5 ){
-								ergebnis = spalte;
-							}
-							
-						} else if(feld[zeile-1][spalte-1] == 2 && feld[zeile-2][spalte-2] == 2 && feld[zeile-3][spalte-3] == 2){ // 0111 oben links
-							if (zeile < 5 && feld[zeile+1][spalte] != 0){
-								ergebnis = spalte;
-							} else if (zeile ==5 ){
-								ergebnis = spalte;
-							}
-							
+							}							
 						}
+					} catch (ArrayIndexOutOfBoundsException e){}	
 					
+					try{	
+						if(feld[zeile-1][spalte+1] == 2 && feld[zeile+2][spalte-2] == 2 && feld[zeile+1][spalte-1] == 2){ //1011 unten links
+							if (zeile < 5 && feld[zeile+1][spalte] != 0){
+								ergebnis = spalte;
+							} else if (zeile ==5 ){
+								ergebnis = spalte;
+							}		
+						}
+					} catch (ArrayIndexOutOfBoundsException e){}	
+						
+					try{
+						if(feld[zeile+1][spalte+1] == 2 && feld[zeile+2][spalte+2] == 2 && feld[zeile+3][spalte+3] == 2){ //0111 unten rechts
+							if (zeile < 5 && feld[zeile+1][spalte] != 0){
+								ergebnis = spalte;
+							} else if (zeile ==5 ){
+								ergebnis = spalte;
+							}							
+						}
+					} catch (ArrayIndexOutOfBoundsException e){}	
 					
+					try{	
+						if(feld[zeile-1][spalte-1] == 2 && feld[zeile-2][spalte-2] == 2 && feld[zeile+1][spalte+1] == 2){ //1101 unten rechts
+							if (zeile < 5 && feld[zeile+1][spalte] != 0){
+								ergebnis = spalte;
+							} else if (zeile ==5 ){
+								ergebnis = spalte;
+							}							
+						}
+					} catch (ArrayIndexOutOfBoundsException e){}	
+						
+					try{
+						if(feld[zeile-1][spalte+1] == 2 && feld[zeile-2][spalte+2] == 2 && feld[zeile+1][spalte-1] == 2){ //1101 unten links
+							if (zeile < 5 && feld[zeile+1][spalte] != 0){
+								ergebnis = spalte;
+							} else if (zeile ==5 ){
+								ergebnis = spalte;
+							}							
+						}
+					} catch (ArrayIndexOutOfBoundsException e){}	
+					
+					try{	
+						if(feld[zeile+1][spalte-1] == 2 && feld[zeile+2][spalte-2] == 2 && feld[zeile+3][spalte-3] == 2){ // 0111 unten links
+							if (zeile < 5 && feld[zeile+1][spalte] != 0){
+								ergebnis = spalte;
+							} else if (zeile ==5 ){
+								ergebnis = spalte;
+							}							
+						}
+					} catch (ArrayIndexOutOfBoundsException e){}	
+						
+					try{
+						if(feld[zeile-1][spalte+1] == 2 && feld[zeile-2][spalte+2] == 2 && feld[zeile-3][spalte+3] == 2){ //0111 oben rechts
+							if (zeile < 5 && feld[zeile+1][spalte] != 0){
+								ergebnis = spalte;
+							} else if (zeile ==5 ){
+								ergebnis = spalte;
+							}							
+						}
+					} catch (ArrayIndexOutOfBoundsException e){}	
+						
+					try{
+						if(feld[zeile-1][spalte-1] == 2 && feld[zeile-2][spalte-2] == 2 && feld[zeile-3][spalte-3] == 2){ // 0111 oben links
+							if (zeile < 5 && feld[zeile+1][spalte] != 0){
+								ergebnis = spalte;
+							} else if (zeile ==5 ){
+								ergebnis = spalte;
+							}							
+						}										
 					} catch (ArrayIndexOutOfBoundsException e){}
+					
+				} // end if 0
 				
 									
 				} // end zeile
@@ -313,7 +366,7 @@ public class KI2 {
 			
 			if(ergebnis != 99){
 				break;
-			}//valides Ergebnis?
+			}//valides Ergebnis? Sonst Zufall
 			
 			System.out.println("ergebnis: " + ergebnis);
 			
