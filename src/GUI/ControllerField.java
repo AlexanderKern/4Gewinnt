@@ -43,8 +43,8 @@ public class ControllerField implements Initializable {
 	@FXML
 	Pane pane;
 
-	Image imageBlue = new Image(getClass().getResourceAsStream("coinBlue.png"));
-	Image imageGreen = new Image(getClass().getResourceAsStream("coinGreen.png"));
+	Image imageBlue = new Image(getClass().getResourceAsStream("redSmall.png"));
+	Image imageGreen = new Image(getClass().getResourceAsStream("greSmall.png"));
 	Image imageG = new Image(getClass().getResourceAsStream("coinGrey.png"));
 
 	@SuppressWarnings("static-access")
@@ -127,21 +127,23 @@ public class ControllerField implements Initializable {
 		Platform.runLater(new Runnable() {
 			public void run() {
 				if (coin == true) {
-					Label l = new Label("");
-					l.setGraphic(new ImageView(imageGreen));
-					grid.setRowIndex(l, row);
-					grid.setColumnIndex(l, col);
+					ImageView iv = new ImageView(imageGreen);
+//					Label l = new Label("");
+//					l.setGraphic(new ImageView(imageGreen));
+					grid.setRowIndex(iv, row);
+					grid.setColumnIndex(iv, col);
 
-					grid.getChildren().addAll(l);
+					grid.getChildren().addAll(iv);
 				}
 
 				else {
-					Label l = new Label("");
-					l.setGraphic(new ImageView(imageBlue));
-					grid.setRowIndex(l, row);
-					grid.setColumnIndex(l, col);
+					ImageView iv = new ImageView(imageBlue);
+//					Label l = new Label("");
+//					l.setGraphic(new ImageView(imageBlue));
+					grid.setRowIndex(iv, row);
+					grid.setColumnIndex(iv, col);
 
-					grid.getChildren().addAll(l);
+					grid.getChildren().addAll(iv);
 				}
 			}
 		});
