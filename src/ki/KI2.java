@@ -14,7 +14,7 @@ public class KI2 {
 	private boolean gegner;
 	private int [] letzter_zug = new int [2];
 	
-	
+	// Methodenbeginn
 	
 	//Konstruktor
 	public KI2(){
