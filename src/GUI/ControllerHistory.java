@@ -7,7 +7,7 @@ import java.util.ResourceBundle;
 import javax.swing.JFileChooser;
 //import javax.swing.Timer;
 
-import Database.DatabaseCreate;
+import Database.Database;
 import Database.Spiel;
 import Database.Spieler;
 import javafx.fxml.FXML;

@@ -1,5 +1,6 @@
 package Database;
 
+
 public class ReuseableSatz {
 	
 	public static int id;

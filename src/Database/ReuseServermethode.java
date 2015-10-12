@@ -4,6 +4,7 @@ public class ReuseServermethode {
 	private static String methode;
 	private static String team;
 	private static String pfad;
+	private static String gegner;
 
 	public static void setMethode(String methode) {
 		ReuseServermethode.methode = methode;
@@ -27,5 +28,12 @@ public class ReuseServermethode {
 
 	public static String getPfad() {
 		return pfad;
+	}
+	
+	public static void setGegner(String gegner){
+		ReuseServermethode.gegner = gegner;
+	}
+	public static String getGegner(){
+		return gegner;
 	}
 }

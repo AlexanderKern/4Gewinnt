@@ -68,6 +68,7 @@ public class ControllerField implements Initializable {
 		// }
 
 		lPlayerR.setText("Claire");
+		lPlayerY.setText(ReuseServermethode.getGegner());
 		
 		if(ReuseServermethode.getMethode().equals("Pusher")){
 			final PusherMain pusherMain = new PusherMain(this);

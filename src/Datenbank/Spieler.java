@@ -1,6 +1,8 @@
-package Database;
+package Datenbank;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
+import Database.Database;
 
 
 public class Spieler {

@@ -1,5 +1,6 @@
 package Database;
 
+
 public class ReuseableSpiel {
 	
 	private static String name;
