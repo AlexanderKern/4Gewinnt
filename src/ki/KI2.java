@@ -14,11 +14,22 @@ public class KI2 {
 	private boolean gegner;
 	private int [] letzter_zug = new int [2];
 	
+	
+	
+	
+	
+	
 	// Methodenbeginn
 	
 	//Konstruktor
 	public KI2(){
 		
+		//Feld einstellen
+		for (spalte = 0; spalte < 7; spalte++){
+			for (zeile = 0; zeile < 6; zeile++){
+				feld[zeile][spalte]= 0;
+			}			
+		}
 				
 	}// end Konstruktor
 
