@@ -97,7 +97,7 @@ public class ControllerSetting implements Initializable {
 				ReuseServermethode.setPfad(tfPath.getText());
 			}
 
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("spielfeld3.fxml"));
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("spielfeld2.fxml"));
 			Parent root1;
 			try {
 				root1 = (Parent) fxmlLoader.load();
