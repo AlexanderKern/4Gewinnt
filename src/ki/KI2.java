@@ -208,7 +208,7 @@ public class KI2 {
 						}			
 					} catch (ArrayIndexOutOfBoundsException e){}	
 					
-				
+					} //end if null
 				} // end zeile
 			
 			} //end spalte
@@ -221,6 +221,8 @@ public class KI2 {
 			
 			for (spalte = 0; spalte < 7; spalte++){
 				for (zeile = 0; zeile < 6; zeile++){
+					
+					if(feld[zeile][spalte] == 0){
 				
 					try{
 						// 3 vertikal
@@ -361,11 +363,14 @@ public class KI2 {
 			} //end spalte
 			
 			
-			if(ergebnis != 99){
+			if(ergebnis == 99){
+				System.out.println("ergebnis: " + ergebnis);
+				ergebnis = (int)(Math.random()*7);
+				System.out.println("ergebnis: " + ergebnis);
 				break;
 			}//valides Ergebnis? Sonst Zufall
 			
-			System.out.println("ergebnis: " + ergebnis);
+			
 			
 			ergebnis = (int)(Math.random()*7);
 			break;
