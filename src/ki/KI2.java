@@ -369,12 +369,8 @@ public class KI2 {
 				System.out.println("ergebnis: " + ergebnis);
 				break;
 			}//valides Ergebnis? Sonst Zufall
+	
 			
-			
-			
-			ergebnis = (int)(Math.random()*7);
-			break;
-		
 		} //end while
 	} // end berechne
 	
