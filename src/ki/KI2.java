@@ -6,17 +6,11 @@ public class KI2 {
 
 	int ergebnis = 99;
 	int zeile;
-	int spalte;
-	
-	private int [][] feld = new int [6][7];
-	
+	int spalte;	
+	private int [][] feld = new int [6][7];	
 	private int spalte_rueckgabe;
-	private boolean gegner;
+    boolean gegner;
 	private int [] letzter_zug = new int [2];
-	
-	
-	
-	
 	
 	
 	// Methodenbeginn
@@ -29,17 +23,16 @@ public class KI2 {
 			for (zeile = 0; zeile < 6; zeile++){
 				feld[zeile][spalte]= 0;
 			}			
-		}
-				
+		}				
 	}// end Konstruktor
 
 	
 	
 	// Setter (feld: 0=unbelegt,1=spieler,2=gegner)
-		public void setStein(int spalte, boolean gegner) {
+		public void setStein(int spalte, boolean gegnerm) {
 			
 			spalte_rueckgabe = spalte;
-			this.gegner = gegner;
+			this.gegner = gegnerm;
 			
 			if (this.gegner = true) {
 				for (int zeile = 5; zeile >= 0; zeile--){
