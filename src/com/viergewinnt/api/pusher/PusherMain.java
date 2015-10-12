@@ -44,7 +44,7 @@ public class PusherMain {
 
 								// Zug an Server senden
 								channel.trigger("client-event", "{\"move\":\"" + ki.get_spalte() + "\"}");
-
+								System.out.println(ki.get_spalte());
 								// Stein in KI setzen
 								ki.setStein(ki.get_spalte(), false);
 

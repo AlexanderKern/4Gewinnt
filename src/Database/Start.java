@@ -1,12 +1,8 @@
 package Database;
 
-import java.net.ConnectException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-
-import javax.swing.plaf.synth.SynthSpinnerUI;
 
 public class Start {
 

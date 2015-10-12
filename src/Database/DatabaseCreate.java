@@ -9,9 +9,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Map;
 
-import org.hsqldb.lib.HashMap;
 
 public class DatabaseCreate {
 	
