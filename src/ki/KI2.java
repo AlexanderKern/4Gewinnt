@@ -9,7 +9,6 @@ public class KI2 {
 	int spalte;	
 	private int [][] feld = new int [6][7];	
 	private int spalte_rueckgabe;
-    boolean gegner_ki;
 	private int [] letzter_zug = new int [2];
 	
 	
@@ -32,9 +31,8 @@ public class KI2 {
 		public void setStein(int spalte, boolean gegnerm) {
 			
 			spalte_rueckgabe = spalte;
-			gegner_ki = gegnerm;
 			
-			if (gegner_ki = true) {
+			if (gegnerm = true) {
 				for (int zeile = 5; zeile >= 0; zeile--){
 					if ( feld [zeile][spalte_rueckgabe] == 0){	
 						feld [zeile][spalte_rueckgabe] = 2;
