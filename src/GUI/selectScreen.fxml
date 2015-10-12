@@ -14,7 +14,7 @@
    <children>
       <ImageView fitHeight="430.0" fitWidth="636.0" layoutX="-105.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@background.jpg" />
+            <Image url="@img/background.jpg" />
          </image>
       </ImageView>
       <Label layoutX="5.0" layoutY="58.0" text="Gegnername: " />
