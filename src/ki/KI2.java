@@ -9,7 +9,7 @@ public class KI2 {
 	int spalte;	
 	private int [][] feld = new int [6][7];	
 	private int spalte_rueckgabe;
-    private boolean gegner_ki;
+    boolean gegner_ki;
 	private int [] letzter_zug = new int [2];
 	
 	
