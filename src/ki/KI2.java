@@ -80,8 +80,10 @@ public class KI2 {
 				
 					try{
 						// 3 vertikal
-						if(feld[zeile][spalte] == 0 && feld[zeile+1][spalte] == 1 && feld[zeile+2][spalte] == 1 && feld[zeile+3][spalte] == 1){
-							ergebnis = spalte;						
+						if(feld[zeile+1][spalte] == 1 && feld[zeile+2][spalte] == 1 && feld[zeile+3][spalte] == 1){
+							ergebnis = spalte;	
+							System.out.println(ergebnis + " Muster vertikal");
+							break;
 						}
 					} catch (ArrayIndexOutOfBoundsException e){}
 						
@@ -90,9 +92,13 @@ public class KI2 {
 						if(feld[zeile][spalte-1] == 1 && feld[zeile][spalte-2] == 1 && feld[zeile][spalte-3] == 1){ //0111 links
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 0111 links horizontal");
+								break;
 							} else if (zeile ==5 ){
 								ergebnis = spalte;
-							}														
+								System.out.println(ergebnis +  "Muster 0111 links horizontal");
+								break;
+							}
 						}
 					} catch (ArrayIndexOutOfBoundsException e){}	
 					
@@ -100,9 +106,13 @@ public class KI2 {
 						if(feld[zeile][spalte+1] == 1 && feld[zeile][spalte+2] == 1 && feld[zeile][spalte+3] == 1){ //0111 rechts
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 0111 rechts horizontal");
+								break;
 							} else if (zeile ==5 ){
 								ergebnis = spalte;
-							}							
+								System.out.println(ergebnis + " Muster 0111 rechts horizontal");
+								break;
+							}	
 						}
 					} catch (ArrayIndexOutOfBoundsException e){}	
 					
@@ -110,18 +120,26 @@ public class KI2 {
 						if(feld[zeile][spalte-1] == 1 && feld[zeile][spalte+1] == 1 && feld[zeile][spalte+2] == 1){ //1011 rechts
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 1011 rechts horizontal");
+								break;
 							} else if (zeile ==5 ){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 1011 rechts horizontal");
+								break;
 							}							
 						}
 					} catch (ArrayIndexOutOfBoundsException e){}	
 					
 					try{	
-						if(feld[zeile][spalte-2] == 1 && feld[zeile][spalte-1] == 1 && feld[zeile][spalte+1] == 1){ //1101 rechts
+						if(feld[zeile][spalte-2] == 1 && feld[zeile][spalte-1] == 1 && feld[zeile][spalte+1] == 1){ //1101 links
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 1011 links horizontal");
+								break;
 							} else if (zeile ==5 ){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 1011 links horizontal");
+								break;
 							}							
 						}
 					} catch (ArrayIndexOutOfBoundsException e){}	
@@ -132,8 +150,12 @@ public class KI2 {
 						if(feld[zeile-1][spalte-1] == 1 && feld[zeile+2][spalte+2] == 1 && feld[zeile+1][spalte+1] == 1){ //1011 unten rechts
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 1011 unten rechts");
+								break;
 							} else if (zeile ==5 ){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 1011 unten rechts");
+								break;
 							}							
 						}
 					} catch (ArrayIndexOutOfBoundsException e){}	
@@ -142,8 +164,12 @@ public class KI2 {
 						if(feld[zeile-1][spalte+1] == 1 && feld[zeile+2][spalte-2] == 1 && feld[zeile+1][spalte-1] == 1){ //1011 unten links
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 1011 unten links");
+								break;
 							} else if (zeile ==5 ){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 1011 unten links");
+								break;
 							}							
 						}
 					} catch (ArrayIndexOutOfBoundsException e){}	
@@ -152,8 +178,12 @@ public class KI2 {
 						if(feld[zeile+1][spalte+1] == 1 && feld[zeile+2][spalte+2] == 1 && feld[zeile+3][spalte+3] == 1){ //0111 unten rechts
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 0111 unten rechts");
+								break;
 							} else if (zeile ==5 ){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 0111 unten rechts");
+								break;
 							}							
 						}
 					} catch (ArrayIndexOutOfBoundsException e){}	
@@ -162,8 +192,12 @@ public class KI2 {
 						if(feld[zeile-1][spalte-1] == 1 && feld[zeile-2][spalte-2] == 1 && feld[zeile+1][spalte+1] == 1){ //1101 unten rechts
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 1101 unten rechts");
+								break;
 							} else if (zeile ==5 ){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 1101 unten rechts");
+								break;
 							}							
 						}
 					} catch (ArrayIndexOutOfBoundsException e){}	
@@ -172,8 +206,12 @@ public class KI2 {
 						if(feld[zeile-1][spalte+1] == 1 && feld[zeile-2][spalte+2] == 1 && feld[zeile+1][spalte-1] == 1){ //1101 unten links
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 1101 unten links");
+								break;
 							} else if (zeile ==5 ){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 1101 unten links");
+								break;
 							}							
 						}
 					} catch (ArrayIndexOutOfBoundsException e){}	
@@ -182,8 +220,12 @@ public class KI2 {
 						if(feld[zeile+1][spalte-1] == 1 && feld[zeile+2][spalte-2] == 1 && feld[zeile+3][spalte-3] == 1){ // 0111 unten links
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 0111 unten links");
+								break;
 							} else if (zeile ==5 ){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 0111 unten links");
+								break;
 							}							
 						}
 					} catch (ArrayIndexOutOfBoundsException e){}	
@@ -192,8 +234,12 @@ public class KI2 {
 						if(feld[zeile-1][spalte+1] == 1 && feld[zeile-2][spalte+2] == 1 && feld[zeile-3][spalte+3] == 1){ //0111 oben rechts
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 0111 oben rechts");
+								break;
 							} else if (zeile ==5 ){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 0111 oben rechts");
+								break;
 							}							
 						}
 					} catch (ArrayIndexOutOfBoundsException e){}	
@@ -202,8 +248,12 @@ public class KI2 {
 						if(feld[zeile-1][spalte-1] == 1 && feld[zeile-2][spalte-2] == 1 && feld[zeile-3][spalte-3] == 1){ // 0111 oben links
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 0111 oben links");
+								break;
 							} else if (zeile ==5 ){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 0111 oben links");
+								break;
 							}							
 						}			
 					} catch (ArrayIndexOutOfBoundsException e){}	
@@ -227,7 +277,9 @@ public class KI2 {
 					try{
 						// 3 vertikal
 						if(feld[zeile][spalte] == 0 && feld[zeile+1][spalte] == 2 && feld[zeile+2][spalte] == 2 && feld[zeile+3][spalte] == 2){
-							ergebnis = spalte;						
+							ergebnis = spalte;
+							System.out.println(ergebnis + " Muster vertikal");
+							break;
 						}
 					} catch (ArrayIndexOutOfBoundsException e){}		
 						
@@ -236,8 +288,12 @@ public class KI2 {
 						if(feld[zeile][spalte-1] == 2 && feld[zeile][spalte-2] == 2 && feld[zeile][spalte-3] == 2){ //0111 links
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 0111 links horizontal");
+								break;
 							} else if (zeile ==5 ){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 0111 links horizontal");
+								break;
 							}							
 						}
 					} catch (ArrayIndexOutOfBoundsException e){}	
@@ -246,8 +302,12 @@ public class KI2 {
 						if(feld[zeile][spalte+1] == 2 && feld[zeile][spalte+2] == 2 && feld[zeile][spalte+3] == 2){ //0111 rechts
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 0111 rechts horizontal");
+								break;
 							} else if (zeile ==5 ){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 0111 rechts horizontal");
+								break;
 							}							
 						}
 					} catch (ArrayIndexOutOfBoundsException e){}	
@@ -256,18 +316,26 @@ public class KI2 {
 						if(feld[zeile][spalte-1] == 2 && feld[zeile][spalte+1] == 2 && feld[zeile][spalte+2] == 2){ //1011 rechts
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 1011 rechts horizontal");
+								break;
 							} else if (zeile ==5 ){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 1011 rechts horizontal");
+								break;
 							}							
 						}
 					} catch (ArrayIndexOutOfBoundsException e){}	
 						
 					try{
-						if(feld[zeile][spalte-2] == 2 && feld[zeile][spalte-1] == 2 && feld[zeile][spalte+1] == 2){ //1101 rechts
+						if(feld[zeile][spalte-2] == 2 && feld[zeile][spalte-1] == 2 && feld[zeile][spalte+1] == 2){ //1101 links
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 1011 links horizontal");
+								break;
 							} else if (zeile ==5 ){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 1011 links horizontal");
+								break;
 							}						
 						}
 					} catch (ArrayIndexOutOfBoundsException e){}	
@@ -279,8 +347,12 @@ public class KI2 {
 						if(feld[zeile-1][spalte-1] == 2 && feld[zeile+2][spalte+2] == 2 && feld[zeile+1][spalte+1] == 2){ //1011 unten rechts
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 1011 unten rechts");
+								break;
 							} else if (zeile ==5 ){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 1011 unten rechts");
+								break;
 							}							
 						}
 					} catch (ArrayIndexOutOfBoundsException e){}	
@@ -289,8 +361,12 @@ public class KI2 {
 						if(feld[zeile-1][spalte+1] == 2 && feld[zeile+2][spalte-2] == 2 && feld[zeile+1][spalte-1] == 2){ //1011 unten links
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 1011 unten links");
+								break;
 							} else if (zeile ==5 ){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 1011 unten links");
+								break;
 							}		
 						}
 					} catch (ArrayIndexOutOfBoundsException e){}	
@@ -299,8 +375,12 @@ public class KI2 {
 						if(feld[zeile+1][spalte+1] == 2 && feld[zeile+2][spalte+2] == 2 && feld[zeile+3][spalte+3] == 2){ //0111 unten rechts
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 0111 unten rechts");
+								break;
 							} else if (zeile ==5 ){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 0111 unten rechts");
+								break;
 							}							
 						}
 					} catch (ArrayIndexOutOfBoundsException e){}	
@@ -309,8 +389,12 @@ public class KI2 {
 						if(feld[zeile-1][spalte-1] == 2 && feld[zeile-2][spalte-2] == 2 && feld[zeile+1][spalte+1] == 2){ //1101 unten rechts
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 1101 unten rechts");
+								break;
 							} else if (zeile ==5 ){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 1101 unten rechts");
+								break;
 							}							
 						}
 					} catch (ArrayIndexOutOfBoundsException e){}	
@@ -319,8 +403,12 @@ public class KI2 {
 						if(feld[zeile-1][spalte+1] == 2 && feld[zeile-2][spalte+2] == 2 && feld[zeile+1][spalte-1] == 2){ //1101 unten links
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 1101 unten links");
+								break;
 							} else if (zeile ==5 ){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 1101 unten links");
+								break;
 							}							
 						}
 					} catch (ArrayIndexOutOfBoundsException e){}	
@@ -329,8 +417,12 @@ public class KI2 {
 						if(feld[zeile+1][spalte-1] == 2 && feld[zeile+2][spalte-2] == 2 && feld[zeile+3][spalte-3] == 2){ // 0111 unten links
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 0111 unten links");
+								break;
 							} else if (zeile ==5 ){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 0111 unten links");
+								break;
 							}							
 						}
 					} catch (ArrayIndexOutOfBoundsException e){}	
@@ -339,8 +431,12 @@ public class KI2 {
 						if(feld[zeile-1][spalte+1] == 2 && feld[zeile-2][spalte+2] == 2 && feld[zeile-3][spalte+3] == 2){ //0111 oben rechts
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 0111 oben rechts");
+								break;
 							} else if (zeile ==5 ){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 0111 oben rechts");
+								break;
 							}							
 						}
 					} catch (ArrayIndexOutOfBoundsException e){}	
@@ -349,8 +445,12 @@ public class KI2 {
 						if(feld[zeile-1][spalte-1] == 2 && feld[zeile-2][spalte-2] == 2 && feld[zeile-3][spalte-3] == 2){ // 0111 oben links
 							if (zeile < 5 && feld[zeile+1][spalte] != 0){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 0111 oben links");
+								break;
 							} else if (zeile ==5 ){
 								ergebnis = spalte;
+								System.out.println(ergebnis + " Muster 0111 oben links");
+								break;
 							}							
 						}										
 					} catch (ArrayIndexOutOfBoundsException e){}
