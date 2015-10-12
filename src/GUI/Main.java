@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 public class Main extends Application {
 	@Override
 	public void start(Stage stage) throws IOException {
+//_________________________________________________________________________________________________		
 		// Datenbank anlegen
 		Database db = new Database();
 		try {
@@ -20,6 +21,7 @@ public class Main extends Application {
 		} catch (SQLException e2) {
 			// System.out.println("Tabellen sind bereits angelegt");
 		}
+//_________________________________________________________________________________________________
 
 		Parent root = FXMLLoader.load(getClass().getResource("welcome.fxml"));
 

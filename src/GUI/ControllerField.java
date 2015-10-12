@@ -7,6 +7,8 @@ import com.viergewinnt.api.file.FileMain;
 import com.viergewinnt.api.pusher.PusherMain;
 
 import Database.ReuseServermethode;
+import Database.ReuseableSpiel;
+import Database.Satz;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -51,21 +53,19 @@ public class ControllerField implements Initializable {
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources)
 
 	{
+//_________________________________________________________________________________________________
 		// /* Satz in Datenbank anlegen */
-		// ReuseableSpiel reuseSpiel = new ReuseableSpiel();
-		// DatabaseCreate db = new DatabaseCreate(); // funktioniert das wenn
+		
+		ReuseableSpiel reuseSpiel = new ReuseableSpiel();
+		
 		// hier
 		// // neue db-Verbindung
 		// // angelegt wird?
 		// //TODO muss bei neuen satz auch wieder angelegt werden
-		// try {
-		// Satz satz = new Satz(db, reuseSpiel.id);
-		// System.out.println("Satz mit der Id = " + satz.id + " wurde angelegt
-		// und gehört zum Spiel mit der ID "
-		// + satz.spiel_id);
-		// } catch (SQLException e1) {
-		// e1.printStackTrace();
-		// }
+		
+		Satz satz = new Satz(reuseSpiel.id);
+//_________________________________________________________________________________________________		
+	
 
 		lPlayerR.setText("Claire");
 		lPlayerY.setText(ReuseServermethode.getGegner());

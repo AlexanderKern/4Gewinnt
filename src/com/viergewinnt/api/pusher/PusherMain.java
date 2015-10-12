@@ -2,6 +2,7 @@ package com.viergewinnt.api.pusher;
 
 import java.awt.Toolkit;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import com.pusher.client.Pusher;
@@ -11,6 +12,9 @@ import com.pusher.client.connection.ConnectionState;
 import com.viergewinnt.api.common.util.Function;
 import com.viergewinnt.api.common.util.Message;
 
+import Database.Database;
+import Database.ReuseableSatz;
+import Database.Zug;
 import GUI.ControllerField;
 import ki.KI2;
 
@@ -51,6 +55,18 @@ public class PusherMain {
 								int[] zug = ki.getletzter_zug();
 								// ControllerField cf = new ControllerField();
 								cf.setStone(zug[0], zug[1], false);
+								
+								//Zug von uns
+								Database db = new Database();
+								ReuseableSatz reSatz = new ReuseableSatz();
+								//(int satz_id, boolean gegner, int spalte,int zeile, Database db)
+								try {
+									Zug zugGegner = new Zug(reSatz.id ,false , zug[1], zug[0], db );
+								} catch (SQLException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+								
 
 							} else {
 								// Gegnerzug in KI setzen
