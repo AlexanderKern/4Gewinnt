@@ -9,7 +9,7 @@ public class KI2 {
 	int spalte;	
 	private int [][] feld = new int [6][7];	
 	private int spalte_rueckgabe;
-    boolean gegner;
+    private boolean gegner_ki;
 	private int [] letzter_zug = new int [2];
 	
 	
@@ -32,9 +32,9 @@ public class KI2 {
 		public void setStein(int spalte, boolean gegnerm) {
 			
 			spalte_rueckgabe = spalte;
-			this.gegner = gegnerm;
+			gegner_ki = gegnerm;
 			
-			if (this.gegner = true) {
+			if (gegner_ki = true) {
 				for (int zeile = 5; zeile >= 0; zeile--){
 					if ( feld [zeile][spalte_rueckgabe] == 0){	
 						feld [zeile][spalte_rueckgabe] = 2;
@@ -43,7 +43,7 @@ public class KI2 {
 						break;
 					}//endif
 				}//endfor
-			} else {
+			} else  {
 				for (int zeile = 5; zeile >= 0; zeile--){
 					if ( feld [zeile][spalte_rueckgabe] == 0){	
 						feld [zeile][spalte_rueckgabe] = 1;
@@ -51,21 +51,17 @@ public class KI2 {
 						letzter_zug[0] = zeile;
 						break;
 					}//endif
-				}//endfor
-				
-			}
-			
-					
+				}//endfor				
+			}					
 		}// end setter
-	
+
+		
 	public int get_spalte(){
 		
 		return ergebnis;
 		
 	}// end get spalte
-	
-	
-	
+
 	
 	public int[] getletzter_zug(){
 		
@@ -74,11 +70,8 @@ public class KI2 {
 	}// get letzter zug
 	
 	
-	
-	
-	
-	
 	public void berechne(){
+		ergebnis = 99;
 		while (true){
 			for (spalte = 0; spalte < 7; spalte++){
 				for (zeile = 0; zeile < 6; zeile++){
