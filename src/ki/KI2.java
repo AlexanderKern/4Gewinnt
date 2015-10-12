@@ -370,6 +370,7 @@ public class KI2 {
 				break;
 			}//valides Ergebnis? Sonst Zufall
 	
+			System.out.println("ergebnis: " + ergebnis);
 			
 		} //end while
 	} // end berechne
