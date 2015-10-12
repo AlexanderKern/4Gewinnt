@@ -8,7 +8,7 @@ public class Satz {
 	
 	public int id;
 	public int spielId;
-	public Boolean gewonnen;
+	public String gewonnen;
 	
 	public Satz( int spielId){
 		this.spielId = spielId;
@@ -39,14 +39,44 @@ public class Satz {
 		
 	}
 	
+	public void updateSatz(String gewonnen, int satzId) throws SQLException{
+		PreparedStatement stSatzende = Database.conn.prepareStatement("UPDATE satz SET gewonnen = ? WHERE id = ?");
+		stSatzende.setString(1, gewonnen);
+		stSatzende.setInt(2, satzId);
+		stSatzende.executeUpdate();
+	}
+	
+	public int getAnzahl(int spielId) throws SQLException{
+		int anzahlSaetze;
+		
+		PreparedStatement dritterSatz = Database.conn.prepareStatement("SELECT * FROM satz WHERE spiel_id = ? ");
+		dritterSatz.setInt(1, spielId);
+		anzahlSaetze =  dritterSatz.getMaxRows();
+		 System.out.println("Anzahl"+ anzahlSaetze );
+		
+		return anzahlSaetze;
+	}
+	
+	public void getGewonneneSaetze(int spielId){
+		//Wer welchen Satz gewonnen hat 
+		/*int pktSpiel ; 
+		
+		PreparedStatement countGewonneneSaetze = Database.conn.prepareStatement("SELECT COUNT(*)  FROM satz WHERE spiel_id = ? AND gewonnen = true ");
+		countGewonneneSaetze.setInt(1 , spielId);
+		pktSpiel = countGewonneneSaetze.getMaxRows();
+		System.out.println(pktSpiel);
+		
+		return pktSpiel;
+		*/
+	}
+	
 	
 	public int satzende(Satz satz) throws SQLException{
 		int pktSpiel ; 
 	    int anzahlSaetze ;
-	    
-	    System.out.println("ID " + satz.id + "Gewonnen? "+ satz.gewonnen);  
+	     
 	    PreparedStatement stSatzende = Database.conn.prepareStatement("UPDATE satz SET gewonnen = ? WHERE id = ?");
-	    stSatzende.setBoolean(1, satz.gewonnen);
+	    stSatzende.setString(1, satz.gewonnen);
 	    stSatzende.setInt(2, satz.id);
 	    
 	    stSatzende.executeUpdate();
@@ -67,7 +97,6 @@ public class Satz {
 		}// end of while
 		*/
 			
-	   anzahlSaetze = 3;
 		if(anzahlSaetze == 3){ // wenn 3 STätze gespielt, dann update das Spiel ergebnis
 			
 				// Gewonnene Sätze zählen

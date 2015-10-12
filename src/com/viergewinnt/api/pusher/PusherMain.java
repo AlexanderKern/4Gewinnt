@@ -14,6 +14,9 @@ import com.viergewinnt.api.common.util.Message;
 
 import Database.Database;
 import Database.ReuseableSatz;
+import Database.ReuseableSpiel;
+import Database.Satz;
+import Database.Spiel;
 import Database.Zug;
 import GUI.ControllerField;
 import ki.KI2;
@@ -55,7 +58,7 @@ public class PusherMain {
 								int[] zug = ki.getletzter_zug();
 								// ControllerField cf = new ControllerField();
 								cf.setStone(zug[0], zug[1], false);
-								
+/*_________________________________________________________________________________________________*/
 								//Zug von uns
 								Database db = new Database();
 								ReuseableSatz reSatz = new ReuseableSatz();
@@ -66,6 +69,7 @@ public class PusherMain {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
 								}
+/*_________________________________________________________________________________________________*/
 								
 
 							} else {
@@ -75,6 +79,18 @@ public class PusherMain {
 								//Gegnerzug in GUI setzen
 								int[] zug = ki.getletzter_zug();
 								cf.setStone(zug[0], zug[1], true);
+								
+/*_________________________________________________________________________________________________*/								
+								Database db = new Database();
+								ReuseableSatz reSatz = new ReuseableSatz();
+								//(int satz_id, boolean gegner, int spalte,int zeile, Database db)
+								try {
+									Zug zugGegner = new Zug(reSatz.id ,true , zug[1], zug[0], db );
+								} catch (SQLException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+/*_________________________________________________________________________________________________*/
 
 								// Berechne nächsten Zug
 								ki.berechne();
@@ -85,13 +101,53 @@ public class PusherMain {
 								//Zug in GUI setzen
 								zug = ki.getletzter_zug();
 								cf.setStone(zug[0], zug[1], false);
-
+/*_________________________________________________________________________________________________*/
+								//(int satz_id, boolean gegner, int spalte,int zeile, Database db)
+								try {
+									Zug zugGegner = new Zug(reSatz.id ,false , zug[1], zug[0], db );
+								} catch (SQLException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+/*_________________________________________________________________________________________________*/
 								// Nächsten Zug an Server senden
 								channel.trigger("client-event", "{\"move\":\"" + ki.get_spalte() + "\"}");
 							}
 
 						} else {
 							cf.setResult(message.getSieger(), sequenceNumber);
+/*_________________________________________________________________________________________________*/
+							// Wer gewonnen hat : message.getSieger()
+							// Update satz (gewonnen, reSatz.iD
+							ReuseableSatz reSatz = new ReuseableSatz();
+							Satz satz = new Satz(reSatz.id);
+							try {
+								satz.updateSatz(message.getSieger(),reSatz.id);
+							} catch (SQLException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							
+							//Methode Anzahl Sätze
+							ReuseableSpiel reSpiel = new ReuseableSpiel();
+							int anzahlSaetze = 0;
+							try {
+								anzahlSaetze = satz.getAnzahl(reSpiel.id);
+								
+							} catch (SQLException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							//Methode wer welchen Satz gewonnen hat
+							//bei 3 Sätze Methode update SPiel 
+							if(anzahlSaetze == 3){
+								
+								Spiel spiel = new Spiel(reSpiel.getName());
+								//spiel.spielende(spiel, punkte, satz);
+							}
+							
+							
+/*_________________________________________________________________________________________________*/
 							pusher.disconnect();
 						}
 						Toolkit.getDefaultToolkit().beep();
