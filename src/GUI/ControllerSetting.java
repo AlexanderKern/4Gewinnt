@@ -5,12 +5,13 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+
 import com.viergewinnt.api.pusher.PusherMain;
 
-import Database.Database;
-import Database.ReuseServermethode;
-import Database.Spiel;
-import Database.Spieler;
+import Datenbank.ReuseServermethode;
+import Datenbank.Database;
+import Datenbank.Spiel;
+import Datenbank.Spieler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -42,7 +43,7 @@ public class ControllerSetting implements Initializable {
 
 	@FXML
 	Button bExit;
-
+	
 	PusherMain pusherMain;
 
 	@Override
@@ -52,49 +53,52 @@ public class ControllerSetting implements Initializable {
 
 		bStart.setOnAction((ev) -> {
 
-			Database db = new Database();
-
-			Spieler spieler = new Spieler(tfEnemy.getText());
-			try {
-				spieler.createSpieler(db);
+	Database db = new Database();
+		
+		Spieler spieler = new Spieler(tfEnemy.getText());
+		try {
+			spieler.createSpieler(db);
 			} catch (SQLException e1) {
-				System.out.println(spieler.name + " konnte nicht angelegt werden!!!");
+			System.out.println(spieler.name + " konnte nicht angelegt werden!!!");
 			}
 
-			Spiel spiel = new Spiel(spieler.name);
-			try {
-				if (cX.isSelected()) {
-					spiel.farbe = true; // Rot
-					spiel.createSpiel(spiel, db);
-				} else {
-					spiel.farbe = false; // Gelb
-					spiel.createSpiel(spiel, db);
-				}
-
+		
+		Spiel spiel = new Spiel(spieler.name);
+		try {
+		if (cX.isSelected()){
+			spiel.farbe = true; // Rot
+			spiel.createSpiel(spiel, db);
+			}
+			else {				
+				spiel.farbe = false; // Gelb
+				spiel.createSpiel(spiel, db);
+			}
+		
 			} catch (SQLException e3) {
 				System.out.println("Es ist ein Fehler bei dem Erstellen eines Spiels aufgetreten!");
-			}
-
-			// pusherMain = new PusherMain();
-			// pusherMain.pusher();
+		}
+		
+		
+//			pusherMain = new PusherMain();
+//			pusherMain.pusher();
 			// mit in Klasse Spiel drinnen
 			// ReuseableSpiel reuse = new ReuseableSpiel();
 			// reuse.setName(spieler.name);
-
-			// Settingsparameter setzen
-			if (cX.isSelected()) {
-				ReuseServermethode.setTeam("X");
-			} else {
+			
+			//Settingsparameter setzen
+			if(cX.isSelected()){
+			ReuseServermethode.setTeam("X");
+			}
+			else{
 				ReuseServermethode.setTeam("O");
 			}
-			if (rSocket.isSelected()) {
+			if(rSocket.isSelected()){
 				ReuseServermethode.setMethode("Pusher");
-			} else {
+			}
+			else{
 				ReuseServermethode.setMethode("File");
 				ReuseServermethode.setPfad(tfPath.getText());
 			}
-
-			ReuseServermethode.setGegner(tfEnemy.getText());
 
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("spielfeld2.fxml"));
 			Parent root1;
@@ -133,21 +137,20 @@ public class ControllerSetting implements Initializable {
 		}); // end of cancel
 
 		bSelect.setOnAction((ev) -> {
-
-			DirectoryChooser directoryChooser = new DirectoryChooser();
-			directoryChooser.setTitle("Directory for FILE-API");
-			File file = directoryChooser.showDialog(null);
-			tfPath.setText(file.getPath() + System.getProperty("file.separator"));
-
-			// JFileChooser fc = new JFileChooser();
-			// fc.setCurrentDirectory(new java.io.File("."));
-			// fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-			// fc.setAcceptAllFileFilterUsed(false);
-			//
-			// if (fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-			// tfPath.setText(fc.getSelectedFile().toString() +
-			// System.getProperty("file.separator"));
-			// }
+			
+			DirectoryChooser directoryChooser = new DirectoryChooser(); 
+            directoryChooser.setTitle("Directory for FILE-API");
+            File file = directoryChooser.showDialog(null);
+            tfPath.setText(file.getPath() + System.getProperty("file.separator"));
+			
+//			JFileChooser fc = new JFileChooser();
+//			fc.setCurrentDirectory(new java.io.File("."));
+//			fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+//			fc.setAcceptAllFileFilterUsed(false);
+//
+//			if (fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+//				tfPath.setText(fc.getSelectedFile().toString() + System.getProperty("file.separator"));
+//			}
 
 		}); // end of select
 
