@@ -8,10 +8,10 @@ import java.util.ResourceBundle;
 
 import com.viergewinnt.api.pusher.PusherMain;
 
-import Datenbank.ReuseServermethode;
-import Datenbank.Database;
-import Datenbank.Spiel;
-import Datenbank.Spieler;
+import Database.Database;
+import Database.ReuseServermethode;
+import Database.Spiel;
+import Database.Spieler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
