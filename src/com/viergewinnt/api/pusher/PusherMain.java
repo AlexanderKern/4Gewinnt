@@ -163,7 +163,7 @@ public class PusherMain {
 								break;
 								}
 							}
-						 if(wirGewonnen == 2 || gegnerGewonnen == 2 ){
+						 if(wirGewonnen == 2 || gegnerGewonnen == 2 || anzahlSaetze == 3 ){
 							 //Wie werden die Punkte vergeben? 
 								Spiel spiel = new Spiel(reSpiel.getName());
 								try {
@@ -175,9 +175,7 @@ public class PusherMain {
 					
 							 
 						 }
-								
-					
-							
+												
 							
 /*_________________________________________________________________________________________________*/
 							pusher.disconnect();
