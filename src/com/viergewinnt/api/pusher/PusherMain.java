@@ -138,13 +138,45 @@ public class PusherMain {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
+							
 							//Methode wer welchen Satz gewonnen hat
-							//bei 3 Sätze Methode update SPiel 
-							if(anzahlSaetze == 3){
-								
-								Spiel spiel = new Spiel(reSpiel.getName());
-								//spiel.spielende(spiel, punkte, satz);
+							String[] werGewonnen = new String[2];
+							try {
+								werGewonnen = satz.getGewonneneSaetze(reSpiel.id);
+							} catch (SQLException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
 							}
+							
+							//bei 2 gewonnenen Sätzen oder 3 Sätzen Methode update Spiel 
+							int wirGewonnen = 0;
+							int gegnerGewonnen = 0;
+							for( int i = 1 ; i < werGewonnen.length; i++){
+								switch(3){
+								case 1: werGewonnen[i].equals("gewonnen");
+								wirGewonnen = wirGewonnen +1;
+								break;
+								case 2: werGewonnen[i].equals("verloren");
+								gegnerGewonnen = gegnerGewonnen +1; 
+								break;
+								case 3: werGewonnen[i].equals("offen");
+								break;
+								}
+							}
+						 if(wirGewonnen == 2 || gegnerGewonnen == 2 ){
+							 //Wie werden die Punkte vergeben? 
+								Spiel spiel = new Spiel(reSpiel.getName());
+								try {
+									spiel.spielende(reSpiel.id, wirGewonnen);
+								} catch (SQLException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+					
+							 
+						 }
+								
+					
 							
 							
 /*_________________________________________________________________________________________________*/

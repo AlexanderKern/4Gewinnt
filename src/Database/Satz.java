@@ -57,17 +57,27 @@ public class Satz {
 		return anzahlSaetze;
 	}
 	
-	public void getGewonneneSaetze(int spielId){
+	public String[] getGewonneneSaetze(int spielId) throws SQLException{
 		//Wer welchen Satz gewonnen hat 
-		/*int pktSpiel ; 
+		//int pktSpiel ; 
 		
-		PreparedStatement countGewonneneSaetze = Database.conn.prepareStatement("SELECT COUNT(*)  FROM satz WHERE spiel_id = ? AND gewonnen = true ");
-		countGewonneneSaetze.setInt(1 , spielId);
-		pktSpiel = countGewonneneSaetze.getMaxRows();
-		System.out.println(pktSpiel);
+		PreparedStatement gewonneneSaetze = Database.conn.prepareStatement("SELECT gewonnen FROM satz WHERE spiel_id = ?");
+		gewonneneSaetze.setInt(1 , spielId);
+		ResultSet rsGewSa = gewonneneSaetze.executeQuery();
 		
-		return pktSpiel;
-		*/
+		int i = 0; 
+		int j =1; 
+		// gewonnen[0] => Satz 1 usw. ; "gewonnen" = wir gewonnen ; "offen" = Unentschieden; "verloren" = Gegner gewonnen
+		String[] gewonnen = new String[2];
+		if(rsGewSa.next()){
+			gewonnen[i] = rsGewSa.getString(j);
+			i= i+1;  
+			j = j+1;
+		}// endif
+		
+		return gewonnen;
+		
+	
 	}
 	
 	
