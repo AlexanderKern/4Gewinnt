@@ -108,13 +108,17 @@ public class Database {
 		 */
 		public void createSpieler(String spielerName) throws SQLException{
 			
-			PreparedStatement st = conn.prepareStatement("SELECT COUNT(name) FROM spieler WHERE name = ?");
-			 if (st.executeQuery().getInt(1) == 0){ //Existiert bereits ein Spieler mit dem Namen in der Datenbank? 
+			PreparedStatement st = conn.prepareStatement("SELECT COUNT(*) FROM spieler WHERE name = ?");
+			st.setString(1, spielerName);
+			ResultSet rs = st.executeQuery();
+			rs.next();
+			
+			 if (rs.getInt(1) == 0){ //Existiert bereits ein Spieler mit dem Namen in der Datenbank? 
 					PreparedStatement stSpieler = conn.prepareStatement("INSERT INTO spieler(name) VALUES( ? )");
 					stSpieler.setString(1, spielerName);
 					stSpieler.execute();
 					stSpieler.close();
-					System.out.println("Spieler angelegt");
+					System.out.println("Spieler angelegt"+ spielerName);
 			 }else {
 				System.out.println("Spieler existiert bereits in der Datenbank");
 			}
@@ -184,6 +188,7 @@ public class Database {
 			PreparedStatement stGet = Database.conn.prepareStatement("SELECT * FROM spiel");
 			ResultSet rs = stGet.executeQuery();
 			//TODO wie sollen die Spiel an Damm übergeben werden? 		
+			// SpielId Gegner Punkte 
 		}
 		
 		/**

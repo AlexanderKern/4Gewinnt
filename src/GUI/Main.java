@@ -18,6 +18,8 @@ public class Main extends Application {
 		Database db = new Database();// Datenbank anlegen
 		try {
 			db.createTable(db);
+			System.out.println("Tabellen angelegt");
+			
 		} catch (SQLException e2) {
 			// System.out.println("Tabellen sind bereits angelegt");
 		}
