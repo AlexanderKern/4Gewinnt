@@ -54,15 +54,42 @@ public class ControllerSetting implements Initializable {
 		bStart.setOnAction((ev) -> {
 
 	Database db = new Database();
-		
+	
+	try {
+		db.createSpieler(tfEnemy.getText());
+	} catch (Exception e2) {
+		// TODO Auto-generated catch block
+		e2.printStackTrace();
+		System.out.println(tfEnemy.getText() + " konnte nicht angelegt werden!!!");
+	}
+	
+	/*
 		Spieler spieler = new Spieler(tfEnemy.getText());
 		try {
 			spieler.createSpieler(db);
 			} catch (SQLException e1) {
 			System.out.println(spieler.name + " konnte nicht angelegt werden!!!");
 			}
+			*/
 
 		
+	boolean farbe;
+	try {
+		if (cX.isSelected()){
+			farbe = true; // Rot
+			db.createSpiel(tfEnemy.getText(), farbe);
+			}
+			else {				
+				farbe = false; // Gelb
+				db.createSpiel(tfEnemy.getText(), farbe);
+			}
+		
+			} catch (SQLException e3) {
+				System.out.println("Es ist ein Fehler bei dem Erstellen eines Spiels aufgetreten!");
+		}
+	
+	
+	/*
 		Spiel spiel = new Spiel(spieler.name);
 		try {
 		if (cX.isSelected()){
@@ -77,6 +104,7 @@ public class ControllerSetting implements Initializable {
 			} catch (SQLException e3) {
 				System.out.println("Es ist ein Fehler bei dem Erstellen eines Spiels aufgetreten!");
 		}
+		*/
 		
 		
 //			pusherMain = new PusherMain();

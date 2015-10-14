@@ -58,7 +58,7 @@ public class Spiel {
 	
 	
 	//Spielausgang eintragen 
-	public void spielende (int spielId ,int punkte) throws SQLException {
+	public void spielEnde (int spielId ,int punkte) throws SQLException {
 		
 		PreparedStatement stSpielende = Database.conn.prepareStatement("UPDATE spiel SET punkte = ? WHERE id = ?");
 		stSpielende.setInt(1, punkte);

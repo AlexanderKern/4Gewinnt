@@ -5,23 +5,31 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
-
+/**
+ * Die Klasse Database beinhaltet alle notwendigen Methoden, die für die Erstellung der Datenbank und der Ausführung von Operationen notwendig sind
+ * @author MajkenPlugge
+ *
+ */
 
 public class Database {
 
-	// connection to the database, presist fpr the life of the programm
-		public static Connection conn;
+		public static Connection conn; // Verbindung zur Datenbank besteht zur gesamten Laufzeit des Programms 
 		 
-	// constructor
+	/**Konstruktor: 
+	 * lädt den HSQL Database Engine JDBC driver
+	 * und stellt eine Verbindung zur Datenbank her (lädt die benötigten Datenbank-Files und startet die Datenbank, falls diese nocht nicht läuft) 
+	 */
 		public Database(){
 			
-	// Load the HSQL Database Engine JDBC driver
+	
 			try {
-				Class.forName("org.hsqldb.jdbcDriver");
-				//Connect to the database, load the db files and start database if it isn't already running
-				conn = DriverManager.getConnection(
+				Class.forName("org.hsqldb.jdbcDriver"); // Load the HSQL Database Engine JDBC driver
+				conn = DriverManager.getConnection( //Connect to the database, load the db files and start database if it isn't already running
 						"jdbc:hsqldb:MyDatabase" , // filenames
 						"sa", //username
 						""); //password
@@ -31,11 +39,16 @@ public class Database {
 			
 		}
 		
+		/**
+		 * Erstellt die alle Tabellen, d.h. die Tabelle Spieler, Spiel, Satz und Zug 
+		 * @param db
+		 * @throws SQLException
+		 */
 		//create table person, spiel, satz, zug 
 		public void createTable(Database db) throws SQLException{
 			
 			
-			String person_table = ("CREATE TABLE person ( id INTEGER IDENTITY PRIMARY KEY,  name VARCHAR(256) UNIQUE )");
+			String person_table = ("CREATE TABLE spieler ( id INTEGER IDENTITY PRIMARY KEY,  name VARCHAR(256) UNIQUE )");
 			db.update(person_table);
 			String spiel_table = ("CREATE TABLE spiel ( id INTEGER IDENTITY PRIMARY KEY, punkte VARCHAR(256) , gegner VARCHAR(256), date DATE, farbe BOOLEAN )") ;
 			db.update(spiel_table);
@@ -48,45 +61,292 @@ public class Database {
 		
 		public void deleteTable (Database db) throws SQLException{
 			
-			//String[] dropTable = {"DROP table person", "DROP table spiel" ,"DROP table satz" , "DROP table zug"};
 			db.update("DROP table person");
 			db.update("DROP table spiel");
 			db.update("DROP table satz");
 			db.update("DROP table zug");
 			
-			/*
-			for(int i = 0; i< dropTable.length; i++ ){
-				db.update(dropTable[i]);
-				
-				 System.out.println("Gelöscht");
-			}
-			*/
-			
 		}
 		
+		/**
+		 * führt die SQL-Statements CREATE, DROP, INSERT und Update aus 
+		 * @param sql_command
+		 * @throws SQLException
+		 */
 		public synchronized void update(String sql_command) throws SQLException{
-			
-			//use for SQL commands CREATE, DROP, INSERT and UPDATE
 			Statement stmt = null;
 			stmt = conn.createStatement();
 			stmt.executeUpdate(sql_command);
 			stmt.close();
-
 		}
 		
-		//Prepared Stmnt
+		/**
+		 * führt die SQL-Abfragen aus und gibt ein das Ergebnis in Form eines ResultSets zurück
+		 * @param stmnt
+		 * @return Result Set
+		 * @throws SQLException
+		 */
 		public ResultSet doQueryPrepStmnt( PreparedStatement stmnt) throws SQLException{
 		ResultSet rs = 	stmnt.executeQuery();
 		return rs;
 		}
 		
 
+		/**
+		 * fährt die Datenbankverbindung sauber herunter und schließt die Datenbankverbindung
+		 * @throws SQLException
+		 */
 		public void shutdown() throws SQLException{
-			// performs a clean shutdown and close the database connection
-			
 			Statement stmt = conn.createStatement();
 			stmt.executeQuery("SHUTDOWN");
 			conn.close();
 		}
+		
+		/**
+		 * erstellt einen neuen Spieler in der Datenbank
+		 * @param Name des gegnerischen Spielers
+		 */
+		public void createSpieler(String spielerName) throws SQLException{
+			
+			PreparedStatement st = conn.prepareStatement("SELECT COUNT(name) FROM spieler WHERE name = ?");
+			 if (st.executeQuery().getInt(1) == 0){ //Existiert bereits ein Spieler mit dem Namen in der Datenbank? 
+					PreparedStatement stSpieler = conn.prepareStatement("INSERT INTO spieler(name) VALUES( ? )");
+					stSpieler.setString(1, spielerName);
+					stSpieler.execute();
+					stSpieler.close();
+					System.out.println("Spieler angelegt");
+			 }else {
+				System.out.println("Spieler existiert bereits in der Datenbank");
+			}
+			
+		}
+		
+		/**
+		 * erstellt einen Eintrag eines Spiels in der Datenbank
+		 * und setzt die Werte gegner und farbe von der Instanz Spiels 
+		 * @param gegner
+		 * @param farbe
+		 * @throws SQLException
+		 */
+		public void createSpiel(String gegner, boolean farbe) throws SQLException{
+			
+			int spielId;
+			
+			//Datum 
+			 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			 GregorianCalendar now = new GregorianCalendar(); 
+			 String dateString = dateFormat.format(now.getTime());
+			 java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
+			 dateString =  sqlDate.toString();
+			 
+			 PreparedStatement stSpiel = Database.conn.prepareStatement("INSERT INTO spiel( gegner, date, farbe) VALUES( ? , ? , ?);");
+			 stSpiel.setString(1, gegner);
+			 stSpiel.setString(2,  dateString);
+			 stSpiel.setBoolean(3, farbe);
+			
+			 stSpiel.executeUpdate();
+			 
+			//Get Id for actual spiel
+			 PreparedStatement callId = Database.conn.prepareStatement("CALL IDENTITY()");
+		     ResultSet rsId = callId.executeQuery();
+		     rsId.next();
+		     spielId = rsId.getInt(1);
+		     rsId.close();
+			
+			
+			//Speichern der notwendigen Information für einen globalen Zugriff
+			ReuseableSpiel reusespiel = new ReuseableSpiel();
+			reusespiel.setId(spielId);
+			reusespiel.setName(gegner);
+			
+		}
+		
+		/**
+		 * speichert den Ausgang des Spiels in der Datenbank 
+		 * @param spielId
+		 * @param punkte
+		 * @throws SQLException
+		 */
+		public void spielEnde (int spielId ,int punkte) throws SQLException {
+			
+			PreparedStatement stSpielende = conn.prepareStatement("UPDATE spiel SET punkte = ? WHERE id = ?");
+			stSpielende.setInt(1, punkte);
+			stSpielende.setInt(2, spielId);
+			stSpielende.executeUpdate();
+		}
+		
+		/**
+		 * gibt alle Einträge aus der Datenbank zurück
+		 * @throws SQLException
+		 */
+		public void getSpiele() throws SQLException{
+					
+			PreparedStatement stGet = Database.conn.prepareStatement("SELECT * FROM spiel");
+			ResultSet rs = stGet.executeQuery();
+			//TODO wie sollen die Spiel an Damm übergeben werden? 		
+		}
+		
+		/**
+		 * erstellt einen einen Satz in der Datenbank
+		 * und setz die SatzId bei der Instanz Satz
+		 * @param spielId
+		 * @throws SQLException
+		 */
+		public void createSatz( int spielId ) throws SQLException{
+		
+			int satzId;
+			
+			PreparedStatement stSatz = conn.prepareStatement("INSERT INTO satz(spiel_id) VALUES(?)");
+			stSatz.setInt(1,spielId);
+			stSatz.execute();
+			stSatz.close();
+			
+			PreparedStatement callId = conn.prepareStatement("CALL IDENTITY();");
+			
+			ResultSet rsId = callId.executeQuery();
+		     rsId.next();
+		     satzId = rsId.getInt(1);
+		     rsId.close();
+						
+			
+			ReuseableSatz reuseSatz = new ReuseableSatz();
+			reuseSatz.setId(satzId);
+
+		}
+		
+		/**
+		 * speichert den Ausgang des Satzes in die Datenbank
+		 * @param gewonnen
+		 * @param satzId
+		 * @throws SQLException
+		 */
+		public void updateSatz(String gewonnen, int satzId) throws SQLException{
+			PreparedStatement stSatzende = conn.prepareStatement("UPDATE satz SET gewonnen = ? WHERE id = ?");
+			stSatzende.setString(1, gewonnen);
+			stSatzende.setInt(2, satzId);
+			stSatzende.executeUpdate();
+		}
+		
+		/**
+		 * gibt die Anzahl der gespielten Sätzen zu einem Spiel zurueck
+		 * @param spielId
+		 * @return anzahlSaetze
+		 * @throws SQLException
+		 */
+		public int getAnzahlSaetze(int spielId) throws SQLException{
+			int anzahlSaetze;
+			
+			PreparedStatement dritterSatz = conn.prepareStatement("SELECT * FROM satz WHERE spiel_id = ? ");
+			dritterSatz.setInt(1, spielId);
+			anzahlSaetze =  dritterSatz.getMaxRows();
+			 System.out.println("Anzahl"+ anzahlSaetze );
+			
+			return anzahlSaetze;
+		}
+		
+		/**
+		 * gibt eine Tabelle zurück, die anzeigt wie die Saetze zu einem Spiel ausgegangen sind 
+		 * @param spielId
+		 * @return gewonnen ; bsp. // gewonnen[0] => Satz 1 usw. ; "gewonnen" = wir gewonnen ; "offen" = Unentschieden; "verloren" = Gegner gewonnen
+		 * @throws SQLException
+		 */
+		public String[] getGewonneneSaetze(int spielId) throws SQLException{
+			
+			PreparedStatement gewonneneSaetze = conn.prepareStatement("SELECT gewonnen FROM satz WHERE spiel_id = ?");
+			gewonneneSaetze.setInt(1 , spielId);
+			ResultSet rsGewSa = gewonneneSaetze.executeQuery();
+			
+			int i = 0; 
+			int j =1; 
+			
+			String[] gewonnen = new String[2];
+			if(rsGewSa.next()){
+				gewonnen[i] = rsGewSa.getString(j);
+				i= i+1;  
+				j = j+1;
+			}// endif
+			
+			return gewonnen;
+
+		}
+		
+		/**
+		 * aktualisiert den Eintrag Satz in der Datenbank nach Beendigung des Satzes 
+		 * @param satzId
+		 * @param gewonnen
+		 * @throws SQLException
+		 */
+		public void satzende(int satzId , String gewonnen ) throws SQLException{
+			int pktSpiel ; 
+		    int anzahlSaetze ;
+		     
+		    PreparedStatement stSatzende = Database.conn.prepareStatement("UPDATE satz SET gewonnen = ? WHERE id = ?");
+		    stSatzende.setString(1, gewonnen);
+		    stSatzende.setInt(2, satzId);
+		    
+		    stSatzende.executeUpdate();
+		  
+		    
+		
+			//Check ob 3 Sätze bereits gespielt sind
+		    /*
+		    
+		    PreparedStatement dritterSatz = Database.conn.prepareStatement("SELECT * FROM satz WHERE spiel_id = ? ");
+		    dritterSatz.setInt(1, satz.spielId);
+		   anzahlSaetze =  dritterSatz.getMaxRows();
+		   System.out.println("Anzahl"+ anzahlSaetze );
+		   
+		   
+		 /*  ResultSet rsDritterSatz = (ResultSet) dritterSatz;
+			while (rsDritterSatz.next()){
+				anzahlSaetze = (rsDritterSatz.getRow());
+			}// end of while
+			*/
+			
+		    /*
+			if(anzahlSaetze == 3){ // wenn 3 STätze gespielt, dann update das Spiel ergebnis
+				
+					// Gewonnene Sätze zählen
+					PreparedStatement countGewonneneSaetze = Database.conn.prepareStatement("SELECT COUNT(*)  FROM satz WHERE spiel_id = ? AND gewonnen = true ");
+					countGewonneneSaetze.setInt(1 , satz.spielId);
+					pktSpiel = countGewonneneSaetze.getMaxRows();
+					System.out.println(pktSpiel);
+				
+					}
+				else{ // noch keine 3 Saetze gespielt
+					 pktSpiel = -1;
+				}//end of if
+		
+			/* If pktSpiel = -1 --> nothing 
+			 * If pktSPiel = 0-3 --> call method spielende
+			*/
+			//return pktSpiel;  
+			
+			
+		}
+		
+		
+		/**
+		 * erstellt einen neuen Zug in der Datenbank
+		 * @param satzId
+		 * @param gegner
+		 * @param spalte
+		 * @param zeile
+		 * @throws SQLException
+		 */
+		public void Zug(int satzId, boolean gegner, int spalte,int zeile) throws SQLException{
+		
+			PreparedStatement stZug = conn.prepareStatement("INSERT INTO zug(satz_id, spalte, zeile, gegner) VALUES( ? , ? , ? , ?)");
+			stZug.setInt(1 ,satzId);
+			stZug.setInt(2 , spalte);
+			stZug.setInt(3 , zeile);
+			stZug.setBoolean(4, gegner );
+			
+			stZug.execute();
+			stZug.close();
+			
+		}
+		
+		
 	
 }

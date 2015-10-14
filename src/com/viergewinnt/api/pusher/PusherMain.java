@@ -62,9 +62,10 @@ public class PusherMain {
 								//Zug von uns
 								Database db = new Database();
 								ReuseableSatz reSatz = new ReuseableSatz();
-								//(int satz_id, boolean gegner, int spalte,int zeile, Database db)
+							
 								try {
-									Zug zugGegner = new Zug(reSatz.id ,false , zug[1], zug[0], db );
+									db.Zug(reSatz.id , false,zug[1], zug[0]); 	//(int satz_id, boolean gegner, int spalte,int zeile)
+									//Zug zugGegner = new Zug(reSatz.id ,false , zug[1], zug[0], db );
 								} catch (SQLException e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
@@ -83,9 +84,10 @@ public class PusherMain {
 /*_________________________________________________________________________________________________*/								
 								Database db = new Database();
 								ReuseableSatz reSatz = new ReuseableSatz();
-								//(int satz_id, boolean gegner, int spalte,int zeile, Database db)
+							
 								try {
-									Zug zugGegner = new Zug(reSatz.id ,true , zug[1], zug[0], db );
+									db.Zug(reSatz.id , true,zug[1], zug[0]); 	//(int satz_id, boolean gegner, int spalte,int zeile)
+									//Zug zugGegner = new Zug(reSatz.id ,true , zug[1], zug[0], db );
 								} catch (SQLException e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
@@ -102,9 +104,9 @@ public class PusherMain {
 								zug = ki.getletzter_zug();
 								cf.setStone(zug[0], zug[1], false);
 /*_________________________________________________________________________________________________*/
-								//(int satz_id, boolean gegner, int spalte,int zeile, Database db)
+								
 								try {
-									Zug zugGegner = new Zug(reSatz.id ,false , zug[1], zug[0], db );
+									db.Zug(reSatz.id , false,zug[1], zug[0]); 	//(int satz_id, boolean gegner, int spalte,int zeile)
 								} catch (SQLException e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
@@ -119,10 +121,13 @@ public class PusherMain {
 /*_________________________________________________________________________________________________*/
 							// Wer gewonnen hat : message.getSieger()
 							// Update satz (gewonnen, reSatz.iD
+							Database db = new Database();
+							
 							ReuseableSatz reSatz = new ReuseableSatz();
-							Satz satz = new Satz(reSatz.id);
+							//Satz satz = new Satz(reSatz.id);
 							try {
-								satz.updateSatz(message.getSieger(),reSatz.id);
+								db.updateSatz(message.getSieger(), reSatz.id);
+								//satz.updateSatz(message.getSieger(),reSatz.id);
 							} catch (SQLException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
@@ -132,7 +137,8 @@ public class PusherMain {
 							ReuseableSpiel reSpiel = new ReuseableSpiel();
 							int anzahlSaetze = 0;
 							try {
-								anzahlSaetze = satz.getAnzahl(reSpiel.id);
+								db.getAnzahlSaetze(reSpiel.id);
+								//anzahlSaetze = satz.getAnzahl(reSpiel.id);
 								
 							} catch (SQLException e) {
 								// TODO Auto-generated catch block
@@ -142,7 +148,8 @@ public class PusherMain {
 							//Methode wer welchen Satz gewonnen hat
 							String[] werGewonnen = new String[2];
 							try {
-								werGewonnen = satz.getGewonneneSaetze(reSpiel.id);
+								werGewonnen = db.getGewonneneSaetze(reSpiel.id);
+								//werGewonnen = satz.getGewonneneSaetze(reSpiel.id);
 							} catch (SQLException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
@@ -165,9 +172,11 @@ public class PusherMain {
 							}
 						 if(wirGewonnen == 2 || gegnerGewonnen == 2 || anzahlSaetze == 3 ){
 							 //Wie werden die Punkte vergeben? 
-								Spiel spiel = new Spiel(reSpiel.getName());
+							 int punkte = 0;
+								//Spiel spiel = new Spiel(reSpiel.getName());
 								try {
-									spiel.spielende(reSpiel.id, wirGewonnen);
+									db.spielEnde(reSpiel.id, punkte);
+									//spiel.spielende(reSpiel.id, wirGewonnen);
 								} catch (SQLException e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
