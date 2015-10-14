@@ -65,10 +65,13 @@ public class Spiel {
 		stSpielende.setInt(2, spielId);
 	}
 	
-	public int getpunkte (Spiel spiel, Satz satz){
 	
+	public int getpunkte (int spielId) throws SQLException{
+	 int punkte; 
+	 PreparedStatement st = Database.conn.prepareStatement("SELECT gewonnen FROM satz WHERE spiel_Id = ?");
+	 st.setInt(1, spielId);
 		
-		return spiel.punkte;
+		return punkte;
 		
 	}
 	

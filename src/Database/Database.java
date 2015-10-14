@@ -179,6 +179,16 @@ public class Database {
 			stSpielende.executeUpdate();
 		}
 		
+		public int getSpielPkt(int spielId) throws SQLException{
+			//TODO
+			 int punkte = 0; 
+			 PreparedStatement st = conn.prepareStatement("SELECT gewonnen FROM satz WHERE spiel_Id = ?");
+			 st.setInt(1, spielId);
+				
+				return punkte;
+		}
+		
+		
 		/**
 		 * gibt alle Eintraege aus der Datenbank zurück
 		 * @throws SQLException
