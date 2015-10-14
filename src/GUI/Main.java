@@ -14,8 +14,8 @@ public class Main extends Application {
 	@Override
 	public void start(Stage stage) throws IOException {
 //_________________________________________________________________________________________________		
-		// Datenbank anlegen
-		Database db = new Database();
+		
+		Database db = new Database();// Datenbank anlegen
 		try {
 			db.createTable(db);
 		} catch (SQLException e2) {

@@ -1,5 +1,10 @@
 package Database;
 
+/**
+ * Wiederverwendung der zugewiesenen Werte zur Instanz Satz im Laufe des Programms 
+ * @author MajkenPlugge
+ *
+ */
 
 public class ReuseableSatz {
 	
@@ -7,6 +12,10 @@ public class ReuseableSatz {
 
 	public void setId( int id){
 		ReuseableSatz.id = id; 
+	}
+	
+	public int getId(){
+		return id;
 	}
 	
 }

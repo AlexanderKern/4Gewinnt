@@ -17,5 +17,9 @@ public class ReuseableSpiel {
 	public void setId( int id){
 		ReuseableSpiel.id = id; 
 	}
+	
+	public int getId(){
+		return id;
+	}
 
 }
