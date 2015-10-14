@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 /**
- * Die Klasse Database beinhaltet alle notwendigen Methoden, die für die Erstellung der Datenbank und der Ausführung von Operationen notwendig sind
+ * Die Klasse Database beinhaltet alle notwendigen Methoden, die fuer die Erstellung der Datenbank und der Ausfuehrung von Operationen notwendig sind
  * @author MajkenPlugge
  *
  */
@@ -21,8 +21,8 @@ public class Database {
 		public static Connection conn; // Verbindung zur Datenbank besteht zur gesamten Laufzeit des Programms 
 		 
 	/**Konstruktor: 
-	 * lädt den HSQL Database Engine JDBC driver
-	 * und stellt eine Verbindung zur Datenbank her (lädt die benötigten Datenbank-Files und startet die Datenbank, falls diese nocht nicht läuft) 
+	 * laedt den HSQL Database Engine JDBC driver
+	 * und stellt eine Verbindung zur Datenbank her (laeddt die benoetigten Datenbank-Files und startet die Datenbank, falls diese nocht nicht laeuft) 
 	 */
 		public Database(){
 			
@@ -41,7 +41,7 @@ public class Database {
 		
 		/**
 		 * Erstellt die alle Tabellen, d.h. die Tabelle Spieler, Spiel, Satz und Zug 
-		 * @param db
+		 * @param db Datenbankverbindung
 		 * @throws SQLException
 		 */
 		//create table person, spiel, satz, zug 
@@ -70,7 +70,7 @@ public class Database {
 		
 		/**
 		 * führt die SQL-Statements CREATE, DROP, INSERT und Update aus 
-		 * @param sql_command
+		 * @param sql_command SQL-Befehl 
 		 * @throws SQLException
 		 */
 		public synchronized void update(String sql_command) throws SQLException{
@@ -82,8 +82,8 @@ public class Database {
 		
 		/**
 		 * führt die SQL-Abfragen aus und gibt ein das Ergebnis in Form eines ResultSets zurück
-		 * @param stmnt
-		 * @return Result Set
+		 * @param stmnt SQL-Abfrage 
+		 * @return Result Set Ergebnis der SQL-Abfrage 
 		 * @throws SQLException
 		 */
 		public ResultSet doQueryPrepStmnt( PreparedStatement stmnt) throws SQLException{
@@ -128,8 +128,8 @@ public class Database {
 		/**
 		 * erstellt einen Eintrag eines Spiels in der Datenbank
 		 * und setzt die Werte gegner und farbe von der Instanz Spiels 
-		 * @param gegner
-		 * @param farbe
+		 * @param gegner Name des gegnerischen Spielers 
+		 * @param farbe Steinfarbe
 		 * @throws SQLException
 		 */
 		public void createSpiel(String gegner, boolean farbe) throws SQLException{
@@ -167,8 +167,8 @@ public class Database {
 		
 		/**
 		 * speichert den Ausgang des Spiels in der Datenbank 
-		 * @param spielId
-		 * @param punkte
+		 * @param spielId Id des Spiels
+		 * @param punkte Punkte des Spiels 
 		 * @throws SQLException
 		 */
 		public void spielEnde (int spielId ,int punkte) throws SQLException {
@@ -180,7 +180,7 @@ public class Database {
 		}
 		
 		/**
-		 * gibt alle Einträge aus der Datenbank zurück
+		 * gibt alle Eintraege aus der Datenbank zurück
 		 * @throws SQLException
 		 */
 		public void getSpiele() throws SQLException{
