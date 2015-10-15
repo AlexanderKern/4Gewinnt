@@ -8,8 +8,6 @@ import javax.swing.JFileChooser;
 //import javax.swing.Timer;
 
 import Database.Database;
-import Database.Spiel;
-import Database.Spieler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;

@@ -8,7 +8,6 @@ import com.viergewinnt.api.pusher.PusherMain;
 
 import Database.ReuseServermethode;
 import Database.ReuseableSpiel;
-import Database.Satz;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -63,7 +62,7 @@ public class ControllerField implements Initializable {
 		// // angelegt wird?
 		// //TODO muss bei neuen satz auch wieder angelegt werden
 		
-		Satz satz = new Satz(reuseSpiel.id);
+
 //_________________________________________________________________________________________________		
 	
 
