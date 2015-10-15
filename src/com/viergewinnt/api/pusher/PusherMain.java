@@ -15,9 +15,6 @@ import com.viergewinnt.api.common.util.Message;
 import Database.Database;
 import Database.ReuseableSatz;
 import Database.ReuseableSpiel;
-import Database.Satz;
-import Database.Spiel;
-import Database.Zug;
 import GUI.ControllerField;
 import ki.KI2;
 
