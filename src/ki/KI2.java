@@ -1,7 +1,5 @@
 package ki;
 
-
-
 public class KI2 {
 
 	int ergebnis = 99;
@@ -9,8 +7,7 @@ public class KI2 {
 	int spalte;	
 	private int [][] feld = new int [6][7];	
 	private int spalte_rueckgabe;
-	private int [] letzter_zug = new int [2];
-	
+	private int [] letzter_zug = new int [2];	
 	
 	// Methodenbeginn
 	
@@ -24,8 +21,6 @@ public class KI2 {
 			}			
 		}				
 	}// end Konstruktor
-
-	
 	
 	// Setter (feld: 0=unbelegt,1=spieler,2=gegner)
 		public void setGegnerStein(int spalte) {
@@ -62,14 +57,10 @@ public class KI2 {
 		return ergebnis;
 		
 	}// end get spalte
-
 	
-	public int[] getletzter_zug(){
-		
+	public int[] getletzter_zug(){	
 		return letzter_zug;
-		
 	}// get letzter zug
-	
 	
 	public void berechne(){
 		ergebnis = 99;
@@ -144,8 +135,7 @@ public class KI2 {
 							}							
 						}
 					} catch (ArrayIndexOutOfBoundsException e){}	
-						
-						
+												
 						// 3 diagonal
 					try{
 						if(feld[zeile-1][spalte-1] == 1 && feld[zeile+2][spalte+2] == 1 && feld[zeile+1][spalte+1] == 1){ //1011 unten rechts
@@ -340,9 +330,7 @@ public class KI2 {
 							}						
 						}
 					} catch (ArrayIndexOutOfBoundsException e){}	
-						
-						
-						
+											
 						// 3 diagonal
 					try{
 						if(feld[zeile-1][spalte-1] == 2 && feld[zeile+2][spalte+2] == 2 && feld[zeile+1][spalte+1] == 2){ //1011 unten rechts
@@ -456,13 +444,9 @@ public class KI2 {
 						}										
 					} catch (ArrayIndexOutOfBoundsException e){}
 					
-				} // end if 0
-				
-									
+				} // end if 0								
 				} // end zeile
-			
 			} //end spalte
-			
 			
 			if(ergebnis == 99){
 				System.out.println("ergebnis: " + ergebnis);
@@ -475,6 +459,5 @@ public class KI2 {
 			
 		} //end while
 	} // end berechne
-	
-	
+		
 } // end class
