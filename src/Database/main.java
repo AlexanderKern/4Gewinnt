@@ -115,9 +115,15 @@ public class main extends Application{
 		    // Zusätzliche Spalten vermeiden
 		    tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		    
-		    //Event Listner
+		    /**Event Listner
 		    tableView.getSelectionModel().selectedIndexProperty().addListener(
 		    		                new RowSelectChangeListener());
+		    		                **/
+		    
+		   
+		  //  tableView.addEventHandler(eventType, eventHandler);
+		   ValueClass spiel2 = tableView.getSelectionModel().getSelectedItem();
+		   //System.out.println(spiel2.getColumn1());
 
 
 		    tableView.getColumns().add(col1);
