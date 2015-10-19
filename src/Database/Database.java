@@ -9,6 +9,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Die Klasse Database beinhaltet alle notwendigen Methoden, die fuer die Erstellung der Datenbank und der Ausfuehrung von Operationen notwendig sind
@@ -179,12 +181,28 @@ public class Database {
 			stSpielende.executeUpdate();
 		}
 		
+		/**
+		 * gibt erreichten Punkte eines Spiels zurück
+		 * @param spielId Id des Spiels
+		 * @return Punkte des Spiels 
+		 * @throws SQLException
+		 */
 		public int getSpielPkt(int spielId) throws SQLException{
-			//TODO
+
 			 int punkte = 0; 
-			 PreparedStatement st = conn.prepareStatement("SELECT gewonnen FROM satz WHERE spiel_Id = ?");
+			 PreparedStatement st = conn.prepareStatement("SELECT * FROM satz WHERE spiel_Id = ? AND gewonnen = ?");
 			 st.setInt(1, spielId);
-				
+			 st.setString(2, "gewonnen");
+			 ResultSet rs = st.executeQuery();
+			 
+			  if (rs.next()) {
+			        rs.last();
+			        punkte = rs.getRow();
+			        System.out.println("total rows is : " + punkte);
+			    } else {
+			        System.out.println("No Data");
+			    }
+
 				return punkte;
 		}
 		
@@ -193,12 +211,25 @@ public class Database {
 		 * gibt alle Eintraege aus der Datenbank zurück
 		 * @throws SQLException
 		 */
-		public void getSpiele() throws SQLException{
+		public ResultSet getSpiele() throws SQLException{
+		
 					
 			PreparedStatement stGet = Database.conn.prepareStatement("SELECT * FROM spiel");
 			ResultSet rs = stGet.executeQuery();
 			//TODO wie sollen die Spiel an Damm übergeben werden? 		
 			// SpielId Gegner Punkte 
+			
+			return rs;
+			
+			/*
+			if(rs.next()){
+				for( int i = 1 ; i <= rs.getMetaData().getColumnCount(); i++){
+					System.out.println(rs.getString(i));
+				}
+				
+				
+			}
+			*/
 		}
 		
 		/**
@@ -301,43 +332,13 @@ public class Database {
 		    
 		    stSatzende.executeUpdate();
 		  
-		    
+			
+		}
 		
-			//Check ob 3 Sätze bereits gespielt sind
-		    /*
-		    
-		    PreparedStatement dritterSatz = Database.conn.prepareStatement("SELECT * FROM satz WHERE spiel_id = ? ");
-		    dritterSatz.setInt(1, satz.spielId);
-		   anzahlSaetze =  dritterSatz.getMaxRows();
-		   System.out.println("Anzahl"+ anzahlSaetze );
-		   
-		   
-		 /*  ResultSet rsDritterSatz = (ResultSet) dritterSatz;
-			while (rsDritterSatz.next()){
-				anzahlSaetze = (rsDritterSatz.getRow());
-			}// end of while
-			*/
+		public void getSaetze(int spielId) throws SQLException{
 			
-		    /*
-			if(anzahlSaetze == 3){ // wenn 3 STätze gespielt, dann update das Spiel ergebnis
-				
-					// Gewonnene Sätze zählen
-					PreparedStatement countGewonneneSaetze = Database.conn.prepareStatement("SELECT COUNT(*)  FROM satz WHERE spiel_id = ? AND gewonnen = true ");
-					countGewonneneSaetze.setInt(1 , satz.spielId);
-					pktSpiel = countGewonneneSaetze.getMaxRows();
-					System.out.println(pktSpiel);
-				
-					}
-				else{ // noch keine 3 Saetze gespielt
-					 pktSpiel = -1;
-				}//end of if
-		
-			/* If pktSpiel = -1 --> nothing 
-			 * If pktSPiel = 0-3 --> call method spielende
-			*/
-			//return pktSpiel;  
-			
-			
+			PreparedStatement st = conn.prepareStatement("SELECT * FROM saetze WHERE spiel_ID = ?");
+			st.setInt(1, spielId);
 		}
 		
 		
@@ -359,6 +360,14 @@ public class Database {
 			
 			stZug.execute();
 			stZug.close();
+			
+		}
+		
+		public void getZuege(int satzId) throws SQLException{
+			
+			PreparedStatement st = conn.prepareStatement("SELECT spalte, zeile, gegner FROM zug WHERE satz_id = ?");
+			st.setInt(1, satzId);
+			ResultSet rs = st.executeQuery();
 			
 		}
 		
