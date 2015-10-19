@@ -38,7 +38,7 @@ public class ControllerSetting implements Initializable {
 	RadioButton rSocket, rPath;
 
 	@FXML
-	TextField tfPath, tfEnemy;
+	TextField tfPath, tfEnemy, tfkey, tfsecret;
 
 	@FXML
 	Button bExit;
@@ -89,7 +89,14 @@ public class ControllerSetting implements Initializable {
 			}
 			if (rSocket.isSelected()) {
 				ReuseServermethode.setMethode("Pusher");
+<<<<<<< Updated upstream
 			} else {
+=======
+				ReuseServermethode.setKey(tfkey.getText());
+				ReuseServermethode.setSecret(tfsecret.getText());
+			}
+			else{
+>>>>>>> Stashed changes
 				ReuseServermethode.setMethode("File");
 				ReuseServermethode.setPfad(tfPath.getText());
 			}
