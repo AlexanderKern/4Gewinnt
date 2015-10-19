@@ -57,12 +57,9 @@ public class main extends Application{
 		 
 		 Database db = new Database();
 		 ResultSet rs = db.getSpiele();
-		  Spiel spiel = new Spiel();
+		 Spiel spiel = new Spiel();
 		 ObservableList<ValueClass> data = FXCollections.observableArrayList(); //Darzustellebde Daten
-		
 
-		  
-	
          while(rs.next()){//Itariere über Zeile
              for(int i=1 ; i<=rs.getMetaData().getColumnCount(); i++){   //Itariere über Spalten
                
@@ -94,12 +91,9 @@ public class main extends Application{
              data.add(cl);
 
          }
-       
-
-		
 
 		    // Spaltendefinition 1. Id, 2. Punkte , 3. Gegner, 4. Datum, 5. Farbe
-		  TableColumn<ValueClass, String> col1 = new TableColumn<ValueClass, String>("Id");        
+		  	TableColumn<ValueClass, String> col1 = new TableColumn<ValueClass, String>("Id");        
 		    col1.setCellValueFactory(new PropertyValueFactory<ValueClass, String>("column1"));
 
 		    TableColumn<ValueClass, String> col2 = new TableColumn<ValueClass, String>("Punkte");
@@ -126,15 +120,12 @@ public class main extends Application{
 		    		                new RowSelectChangeListener());
 
 
-
-
 		    tableView.getColumns().add(col1);
 		    tableView.getColumns().add(col2);
 		    tableView.getColumns().add(col3);
-		     tableView.getColumns().add(col4);
-		   tableView.getColumns().add(col5);
-		    
-	
+		    tableView.getColumns().add(col4);
+		    tableView.getColumns().add(col5);
+
 		    return tableView;
 		  }
 }
