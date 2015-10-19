@@ -77,15 +77,19 @@ public class ControllerSetting implements Initializable {
 
 			ReuseServermethode.setGegner(tfEnemy.getText());
 
-			
-			if (tfkey.getText().equals("")) {
+			System.out.println("Test1");
+			if (tfkey.getText().equals("")) 
+			{
+				System.out.println("Test 2");
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Error Dialog");
 				alert.setHeaderText("Look, an Error Dialog");
 				alert.setContentText("Ooops, there was an error!");
+				alert.show();
 			}
 			if (rSocket.isSelected()) {
-				if (!tfkey.getText().isEmpty() || !tfsecret.getText().isEmpty()) {
+				if (!tfkey.getText().isEmpty() || !tfsecret.getText().isEmpty()) 
+				{
 					((Node) (ev.getSource())).getScene().getWindow().hide();
 					FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("spielfeld2.fxml"));
 					Parent root1;
