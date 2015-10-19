@@ -28,29 +28,32 @@ public class KI2 {
 	
 	
 	// Setter (feld: 0=unbelegt,1=spieler,2=gegner)
-		public void setStein(int spalte, boolean gegnerm) {
+		public void setGegnerStein(int spalte) {
 			
 			spalte_rueckgabe = spalte;
 			
-			if (gegnerm = true) {
 				for (int zeile = 5; zeile >= 0; zeile--){
 					if ( feld [zeile][spalte_rueckgabe] == 0){	
 						feld [zeile][spalte_rueckgabe] = 2;
 						letzter_zug[1] = spalte_rueckgabe;
 						letzter_zug[0] = zeile;
-						break;
+						break;	
 					}//endif
-				}//endfor
-			} else  {
+				}//endfor	
+		}// end setter
+		
+		public void setEigenerStein(int spalte) {
+			
+			spalte_rueckgabe = spalte;
+			
 				for (int zeile = 5; zeile >= 0; zeile--){
 					if ( feld [zeile][spalte_rueckgabe] == 0){	
 						feld [zeile][spalte_rueckgabe] = 1;
 						letzter_zug[1] = spalte_rueckgabe;
 						letzter_zug[0] = zeile;
-						break;
+						break;	
 					}//endif
-				}//endfor				
-			}					
+				}//endfor	
 		}// end setter
 
 		

@@ -46,7 +46,7 @@ public class PusherMain {
 								channel.trigger("client-event", "{\"move\":\"" + ki.get_spalte() + "\"}");
 								System.out.println(ki.get_spalte());
 								// Stein in KI setzen
-								ki.setStein(ki.get_spalte(), false);
+								ki.setEigenerStein(ki.get_spalte());
 
 								int[] zug = ki.getletzter_zug();
 								// ControllerField cf = new ControllerField();
@@ -54,7 +54,7 @@ public class PusherMain {
 
 							} else {
 								// Gegnerzug in KI setzen
-								ki.setStein(message.getGegnerzug(), true);
+								ki.setGegnerStein(message.getGegnerzug());
 								
 								//Gegnerzug in GUI setzen
 								int[] zug = ki.getletzter_zug();
@@ -64,7 +64,7 @@ public class PusherMain {
 								ki.berechne();
 
 								// Zug in KI setzen
-								ki.setStein(ki.get_spalte(), false);
+								ki.setEigenerStein(ki.get_spalte());
 								
 								//Zug in GUI setzen
 								zug = ki.getletzter_zug();

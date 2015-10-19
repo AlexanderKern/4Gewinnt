@@ -41,7 +41,7 @@ public class FileMain extends Thread {
 
 			if (message.getGegnerzug() >= 0) {
 				// Gegnerzug in KI setzen
-				ki.setStein(message.getGegnerzug(), true);
+				ki.setGegnerStein(message.getGegnerzug());
 
 				zug = ki.getletzter_zug();
 
@@ -53,7 +53,7 @@ public class FileMain extends Thread {
 			ki.berechne();
 
 			// Zug in KI setzen
-			ki.setStein(ki.get_spalte(), false);
+			ki.setEigenerStein(ki.get_spalte());
 
 			// Zug in GUI setzen
 			zug = ki.getletzter_zug();
