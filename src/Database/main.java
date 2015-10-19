@@ -116,8 +116,8 @@ public class main extends Application{
 		    tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		    
 		    //Event Listner
-		    tableView.getSelectionModel().selectedIndexProperty().addListener(
-		    		                new RowSelectChangeListener());
+		 //   tableView.getSelectionModel().selectedIndexProperty().addListener(
+		    	//	                new RowSelectChangeListener());
 
 
 		    tableView.getColumns().add(col1);

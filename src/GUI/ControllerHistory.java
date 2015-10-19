@@ -9,7 +9,6 @@ import javax.swing.JFileChooser;
 
 import Database.Database;
 import Database.Spiel;
-import Database.Spieler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;

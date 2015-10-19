@@ -10,7 +10,6 @@ import com.viergewinnt.api.pusher.PusherMain;
 import Database.Database;
 import Database.ReuseServermethode;
 import Database.Spiel;
-import Database.Spieler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -50,26 +49,13 @@ public class ControllerSetting implements Initializable {
 		bStart.setOnAction((ev) -> {
 
 			Database db = new Database();
-
-			Spieler spieler = new Spieler(tfEnemy.getText());
+			
 			try {
-				spieler.createSpieler(db);
-			} catch (SQLException e1) {
-				System.out.println(spieler.name + " konnte nicht angelegt werden!!!");
-			}
-
-			Spiel spiel = new Spiel(spieler.name);
-			try {
-				if (cX.isSelected()) {
-					spiel.farbe = true; // Rot
-					spiel.createSpiel(spiel, db);
-				} else {
-					spiel.farbe = false; // Gelb
-					spiel.createSpiel(spiel, db);
-				}
-
-			} catch (SQLException e3) {
-				System.out.println("Es ist ein Fehler bei dem Erstellen eines Spiels aufgetreten!");
+				db.createSpieler(tfEnemy.getText());
+			} catch (Exception e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+				System.out.println(tfEnemy.getText() + " konnte nicht angelegt werden!!!");
 			}
 
 			// Settingsparameter setzen
