@@ -7,7 +7,8 @@ public class KI2 {
 	int spalte;	
 	private int [][] feld = new int [6][7];	
 	private int spalte_rueckgabe;
-	private int [] letzter_zug = new int [2];	
+	private int [] letzter_zug = new int [2];
+	private int akt_zeile [] = new int [7];
 	
 	// Methodenbeginn
 	
@@ -16,6 +17,7 @@ public class KI2 {
 		
 		//Feld einstellen
 		for (spalte = 0; spalte < 7; spalte++){
+			akt_zeile[spalte] = 5;
 			for (zeile = 0; zeile < 6; zeile++){
 				feld[zeile][spalte]= 0;
 			}			
@@ -26,29 +28,23 @@ public class KI2 {
 		public void setGegnerStein(int spalte) {
 			
 			spalte_rueckgabe = spalte;
-			
-				for (int zeile = 5; zeile >= 0; zeile--){
-					if ( feld [zeile][spalte_rueckgabe] == 0){	
-						feld [zeile][spalte_rueckgabe] = 2;
-						letzter_zug[1] = spalte_rueckgabe;
-						letzter_zug[0] = zeile;
-						break;	
-					}//endif
-				}//endfor	
+	
+			feld [akt_zeile[spalte]][spalte_rueckgabe] = 2;
+			letzter_zug[1] = spalte_rueckgabe;
+			letzter_zug[0] = akt_zeile[spalte];
+			akt_zeile[spalte]--;
 		}// end setter
 		
 		public void setEigenerStein(int spalte) {
 			
 			spalte_rueckgabe = spalte;
 			
-				for (int zeile = 5; zeile >= 0; zeile--){
-					if ( feld [zeile][spalte_rueckgabe] == 0){	
-						feld [zeile][spalte_rueckgabe] = 1;
-						letzter_zug[1] = spalte_rueckgabe;
-						letzter_zug[0] = zeile;
-						break;	
-					}//endif
-				}//endfor	
+			spalte_rueckgabe = spalte;
+			
+			feld [akt_zeile[spalte]][spalte_rueckgabe] = 1;
+			letzter_zug[1] = spalte_rueckgabe;
+			letzter_zug[0] = akt_zeile[spalte];
+			akt_zeile[spalte]--;
 		}// end setter
 
 		
@@ -66,7 +62,8 @@ public class KI2 {
 		ergebnis = 99;
 		while (true){
 			for (spalte = 0; spalte < 7; spalte++){
-				for (zeile = 0; zeile < 6; zeile++){
+				
+				zeile = akt_zeile[spalte];
 					
 					if(feld[zeile][spalte] == 0){
 				
@@ -250,7 +247,7 @@ public class KI2 {
 					} catch (ArrayIndexOutOfBoundsException e){}	
 					
 					} //end if null
-				} // end zeile
+				
 			
 			} //end spalte
 			
@@ -261,7 +258,8 @@ public class KI2 {
 			///Gegner
 			
 			for (spalte = 0; spalte < 7; spalte++){
-				for (zeile = 0; zeile < 6; zeile++){
+				
+				zeile = akt_zeile[spalte];
 					
 					if(feld[zeile][spalte] == 0){
 				
@@ -445,7 +443,7 @@ public class KI2 {
 					} catch (ArrayIndexOutOfBoundsException e){}
 					
 				} // end if 0								
-				} // end zeile
+			
 			} //end spalte
 			
 			if(ergebnis == 99){
