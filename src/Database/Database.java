@@ -242,10 +242,11 @@ public class Database {
 		
 			int satzId;
 			
-			PreparedStatement stSatz = conn.prepareStatement("INSERT INTO satz(spiel_id) VALUES(?)");
+			PreparedStatement stSatz = conn.prepareStatement("INSERT INTO satz (spiel_id) VALUES(?);");
 			stSatz.setInt(1,spielId);
-			stSatz.execute();
-			stSatz.close();
+			stSatz.executeUpdate();
+			System.out.println("Satz angelegt");
+			//stSatz.close();
 			
 			PreparedStatement callId = conn.prepareStatement("CALL IDENTITY();");
 			
@@ -284,8 +285,9 @@ public class Database {
 			
 			PreparedStatement dritterSatz = conn.prepareStatement("SELECT * FROM satz WHERE spiel_id = ? ");
 			dritterSatz.setInt(1, spielId);
-			anzahlSaetze =  dritterSatz.getMaxRows();
-			 System.out.println("Anzahl"+ anzahlSaetze );
+			
+			anzahlSaetze =  dritterSatz.getMetaData().getColumnCount();
+			System.out.println("Anzahl"+ anzahlSaetze );
 			
 			return anzahlSaetze;
 		}
@@ -335,10 +337,13 @@ public class Database {
 			
 		}
 		
-		public void getSaetze(int spielId) throws SQLException{
+		public ResultSet getSaetze(int spielId) throws SQLException{
 			
-			PreparedStatement st = conn.prepareStatement("SELECT * FROM saetze WHERE spiel_ID = ?");
+			PreparedStatement st = conn.prepareStatement("SELECT * FROM satz WHERE spiel_ID = ?");
 			st.setInt(1, spielId);
+			ResultSet rs = st.executeQuery();
+			return rs;
+			
 		}
 		
 		
@@ -363,12 +368,12 @@ public class Database {
 			
 		}
 		
-		public void getZuege(int satzId) throws SQLException{
+		public ResultSet getZuege(int satzId) throws SQLException{
 			
 			PreparedStatement st = conn.prepareStatement("SELECT spalte, zeile, gegner FROM zug WHERE satz_id = ?");
 			st.setInt(1, satzId);
 			ResultSet rs = st.executeQuery();
-			
+			return rs;
 		}
 		
 		
