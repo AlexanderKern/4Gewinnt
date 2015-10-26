@@ -77,16 +77,7 @@ public class ControllerSetting implements Initializable {
 
 			ReuseServermethode.setGegner(tfEnemy.getText());
 
-			System.out.println("Test1");
-			if (tfkey.getText().equals("")) 
-			{
-				System.out.println("Test 2");
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error Dialog");
-				alert.setHeaderText("Look, an Error Dialog");
-				alert.setContentText("Ooops, there was an error!");
-				alert.show();
-			}
+			
 			if (rSocket.isSelected()) {
 				if (!tfkey.getText().isEmpty() || !tfsecret.getText().isEmpty()) 
 				{
@@ -110,6 +101,7 @@ public class ControllerSetting implements Initializable {
 					alert.setTitle("Error");
 					alert.setHeaderText("Look, an Error Dialog");
 					alert.setContentText("Bitte überprüfen Sie die Eingaben der Pusher-Kommunikation!");
+					alert.show();
 				}
 			}else if(!tfPath.getText().isEmpty() && rPath.isSelected()){
 				((Node) (ev.getSource())).getScene().getWindow().hide();
@@ -132,6 +124,7 @@ public class ControllerSetting implements Initializable {
 				alert.setTitle("Error");
 				alert.setHeaderText("Look, an Error Dialog");
 				alert.setContentText("Bitte überprüfen Sie die Eingaben der File-Kommunikation!");
+				alert.show();
 			}
 			
 		}); // end of play

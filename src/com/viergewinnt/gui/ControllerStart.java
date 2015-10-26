@@ -38,6 +38,7 @@ public class ControllerStart implements Initializable {
 		
 				play.setOnAction((ev) -> {
 			try {
+				//Spiel anlegen
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("selectScreen.fxml"));
 				Parent root1 = (Parent) fxmlLoader.load();
 				Stage stage = new Stage();
@@ -67,7 +68,7 @@ public class ControllerStart implements Initializable {
 				stage.setTitle("ABC");
 				stage.setScene(new Scene(root1));
 				stage.show();
-				
+				// 
 				((Node) (ev.getSource())).getScene().getWindow().hide();
 			}
 
