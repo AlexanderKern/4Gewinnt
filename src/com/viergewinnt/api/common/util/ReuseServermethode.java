@@ -16,14 +16,11 @@ private static String key;
 
 private static String secret;
 
-
-
 public static void setMethode(String methode) {
 
 ReuseServermethode.methode = methode;
 
 }
-
 
 
 public static String getMethode() {

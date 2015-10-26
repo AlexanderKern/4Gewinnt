@@ -47,7 +47,10 @@ public class ControllerSetting implements Initializable {
 
 		// Spielfeld soll aufgerufen werden
 		bStart.setOnAction((ev) -> {
+			
+			System.out.println(System.getProperty("user.dir"));
 
+//-------------------------------------------------------------------------------
 			Database db = new Database();
 			
 			try {
@@ -57,6 +60,7 @@ public class ControllerSetting implements Initializable {
 				e2.printStackTrace();
 				System.out.println(tfEnemy.getText() + " konnte nicht angelegt werden!!!");
 			}
+			//-------------------------------------------------------------------------------
 
 			// Settingsparameter setzen
 			if (cX.isSelected()) {
