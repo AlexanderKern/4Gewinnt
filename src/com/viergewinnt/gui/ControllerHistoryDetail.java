@@ -59,10 +59,8 @@ TableColumn<ValueClass, String> col1, col2, col3,col4, col5;
            	{
 	            	System.out.println("Ausgewähltes SatzID = "+((ValueClass) newValue2).getColumn1());
 	            	reuseSatz.setId(Integer.parseInt(((ValueClass) newValue2).getColumn1()));
-   				// Spielfeld aufbauen
-   					
+
 	           // Spielfeld für die Historienbetrachtung wieder aufbauen
-	            	
 	            	try {
 						FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("spielfeld2.fxml"));
 						Parent root1 = (Parent) fxmlLoader.load();
@@ -87,13 +85,11 @@ TableColumn<ValueClass, String> col1, col2, col3,col4, col5;
 		ObservableList<ValueClass> data = FXCollections.observableArrayList(); //Darzustellebde Daten
 		try {
 			Database db = new Database();
-			 ResultSet rs = db.getSaetze(reuseSatz.getId());
+			ResultSet rs = db.getSaetze(reuseSatz.getId());
 			 
-			 String satzId = null;
-			 String satzSpielid = null;
-			 String satzGewonnen = null;
-			 
-			// ObservableList<ValueClass> data = FXCollections.observableArrayList(); //Darzustellebde Daten
+			String satzId = null;
+			String satzSpielid = null;
+		    String satzGewonnen = null;
 
 	         while(rs.next()){//Itariere über Zeile
 	             for(int i=1 ; i<=rs.getMetaData().getColumnCount(); i++){   //Itariere über Spalten
@@ -114,14 +110,13 @@ TableColumn<ValueClass, String> col1, col2, col3,col4, col5;
 	         }// end of while
 	         
 	     
-			    // Spaltendefinition 
-	         
+	         // Spaltendefinition 
 	         col1.setText("ID");
              col2.setText("Spiel Id");
              col3.setText("Gewonnen");
              col1.setCellValueFactory(new PropertyValueFactory<ValueClass, String>("column1"));
-  		    col2.setCellValueFactory(new PropertyValueFactory<ValueClass, String>("column2"));
-  		    col3.setCellValueFactory(new PropertyValueFactory<ValueClass, String>("column3"));
+  		     col2.setCellValueFactory(new PropertyValueFactory<ValueClass, String>("column2"));
+  		     col3.setCellValueFactory(new PropertyValueFactory<ValueClass, String>("column3"));
 	         
   		    tableViewSatz.setItems(data);
 

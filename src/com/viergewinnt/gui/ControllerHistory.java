@@ -50,16 +50,16 @@ TableColumn<ValueClass, String> col1, col2, col3,col4, col5;
 	@Override
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources)
 	{
-		
+		// Listener für die Tabelle von den Spielen
 		tableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 			
 			if (((ValueClass) newValue).getColumn1() != null )
 			{
-				int spielId = Integer.parseInt(((ValueClass) newValue).getColumn1());
+				int spielId = Integer.parseInt(((ValueClass) newValue).getColumn1()); //ausgewaehlte Spielid
 				System.out.println("Ausgewähltes Spiele ID = "+spielId);
 				
-				ReuseableSatz rs = new ReuseableSatz();
-				rs.setId(spielId);
+				ReuseableSatz reuseSatz = new ReuseableSatz();
+				reuseSatz.setSpielId(spielId);
 				
 				// Neues Fenster mit ausgewählten Sätzen soll aufgerufen werden
 				try {
@@ -85,11 +85,11 @@ TableColumn<ValueClass, String> col1, col2, col3,col4, col5;
 			
 		}); // end of tableView handle
 		
-		ObservableList<ValueClass> data = FXCollections.observableArrayList(); //Darzustellebde Daten
+		ObservableList<ValueClass> data = FXCollections.observableArrayList(); //Darzustellende Daten
 		try {
 		Database db = new Database();
 		ResultSet rs = db.getSpiele();
-		  Spiel spiel = new Spiel();
+		Spiel spiel = new Spiel();
 		//Daten aus der Datenbank laden
 		  while(rs.next())
 		  {//Itariere über Zeile
@@ -99,11 +99,9 @@ TableColumn<ValueClass, String> col1, col2, col3,col4, col5;
 	                 {
 	                 case 1:
 	                	 spiel.setId(rs.getString(i));
-	                	 System.out.println("ID"+rs.getString(i));
 	                	 break;
 	                 case 2:
 	                	 spiel.setPunkte(rs.getString(i));
-	                	 System.out.println("Punkte"+rs.getString(i));
 	                	 break;
 	                 case 3:
 	                	 spiel.setGegner(rs.getString(i));
@@ -132,17 +130,12 @@ TableColumn<ValueClass, String> col1, col2, col3,col4, col5;
 	     		    col3.setCellValueFactory(new PropertyValueFactory<ValueClass, String>("column3"));
 	     		    col4.setCellValueFactory(new PropertyValueFactory<ValueClass, String>("column4"));
 	     		    col5.setCellValueFactory(new PropertyValueFactory<ValueClass, String>("column5"));
-	     		    
-	     
-	                 
+             
 		  }// end of while
 		  
 		   tableView.setItems(data);
- 		    // Zusätzliche Spalten vermeiden
- 		    tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
- 		
+ 		   tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY); // Zusaetzliche Spalten vermeiden
 
-		  
 		} // end of Try
 		catch (Exception e) 
 		{

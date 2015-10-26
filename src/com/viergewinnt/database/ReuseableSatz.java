@@ -9,6 +9,7 @@ package com.viergewinnt.database;
 public class ReuseableSatz {
 	
 	public static int id;
+	public static int spielId;
 
 	public void setId( int id){
 		ReuseableSatz.id = id; 
@@ -16,6 +17,14 @@ public class ReuseableSatz {
 	
 	public int getId(){
 		return id;
+	}
+	
+	public void setSpielId( int spielId){
+		ReuseableSatz.spielId = spielId; 
+	}
+	
+	public int getSpielId(){
+		return spielId;
 	}
 	
 }
