@@ -10,6 +10,7 @@
       <ImageView fitHeight="407.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
          <image>
              <Image url="@../../../../assets/img/start.jpg" />
+             
          </image>
       </ImageView>
       <Button fx:id="play" layoutX="445.0" layoutY="296.0" mnemonicParsing="false" text="Spiel starten" />

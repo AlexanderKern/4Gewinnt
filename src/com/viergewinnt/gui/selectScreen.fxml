@@ -30,7 +30,7 @@
 
          <image>
 
-            <Image url="@img/background.jpg" />
+            <Image url="@../../../../assets/img/background.jpg" />
 
          </image>
 

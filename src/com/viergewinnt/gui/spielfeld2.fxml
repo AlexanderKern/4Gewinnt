@@ -11,37 +11,37 @@
    <children>
       <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@img/field.jpg" />
+            <Image url="@../../../../assets/img/field.jpg" />
          </image>
       </ImageView>
       <Label contentDisplay="CENTER" layoutX="271.0" layoutY="14.0" prefHeight="19.0" prefWidth="41.0" text="Satz:" textAlignment="CENTER" />
       <Label fx:id="lSatz" layoutX="318.0" layoutY="16.0" text="1" />
       <ImageView fx:id="ivOne" fitHeight="50.0" fitWidth="50.0" layoutX="212.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@img/coinGrey.png" />
+            <Image url="@../../../../assets/img/coinGrey.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ivTwo" fitHeight="50.0" fitWidth="50.0" layoutX="272.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@img/coinGrey.png" />
+            <Image url="@../../../../assets/img/coinGrey.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ivThree" fitHeight="50.0" fitWidth="50.0" layoutX="332.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@img/coinGrey.png" />
+            <Image url="@../../../../assets/img/coinGrey.png" />
          </image>
       </ImageView>
       <Button fx:id="bExit" layoutX="543.0" mnemonicParsing="false" text="X" />
       <Button fx:id="bBack" mnemonicParsing="false" text="&lt; Zurück" />
       <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@img/coinBlue.png" />
+            <Image url="@../../../../assets/img/coinBlue.png" />
          </image>
       </ImageView>
       <Label fx:id="lPlayerR" layoutX="67.0" layoutY="40.0" prefHeight="19.0" prefWidth="80.0" />
       <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="545.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@img/coinGreen.png" />
+            <Image url="@../../../../assets/img/coinGreen.png" />
          </image>
       </ImageView>
       <Label fx:id="lPlayerY" layoutX="456.0" layoutY="40.0" prefHeight="19.0" prefWidth="80.0" />
