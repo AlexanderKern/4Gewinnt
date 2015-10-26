@@ -11,6 +11,8 @@ import javax.swing.JFileChooser;
 import com.viergewinnt.database.Database;
 import com.viergewinnt.database.Spiel;
 import com.viergewinnt.database.ValueClass;
+import com.viergewinnt.database.ReuseableSatz;
+
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -49,18 +51,50 @@ TableColumn<ValueClass, String> col1, col2, col3,col4, col5;
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources)
 	{
 		
+		tableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+			
+			if (((ValueClass) newValue).getColumn1() != null )
+			{
+				int spielId = Integer.parseInt(((ValueClass) newValue).getColumn1());
+				System.out.println("Ausgewähltes Spiele ID = "+spielId);
+				
+				ReuseableSatz rs = new ReuseableSatz();
+				rs.setId(spielId);
+				
+				// Neues Fenster mit ausgewählten Sätzen soll aufgerufen werden
+				try {
+					FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("historyDetail.fxml"));
+					Parent root1 = (Parent) fxmlLoader.load();
+					Stage stage = new Stage();
+					stage.initModality(Modality.APPLICATION_MODAL);
+					stage.initStyle(StageStyle.UNDECORATED);
+					stage.setTitle("Spiel Starten");
+					stage.setScene(new Scene(root1));
+					stage.show();
+
+					//((Node) (ev.getSource())).getScene().getWindow().hide();
+				
+					}// enf of try
+				catch(Exception e)
+				{
+					e.printStackTrace();
+				}
+				
+			}
+		
+			
+		}); // end of tableView handle
+		
 		ObservableList<ValueClass> data = FXCollections.observableArrayList(); //Darzustellebde Daten
 		try {
-			
-		
 		Database db = new Database();
-		 ResultSet rs = db.getSpiele();
+		ResultSet rs = db.getSpiele();
 		  Spiel spiel = new Spiel();
 		//Daten aus der Datenbank laden
 		  while(rs.next())
 		  {//Itariere über Zeile
-	             for(int i=1 ; i<=rs.getMetaData().getColumnCount(); i++){   //Itariere über Spalten
-	               
+	             for(int i=1 ; i<=rs.getMetaData().getColumnCount(); i++)
+	             {   //Itariere über Spalten
 	                 switch(i)
 	                 {
 	                 case 1:
@@ -87,8 +121,6 @@ TableColumn<ValueClass, String> col1, col2, col3,col4, col5;
 	                 ValueClass cl = new ValueClass(spiel.getId(), spiel.getPunkte(), spiel.getGegener(), spiel.getDatum(), spiel.getFarbe());
 	                 data.add(cl);   
 
-	                 
-	                //TableColumn<ValueClass, String> col1 = new TableColumn<ValueClass, String>("Id"); 
 	                col1.setText("ID");
 	                col2.setText("Punkte");
 	                col3.setText("Gegner");
@@ -117,33 +149,7 @@ TableColumn<ValueClass, String> col1, col2, col3,col4, col5;
 			System.out.println(e);// TODO: handle exception
 		}
 	
-		tableView.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-
-			@Override
-			public void handle(MouseEvent event) 
-			{
-			// Welche Zeile wurde makiert?
-				TableView tv = (TableView) event.getSource();
-				System.out.println("test1");
-				String selectedString = tv.getSelectionModel().getSelectedItem().toString();
-				System.out.println("Test 2");
-				System.out.println(selectedString);
-//				String selectedID = selectedString.substring(1,selectedString.indexOf(","));
-//				System.out.println(selectedString+ " ID "+selectedID);
-				
-				/**
-			     System.out.println(id + " geklickt");
-			     // Saetze von Spiel in DB suchen
-			     ResultSet rs = dbConn.getSaetzeOfSpiel(id);
-			     // Saetze anzeigen
-			     showSatzTable(rs);
-			     }
-				 */
-				
-			}
-			
-			});
-		
+		//-------------------------------------------------------------------
 		
 		bBack.setOnAction((ev) -> {
 			try {

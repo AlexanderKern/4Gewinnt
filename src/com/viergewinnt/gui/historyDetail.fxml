@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@welcome.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.viergewinnt.gui.ControllerHistoryDetail">
+   <children>
+      <Label layoutX="217.0" layoutY="23.0" text="Spiele die gespielt wurden" />
+      <Label layoutX="256.0" layoutY="212.0" text="Zugübersicht" />
+      <ScrollPane layoutX="75.0" layoutY="46.0" prefHeight="146.0" prefViewportHeight="151.0" prefViewportWidth="439.0" prefWidth="441.0">
+         <content>
+            <TableView fx:id="tableViewSatz" layoutX="75.0" layoutY="51.0" prefHeight="151.0" prefWidth="439.0">
+              <columns>
+                <TableColumn fx:id="col1" prefWidth="136.0" text="C1" />
+                  <TableColumn fx:id="col2" prefWidth="154.0" text="C2" />
+                  <TableColumn fx:id="col3" prefWidth="124.0" text="C3" />
+              </columns>
+            </TableView>
+         </content>
+      </ScrollPane>
+      <Button fx:id="bExit" layoutX="542.0" layoutY="1.0" mnemonicParsing="false" text="X" />
+      <Button fx:id="bBack" layoutX="1.0" layoutY="2.0" mnemonicParsing="false" text="&lt; Zurück" />
+   </children>
+</Pane>

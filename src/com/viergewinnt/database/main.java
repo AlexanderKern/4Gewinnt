@@ -24,6 +24,7 @@ public class main extends Application{
 		    stage.setWidth(450);
 		    stage.setHeight(500);
 	
+		   
 		    TableView<ValueClass> tableView = createTableView();
 		    
 		  //  final Label selected = new Label();
@@ -82,8 +83,11 @@ public class main extends Application{
 	  */
 	 private TableView<ValueClass> createTableViewSatz(int spielId) throws SQLException {
 		
-		 System.out.println("Tabelle Satz erstellen ");
+		 
 		 Database db = new Database();
+		 
+		 db.createSatz(0);
+		 
 		 ResultSet rs = db.getSaetze(spielId);
 		 
 		 String satzId = null;
