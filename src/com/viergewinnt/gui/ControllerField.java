@@ -45,9 +45,9 @@ public class ControllerField implements Initializable {
 	@FXML
 	Pane pane;
 
-	Image imageBlue = new Image(System.getProperty("user.dir") + "/assets/img/coinBlue.png");
-	Image imageGreen = new Image(System.getProperty("user.dir") + "/assets/img/coinGreen.png");
-	Image imageG = new Image(System.getProperty("user.dir") + "/assets/img/coinGrey.png");
+	Image imageBlue = new Image("file:///" + System.getProperty("user.dir") + "/assets/img/coinBlue.png");
+	Image imageGreen = new Image("file:///" + System.getProperty("user.dir") + "/assets/img/coinGreen.png");
+	Image imageG = new Image("file:///" + System.getProperty("user.dir") + "/assets/img/coinGrey.png");
 
 	@SuppressWarnings("static-access")
 	@Override
