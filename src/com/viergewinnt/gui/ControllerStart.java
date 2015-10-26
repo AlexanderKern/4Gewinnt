@@ -44,8 +44,13 @@ public class ControllerStart implements Initializable {
 			try {
 				//Spiel anlegen in Datenbank---------------------------------------------------------------------------
 				Database db = new Database();
-				//TODO
-				boolean farbe = true;
+				boolean farbe = true; 
+				if( ReuseServermethode.getTeam() == "O"){
+					farbe = true;
+				}
+				else if(ReuseServermethode.getTeam() == "X"){
+					farbe = false;
+				}	
 				db.createSpiel(ReuseServermethode.getGegner(), farbe);
 				//------------------------------------------------------------------------------------------------------
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("selectScreen.fxml"));
