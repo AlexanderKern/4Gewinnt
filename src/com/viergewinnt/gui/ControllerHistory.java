@@ -16,6 +16,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -27,6 +28,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -114,26 +116,34 @@ TableColumn<ValueClass, String> col1, col2, col3,col4, col5;
 		{
 			System.out.println(e);// TODO: handle exception
 		}
-		
-		
-		//_____________________________
-//		//Einträge aus Tabelle makieren
-//		tableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
-//		    @Override
-//		    public void changed(ObservableValue observableValue, Object oldValue, Object newValue) {
-//		        //Check whether item is selected and set value of selected item to Label
-//		        if(tableView.getSelectionModel().getSelectedItem() != null) 
-//		        {    
-//		           TableViewSelectionModel selectionModel = tableView.getSelectionModel();
-//		           ObservableList selectedCells = selectionModel.getSelectedCells();
-//		           TablePosition tablePosition = (TablePosition) selectedCells.get(0);
-//		           Object val = tablePosition.getTableColumn().getCellData(newValue);
-//		           System.out.println("Selected Value" + val);
-//		         }
-//		         }
-//		     });
-//		
 	
+		tableView.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) 
+			{
+			// Welche Zeile wurde makiert?
+				TableView tv = (TableView) event.getSource();
+				System.out.println("test1");
+				String selectedString = tv.getSelectionModel().getSelectedItem().toString();
+				System.out.println("Test 2");
+				System.out.println(selectedString);
+//				String selectedID = selectedString.substring(1,selectedString.indexOf(","));
+//				System.out.println(selectedString+ " ID "+selectedID);
+				
+				/**
+			     System.out.println(id + " geklickt");
+			     // Saetze von Spiel in DB suchen
+			     ResultSet rs = dbConn.getSaetzeOfSpiel(id);
+			     // Saetze anzeigen
+			     showSatzTable(rs);
+			     }
+				 */
+				
+			}
+			
+			});
+		
 		
 		bBack.setOnAction((ev) -> {
 			try {
@@ -161,12 +171,10 @@ TableColumn<ValueClass, String> col1, col2, col3,col4, col5;
 
 		}); // end of bExit
 		
+		
+		
+		
 	}// end of method
 	
-	public void	changed()
-	{
-		System.out.println("Test1");
-	}
-		
 
 }// end of class
