@@ -20,7 +20,7 @@ public class main extends Application{
 	}
 	 public void start(Stage stage) throws SQLException {
 		  Scene scene = new Scene(new Group());
-		    stage.setTitle("MyTableView");
+		    stage.setTitle("Spiele");
 		    stage.setWidth(450);
 		    stage.setHeight(500);
 	
@@ -44,7 +44,7 @@ public class main extends Application{
 			                Scene secondScene = new Scene(secondaryLayout, 200, 100);
 			 
 			                Stage secondStage = new Stage();
-			                secondStage.setTitle("Second Stage");
+			                secondStage.setTitle("Sätze");
 			                secondStage.setScene(secondScene);
 			          
 			                TableView<ValueClass>  tableViewSatz = createTableViewSatz(spielId);
