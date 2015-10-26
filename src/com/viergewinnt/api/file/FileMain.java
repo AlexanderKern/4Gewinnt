@@ -2,10 +2,13 @@ package com.viergewinnt.api.file;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.sql.SQLException;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import com.viergewinnt.api.common.util.Message;
 import com.viergewinnt.api.common.util.ReuseServermethode;
+import com.viergewinnt.database.Database;
+import com.viergewinnt.database.ReuseableSatz;
 import com.viergewinnt.gui.ControllerField;
 import com.viergewinnt.ki.KiMain;
 
@@ -30,6 +33,10 @@ public class FileMain extends Thread {
 		final File serverFile = new File(filePath + serverFilename);
 		final File clientFile = new File(filePath + clientFilename);
 		int[] zug;
+		//Datenbank---------------------------------------------------------------------------------------------
+		Database db = new Database();
+		ReuseableSatz reuseSatz = new ReuseableSatz();
+		//------------------------------------------------------------------------------------------------------
 		
 		while (!serverFile.exists() || isRunning(factory, filePath, serverFilename)) {
 			if (message == null) {
@@ -43,6 +50,14 @@ public class FileMain extends Thread {
 				ki.setGegnerStein(message.getGegnerzug());
 
 				zug = ki.getletzter_zug();
+				//Datenbank---------------------------------------------------------------------------------------------
+				try {
+					db.Zug(reuseSatz.getId(), true, zug[1], zug[0]);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				//---------------------------------------------------------------------------------------------
 
 				// Gegnerzug in GUI setzen
 				cf.setStone(zug[0], zug[1], true);
@@ -54,8 +69,19 @@ public class FileMain extends Thread {
 			// Zug in KI setzen
 			ki.setEigenerStein(ki.get_spalte());
 
-			// Zug in GUI setzen
 			zug = ki.getletzter_zug();
+			
+			
+			//Datenbank---------------------------------------------------------------------------------------------
+			try {
+				db.Zug(reuseSatz.getId(), false, zug[1], zug[0]);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			//-------------------------------------------------------------------------------------------------------
+			
+			// Zug in GUI setzen
 			cf.setStone(zug[0], zug[1], false);
 
 			try {

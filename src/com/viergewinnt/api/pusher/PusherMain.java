@@ -2,6 +2,7 @@ package com.viergewinnt.api.pusher;
 
 import java.awt.Toolkit;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import com.pusher.client.Pusher;
@@ -10,6 +11,8 @@ import com.pusher.client.connection.Connection;
 import com.pusher.client.connection.ConnectionState;
 import com.viergewinnt.api.common.util.Function;
 import com.viergewinnt.api.common.util.Message;
+import com.viergewinnt.database.Database;
+import com.viergewinnt.database.ReuseableSatz;
 import com.viergewinnt.gui.ControllerField;
 import com.viergewinnt.ki.KiMain;
 
@@ -34,6 +37,11 @@ public class PusherMain {
 						message.setSatzstatus(messageParts[1]);
 						message.setGegnerzug(messageParts[2]);
 						message.setSieger(messageParts[3]);
+						//Datenbank---------------------------------------------------------------------------------------------
+						Database db = new Database();
+						ReuseableSatz reuseSatz = new ReuseableSatz();
+						//------------------------------------------------------------------------------------------------------
+						
 						if (message.getFreigabe() && message.getSatzstatus().equals("Satz spielen")
 								&& message.getSieger().equals("offen")) {
 							if (message.getGegnerzug() < 0) {
@@ -44,10 +52,19 @@ public class PusherMain {
 								// Zug an Server senden
 								channel.trigger("client-event", "{\"move\":\"" + ki.get_spalte() + "\"}");
 								System.out.println(ki.get_spalte());
-								// Stein in KI setzen
+								
 								ki.setEigenerStein(ki.get_spalte());
-
 								int[] zug = ki.getletzter_zug();
+								//Zug in Datenbank---------------------------------------------------------------------------------------------
+								try {
+									db.Zug(reuseSatz.getId(), false, zug[1], zug[0]);
+								} catch (SQLException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+								//-------------------------------------------------------------------------------------------------------
+
+								// Stein in KI setzen
 								// ControllerField cf = new ControllerField();
 								cf.setStone(zug[0], zug[1], false);
 
@@ -55,8 +72,17 @@ public class PusherMain {
 								// Gegnerzug in KI setzen
 								ki.setGegnerStein(message.getGegnerzug());
 								
-								//Gegnerzug in GUI setzen
+								
 								int[] zug = ki.getletzter_zug();
+								//Zug in Datenbank---------------------------------------------------------------------------------------------
+								try {
+									db.Zug(reuseSatz.getId(), true, zug[1], zug[0]);
+								} catch (SQLException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+								//-------------------------------------------------------------------------------------------------------
+								//Gegnerzug in GUI setzen
 								cf.setStone(zug[0], zug[1], true);
 
 								// Berechne nächsten Zug
@@ -64,9 +90,17 @@ public class PusherMain {
 
 								// Zug in KI setzen
 								ki.setEigenerStein(ki.get_spalte());
-								
-								//Zug in GUI setzen
+
 								zug = ki.getletzter_zug();
+								//Zug in Datenbank---------------------------------------------------------------------------------------------
+								try {
+									db.Zug(reuseSatz.getId(), false, zug[1], zug[0]);
+								} catch (SQLException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+								//-------------------------------------------------------------------------------------------------------
+								//Zug in GUI setzen
 								cf.setStone(zug[0], zug[1], false);
 
 								// Nächsten Zug an Server senden

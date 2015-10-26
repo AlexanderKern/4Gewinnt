@@ -3,7 +3,9 @@ package com.viergewinnt.gui;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.viergewinnt.api.common.util.ReuseServermethode;
 import com.viergewinnt.api.pusher.PusherMain;
+import com.viergewinnt.database.Database;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,9 +38,16 @@ public class ControllerStart implements Initializable {
 	@Override
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
 		
+		
+		
 				play.setOnAction((ev) -> {
 			try {
-				//Spiel anlegen
+				//Spiel anlegen in Datenbank---------------------------------------------------------------------------
+				Database db = new Database();
+				//TODO
+				boolean farbe = true;
+				db.createSpiel(ReuseServermethode.getGegner(), farbe);
+				//------------------------------------------------------------------------------------------------------
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("selectScreen.fxml"));
 				Parent root1 = (Parent) fxmlLoader.load();
 				Stage stage = new Stage();
