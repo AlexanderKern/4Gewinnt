@@ -48,7 +48,7 @@ public class FileMain extends Thread {
 				cf.setStone(zug[0], zug[1], true);
 			}
 			
-			// Berechne n�chsten Zug
+			// Berechne nächsten Zug
 			ki.berechne();
 
 			// Zug in KI setzen
@@ -59,7 +59,7 @@ public class FileMain extends Thread {
 			cf.setStone(zug[0], zug[1], false);
 
 			try {
-				// N�chsten Zug an Server senden
+				// Nächsten Zug an Server senden
 				// Zug an Server senden
 				final FileWriter writer = new FileWriter(clientFile);
 				writer.write(String.valueOf(ki.get_spalte()));

@@ -1,42 +1,22 @@
 package com.viergewinnt.database;
 
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import com.sun.javafx.application.LauncherImpl;
-
 import javafx.application.Application;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableColumn.CellDataFeatures;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import javafx.util.Callback;
-import javafx.scene.Parent;
 
 public class main extends Application{
 
-	
 	public static void main(String[] args)  {
-		launch(args);
-			
+		launch(args);	
 	}
 	 public void start(Stage stage) throws SQLException {
 		  Scene scene = new Scene(new Group());
@@ -45,7 +25,6 @@ public class main extends Application{
 		    stage.setHeight(500);
 	
 		    TableView<ValueClass> tableView = createTableView();
-		    
 		    
 		  //  final Label selected = new Label();
 	        tableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -58,14 +37,9 @@ public class main extends Application{
 	             * Aufruf Satz Übersicht 
 	             */
 				if (((ValueClass) newValue).getColumn1() != null ){
-					
 					int spielId = Integer.parseInt(((ValueClass) newValue).getColumn1());
-					
 					System.out.println("Ausgewähltes Spiele ID = "+((ValueClass) newValue).getColumn1());
-					
 					 try{
-						 
-		                 
 			                StackPane secondaryLayout = new StackPane();
 			                Scene secondScene = new Scene(secondaryLayout, 200, 100);
 			 
@@ -74,8 +48,6 @@ public class main extends Application{
 			                secondStage.setScene(secondScene);
 			          
 			                TableView<ValueClass>  tableViewSatz = createTableViewSatz(spielId);
-			               
-		
 			                tableViewSatz.getSelectionModel().selectedItemProperty().addListener((observable2, oldValue2, newValue2) -> {
 			    	          System.out.println(newValue2);
 			                	if (newValue2 != null) {
@@ -87,31 +59,22 @@ public class main extends Application{
 											// TODO Auto-generated catch block
 											e.printStackTrace();
 										}
-			    	              
 			    	            }else{
 			    	            	  return;	
 			    				}
 			                });// end of get selected 
-			                
 			                secondaryLayout.getChildren().add(tableViewSatz);
 			                secondStage.show();
 				          }catch(Exception e) {
 				              e.printStackTrace();
 				          }
 				}// end of of 
-
-	           
 	        });// end of get selected 
-		    
 	    
 		    ((Group) scene.getRoot()).getChildren().addAll(tableView);
 
 		    stage.setScene(scene);
 		    stage.show();
-		    
-		 
-		    
-		
 		  }
 
 	 /**
@@ -127,12 +90,10 @@ public class main extends Application{
 		 String satzSpielid = null;
 		 String satzGewonnen = null;
 		 
-		 
 		 ObservableList<ValueClass> data = FXCollections.observableArrayList(); //Darzustellebde Daten
 
          while(rs.next()){//Itariere über Zeile
              for(int i=1 ; i<=rs.getMetaData().getColumnCount(); i++){   //Itariere über Spalten
-               
                  switch(i){
                  case 1:
                 	 satzId = (rs.getString(i));
@@ -143,18 +104,11 @@ public class main extends Application{
                  case 3:
                 	 satzGewonnen = (rs.getString(i));
                 	 break;
-                
                  }
-
-               
              }
-         
-           
             ValueClass cl = new ValueClass(satzId,satzSpielid,satzGewonnen, null, null);
              data.add(cl);
-
          }
-
 		    // Spaltendefinition 1. Id, 2. Punkte , 3. Gegner, 4. Datum, 5. Farbe
 		  	TableColumn<ValueClass, String> col1 = new TableColumn<ValueClass, String>("Id");        
 		    col1.setCellValueFactory(new PropertyValueFactory<ValueClass, String>("column1"));
@@ -165,10 +119,10 @@ public class main extends Application{
 		    TableColumn<ValueClass, String> col3 = new TableColumn<ValueClass, String>("gewonnen");
 		    col3.setCellValueFactory(new PropertyValueFactory<ValueClass, String>("column3"));
 		 
-
 		    // Tabellenerzeugung
 		    TableView<ValueClass> tableViewSaetze= new TableView<ValueClass>();
 		    tableViewSaetze.setItems(data);
+
 		    // Zusätzliche Spalten vermeiden
 		    tableViewSaetze.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
@@ -177,9 +131,7 @@ public class main extends Application{
 		    tableViewSaetze.getColumns().add(col3);
 
 		    return tableViewSaetze;
-
 	}
-	 
 	 
 	private TableView<ValueClass> createTableView() throws SQLException {
 		 
@@ -190,7 +142,6 @@ public class main extends Application{
 
          while(rs.next()){//Itariere über Zeile
              for(int i=1 ; i<=rs.getMetaData().getColumnCount(); i++){   //Itariere über Spalten
-               
                  switch(i){
                  case 1:
                 	 spiel.setId(rs.getString(i));
@@ -208,17 +159,11 @@ public class main extends Application{
                 	 break;
                  case 5:
                 	 spiel.setFarbe(rs.getString(i));
-                		
                  }
-                 
-            	
-               
              }
-         
            
             ValueClass cl = new ValueClass(spiel.getId(), spiel.getPunkte(), spiel.getGegener(), spiel.getDatum(), spiel.getFarbe());
              data.add(cl);
-
          }
 
 		    // Spaltendefinition 1. Id, 2. Punkte , 3. Gegner, 4. Datum, 5. Farbe
@@ -237,21 +182,17 @@ public class main extends Application{
 		    TableColumn<ValueClass, String> col5 = new TableColumn<ValueClass, String>("Farbe");
 		    col5.setCellValueFactory(new PropertyValueFactory<ValueClass, String>("column5"));
 		 
-
 		    // Tabellenerzeugung
 		    TableView<ValueClass> tableView = new TableView<ValueClass>();
 		    tableView.setItems(data);
+
 		    // Zusätzliche Spalten vermeiden
 		    tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-		    
-		
 		    tableView.getColumns().add(col1);
 		    tableView.getColumns().add(col2);
 		    tableView.getColumns().add(col3);
 		    tableView.getColumns().add(col4);
 		    tableView.getColumns().add(col5);
-		    
-		   
 
 		    return tableView;
 		  }
@@ -283,18 +224,9 @@ public class main extends Application{
 	                	zugGegner =  rs.getBoolean(i); // nicht 10=% sicher, ob richtiger cast
 	                	System.out.println("Gegner?"+zugGegner);
 	                	 break;
-	                
 	                 }
-				    
 				    //Methode aufrufen die Steine Setzt 
-				   
 			   }
-			   
 		}
-	
-		
 	}
-	 
-
-	
 }
