@@ -25,8 +25,7 @@ public Spiel(){};
 	        public void setId(String id) {
 	          this.id = id;
 	        }
-	       
-	   
+
 	        public void setPunkte(String punkte) {
 	            this.punkte = punkte;
 	        }
@@ -62,7 +61,6 @@ public Spiel(){};
 	        	}else {
 					this.farbe = "grün";
 				}
-	        	
 	        	return this.farbe;
 	        }
 
