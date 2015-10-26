@@ -1,4 +1,4 @@
-package GUI;
+package com.viergewinnt.gui;
 
 import java.net.URL;
 import java.util.ResourceBundle;

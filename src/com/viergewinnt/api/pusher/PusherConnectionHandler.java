@@ -13,8 +13,7 @@ import com.pusher.client.connection.Connection;
 import com.pusher.client.connection.ConnectionEventListener;
 import com.pusher.client.connection.ConnectionStateChange;
 import com.viergewinnt.api.common.util.Function;
-
-import Database.ReuseServermethode;
+import com.viergewinnt.api.common.util.ReuseServermethode;
 
 public class PusherConnectionHandler implements ConnectionEventListener, PrivateChannelEventListener {
 

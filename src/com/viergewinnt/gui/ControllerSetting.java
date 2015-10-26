@@ -1,15 +1,15 @@
-package GUI;
+package com.viergewinnt.gui;
 
 import java.io.File;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import com.viergewinnt.api.common.util.ReuseServermethode;
 import com.viergewinnt.api.pusher.PusherMain;
+import com.viergewinnt.database.Database;
+import com.viergewinnt.database.Spiel;
 
-import Database.Database;
-import Database.ReuseServermethode;
-import Database.Spiel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;

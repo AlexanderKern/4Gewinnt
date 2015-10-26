@@ -1,6 +1,6 @@
-package ki;
+package com.viergewinnt.ki;
 
-public class KI2 {
+public class KiMain {
 
 	int ergebnis = 99;
 	int zeile;
@@ -13,7 +13,7 @@ public class KI2 {
 	// Methodenbeginn
 	
 	//Konstruktor
-	public KI2(){
+	public KiMain(){
 		
 		//Feld einstellen
 		for (spalte = 0; spalte < 7; spalte++){
@@ -253,7 +253,7 @@ public class KI2 {
 			
 			if(ergebnis != 99){
 				break;
-			}//valides Ergebnis? Sonst wird der Gegner überprüft
+			}//valides Ergebnis? Sonst wird der Gegner ï¿½berprï¿½ft
 			
 			///Gegner
 			

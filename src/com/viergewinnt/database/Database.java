@@ -1,4 +1,4 @@
-package Database;
+package com.viergewinnt.database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;

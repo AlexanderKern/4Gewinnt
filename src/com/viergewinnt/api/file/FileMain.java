@@ -5,10 +5,9 @@ import java.io.FileWriter;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import com.viergewinnt.api.common.util.Message;
-
-import Database.ReuseServermethode;
-import GUI.ControllerField;
-import ki.KI2;
+import com.viergewinnt.api.common.util.ReuseServermethode;
+import com.viergewinnt.gui.ControllerField;
+import com.viergewinnt.ki.KiMain;
 
 public class FileMain extends Thread {
 	private final ControllerField cf;
@@ -22,7 +21,7 @@ public class FileMain extends Thread {
 
 	public void run() {
 		// Variables
-		final KI2 ki = new KI2();
+		final KiMain ki = new KiMain();
 		final String team = ReuseServermethode.getTeam();
 		final String filePath = ReuseServermethode.getPfad();
 		final String clientFilename = "spieler" + team + "2server.txt";
@@ -49,7 +48,7 @@ public class FileMain extends Thread {
 				cf.setStone(zug[0], zug[1], true);
 			}
 			
-			// Berechne nächsten Zug
+			// Berechne nï¿½chsten Zug
 			ki.berechne();
 
 			// Zug in KI setzen
@@ -60,7 +59,7 @@ public class FileMain extends Thread {
 			cf.setStone(zug[0], zug[1], false);
 
 			try {
-				// Nächsten Zug an Server senden
+				// Nï¿½chsten Zug an Server senden
 				// Zug an Server senden
 				final FileWriter writer = new FileWriter(clientFile);
 				writer.write(String.valueOf(ki.get_spalte()));

@@ -10,9 +10,8 @@ import com.pusher.client.connection.Connection;
 import com.pusher.client.connection.ConnectionState;
 import com.viergewinnt.api.common.util.Function;
 import com.viergewinnt.api.common.util.Message;
-
-import GUI.ControllerField;
-import ki.KI2;
+import com.viergewinnt.gui.ControllerField;
+import com.viergewinnt.ki.KiMain;
 
 public class PusherMain {
 	ControllerField cf;
@@ -22,7 +21,7 @@ public class PusherMain {
 	}
 
 	public void pusher(String team, int sequenceNumber) {
-		KI2 ki = new KI2();
+		KiMain ki = new KiMain();
 
 		final PusherConnectionHandler pch = new PusherConnectionHandler().registerHandler("MoveToAgent",
 				new Function<Pusher, PrivateChannel, String>() {

@@ -1,9 +1,10 @@
-package GUI;
+package com.viergewinnt.gui;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
-import Database.Database;
+import com.viergewinnt.database.Database;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;

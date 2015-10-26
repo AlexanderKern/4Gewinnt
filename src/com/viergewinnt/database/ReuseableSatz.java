@@ -1,4 +1,4 @@
-package Database;
+package com.viergewinnt.database;
 
 /**
  * Wiederverwendung der zugewiesenen Werte zur Instanz Satz im Laufe des Programms 

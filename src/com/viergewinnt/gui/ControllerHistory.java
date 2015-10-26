@@ -1,4 +1,4 @@
-package GUI;
+package com.viergewinnt.gui;
 
 import java.net.URL;
 import java.sql.ResultSet;
@@ -8,9 +8,10 @@ import java.util.ResourceBundle;
 import javax.swing.JFileChooser;
 //import javax.swing.Timer;
 
-import Database.Database;
-import Database.Spiel;
-import Database.ValueClass;
+import com.viergewinnt.database.Database;
+import com.viergewinnt.database.Spiel;
+import com.viergewinnt.database.ValueClass;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
