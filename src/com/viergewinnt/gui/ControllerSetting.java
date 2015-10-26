@@ -49,9 +49,23 @@ public class ControllerSetting implements Initializable {
 		bStart.setOnAction((ev) -> {
 			
 			System.out.println(System.getProperty("user.dir"));
-
-//-------------------------------------------------------------------------------
+			//Spiel anlegen in Datenbank---------------------------------------------------------------------------
 			Database db = new Database();
+			boolean farbe = true; 
+			System.out.println("Spiel anlegen");
+			if( ReuseServermethode.getTeam() == "O"){
+				farbe = true;
+			}
+			else if(ReuseServermethode.getTeam() == "X"){
+				farbe = false;
+			}	
+			try {
+				db.createSpiel(tfEnemy.getText(), farbe);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+	
 			
 			try {
 				db.createSpieler(tfEnemy.getText());
