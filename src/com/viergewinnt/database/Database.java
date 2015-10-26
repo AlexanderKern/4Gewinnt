@@ -7,10 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Die Klasse Database beinhaltet alle notwendigen Methoden, die fuer die Erstellung der Datenbank und der Ausfuehrung von Operationen notwendig sind
