@@ -34,11 +34,11 @@ public class main extends Application{
 	            }
 
 	            /*
-	             * Aufruf Satz Übersicht 
+	             * Aufruf der Übersicht der Sätze 
 	             */
 				if (((ValueClass) newValue).getColumn1() != null ){
 					int spielId = Integer.parseInt(((ValueClass) newValue).getColumn1());
-					System.out.println("Ausgewähltes Spiele ID = "+((ValueClass) newValue).getColumn1());
+					System.out.println("Ausgewähltes Spiele ID = "+spielId);
 					 try{
 			                StackPane secondaryLayout = new StackPane();
 			                Scene secondScene = new Scene(secondaryLayout, 200, 100);
@@ -133,6 +133,11 @@ public class main extends Application{
 		    return tableViewSaetze;
 	}
 	 
+	 /**
+	  * Uebersicht der Spiele in Tabelle
+	  * @return alle Spiele 
+	  * @throws SQLException
+	  */
 	private TableView<ValueClass> createTableView() throws SQLException {
 		 
 		 Database db = new Database();
@@ -197,6 +202,11 @@ public class main extends Application{
 		    return tableView;
 		  }
 	
+	/**
+	 * 
+	 * @param satzId
+	 * @throws SQLException
+	 */
 	public void ZuegeAnzeigen(int satzId) throws SQLException{
 		Database db = new Database();
 		ResultSet rs = db.getZuege(satzId);
@@ -205,7 +215,7 @@ public class main extends Application{
 		
 		//public void setStone(int row, int col, boolean coin) {
 		int zugSpalte;
-		int  zugZeile;
+		int zugZeile;
 		boolean zugGegner;
 		
 		while(rs.next()){ // Itariere Zeilen 

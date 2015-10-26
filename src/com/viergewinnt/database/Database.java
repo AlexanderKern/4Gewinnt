@@ -95,7 +95,7 @@ public class Database {
 		
 
 		/**
-		 * fährt die Datenbankverbindung sauber herunter und schließt die Datenbankverbindung
+		 * faehrt die Datenbankverbindung ordentlich herunter und schliesst die Datenbankverbindung
 		 * @throws SQLException
 		 */
 		public void shutdown() throws SQLException{
@@ -160,10 +160,10 @@ public class Database {
 		     rsId.close();
 			
 			
-			//Speichern der notwendigen Information für einen globalen Zugriff
+			//Speichern der notwendigen Information in für einen globalen Zugriff
 			ReuseableSpiel reusespiel = new ReuseableSpiel();
 			reusespiel.setId(spielId);
-			reusespiel.setName(gegner);
+			reusespiel.setName(gegner); 
 			
 		}
 		
@@ -209,27 +209,15 @@ public class Database {
 		
 		/**
 		 * gibt alle Eintraege aus der Datenbank zurück
+		 * @return alle Spiele als ResultSet
 		 * @throws SQLException
 		 */
 		public ResultSet getSpiele() throws SQLException{
 		
-					
 			PreparedStatement stGet = Database.conn.prepareStatement("SELECT * FROM spiel");
 			ResultSet rs = stGet.executeQuery();
-			//TODO wie sollen die Spiel an Damm übergeben werden? 		
-			// SpielId Gegner Punkte 
 			
 			return rs;
-			
-			/*
-			if(rs.next()){
-				for( int i = 1 ; i <= rs.getMetaData().getColumnCount(); i++){
-					System.out.println(rs.getString(i));
-				}
-				
-				
-			}
-			*/
 		}
 		
 		/**
@@ -275,7 +263,7 @@ public class Database {
 		}
 		
 		/**
-		 * gibt die Anzahl der gespielten Sätzen zu einem Spiel zurueck
+		 * gibt die Anzahl der gespielten Saetzen zu einem Spiel zurueck
 		 * @param spielId
 		 * @return anzahlSaetze
 		 * @throws SQLException
@@ -325,15 +313,12 @@ public class Database {
 		 * @throws SQLException
 		 */
 		public void satzende(int satzId , String gewonnen ) throws SQLException{
-			int pktSpiel ; 
-		    int anzahlSaetze ;
 		     
 		    PreparedStatement stSatzende = Database.conn.prepareStatement("UPDATE satz SET gewonnen = ? WHERE id = ?");
 		    stSatzende.setString(1, gewonnen);
 		    stSatzende.setInt(2, satzId);
 		    
 		    stSatzende.executeUpdate();
-		  
 			
 		}
 		
@@ -368,6 +353,12 @@ public class Database {
 			
 		}
 		
+		/**
+		 * gibt alle Zuege zu einem Satz wieder
+		 * @param satzId Id des Satzes
+		 * @return alle Zuege in Form eines ResultSets
+		 * @throws SQLException
+		 */
 		public ResultSet getZuege(int satzId) throws SQLException{
 			
 			PreparedStatement st = conn.prepareStatement("SELECT spalte, zeile, gegner FROM zug WHERE satz_id = ?");
