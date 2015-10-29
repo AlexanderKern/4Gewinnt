@@ -43,6 +43,10 @@ public class ControllerStart implements Initializable {
 				play.setOnAction((ev) -> {
 			try {
 			
+				//Datenbank--------------------------------------------------------------------------------
+				Database db = new Database();
+				db.createSpiel();
+				//-----------------------------------------------------------------------------------------
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("selectScreen.fxml"));
 				Parent root1 = (Parent) fxmlLoader.load();
 				Stage stage = new Stage();

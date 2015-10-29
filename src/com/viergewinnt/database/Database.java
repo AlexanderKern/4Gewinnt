@@ -131,7 +131,7 @@ public class Database {
 		 * @param farbe Steinfarbe
 		 * @throws SQLException
 		 */
-		public void createSpiel(String gegner, boolean farbe) throws SQLException{
+		public void createSpiel() throws SQLException{
 			
 			int spielId;
 			
@@ -142,11 +142,9 @@ public class Database {
 			 java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
 			 dateString =  sqlDate.toString();
 			 
-			 PreparedStatement stSpiel = Database.conn.prepareStatement("INSERT INTO spiel( gegner, date, farbe) VALUES( ? , ? , ?);");
-			 stSpiel.setString(1, gegner);
-			 stSpiel.setString(2,  dateString);
-			 stSpiel.setBoolean(3, farbe);
-			
+			 PreparedStatement stSpiel = Database.conn.prepareStatement("INSERT INTO spiel(date) VALUES(?);");
+			 stSpiel.setString(1,  dateString);
+
 			 stSpiel.executeUpdate();
 			 
 			//Get Id for actual spiel
@@ -168,13 +166,15 @@ public class Database {
 		 * @param gegner Gegnername 
 		 * @throws SQLException
 		 */
-		public void updateSpiel(String gegner) throws SQLException{
+		public void updateSpiel(String gegner, boolean farbe) throws SQLException{
 			
 			ReuseableSpiel reusespiel = new ReuseableSpiel();
 			
-			 PreparedStatement stSpiel = Database.conn.prepareStatement("UPDATE spiel SET gegner = ? WHERE id = ?");
+			 PreparedStatement stSpiel = Database.conn.prepareStatement("UPDATE spiel SET gegner = ? , farbe = ?  WHERE id = ?"); 
 			 stSpiel.setString(1, gegner);
-			 stSpiel.setInt(2, reusespiel.getId());
+			 stSpiel.setBoolean(2, farbe);
+			 System.out.println("Spiel"+ reusespiel.getId());
+			 stSpiel.setInt(3, reusespiel.getId());
 
 			 stSpiel.executeUpdate();
 			

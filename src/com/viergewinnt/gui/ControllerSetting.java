@@ -49,33 +49,7 @@ public class ControllerSetting implements Initializable {
 		bStart.setOnAction((ev) -> {
 			
 			System.out.println(System.getProperty("user.dir"));
-			//Spiel anlegen in Datenbank---------------------------------------------------------------------------
-			Database db = new Database();
-			boolean farbe = true; 
-			System.out.println("Spiel anlegen");
-			if( ReuseServermethode.getTeam() == "O"){
-				farbe = true;
-			}
-			else if(ReuseServermethode.getTeam() == "X"){
-				farbe = false;
-			}	
-			try {
-				db.createSpiel(tfEnemy.getText(), farbe);
-			} catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-	
-			
-			try {
-				db.createSpieler(tfEnemy.getText());
-			} catch (Exception e2) {
-				// TODO Auto-generated catch block
-				e2.printStackTrace();
-				System.out.println(tfEnemy.getText() + " konnte nicht angelegt werden!!!");
-			}
-			//-------------------------------------------------------------------------------
-
+		
 			// Settingsparameter setzen
 			if (cX.isSelected()) {
 				ReuseServermethode.setTeam("X");
@@ -94,6 +68,35 @@ public class ControllerSetting implements Initializable {
 			}
 
 			ReuseServermethode.setGegner(tfEnemy.getText());
+			
+			//Spiel anlegen in Datenbank---------------------------------------------------------------------------
+			Database db = new Database();
+			boolean farbe = true; 
+			System.out.println("Spiel anlegen");
+			System.out.println("Team Farbe"+ReuseServermethode.getTeam());
+			if( ReuseServermethode.getTeam() == "O"){
+				farbe = true; // Grün
+			}
+			else if(ReuseServermethode.getTeam() == "X"){
+				farbe = false; // Blau
+			}	
+			try {
+				db.updateSpiel(tfEnemy.getText(), farbe);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+	
+			
+			try {
+				db.createSpieler(tfEnemy.getText());
+			} catch (Exception e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+				System.out.println(tfEnemy.getText() + " konnte nicht angelegt werden!!!");
+			}
+			//-------------------------------------------------------------------------------
+
 
 			
 			if (rSocket.isSelected()) {
