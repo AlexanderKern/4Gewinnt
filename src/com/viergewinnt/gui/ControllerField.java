@@ -29,7 +29,7 @@ import javafx.stage.StageStyle;
 //Controller Field
 public class ControllerField implements Initializable {
 	@FXML
-	Button button, bExit, bBack;
+	Button button, bExit, bBack, bNewSatz;
 
 	@FXML
 	GridPane grid;
@@ -57,6 +57,8 @@ public class ControllerField implements Initializable {
 		/*--------------------------------------------------------------------------------------------------------------
 		 * Satz in Datenbank anlegen
 		 */	
+		bNewSatz.setVisible(false);
+		
 		ReuseableSpiel reuseSpiel = new ReuseableSpiel();
 		Database db = new Database(); 
 		try {
@@ -129,6 +131,10 @@ public class ControllerField implements Initializable {
 			((Node) (ev.getSource())).getScene().getWindow().hide();
 		}); // end of cancel
 
+		
+		bNewSatz.setOnAction((ev) -> {
+			// Was auch immer passieren soll wenn der Knopf gerückt wird
+		});
 	}// end of init
 
 	public void setStone(int row, int col, boolean coin) {
@@ -156,7 +162,7 @@ public class ControllerField implements Initializable {
 				}
 			}
 		});
-	}
+	}// end of setStone
 	
 	public void setResult(String result, int sequenceNumber) {
 		Platform.runLater(new Runnable() {
@@ -189,6 +195,14 @@ public class ControllerField implements Initializable {
 				}
 			}
 		});
-	}
+		
+		
+	}// end of setResult
+	
 
-}
+	
+	public void sichtbar(boolean bol)
+	{
+		bNewSatz.setVisible(bol);
+	}
+}// end of class

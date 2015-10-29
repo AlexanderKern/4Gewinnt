@@ -14,19 +14,19 @@
             <Image url="@../../../../assets/img/field.jpg" />
          </image>
       </ImageView>
-      <Label contentDisplay="CENTER" layoutX="271.0" layoutY="14.0" prefHeight="19.0" prefWidth="41.0" text="Satz:" textAlignment="CENTER" />
-      <Label fx:id="lSatz" layoutX="318.0" layoutY="16.0" text="1" />
-      <ImageView fx:id="ivOne" fitHeight="50.0" fitWidth="50.0" layoutX="212.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+      <Label contentDisplay="CENTER" layoutX="271.0" layoutY="8.0" prefHeight="19.0" prefWidth="41.0" text="Satz:" textAlignment="CENTER" />
+      <Label fx:id="lSatz" layoutX="318.0" layoutY="10.0" text="1" />
+      <ImageView fx:id="ivOne" fitHeight="50.0" fitWidth="50.0" layoutX="212.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../assets/img/coinGrey.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="ivTwo" fitHeight="50.0" fitWidth="50.0" layoutX="272.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="ivTwo" fitHeight="50.0" fitWidth="50.0" layoutX="272.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../assets/img/coinGrey.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="ivThree" fitHeight="50.0" fitWidth="50.0" layoutX="332.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="ivThree" fitHeight="50.0" fitWidth="50.0" layoutX="332.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../assets/img/coinGrey.png" />
          </image>
@@ -64,5 +64,6 @@
           <RowConstraints maxHeight="62.0" minHeight="10.0" prefHeight="62.0" vgrow="SOMETIMES" />
         </rowConstraints>
       </GridPane>
+      <Button fx:id="bNewSatz" layoutX="211.0" layoutY="65.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="172.0" text="neuer Satz" />
    </children>
 </Pane>
