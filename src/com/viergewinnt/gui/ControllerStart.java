@@ -64,7 +64,7 @@ public class ControllerStart implements Initializable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}); // end of exit
+		}); // end of play
 
 		statistic.setOnAction((ev) -> {
 			try {

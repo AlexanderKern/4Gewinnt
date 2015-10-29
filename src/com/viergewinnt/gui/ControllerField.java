@@ -133,7 +133,26 @@ public class ControllerField implements Initializable {
 
 		
 		bNewSatz.setOnAction((ev) -> {
-			// Was auch immer passieren soll wenn der Knopf gerückt wird
+			try 
+			{
+				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("selectScreen.fxml"));
+				Parent root1 = (Parent) fxmlLoader.load();
+				Stage stage = new Stage();
+				stage.initModality(Modality.APPLICATION_MODAL);
+				stage.initStyle(StageStyle.UNDECORATED);
+				stage.setTitle("ABC");
+				stage.setScene(new Scene(root1));
+				stage.show();
+
+				((Node) (ev.getSource())).getScene().getWindow().hide();
+				
+			}
+
+			catch (Exception e) 
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		});
 	}// end of init
 
