@@ -167,7 +167,7 @@ public class main extends Application{
                 	 spiel.setDatum(rs.getString(i));
                 	 break;
                  case 5:
-                	 spiel.setFarbe(rs.getString(i));
+                	 spiel.setFarbe(rs.getBoolean(i));
                  }
              }
            

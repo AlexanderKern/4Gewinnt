@@ -13,6 +13,7 @@ public class Spiel {
 	
 	private String gegner;
 	private String farbe;
+	private boolean bFarbe;
 	private String id;
 	private String punkte;
 	private String datum; 
@@ -51,16 +52,17 @@ public Spiel(){};
 	        	return this.datum;
 	        }
 	
-	        public void setFarbe(String farbe){
-	        	this.farbe = farbe;
-	        }
-	        
-	        public String getFarbe(){
-	        	if (this.farbe == "true"){
+	        public void setFarbe(boolean bfarbe){
+	        	this.bFarbe = bfarbe;
+	        	if (bFarbe == true){
 	        		this.farbe = "blau";
 	        	}else {
 					this.farbe = "grün";
 				}
+	        }
+	        
+	        public String getFarbe(){
+	        	
 	        	return this.farbe;
 	        }
 

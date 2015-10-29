@@ -110,7 +110,7 @@ TableColumn<ValueClass, String> col1, col2, col3,col4, col5;
 	                	 spiel.setDatum(rs.getString(i));
 	                	 break;
 	                 case 5:
-	                	 spiel.setFarbe(rs.getString(i));
+	                	 spiel.setFarbe(rs.getBoolean(i));
 	                		
 	                 }// end of switch 
 	             }// end of for
@@ -119,7 +119,7 @@ TableColumn<ValueClass, String> col1, col2, col3,col4, col5;
 	                 ValueClass cl = new ValueClass(spiel.getId(), spiel.getPunkte(), spiel.getGegener(), spiel.getDatum(), spiel.getFarbe());
 	                 data.add(cl); 
 	                 
-	                 System.out.println("SPielfarbe"+spiel.getFarbe());
+	                 System.out.println("Spielfarbe"+spiel.getFarbe());
 
 	                col1.setText("ID");
 	                col2.setText("Punkte");
