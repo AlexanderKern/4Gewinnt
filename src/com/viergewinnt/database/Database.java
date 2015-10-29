@@ -160,8 +160,25 @@ public class Database {
 			//Speichern der notwendigen Information in für einen globalen Zugriff
 			ReuseableSpiel reusespiel = new ReuseableSpiel();
 			reusespiel.setId(spielId);
-			reusespiel.setName(gegner); 
 			
+			
+		}
+		/**
+		 * Setze den Gegnername zur aktuellen Spiele Id
+		 * @param gegner Gegnername 
+		 * @throws SQLException
+		 */
+		public void updateSpiel(String gegner) throws SQLException{
+			
+			ReuseableSpiel reusespiel = new ReuseableSpiel();
+			
+			 PreparedStatement stSpiel = Database.conn.prepareStatement("UPDATE spiel SET gegner = ? WHERE id = ?");
+			 stSpiel.setString(1, gegner);
+			 stSpiel.setInt(2, reusespiel.getId());
+
+			 stSpiel.executeUpdate();
+			
+			 reusespiel.setName(gegner); 
 		}
 		
 		/**
