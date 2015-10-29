@@ -55,9 +55,9 @@ public Spiel(){};
 	        public void setFarbe(boolean bfarbe){
 	        	this.bFarbe = bfarbe;
 	        	if (bFarbe == true){
-	        		this.farbe = "grün";
+	        		this.farbe = "blau";
 	        	}else {
-					this.farbe = "blau";
+					this.farbe = "grün";
 				}
 	        }
 	        

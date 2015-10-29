@@ -53,12 +53,12 @@ public class ControllerSetting implements Initializable {
 			// Settingsparameter setzen
 			if (cX.isSelected()) {
 				ReuseServermethode.setTeam("X");
-				ReuseServermethode.setTeamfarbe(true);
-				ReuseServermethode.setGegnerfarbe(false);
+				ReuseServermethode.setTeamfarbe(false);
+				ReuseServermethode.setGegnerfarbe(true);
 			} else {
 				ReuseServermethode.setTeam("O");
-				ReuseServermethode.setTeamfarbe(false);
 				ReuseServermethode.setTeamfarbe(true);
+				ReuseServermethode.setTeamfarbe(false);
 			}
 			if (rSocket.isSelected()) {
 				ReuseServermethode.setMethode("Pusher");
