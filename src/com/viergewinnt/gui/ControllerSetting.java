@@ -53,8 +53,12 @@ public class ControllerSetting implements Initializable {
 			// Settingsparameter setzen
 			if (cX.isSelected()) {
 				ReuseServermethode.setTeam("X");
+				ReuseServermethode.setTeamfarbe(true);
+				ReuseServermethode.setGegnerfarbe(false);
 			} else {
 				ReuseServermethode.setTeam("O");
+				ReuseServermethode.setTeamfarbe(false);
+				ReuseServermethode.setTeamfarbe(true);
 			}
 			if (rSocket.isSelected()) {
 				ReuseServermethode.setMethode("Pusher");
@@ -74,12 +78,8 @@ public class ControllerSetting implements Initializable {
 			boolean farbe = true; 
 			System.out.println("Spiel anlegen");
 			System.out.println("Team Farbe"+ReuseServermethode.getTeam());
-			if( ReuseServermethode.getTeam() == "O"){
-				farbe = true; // Grün
-			}
-			else if(ReuseServermethode.getTeam() == "X"){
-				farbe = false; // Blau
-			}	
+			farbe = ReuseServermethode.getTeamfarbe(); //Grün true und Blau false
+				
 			try {
 				db.updateSpiel(tfEnemy.getText(), farbe);
 			} catch (Exception e1) {

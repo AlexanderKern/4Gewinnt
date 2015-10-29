@@ -11,6 +11,7 @@ import com.pusher.client.connection.Connection;
 import com.pusher.client.connection.ConnectionState;
 import com.viergewinnt.api.common.util.Function;
 import com.viergewinnt.api.common.util.Message;
+import com.viergewinnt.api.common.util.ReuseServermethode;
 import com.viergewinnt.database.Database;
 import com.viergewinnt.database.ReuseableSatz;
 import com.viergewinnt.gui.ControllerField;
@@ -66,7 +67,7 @@ public class PusherMain {
 
 								// Stein in KI setzen
 								// ControllerField cf = new ControllerField();
-								cf.setStone(zug[0], zug[1], false);
+								cf.setStone(zug[0], zug[1], ReuseServermethode.getTeamfarbe());
 
 							} else {
 								// Gegnerzug in KI setzen
@@ -83,7 +84,7 @@ public class PusherMain {
 								}
 								//-------------------------------------------------------------------------------------------------------
 								//Gegnerzug in GUI setzen
-								cf.setStone(zug[0], zug[1], true);
+								cf.setStone(zug[0], zug[1], ReuseServermethode.getGegnerfarbe());
 
 								// Berechne nächsten Zug
 								ki.berechne();
@@ -101,7 +102,7 @@ public class PusherMain {
 								}
 								//-------------------------------------------------------------------------------------------------------
 								//Zug in GUI setzen
-								cf.setStone(zug[0], zug[1], false);
+								cf.setStone(zug[0], zug[1], ReuseServermethode.getTeamfarbe());
 
 								// Nächsten Zug an Server senden
 								channel.trigger("client-event", "{\"move\":\"" + ki.get_spalte() + "\"}");

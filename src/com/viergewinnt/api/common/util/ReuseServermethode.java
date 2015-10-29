@@ -1,7 +1,5 @@
 package com.viergewinnt.api.common.util;
 
-
-
 public class ReuseServermethode {
 
 private static String methode;
@@ -15,6 +13,10 @@ private static String gegner;
 private static String key;
 
 private static String secret;
+
+private static boolean teamfarbe;
+
+private static boolean gegnerfarbe;
 
 public static void setMethode(String methode) {
 
@@ -99,6 +101,34 @@ ReuseServermethode.secret = secret;
 public static String getSecret() {
 
 return secret;
+
+}
+
+public static void setTeamfarbe(boolean teamfarbe) {
+
+ReuseServermethode.teamfarbe = teamfarbe;
+
+}
+
+
+
+public static boolean getTeamfarbe() {
+
+return teamfarbe;
+
+}
+
+public static void setGegnerfarbe(boolean gegnerfarbe) {
+
+ReuseServermethode.gegnerfarbe = gegnerfarbe;
+
+}
+
+
+
+public static boolean getGegnerfarbe() {
+
+return gegnerfarbe;
 
 }
 
