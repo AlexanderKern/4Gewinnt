@@ -38,7 +38,7 @@ public class ControllerField implements Initializable {
 	TextField colR, colY, rowR, rowY;
 
 	@FXML
-	ImageView ivOne, ivTwo, ivThree;
+	ImageView ivOne, ivTwo, ivThree, ivGreen, ivBlue;
 
 	@FXML
 	Label lPlayerY, lPlayerR;
@@ -56,7 +56,7 @@ public class ControllerField implements Initializable {
 	{
 		/*--------------------------------------------------------------------------------------------------------------
 		 * Satz in Datenbank anlegen
-		 */
+		 */	
 		ReuseableSpiel reuseSpiel = new ReuseableSpiel();
 		Database db = new Database(); 
 		try {
@@ -67,13 +67,21 @@ public class ControllerField implements Initializable {
 		}
 		//--------------------------------------------------------------------------------------------------------------
 		
-
-		lPlayerR.setText("Claire");
-		lPlayerY.setText(ReuseServermethode.getGegner());
+		if(ReuseServermethode.getTeamfarbe() == false){
+			lPlayerR.setText("Claire");
+			lPlayerY.setText(ReuseServermethode.getGegner());
+		}else{
+			lPlayerY.setText("Claire");
+			lPlayerR.setText(ReuseServermethode.getGegner());
+		}
 		
 		if(ReuseServermethode.getMethode().equals("Pusher")){
+			try{
 			final PusherMain pusherMain = new PusherMain(this);
-			pusherMain.pusher(ReuseServermethode.getTeam(), 1);
+			pusherMain.pusher(ReuseServermethode.getTeam(), db.getAnzahlSaetze(ReuseableSpiel.id));
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 		}else if(ReuseServermethode.getMethode().equals("File")){
 			new FileMain(this, 1).start();
 		}
