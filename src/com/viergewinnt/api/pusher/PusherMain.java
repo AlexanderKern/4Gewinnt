@@ -14,6 +14,7 @@ import com.viergewinnt.api.common.util.Message;
 import com.viergewinnt.api.common.util.ReuseServermethode;
 import com.viergewinnt.database.Database;
 import com.viergewinnt.database.ReuseableSatz;
+import com.viergewinnt.database.ReuseableSpiel;
 import com.viergewinnt.gui.ControllerField;
 import com.viergewinnt.ki.KiMain;
 
@@ -41,6 +42,7 @@ public class PusherMain {
 						//Datenbank---------------------------------------------------------------------------------------------
 						Database db = new Database();
 						ReuseableSatz reuseSatz = new ReuseableSatz();
+						ReuseableSpiel reuseSpiel = new ReuseableSpiel();
 						//------------------------------------------------------------------------------------------------------
 						
 						if (message.getFreigabe() && message.getSatzstatus().equals("Satz spielen")
@@ -111,6 +113,31 @@ public class PusherMain {
 						} else {
 							cf.setResult(message.getSieger(), sequenceNumber);
 							pusher.disconnect();
+							//Satz Ende-------------------------------------------------------------------------------------------------------
+							// X = grün // 0 blau 
+							
+							if( ReuseServermethode.getTeam().equals( message.getSieger()) ){
+								reuseSatz.setGewonnen("Claire");
+							}else{
+								reuseSatz.setGewonnen(reuseSpiel.getName());
+							}
+						
+							
+							try {
+								db.updateSatz(reuseSatz.getGewonnen(), reuseSatz.getId());
+								System.out.println(db.getAnzahlSaetze(reuseSpiel.getId()));;
+								db.getAnzahlSaetze(reuseSpiel.getId());
+								if(db.getAnzahlSaetze(reuseSpiel.getId()) ==3){
+									System.out.println("es wurden 3 Seatze gespielt vom Spiel mit der ID "+reuseSpiel.getId());
+									
+									db.spielEnde(reuseSpiel.getId(), db.getSpielPkt(reuseSpiel.getId()));
+								}
+							} catch (SQLException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							
+							//-------------------------------------------------------------------------------------------------------
 						}
 						Toolkit.getDefaultToolkit().beep();
 

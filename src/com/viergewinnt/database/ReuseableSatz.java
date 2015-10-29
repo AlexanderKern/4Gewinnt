@@ -10,6 +10,7 @@ public class ReuseableSatz {
 	
 	public static int id;
 	public static int spielId;
+	public static String gewonnen;
 
 	public void setId( int id){
 		ReuseableSatz.id = id; 
@@ -25,6 +26,14 @@ public class ReuseableSatz {
 	
 	public int getSpielId(){
 		return spielId;
+	}
+	
+	public void setGewonnen( String gewonnen){
+		ReuseableSatz.gewonnen = gewonnen; 
+	}
+	
+	public String getGewonnen(){
+		return gewonnen;
 	}
 	
 }
