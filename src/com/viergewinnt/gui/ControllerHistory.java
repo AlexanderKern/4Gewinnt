@@ -117,7 +117,9 @@ TableColumn<ValueClass, String> col1, col2, col3,col4, col5;
 	             
 	                 
 	                 ValueClass cl = new ValueClass(spiel.getId(), spiel.getPunkte(), spiel.getGegener(), spiel.getDatum(), spiel.getFarbe());
-	                 data.add(cl);   
+	                 data.add(cl); 
+	                 
+	                 System.out.println("SPielfarbe"+spiel.getFarbe());
 
 	                col1.setText("ID");
 	                col2.setText("Punkte");
