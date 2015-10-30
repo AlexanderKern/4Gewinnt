@@ -1,6 +1,11 @@
 package com.viergewinnt.ki;
 
 public class KiMain {
+	
+	/**
+	 * Die Klasse KiMain berechenet den Spielzug der kuenstlichen Intellegenz Claire
+	 * @author Bjoern Korioth
+	 */
 
 	int ergebnis = 99;
 	int zeile;
@@ -12,7 +17,9 @@ public class KiMain {
 	
 	// Methodenbeginn
 	
-	//Konstruktor
+	/**
+	 * Konstrucktor
+	 */
 	public KiMain(){
 		
 		//Feld einstellen
@@ -24,7 +31,12 @@ public class KiMain {
 		}				
 	}// end Konstruktor
 	
+	
 	// Setter (feld: 0=unbelegt,1=spieler,2=gegner)
+	/**
+	 * Setzt den Stein in eine Spalte  (feld: 0=unbelegt,1=spieler,2=gegner)
+	 * @param spalte Spalte 
+	 */
 		public void setGegnerStein(int spalte) {
 			
 			spalte_rueckgabe = spalte;
@@ -34,6 +46,10 @@ public class KiMain {
 			akt_zeile[spalte]--;
 		}// end setter
 		
+		/**
+		 * 
+		 * @param spalte Spalte 
+		 */
 		public void setEigenerStein(int spalte) {
 
 			spalte_rueckgabe = spalte;			
@@ -43,14 +59,25 @@ public class KiMain {
 			akt_zeile[spalte]--;
 		}// end setter
 
+		/**
+		 * 
+		 * @return
+		 */
 	public int get_spalte(){		
 		return ergebnis;	
 	}// end get spalte
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public int[] getletzter_zug(){	
 		return letzter_zug;
 	}// get letzter zug
 	
+	/**
+	 * 
+	 */
 	public void berechne(){
 		ergebnis = 99;
 		while (true){
