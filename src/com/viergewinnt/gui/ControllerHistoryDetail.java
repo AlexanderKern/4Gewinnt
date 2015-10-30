@@ -36,6 +36,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+/**
+ * Die Klasse ControllerHistoryDetail zeigt alle gespielten Saetze zum gewaehöetn Spiel an
+ * @author Cara Damm
+ *
+ */
 
 public class ControllerHistoryDetail implements Initializable
 {
@@ -49,6 +54,9 @@ TableView<ValueClass> tableViewSatz;
 TableColumn<ValueClass, String> col1, col2, col3,col4, col5;
 
 	@Override
+	/**
+	 * 
+	 */
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources)
 	{
 		ReuseableSatz reuseSatz = new ReuseableSatz();
@@ -82,6 +90,7 @@ TableColumn<ValueClass, String> col1, col2, col3,col4, col5;
            	}		
            	}); // end of tableView handle
 		
+	
 		ObservableList<ValueClass> data = FXCollections.observableArrayList(); //Darzustellebde Daten
 		try {
 			Database db = new Database();

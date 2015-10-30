@@ -1,5 +1,11 @@
 package com.viergewinnt.api.common.util;
 
+/**
+ * Die Klasse Message..
+ * @author Alexander Kern
+ *
+ */
+
 public class Message {
 	private String message;
 	private boolean freigabe;

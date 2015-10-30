@@ -21,6 +21,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+/**
+ * Die Klasse ControllerStart startet ruft das Startbildschrims auf
+ * @author Cara Damm
+ *
+ */
 public class ControllerStart implements Initializable {
 	@FXML
 	public Button statistic, play, exit;
@@ -35,7 +40,13 @@ public class ControllerStart implements Initializable {
 	public Pane pane;
 	
 
+	
 	@Override
+	/**
+	 * Initailisiert den Startbildschirm
+	 * @param fxmlFileLocation
+	 * @param resources
+	 */
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
 		
 		

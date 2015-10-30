@@ -26,6 +26,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+/**
+ * Die Klasse ControllerField
+ * @author Cara Damm
+ *
+ */
 //Controller Field
 public class ControllerField implements Initializable {
 	@FXML
@@ -156,6 +161,12 @@ public class ControllerField implements Initializable {
 		});
 	}// end of init
 
+	/**
+	 * Setzt den gespielten Stein ins Feld
+	 * @param row Spalte
+	 * @param col Zeile
+	 * @param coin Steinfarbe
+	 */
 	public void setStone(int row, int col, boolean coin) {
 		// coin green = true coin blue = false
 		Platform.runLater(new Runnable() {
@@ -183,6 +194,11 @@ public class ControllerField implements Initializable {
 		});
 	}// end of setStone
 	
+	/**
+	 * 
+	 * @param result
+	 * @param sequenceNumber 
+	 */
 	public void setResult(String result, int sequenceNumber) {
 		Platform.runLater(new Runnable() {
 			public void run() {
@@ -219,7 +235,10 @@ public class ControllerField implements Initializable {
 	}// end of setResult
 	
 
-	
+	/**
+	 * Bei Satzende wird der Button zum Aufruf eines neuen Satz angeziegt
+	 * @param bol
+	 */
 	public void sichtbar(boolean bol)
 	{
 		bNewSatz.setVisible(bol);

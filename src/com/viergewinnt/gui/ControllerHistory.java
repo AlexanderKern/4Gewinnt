@@ -36,6 +36,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+/**
+ * Die Klasse ControllerHistory zeigt alle gespielten Spiele an
+ * @author Cara Damm
+ *
+ */
 public class ControllerHistory implements Initializable
 {
 @FXML
@@ -48,6 +53,9 @@ TableView<ValueClass> tableView, tZuege;
 TableColumn<ValueClass, String> col1, col2, col3,col4, col5;
 
 	@Override
+	/**
+	 * 
+	 */
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources)
 	{
 		// Listener für die Tabelle von den Spielen

@@ -1,4 +1,7 @@
 package com.viergewinnt.api.common.util;
+/**
+ * Das Interface Functionn
+ */
 
 import java.io.IOException;
 

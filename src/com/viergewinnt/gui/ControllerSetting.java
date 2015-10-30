@@ -24,6 +24,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+/**
+ * Die Klasse ControllerSetting ermoeglicht dem Anwender alle notwendigen Einstellung fuer das Spiel zutreffen
+ * und speichert die Werte in die Datenbank bzw. leitet die gewaehlte Kommunikation an den Pusher weiter
+ * @author Cara Damm
+ *
+ */
 public class ControllerSetting implements Initializable {
 	@FXML
 	Button bCancel, bSelect, bStart;
@@ -43,6 +49,9 @@ public class ControllerSetting implements Initializable {
 	PusherMain pusherMain;
 
 	@Override
+	/**
+	 * Initailisiert das Einstellungsfenster
+	 */
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
 
 		// Spielfeld soll aufgerufen werden

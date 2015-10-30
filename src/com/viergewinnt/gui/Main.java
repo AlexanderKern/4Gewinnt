@@ -11,7 +11,17 @@ import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
+/**
+ * Die Klasse Main startet die 4Gewinnt Applikation und ruft das Startbildschrims auf
+ * @author MajkenPlugge
+ *
+ */
+
 public class Main extends Application {
+	
+	/**
+	 * Aufruf des Startbildschrims und anlegen der Datenbanktabellen
+	 */
 	@Override
 	public void start(Stage stage) throws IOException {
 		// Datenbank anlegen
@@ -33,6 +43,10 @@ public class Main extends Application {
 		stage.show();
 	} // end of start
 
+	/**
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}// end of Main

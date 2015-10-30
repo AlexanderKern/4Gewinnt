@@ -57,7 +57,11 @@ public class Database {
 			db.update(zug_table);
 			
 		}
-		
+		/**
+		 * loescht die Datenbank Tabellen udn Eintraege
+		 * @param db Datenbankverbindung
+		 * @throws SQLException
+		 */
 		public void deleteTable (Database db) throws SQLException{
 			
 			db.update("DROP table person");
@@ -335,7 +339,12 @@ public class Database {
 		    stSatzende.executeUpdate();
 			
 		}
-		
+		/**
+		 * gibt alle Saetze zu einer bestimmten Spielid zurieck
+		 * @param spielId Id des Spiels
+		 * @return alle Saetze zu eines Spiels inform eines ResultSets
+		 * @throws SQLException
+		 */
 		public ResultSet getSaetze(int spielId) throws SQLException{
 			
 			PreparedStatement st = conn.prepareStatement("SELECT * FROM satz WHERE spiel_ID = ?");
