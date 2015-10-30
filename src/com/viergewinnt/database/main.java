@@ -5,8 +5,12 @@ import java.sql.SQLException;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart.Data;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -14,6 +18,8 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class main extends Application{
+	
+	public  ObservableList<ValueClass> data;
 
 	public static void main(String[] args)  {
 		launch(args);	
@@ -23,6 +29,9 @@ public class main extends Application{
 		    stage.setTitle("Spiele");
 		    stage.setWidth(450);
 		    stage.setHeight(500);
+		    
+		    Button bchange = new Button();
+		    bchange.setText("change Satz");
 	
 		   
 		    TableView<ValueClass> tableView = createTableView();
@@ -49,8 +58,26 @@ public class main extends Application{
 			                secondStage.setScene(secondScene);
 			          
 			                TableView<ValueClass>  tableViewSatz = createTableViewSatz(spielId);
+			                // editieren
+			                bchange.setOnAction(new EventHandler<ActionEvent>() {
+								
+								@Override
+								public void handle(ActionEvent event) {
+									tableViewSatz.setEditable(true);
+									data.get(1).getColumn3();
+									
+									
+								}
+							});
+			                
+			                // Zum Nächste Zug
 			                tableViewSatz.getSelectionModel().selectedItemProperty().addListener((observable2, oldValue2, newValue2) -> {
-			    	          System.out.println(newValue2);
+			    	      	
+			                   
+			                
+			                  
+			                    
+			                	System.out.println(newValue2);
 			                	if (newValue2 != null) {
 			    	            	System.out.println("Ausgewähltes SatzID = "+((ValueClass) newValue2).getColumn1());
 				    				// Spielfeld aufbauen
@@ -64,7 +91,7 @@ public class main extends Application{
 			    	            	  return;	
 			    				}
 			                });// end of get selected 
-			                secondaryLayout.getChildren().add(tableViewSatz);
+			                secondaryLayout.getChildren().addAll(tableViewSatz, bchange);
 			                secondStage.show();
 				          }catch(Exception e) {
 				              e.printStackTrace();

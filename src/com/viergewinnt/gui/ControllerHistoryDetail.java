@@ -61,6 +61,8 @@ TableColumn<ValueClass, String> col1, col2, col3,col4, col5;
 	{
 		ReuseableSatz reuseSatz = new ReuseableSatz();
 
+		tableViewSatz.setEditable(true);
+		
 		 tableViewSatz.getSelectionModel().selectedItemProperty().addListener((observable2, oldValue2, newValue2) -> {
 	          System.out.println(newValue2);
            	if (newValue2 != null) 
