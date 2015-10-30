@@ -1,7 +1,7 @@
 package com.viergewinnt.database;
 
 /**
- * Die Klasse ReusableZuege ermoeglicht die Attribute des Satzes in einer Instanz der Klasse zu speichern 
+ * Die Klasse ReusableSatz ermoeglicht die Attribute des Satzes in einer Instanz der Klasse zu speichern 
  * und im Laufe des Programms von allen Packeten daruaf zuzugreifen
  * @author MajkenPlugge
  *

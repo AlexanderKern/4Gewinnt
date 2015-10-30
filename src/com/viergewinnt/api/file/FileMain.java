@@ -12,6 +12,11 @@ import com.viergewinnt.database.ReuseableSatz;
 import com.viergewinnt.gui.ControllerField;
 import com.viergewinnt.ki.KiMain;
 
+/**
+ * Die Klasse FileMain ermoeglich die Kommunikation mittels des Files
+ * @author Alexander Kern 
+ *
+ */
 public class FileMain extends Thread {
 	private final ControllerField cf;
 	private final int sequenceNumber;

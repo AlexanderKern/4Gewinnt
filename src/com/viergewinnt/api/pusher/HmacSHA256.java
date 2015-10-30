@@ -5,6 +5,11 @@ import java.security.NoSuchAlgorithmException;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
+/**
+ * Die Klasse HmacSHA256
+ * @author Alexander Kern
+ *
+ */
 public class HmacSHA256 {
 	public static void main(String[] args) {
 		String secret = "7ad3773142a6692b25b8"; // "secret";

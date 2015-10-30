@@ -12,15 +12,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 /**
- * Die Klasse Main startet die 4Gewinnt Applikation und ruft das Startbildschrims auf
- * @author MajkenPlugge
- *
+ * Die Klasse Main startet die 4Gewinnt Applikation und ruft den Controller des Startbildschrims auf
+ * @author Cara Damm
  */
 
 public class Main extends Application {
 	
 	/**
-	 * Aufruf des Startbildschrims und anlegen der Datenbanktabellen
+	 * Aufruf des Controller des Startbildschrims und anlegen der Datenbanktabellen
 	 */
 	@Override
 	public void start(Stage stage) throws IOException {

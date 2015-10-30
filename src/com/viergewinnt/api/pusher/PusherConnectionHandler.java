@@ -15,6 +15,11 @@ import com.pusher.client.connection.ConnectionStateChange;
 import com.viergewinnt.api.common.util.Function;
 import com.viergewinnt.api.common.util.ReuseServermethode;
 
+/**
+ * Die Klasse PusherMain ...
+ * @author Alexander Kern
+ *
+ */
 public class PusherConnectionHandler implements ConnectionEventListener, PrivateChannelEventListener {
 
 	private static final String CHANNEL_NAME = "private-channel";
@@ -31,6 +36,9 @@ public class PusherConnectionHandler implements ConnectionEventListener, Private
 	private final Pusher pusher;
 	private PrivateChannel channel;
 	
+	/**
+	 * 
+	 */
 	public PusherConnectionHandler() {
 		this.handlers = new HashMap<>();
 		
@@ -50,6 +58,10 @@ public class PusherConnectionHandler implements ConnectionEventListener, Private
 		}));
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public Connection connect() {
 		pusher.connect(this);
 		
@@ -58,6 +70,12 @@ public class PusherConnectionHandler implements ConnectionEventListener, Private
 		return pusher.getConnection();
 	}
 	
+	/**
+	 * 
+	 * @param name
+	 * @param handler
+	 * @return
+	 */
 	public PusherConnectionHandler registerHandler(String name, Function <Pusher,PrivateChannel,String> handler){
 		handlers.put(name, handler);
 		

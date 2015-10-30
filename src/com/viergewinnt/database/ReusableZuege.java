@@ -1,8 +1,8 @@
 package com.viergewinnt.database;
 
 /**
- * Die Klasse ReusableZuege ermoeglicht die Attribute des Zugs in einem Objekt der Klasse zu speichern 
- * und aus allen Klassen des Programms darauf zuzugreifen
+ * Die Klasse ReusableZuege ermoeglicht die Attribute des Zugs in einer Instanz der Klasse zu speichern 
+ * und im Laufe des Programms von allen Packeten daruaf zuzugreifen
  * @author MajkenPlugge
  *
  */

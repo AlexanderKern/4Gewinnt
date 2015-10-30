@@ -18,13 +18,27 @@ import com.viergewinnt.database.ReuseableSpiel;
 import com.viergewinnt.gui.ControllerField;
 import com.viergewinnt.ki.KiMain;
 
+/**
+ * Die Klasse PusherMain ermoeglciht die Kommunikation mittels Websockets
+ * @author Alexander Kern
+ *
+ */
 public class PusherMain {
 	ControllerField cf;
 
+	/**
+	 * 
+	 * @param cf
+	 */
 	public PusherMain(ControllerField cf) {
 		this.cf = cf;
 	}
 
+	/**
+	 * 
+	 * @param team Name des Teams
+	 * @param sequenceNumber Nummer des Satzes ? 
+	 */
 	public void pusher(String team, int sequenceNumber) {
 		KiMain ki = new KiMain();
 
