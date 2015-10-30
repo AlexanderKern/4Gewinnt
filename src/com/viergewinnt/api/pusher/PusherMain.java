@@ -115,7 +115,8 @@ public class PusherMain {
 							pusher.disconnect();
 							//Satz Ende-------------------------------------------------------------------------------------------------------
 							// X = grün // 0 blau 
-							
+						
+		
 							if( ReuseServermethode.getTeam().equals( message.getSieger()) ){
 								reuseSatz.setGewonnen("Claire");
 							}else{
