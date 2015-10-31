@@ -79,7 +79,7 @@ public class ControllerSpielEnde implements Initializable{
 		try {
 			Database db = new Database();
 			
-			ResultSet rs = db.getSaetze(15);
+			ResultSet rs = db.getSaetze(ReuseableSpiel.id);
 			
 			 
 			String satzId = null;

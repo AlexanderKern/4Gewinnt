@@ -18,9 +18,9 @@ public class Main2 extends Application {
 	public void start(Stage stage) throws Exception {
 		
 		Database db = new Database();
-		
-	
-		db.createSatz(15);
+
+		db.createSpiel();
+		db.createSatz(ReuseableSpiel.id);
 	
 		System.out.println(ReuseableSatz.id);
 		db.updateSatz("gewonnen", ReuseableSatz.id);

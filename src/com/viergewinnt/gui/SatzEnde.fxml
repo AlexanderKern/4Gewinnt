@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.viergewinnt.gui.ControllerSatzEnde">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="238.0" prefWidth="359.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.viergewinnt.gui.ControllerSatzEnde">
    <children>
-      <Label fx:id="gewinner" layoutX="35.0" layoutY="29.0" text="Claire hat" />
-      <Button fx:id="neuenSatz" layoutX="107.0" layoutY="139.0" mnemonicParsing="false" onAction="#neuenSatz" text="Neuen Satz spielen" />
-      <Button fx:id="satzVerwerfen" layoutX="107.0" layoutY="187.0" mnemonicParsing="false" onAction="#satzVerwerfen" prefHeight="27.0" prefWidth="136.0" text="Satz verwerfen" />
-      <Button fx:id="siegerAendern" layoutX="107.0" layoutY="236.0" mnemonicParsing="false" onAction="#siegerAendern" prefHeight="27.0" prefWidth="136.0" text="Sieger ändern" />
+      <ImageView fitHeight="287.0" fitWidth="363.0" layoutX="-2.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../assets/img/background.jpg" />
+         </image></ImageView>
+      <Label fx:id="gewinner" layoutX="35.0" layoutY="29.0" text="Claire hat" textFill="WHITE" />
+      <Button fx:id="neuenSatz" layoutX="100.0" layoutY="84.0" mnemonicParsing="false" onAction="#neuenSatz" text="Neuen Satz spielen" />
+      <Button fx:id="satzVerwerfen" contentDisplay="TOP" layoutX="100.0" layoutY="134.0" mnemonicParsing="false" onAction="#satzVerwerfen" prefHeight="27.0" prefWidth="136.0" text="Satz verwerfen" />
+      <Button fx:id="siegerAendern" layoutX="100.0" layoutY="184.0" mnemonicParsing="false" onAction="#siegerAendern" prefHeight="27.0" prefWidth="136.0" text="Sieger ändern" />
    </children>
 </AnchorPane>
