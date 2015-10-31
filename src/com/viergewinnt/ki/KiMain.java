@@ -76,9 +76,9 @@ public class KiMain {
 	}// get letzter zug
 	
 	/**
-	 * Berechnet die zu setzende spalte.
+	 * Berechnet die zu setzende Spalte.
 	 * 
-	 * Der Parameter ergebnis ist standardmäßig zuerst auf 99 gesetzt, um so überprüfen zu können ob noch kein sinnvoller Zug berechnet worden ist.
+	 * Der Parameter ergebnis ist standardmaeßig zuerst auf 99 gesetzt, um so ueberpruefen zu koennen ob noch kein sinnvoller Zug berechnet worden ist.
 	 * Wird ein sinnvolles Ergebnis gefunden, wird die Berechnungsschleife abgebrochen, ansonsten wird eine Zufallszahl bestimmt.
 	 * Die Schleife geht von links nach rechts die Spalten durch und berechnet vom aktuell obersten Feld der Spalte aus.
 	 * 
