@@ -1,8 +1,12 @@
 package com.viergewinnt.gui;
 
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Properties;
 import java.util.ResourceBundle;
 
 import com.viergewinnt.api.common.util.ReuseServermethode;
@@ -25,8 +29,10 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 /**
- * Die Klasse ControllerSetting ermoeglicht dem Anwender alle notwendigen Einstellung fuer das Spiel zutreffen
- * und speichert die Werte in die Datenbank bzw. leitet die gewaehlte Kommunikation an den Pusher weiter
+ * Die Klasse ControllerSetting ermoeglicht dem Anwender alle notwendigen
+ * Einstellung fuer das Spiel zutreffen und speichert die Werte in die Datenbank
+ * bzw. leitet die gewaehlte Kommunikation an den Pusher weiter
+ * 
  * @author Cara Damm
  *
  */
@@ -54,11 +60,39 @@ public class ControllerSetting implements Initializable {
 	 */
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
 
+		// Loading from Properties-File
+		try {
+			File configFile = new File(System.getProperty("user.dir") + "/assets/properties/config.properties");
+
+			FileReader reader = new FileReader(configFile);
+
+			Properties props = new Properties();
+			props.load(reader);
+
+			tfkey.setText(props.getProperty("key"));
+			tfsecret.setText(props.getProperty("secret"));
+		} catch (IOException e2) {
+			e2.printStackTrace();
+		}
+
 		// Spielfeld soll aufgerufen werden
 		bStart.setOnAction((ev) -> {
-			
-			System.out.println(System.getProperty("user.dir"));
-		
+			// Set new Properties-File
+			try {
+				File configFile = new File(System.getProperty("user.dir") + "/assets/properties/config.properties");
+
+				Properties props = new Properties();
+				props.setProperty("key", tfkey.getText());
+				props.setProperty("secret", tfsecret.getText());
+				FileWriter writer = new FileWriter(configFile);
+				props.store(writer, "Konfigurationsdatei fuer Pusher-Schnittstelle");
+				
+				writer.close();
+				
+			} catch (IOException e2) {
+				e2.printStackTrace();
+			}
+
 			// Settingsparameter setzen
 			if (cX.isSelected()) {
 				ReuseServermethode.setTeam("X");
@@ -81,22 +115,23 @@ public class ControllerSetting implements Initializable {
 			}
 
 			ReuseServermethode.setGegner(tfEnemy.getText());
-			
-			//Spiel anlegen in Datenbank---------------------------------------------------------------------------
+
+			// Spiel anlegen in
+			// Datenbank---------------------------------------------------------------------------
 			Database db = new Database();
-			boolean farbe = true; 
+			boolean farbe = true;
 			System.out.println("Spiel anlegen");
-			System.out.println("Team Farbe"+ReuseServermethode.getTeam());
-			farbe = ReuseServermethode.getTeamfarbe(); //Grün true und Blau false
-				
+			System.out.println("Team Farbe" + ReuseServermethode.getTeam());
+			farbe = ReuseServermethode.getTeamfarbe(); // Grün true und Blau
+														// false
+
 			try {
 				db.updateSpiel(tfEnemy.getText(), farbe);
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-	
-			
+
 			try {
 				db.createSpieler(tfEnemy.getText());
 			} catch (Exception e2) {
@@ -104,13 +139,10 @@ public class ControllerSetting implements Initializable {
 				e2.printStackTrace();
 				System.out.println(tfEnemy.getText() + " konnte nicht angelegt werden!!!");
 			}
-			//-------------------------------------------------------------------------------
+			// -------------------------------------------------------------------------------
 
-
-			
 			if (rSocket.isSelected()) {
-				if (!tfkey.getText().isEmpty() || !tfsecret.getText().isEmpty()) 
-				{
+				if (!tfkey.getText().isEmpty() || !tfsecret.getText().isEmpty()) {
 					((Node) (ev.getSource())).getScene().getWindow().hide();
 					FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("spielfeld2.fxml"));
 					Parent root1;
@@ -126,14 +158,14 @@ public class ControllerSetting implements Initializable {
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
-				}else{
+				} else {
 					Alert alert = new Alert(AlertType.ERROR);
 					alert.setTitle("Error");
 					alert.setHeaderText("Look, an Error Dialog");
 					alert.setContentText("Bitte überprüfen Sie die Eingaben der Pusher-Kommunikation!");
 					alert.show();
 				}
-			}else if(!tfPath.getText().isEmpty() && rPath.isSelected()){
+			} else if (!tfPath.getText().isEmpty() && rPath.isSelected()) {
 				((Node) (ev.getSource())).getScene().getWindow().hide();
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("spielfeld2.fxml"));
 				Parent root1;
@@ -149,14 +181,14 @@ public class ControllerSetting implements Initializable {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}else{
+			} else {
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Error");
 				alert.setHeaderText("Look, an Error Dialog");
 				alert.setContentText("Bitte überprüfen Sie die Eingaben der File-Kommunikation!");
 				alert.show();
 			}
-			
+
 		}); // end of play
 
 		bCancel.setOnAction((ev) -> {

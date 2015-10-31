@@ -1,7 +1,11 @@
 package com.viergewinnt.gui;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Properties;
 import java.util.ResourceBundle;
 
 import com.viergewinnt.api.common.util.ReuseServermethode;
@@ -14,9 +18,11 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -28,10 +34,11 @@ import javafx.stage.StageStyle;
 
 /**
  * Die Klasse ControllerField
+ * 
  * @author Cara Damm
  *
  */
-//Controller Field
+// Controller Field
 public class ControllerField implements Initializable {
 	@FXML
 	Button button, bExit, bBack, bNewSatz;
@@ -59,59 +66,64 @@ public class ControllerField implements Initializable {
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources)
 
 	{
+
 		/*--------------------------------------------------------------------------------------------------------------
 		 * Satz in Datenbank anlegen
-		 */	
+		 */
 		bNewSatz.setVisible(false);
-		
+
 		ReuseableSpiel reuseSpiel = new ReuseableSpiel();
-		Database db = new Database(); 
+		Database db = new Database();
 		try {
 			db.createSatz(reuseSpiel.id);
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		//--------------------------------------------------------------------------------------------------------------
-		
-		if(ReuseServermethode.getTeamfarbe() == false){
+		// --------------------------------------------------------------------------------------------------------------
+
+		if (ReuseServermethode.getTeamfarbe() == false) {
 			lPlayerR.setText("Claire");
 			lPlayerY.setText(ReuseServermethode.getGegner());
-		}else{
+		} else {
 			lPlayerY.setText("Claire");
 			lPlayerR.setText(ReuseServermethode.getGegner());
 		}
-		
-		if(ReuseServermethode.getMethode().equals("Pusher")){
-			try{
-			final PusherMain pusherMain = new PusherMain(this);
-			pusherMain.pusher(ReuseServermethode.getTeam(), db.getAnzahlSaetze(ReuseableSpiel.id));
-			}catch(Exception e){
+
+		if (ReuseServermethode.getMethode().equals("Pusher")) {
+			try {
+				final PusherMain pusherMain = new PusherMain(this);
+				pusherMain.pusher(ReuseServermethode.getTeam(), db.getAnzahlSaetze(ReuseableSpiel.id));
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if(ReuseServermethode.getMethode().equals("File")){
-			new FileMain(this, 1).start();
+		} else if (ReuseServermethode.getMethode().equals("File")) {
+			try {
+				new FileMain(this, db.getAnzahlSaetze(ReuseableSpiel.id)).start();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 		/* Setze Stein */
-//		button.setOnAction((ev) -> {
-//			
-//			 int row = (int) (Math.random() * 7);
-//			 int col = (int) (Math.random() * 6);
-//			 Label l = new Label("");
-//			 boolean bol;
-//			
-//			 int random = (int) (Math.random()*10);
-//			 if(random <5)
-//			 {
-//			 bol = true;
-//			 }
-//			 else{bol = false;}
-//			
-//			
-//			 setStone(row, col, bol);
-//
-//		}); // end of button
+		// button.setOnAction((ev) -> {
+		//
+		// int row = (int) (Math.random() * 7);
+		// int col = (int) (Math.random() * 6);
+		// Label l = new Label("");
+		// boolean bol;
+		//
+		// int random = (int) (Math.random()*10);
+		// if(random <5)
+		// {
+		// bol = true;
+		// }
+		// else{bol = false;}
+		//
+		//
+		// setStone(row, col, bol);
+		//
+		// }); // end of button
 
 		bBack.setOnAction((ev) -> {
 			try {
@@ -136,10 +148,8 @@ public class ControllerField implements Initializable {
 			((Node) (ev.getSource())).getScene().getWindow().hide();
 		}); // end of cancel
 
-		
 		bNewSatz.setOnAction((ev) -> {
-			try 
-			{
+			try {
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("selectScreen.fxml"));
 				Parent root1 = (Parent) fxmlLoader.load();
 				Stage stage = new Stage();
@@ -150,11 +160,10 @@ public class ControllerField implements Initializable {
 				stage.show();
 
 				((Node) (ev.getSource())).getScene().getWindow().hide();
-				
+
 			}
 
-			catch (Exception e) 
-			{
+			catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -163,9 +172,13 @@ public class ControllerField implements Initializable {
 
 	/**
 	 * Setzt den gespielten Stein ins Feld
-	 * @param row Spalte
-	 * @param col Zeile
-	 * @param coin Steinfarbe
+	 * 
+	 * @param row
+	 *            Spalte
+	 * @param col
+	 *            Zeile
+	 * @param coin
+	 *            Steinfarbe
 	 */
 	public void setStone(int row, int col, boolean coin) {
 		// coin green = true coin blue = false
@@ -173,8 +186,8 @@ public class ControllerField implements Initializable {
 			public void run() {
 				if (coin == true) {
 					ImageView iv = new ImageView(imageGreen);
-//					Label l = new Label("");
-//					l.setGraphic(new ImageView(imageGreen));
+					// Label l = new Label("");
+					// l.setGraphic(new ImageView(imageGreen));
 					grid.setRowIndex(iv, row);
 					grid.setColumnIndex(iv, col);
 
@@ -183,8 +196,8 @@ public class ControllerField implements Initializable {
 
 				else {
 					ImageView iv = new ImageView(imageBlue);
-//					Label l = new Label("");
-//					l.setGraphic(new ImageView(imageBlue));
+					// Label l = new Label("");
+					// l.setGraphic(new ImageView(imageBlue));
 					grid.setRowIndex(iv, row);
 					grid.setColumnIndex(iv, col);
 
@@ -193,54 +206,63 @@ public class ControllerField implements Initializable {
 			}
 		});
 	}// end of setStone
-	
+
 	/**
 	 * 
 	 * @param result
-	 * @param sequenceNumber 
+	 * @param sequenceNumber
 	 */
 	public void setResult(String result, int sequenceNumber) {
 		Platform.runLater(new Runnable() {
 			public void run() {
 				ivOne.setImage(imageBlue);
-				if(result.equals(ReuseServermethode.getTeam())){
-					if(sequenceNumber == 1){
+				if (result.equals(ReuseServermethode.getTeam())) {
+					if (sequenceNumber == 1) {
 						ivOne.setImage(imageBlue);
-					} else if(sequenceNumber == 2){
+					} else if (sequenceNumber == 2) {
 						ivTwo.setImage(imageBlue);
-					}else{
+					} else {
 						ivThree.setImage(imageBlue);
 					}
-				}else if(result != ReuseServermethode.getTeam() && result != "offen"){
-					if(sequenceNumber == 1){
+				} else if (result != ReuseServermethode.getTeam() && result != "offen") {
+					if (sequenceNumber == 1) {
 						ivOne.setImage(imageGreen);
-					} else if(sequenceNumber == 2){
+					} else if (sequenceNumber == 2) {
 						ivTwo.setImage(imageGreen);
-					}else{
+					} else {
 						ivThree.setImage(imageGreen);
 					}
-				}else{
-					if(sequenceNumber == 1){
+				} else {
+					if (sequenceNumber == 1) {
 						ivOne.setImage(imageG);
-					} else if(sequenceNumber == 2){
+					} else if (sequenceNumber == 2) {
 						ivTwo.setImage(imageG);
-					}else{
+					} else {
 						ivThree.setImage(imageG);
 					}
 				}
 			}
 		});
-		
-		
+
 	}// end of setResult
-	
 
 	/**
 	 * Bei Satzende wird der Button zum Aufruf eines neuen Satz angeziegt
-	 * @param bol
+	 * 
+	 * @param visible
 	 */
-	public void sichtbar(boolean bol)
-	{
-		bNewSatz.setVisible(bol);
+	public void sichtbar(boolean visible, String sieger) {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				bNewSatz.setVisible(visible);
+
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Sieger");
+				alert.setHeaderText("Der Gewinner des Satzes ist");
+				alert.setContentText(sieger);
+				alert.show();
+			}
+		});
 	}
 }// end of class

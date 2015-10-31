@@ -136,7 +136,8 @@ public class PusherMain {
 							}else{
 								reuseSatz.setGewonnen(reuseSpiel.getName());
 							}
-						
+							
+							cf.sichtbar(true, reuseSatz.getGewonnen());
 							
 							try {
 								db.updateSatz(reuseSatz.getGewonnen(), reuseSatz.getId());
