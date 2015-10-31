@@ -16,8 +16,17 @@ public class Main2 extends Application {
 	}
 	@Override
 	public void start(Stage stage) throws Exception {
+		
+		Database db = new Database();
+		
 	
-		AnchorPane anchorPane = (AnchorPane) FXMLLoader.load(getClass().getResource("SatzEnde.fxml"));
+		db.createSatz(15);
+	
+		System.out.println(ReuseableSatz.id);
+		db.updateSatz("gewonnen", ReuseableSatz.id);
+	
+		AnchorPane anchorPane = (AnchorPane) FXMLLoader.load(getClass().getResource("SpielEnde.fxml"));
+		System.out.println("Hi");
 		
 		Scene scene = new Scene(anchorPane);
 		stage.setTitle("Satz Ende");

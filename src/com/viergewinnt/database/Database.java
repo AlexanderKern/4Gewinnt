@@ -56,6 +56,7 @@ public class Database {
 			String zug_table = ("CREATE TABLE zug (id INTEGER IDENTITY PRIMARY KEY , satz_id INTEGER,  spalte Integer, zeile Integer, gegner BOOLEAN )");
 			db.update(zug_table);
 			
+			System.out.println("Tabellen erstelt");
 		}
 		/**
 		 * loescht die Datenbank Tabellen udn Eintraege
@@ -277,7 +278,7 @@ public class Database {
 			PreparedStatement stSatzende = conn.prepareStatement("UPDATE satz SET gewonnen = ? WHERE id = ?");
 			stSatzende.setString(1, gewonnen);
 			stSatzende.setInt(2, satzId);
-			stSatzende.executeUpdate();
+			stSatzende.execute();
 		}
 		
 		/**

@@ -17,7 +17,7 @@ public class ReuseableSpiel {
 	 * Setzt den Namen des Gegners eines Spiels
 	 * @param name Name des Gegner
 	 */
-	public void setName(String name){
+	public static void setName(String name){
 		ReuseableSpiel.name = name;
 	}
 	
@@ -25,7 +25,7 @@ public class ReuseableSpiel {
 	 * Gibt den Namen des Gegner zurueck
 	 * @return Name des Gegner
 	 */
-	public String getName(){
+	public static String getName(){
 		return name;
 	}
 	

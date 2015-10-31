@@ -50,6 +50,15 @@ public class ValueClass {
 	  }
 
 	  /**
+	   * Setzen des Wert der Spalte 2
+	   * @param column2 Wert der Spalte 2
+	   */
+	  public void setColumn2(String column2) {
+		    this.column2 = column2;
+		  }
+	  
+	  
+	  /**
 	   * Gibt den Wert der Spalte 3 zurueck 
 	   * @return Wert der Spalte 3
 	   */
