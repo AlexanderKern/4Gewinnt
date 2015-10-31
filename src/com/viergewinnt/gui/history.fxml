@@ -7,7 +7,6 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@welcome.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.viergewinnt.gui.ControllerHistory">
    <children>
       <Label layoutX="217.0" layoutY="23.0" text="Spiele die gespielt wurden" />
-      <Label layoutX="256.0" layoutY="212.0" text="Zugübersicht" />
       <ScrollPane layoutX="75.0" layoutY="46.0" prefHeight="146.0" prefViewportHeight="151.0" prefViewportWidth="439.0" prefWidth="441.0">
          <content>
             <TableView fx:id="tableView" layoutX="75.0" layoutY="51.0" prefHeight="151.0" prefWidth="439.0">
@@ -21,12 +20,6 @@
             </TableView>
          </content>
       </ScrollPane>
-      <TableView fx:id="tZuege" layoutX="73.0" layoutY="235.0" prefHeight="153.0" prefWidth="441.0">
-         <columns>
-            <TableColumn prefWidth="221.0" text="C1" />
-            <TableColumn prefWidth="219.0" text="C2" />
-         </columns>
-      </TableView>
       <Button fx:id="bExit" layoutX="542.0" layoutY="1.0" mnemonicParsing="false" text="X" />
       <Button fx:id="bBack" layoutX="1.0" layoutY="2.0" mnemonicParsing="false" text="&lt; Zurück" />
    </children>

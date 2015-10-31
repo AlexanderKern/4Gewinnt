@@ -2,28 +2,20 @@ package com.viergewinnt.gui;
 
 import java.net.URL;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import javax.swing.JFileChooser;
-//import javax.swing.Timer;
-
 import com.viergewinnt.database.Database;
-import com.viergewinnt.database.Spiel;
 import com.viergewinnt.database.ValueClass;
 import com.viergewinnt.database.ReuseableSatz;
 
 
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;

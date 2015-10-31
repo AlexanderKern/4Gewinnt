@@ -354,6 +354,12 @@ public class Database {
 			
 		}
 		
+		public void satzloeschen(int satzId) throws SQLException{
+			PreparedStatement st = Database.conn.prepareStatement("DELETE satz WHERE id = ?");
+		    st.setInt(1, satzId); 
+		    st.executeUpdate();
+		}
+		
 		
 		/**
 		 * erstellt einen neuen Zug in der Datenbank
@@ -390,6 +396,11 @@ public class Database {
 			return rs;
 		}
 		
+		public void loeschenZuege(int satzId) throws SQLException{
+			PreparedStatement st = conn.prepareStatement("DELETE * FROM zug WHERE satz_id = ?");
+			st.setInt(1, satzId);
+			st.executeQuery();
+		}
 		
 	
 }

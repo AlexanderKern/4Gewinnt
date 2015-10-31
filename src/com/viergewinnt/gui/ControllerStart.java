@@ -3,8 +3,6 @@ package com.viergewinnt.gui;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.viergewinnt.api.common.util.ReuseServermethode;
-import com.viergewinnt.api.pusher.PusherMain;
 import com.viergewinnt.database.Database;
 
 import javafx.fxml.FXML;
@@ -22,7 +20,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 /**
- * Die Klasse ControllerStart startet ruft das Startbildschrims auf
+ * Die Klasse ControllerStart kuemmert sich um das Eventhandling
  * @author Cara Damm
  *
  */
