@@ -76,7 +76,15 @@ public class KiMain {
 	}// get letzter zug
 	
 	/**
+	 * Berechnet die zu setzende spalte.
 	 * 
+	 * Der Parameter ergebnis ist standardmäßig zuerst auf 99 gesetzt, um so überprüfen zu können ob noch kein sinnvoller Zug berechnet worden ist.
+	 * Wird ein sinnvolles Ergebnis gefunden, wird die Berechnungsschleife abgebrochen, ansonsten wird eine Zufallszahl bestimmt.
+	 * Die Schleife geht von links nach rechts die Spalten durch und berechnet vom aktuell obersten Feld der Spalte aus.
+	 * 
+	 * Das Muster welches gesucht wird ist: 3 in einer Reihe.
+	 * 
+	 * suche zuerst beim Spieler(Wert = 1) und falls kein Ergebnis vorliegt, dann bei Gegner(Wert = 2)
 	 */
 	public void berechne(){
 		ergebnis = 99;
