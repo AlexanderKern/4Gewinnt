@@ -17,7 +17,7 @@ public class ReuseableSatz {
 	 * Setzt das Attribut Id
 	 * @param id Id des Satz
 	 */
-	public void setId( int id){
+	public static void setId( int id){
 		ReuseableSatz.id = id; 
 	}
 	
@@ -25,7 +25,7 @@ public class ReuseableSatz {
 	 * Gibt das Attribut Id zurueck
 	 * @return Id des Satzes
 	 */
-	public int getId(){
+	public static int getId(){
 		return id;
 	}
 	
@@ -33,7 +33,7 @@ public class ReuseableSatz {
 	 * Setzt die zugehoerige Spiel Id 
 	 * @param Id des zugehoerigen Spiels
 	 */
-	public void setSpielId( int spielId){
+	public static void setSpielId( int spielId){
 		ReuseableSatz.spielId = spielId; 
 	}
 	
@@ -41,7 +41,7 @@ public class ReuseableSatz {
 	 * Gibt die zugehorige Spiel Id zurueck
 	 * @return Id des zugehoerigen Spiels
 	 */
-	public int getSpielId(){
+	public static int getSpielId(){
 		return spielId;
 	}
 	
@@ -50,7 +50,7 @@ public class ReuseableSatz {
 	 * Das Attribut gewonnen gibt Auskunft über das Ergebnis des Satzes
 	 * @param Gewonnen
 	 */
-	public void setGewonnen( String gewonnen){
+	public static void setGewonnen( String gewonnen){
 		ReuseableSatz.gewonnen = gewonnen; 
 	}
 	
@@ -58,7 +58,7 @@ public class ReuseableSatz {
 	 * Gibt das Attribut gewonnen zurueck
 	 * @return Gewonnen
 	 */
-	public String getGewonnen(){
+	public static String getGewonnen(){
 		return gewonnen;
 	}
 	

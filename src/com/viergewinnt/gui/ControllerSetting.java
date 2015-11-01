@@ -96,12 +96,12 @@ public class ControllerSetting implements Initializable {
 			// Settingsparameter setzen
 			if (cX.isSelected()) {
 				ReuseServermethode.setTeam("X");
-				ReuseServermethode.setTeamfarbe(false);
-				ReuseServermethode.setGegnerfarbe(true);
+				ReuseServermethode.setTeamfarbe(true); /// Grün
+				ReuseServermethode.setGegnerfarbe(false); // Blau
 			} else {
 				ReuseServermethode.setTeam("O");
-				ReuseServermethode.setTeamfarbe(true);
 				ReuseServermethode.setTeamfarbe(false);
+				ReuseServermethode.setGegnerfarbe(true);
 			}
 			if (rSocket.isSelected()) {
 				ReuseServermethode.setMethode("Pusher");
@@ -119,14 +119,10 @@ public class ControllerSetting implements Initializable {
 			// Spiel anlegen in
 			// Datenbank---------------------------------------------------------------------------
 			Database db = new Database();
-			boolean farbe = true;
-			System.out.println("Spiel anlegen");
-			System.out.println("Team Farbe" + ReuseServermethode.getTeam());
-			farbe = ReuseServermethode.getTeamfarbe(); // Grün true und Blau
-														// false
+			
 
 			try {
-				db.updateSpiel(tfEnemy.getText(), farbe);
+				db.updateSpiel(tfEnemy.getText(), ReuseServermethode.getTeamfarbe());
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

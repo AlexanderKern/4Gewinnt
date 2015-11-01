@@ -9,6 +9,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
+import com.viergewinnt.api.common.util.ReuseServermethode;
+
 /**
  * Die Klasse Database beinhaltet alle notwendigen Methoden, die fuer die Erstellung der Datenbank und der Ausfuehrung von Operationen notwendig sind
  * @author MajkenPlugge
@@ -157,12 +159,12 @@ public class Database {
 		     ResultSet rsId = callId.executeQuery();
 		     rsId.next();
 		     spielId = rsId.getInt(1);
+		     System.out.println("Spiel Id"+ spielId);
 		     rsId.close();
 			
 			
 			//Speichern der notwendigen Information in für einen globalen Zugriff
-			ReuseableSpiel reusespiel = new ReuseableSpiel();
-			reusespiel.setId(spielId);
+			ReuseableSpiel.setId(spielId);
 			
 			
 		}
@@ -173,17 +175,18 @@ public class Database {
 		 */
 		public void updateSpiel(String gegner, boolean farbe) throws SQLException{
 			
-			ReuseableSpiel reusespiel = new ReuseableSpiel();
+			
+			System.out.println("Update Spiel Id"+ ReuseableSpiel.getId());
 			
 			 PreparedStatement stSpiel = Database.conn.prepareStatement("UPDATE spiel SET gegner = ? , farbe = ?  WHERE id = ?"); 
 			 stSpiel.setString(1, gegner);
 			 stSpiel.setBoolean(2, farbe);
-			 System.out.println("Spiel"+ reusespiel.getId());
-			 stSpiel.setInt(3, reusespiel.getId());
+			 System.out.println("Spiel"+ ReuseableSpiel.getId());
+			 stSpiel.setInt(3, ReuseableSpiel.getId());
 
 			 stSpiel.executeUpdate();
 			
-			 reusespiel.setName(gegner); 
+			 ReuseableSpiel.setName(gegner); 
 		}
 		
 		/**
@@ -246,25 +249,18 @@ public class Database {
 		 * @throws SQLException
 		 */
 		public void createSatz( int spielId ) throws SQLException{
-		
-			int satzId;
 			
 			PreparedStatement stSatz = conn.prepareStatement("INSERT INTO satz (spiel_id) VALUES(?);");
 			stSatz.setInt(1,spielId);
 			stSatz.executeUpdate();
-			System.out.println("Satz angelegt");
 			//stSatz.close();
 			
 			PreparedStatement callId = conn.prepareStatement("CALL IDENTITY();");
 			
 			ResultSet rsId = callId.executeQuery();
 		     rsId.next();
-		     satzId = rsId.getInt(1);
+		     ReuseableSatz.setId(rsId.getInt(1));
 		     rsId.close();
-						
-			
-			ReuseableSatz reuseSatz = new ReuseableSatz();
-			reuseSatz.setId(satzId);
 
 		}
 		
@@ -288,12 +284,16 @@ public class Database {
 		 * @throws SQLException
 		 */
 		public int getAnzahlSaetze(int spielId) throws SQLException{
-			int anzahlSaetze;
+			int anzahlSaetze = 8;
 			
-			PreparedStatement dritterSatz = conn.prepareStatement("SELECT * FROM satz WHERE spiel_id = ? ");
+			PreparedStatement dritterSatz = conn.prepareStatement("SELECT COUNT(*) FROM satz WHERE spiel_id = ? ");
 			dritterSatz.setInt(1, spielId);
+			ResultSet rs = dritterSatz.executeQuery();
 			
-			anzahlSaetze =  dritterSatz.getMetaData().getColumnCount();
+			if(rs.next()){
+				 anzahlSaetze =rs.getInt(1);
+			}
+			
 			System.out.println("Anzahl"+ anzahlSaetze );
 			
 			return anzahlSaetze;
@@ -302,7 +302,7 @@ public class Database {
 		/**
 		 * gibt eine Tabelle zurück, die anzeigt wie die Saetze zu einem Spiel ausgegangen sind 
 		 * @param spielId
-		 * @return gewonnen ; bsp. // gewonnen[0] => Satz 1 usw. ; "gewonnen" = wir gewonnen ; "offen" = Unentschieden; "verloren" = Gegner gewonnen
+		 * @return gewonnen ; X; O ; oder "offen"
 		 * @throws SQLException
 		 */
 		public String[] getGewonneneSaetze(int spielId) throws SQLException{
@@ -315,8 +315,25 @@ public class Database {
 			int j =1; 
 			
 			String[] gewonnen = new String[2];
+			
+			if(rsGewSa.next() != false){
 			if(rsGewSa.next()){
-				gewonnen[i] = rsGewSa.getString(j);
+				if(rsGewSa.getString(j).equals("verloren")){
+					if(ReuseServermethode.getGegnerfarbe() == false){
+						gewonnen[i] = "X";
+					}else{
+						gewonnen[i] = "O";
+					}
+					
+				}else if(rsGewSa.getString(j).equals("gewonnen")){
+					gewonnen[i]  = ReuseServermethode.getTeam();
+				}else{
+					gewonnen[i] = "offen";
+				}
+			}
+				
+				
+				
 				i= i+1;  
 				j = j+1;
 			}// endif

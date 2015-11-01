@@ -96,7 +96,7 @@ public Spiel(){};
 	         */
 	        public void setFarbe(boolean bfarbe){
 	        	this.bFarbe = bfarbe;
-	        	if (bFarbe == true){
+	        	if (bFarbe == false){
 	        		this.farbe = "blau";
 	        	}else {
 					this.farbe = "grün";

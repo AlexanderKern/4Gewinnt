@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="491.0" prefWidth="622.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-fx:controller="com.viergewinnt.gui.ControllerSpielEnde">
+<AnchorPane prefHeight="414.0" prefWidth="611.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.viergewinnt.gui.ControllerSpielEnde">
    <children>
-      <Button layoutX="200.0" layoutY="394.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="261.0" text="Beenden" />
-      <TableView fx:id="tableViewGespielteSatz" layoutX="163.0" layoutY="86.0" prefHeight="223.0" prefWidth="296.0">
+      <ImageView fitHeight="415.0" fitWidth="625.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../assets/img/background.jpg" />
+         </image>
+      </ImageView>
+      <Button layoutX="172.0" layoutY="304.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="261.0" text="Beenden" />
+      <TableView fx:id="tableViewGespielteSatz" layoutX="165.0" layoutY="35.0" prefHeight="223.0" prefWidth="296.0">
         <columns>
           <TableColumn fx:id="col1" prefWidth="75.0" text="C1" />
           <TableColumn fx:id="col2" prefWidth="75.0" text="C2" />

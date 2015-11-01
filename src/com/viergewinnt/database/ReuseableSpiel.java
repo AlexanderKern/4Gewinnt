@@ -33,7 +33,7 @@ public class ReuseableSpiel {
 	 * Setzt die Id des Spiels
 	 * @param id Id des Spiels
 	 */
-	public void setId( int id){
+	public static void setId( int id){
 		ReuseableSpiel.id = id; 
 	}
 	
@@ -41,7 +41,7 @@ public class ReuseableSpiel {
 	 * Gibt die Id des Spiels zurueck
 	 * @return Id des Spiels
 	 */
-	public int getId(){
+	public static int getId(){
 		return id;
 	}
 	

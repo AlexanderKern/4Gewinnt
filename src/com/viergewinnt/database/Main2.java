@@ -19,6 +19,7 @@ public class Main2 extends Application {
 		
 		Database db = new Database();
 
+		db.createTable(db);
 		db.createSpiel();
 		db.createSatz(ReuseableSpiel.id);
 	

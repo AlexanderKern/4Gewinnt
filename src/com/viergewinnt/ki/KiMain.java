@@ -53,7 +53,7 @@ public class KiMain {
 		public void setEigenerStein(int spalte) {
 
 			spalte_rueckgabe = spalte;			
-			feld [akt_zeile[spalte]][spalte_rueckgabe] = 1;
+			feld [akt_zeile[spalte]][spalte_rueckgabe] = 1; //TODO: Array Index out of bound
 			letzter_zug[1] = spalte_rueckgabe;
 			letzter_zug[0] = akt_zeile[spalte];
 			akt_zeile[spalte]--;
@@ -78,7 +78,7 @@ public class KiMain {
 	/**
 	 * Berechnet die zu setzende Spalte.
 	 * 
-	 * Der Parameter ergebnis ist standardmaeßig zuerst auf 99 gesetzt, um so ueberpruefen zu koennen ob noch kein sinnvoller Zug berechnet worden ist.
+	 * Der Parameter ergebnis ist standardmaeï¿½ig zuerst auf 99 gesetzt, um so ueberpruefen zu koennen ob noch kein sinnvoller Zug berechnet worden ist.
 	 * Wird ein sinnvolles Ergebnis gefunden, wird die Berechnungsschleife abgebrochen, ansonsten wird eine Zufallszahl bestimmt.
 	 * Die Schleife geht von links nach rechts die Spalten durch und berechnet vom aktuell obersten Feld der Spalte aus.
 	 * 

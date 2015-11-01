@@ -45,6 +45,19 @@ public class PusherMain {
 		final PusherConnectionHandler pch = new PusherConnectionHandler().registerHandler("MoveToAgent",
 				new Function<Pusher, PrivateChannel, String>() {
 					public void execute(Pusher pusher, PrivateChannel channel, String data) throws IOException {
+						//Datenbank---------------------------------------------------------------------------------------------
+						Database db = new Database();
+						
+						try {
+							if(db.getGewonneneSaetze(ReuseableSpiel.getId()) !=  null){
+								cf.setGespielteSaetze(db.getGewonneneSaetze(ReuseableSpiel.getId()));
+							}
+							
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						//------------------------------------------------------------------------------------------------------
 						// Parsen
 						ObjectMapper mapper = new ObjectMapper();
 						Message message = mapper.readValue(data, Message.class);
@@ -53,11 +66,7 @@ public class PusherMain {
 						message.setSatzstatus(messageParts[1]);
 						message.setGegnerzug(messageParts[2]);
 						message.setSieger(messageParts[3]);
-						//Datenbank---------------------------------------------------------------------------------------------
-						Database db = new Database();
-						ReuseableSatz reuseSatz = new ReuseableSatz();
-						ReuseableSpiel reuseSpiel = new ReuseableSpiel();
-						//------------------------------------------------------------------------------------------------------
+					
 						
 						if (message.getFreigabe() && message.getSatzstatus().equals("Satz spielen")
 								&& message.getSieger().equals("offen")) {
@@ -74,7 +83,7 @@ public class PusherMain {
 								int[] zug = ki.getletzter_zug();
 								//Zug in Datenbank---------------------------------------------------------------------------------------------
 								try {
-									db.Zug(reuseSatz.getId(), false, zug[1], zug[0]);
+									db.Zug(ReuseableSatz.getId(), false, zug[1], zug[0]);
 								} catch (SQLException e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
@@ -93,7 +102,7 @@ public class PusherMain {
 								int[] zug = ki.getletzter_zug();
 								//Zug in Datenbank---------------------------------------------------------------------------------------------
 								try {
-									db.Zug(reuseSatz.getId(), true, zug[1], zug[0]);
+									db.Zug(ReuseableSatz.getId(), true, zug[1], zug[0]);
 								} catch (SQLException e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
@@ -101,6 +110,7 @@ public class PusherMain {
 								//-------------------------------------------------------------------------------------------------------
 								//Gegnerzug in GUI setzen
 								cf.setStone(zug[0], zug[1], ReuseServermethode.getGegnerfarbe());
+								System.out.println(ReuseServermethode.getGegnerfarbe());
 
 								// Berechne nächsten Zug
 								ki.berechne();
@@ -111,7 +121,7 @@ public class PusherMain {
 								zug = ki.getletzter_zug();
 								//Zug in Datenbank---------------------------------------------------------------------------------------------
 								try {
-									db.Zug(reuseSatz.getId(), false, zug[1], zug[0]);
+									db.Zug(ReuseableSatz.getId(), false, zug[1], zug[0]);
 								} catch (SQLException e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
@@ -131,22 +141,22 @@ public class PusherMain {
 							// X = grün // 0 blau 
 						
 		
-							if( ReuseServermethode.getTeam().equals( message.getSieger()) ){
-								reuseSatz.setGewonnen("Claire");
+							if( ("Spieler " + ReuseServermethode.getTeam()).equals( message.getSieger()) ){
+								ReuseableSatz.setGewonnen("Claire");
 							}else{
-								reuseSatz.setGewonnen(reuseSpiel.getName());
+								ReuseableSatz.setGewonnen(ReuseServermethode.getGegner());
 							}
 							
-							cf.sichtbar(true, reuseSatz.getGewonnen());
+							cf.sichtbar(true, ReuseableSatz.getGewonnen());
 							
 							try {
-								db.updateSatz(reuseSatz.getGewonnen(), reuseSatz.getId());
-								System.out.println(db.getAnzahlSaetze(reuseSpiel.getId()));;
-								db.getAnzahlSaetze(reuseSpiel.getId());
-								if(db.getAnzahlSaetze(reuseSpiel.getId()) ==3){
-									System.out.println("es wurden 3 Seatze gespielt vom Spiel mit der ID "+reuseSpiel.getId());
+								db.updateSatz(ReuseableSatz.getGewonnen(), ReuseableSatz.getId());
+								System.out.println(db.getAnzahlSaetze(ReuseableSpiel.getId()));;
+								db.getAnzahlSaetze(ReuseableSpiel.getId());
+								if(db.getAnzahlSaetze(ReuseableSpiel.getId()) ==3){
+									System.out.println("es wurden 3 Seatze gespielt vom Spiel mit der ID "+ReuseableSpiel.getId());
 									
-									db.spielEnde(reuseSpiel.getId(), db.getSpielPkt(reuseSpiel.getId()));
+									db.spielEnde(ReuseableSpiel.getId(), db.getSpielPkt(ReuseableSpiel.getId()));
 								}
 							} catch (SQLException e) {
 								// TODO Auto-generated catch block

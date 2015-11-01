@@ -12,6 +12,7 @@ import com.viergewinnt.api.common.util.ReuseServermethode;
 import com.viergewinnt.api.file.FileMain;
 import com.viergewinnt.api.pusher.PusherMain;
 import com.viergewinnt.database.Database;
+import com.viergewinnt.database.ReuseableSatz;
 import com.viergewinnt.database.ReuseableSpiel;
 
 import javafx.application.Platform;
@@ -22,6 +23,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -41,7 +44,13 @@ import javafx.stage.StageStyle;
 // Controller Field
 public class ControllerField implements Initializable {
 	@FXML
-	Button button, bExit, bBack, bNewSatz;
+	Button button, bExit, bBack, bNewSatz, bSatzVerwerfen;
+	
+	@FXML
+	ToggleGroup myToggleGroup;
+	
+	@FXML
+	ToggleButton tbGewonnen, tbVerloren;
 
 	@FXML
 	GridPane grid;
@@ -53,7 +62,9 @@ public class ControllerField implements Initializable {
 	ImageView ivOne, ivTwo, ivThree, ivGreen, ivBlue;
 
 	@FXML
-	Label lPlayerY, lPlayerR;
+	Label lPlayerY, lPlayerR, lGewonnen;
+	
+	
 	@FXML
 	Pane pane;
 
@@ -71,18 +82,25 @@ public class ControllerField implements Initializable {
 		 * Satz in Datenbank anlegen
 		 */
 		bNewSatz.setVisible(false);
+		bSatzVerwerfen.setVisible(false);
+		tbGewonnen.setVisible(false);
+		tbGewonnen.setToggleGroup(myToggleGroup);
+		tbVerloren.setVisible(false);
+		tbVerloren.setToggleGroup(myToggleGroup);
+		lGewonnen.setVisible(false);
 
-		ReuseableSpiel reuseSpiel = new ReuseableSpiel();
+		
 		Database db = new Database();
 		try {
-			db.createSatz(reuseSpiel.id);
+			System.out.println("Satz anlegen Spiel id"+ReuseableSpiel.getId());
+			db.createSatz(ReuseableSpiel.getId());
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		// --------------------------------------------------------------------------------------------------------------
 
-		if (ReuseServermethode.getTeamfarbe() == false) {
+		if (ReuseServermethode.getTeam().equals("O")) {
 			lPlayerR.setText("Claire");
 			lPlayerY.setText(ReuseServermethode.getGegner());
 		} else {
@@ -93,13 +111,13 @@ public class ControllerField implements Initializable {
 		if (ReuseServermethode.getMethode().equals("Pusher")) {
 			try {
 				final PusherMain pusherMain = new PusherMain(this);
-				pusherMain.pusher(ReuseServermethode.getTeam(), db.getAnzahlSaetze(ReuseableSpiel.id));
+				pusherMain.pusher(ReuseServermethode.getTeam(), db.getAnzahlSaetze(ReuseableSpiel.getId()));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else if (ReuseServermethode.getMethode().equals("File")) {
 			try {
-				new FileMain(this, db.getAnzahlSaetze(ReuseableSpiel.id)).start();
+				new FileMain(this, db.getAnzahlSaetze(ReuseableSpiel.getId())).start();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -168,6 +186,49 @@ public class ControllerField implements Initializable {
 				e.printStackTrace();
 			}
 		});
+		
+		
+		tbGewonnen.setOnAction((ev) ->{
+
+			try {
+				db.updateSatz("gewonnen", ReuseableSatz.getId());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			lGewonnen.setText("Claire hat gewonnen");
+			
+		});
+		
+		tbVerloren.setOnAction((ev) ->{
+
+			try {
+				db.updateSatz("verloren", ReuseableSatz.getId());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			lGewonnen.setText("Claire hat verloren");
+			
+		});
+		
+		bSatzVerwerfen.setOnAction((ev) ->{
+			try {
+				db.loeschenZuege(ReuseableSatz.getId());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.out.println("Züge gelöscht");
+			try {
+				db.satzloeschen(ReuseableSatz.getId());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.out.println("Satz gelöscht");
+		});
+		
 	}// end of init
 
 	/**
@@ -210,28 +271,55 @@ public class ControllerField implements Initializable {
 	/**
 	 * 
 	 * @param result
-	 * @param sequenceNumber
+	 * @param sequenceNumber aktuelle Satznummer
 	 */
 	public void setResult(String result, int sequenceNumber) {
 		Platform.runLater(new Runnable() {
 			public void run() {
-				ivOne.setImage(imageBlue);
-				if (result.equals(ReuseServermethode.getTeam())) {
+
+				String eigenesTeam = "Spieler " + ReuseServermethode.getTeam();
+
+				if (result.equals(eigenesTeam)) {
 					if (sequenceNumber == 1) {
-						ivOne.setImage(imageBlue);
+						if (ReuseServermethode.getTeam().equals("X")) {
+							ivThree.setImage(imageGreen);
+						} else {
+							ivThree.setImage(imageBlue);
+						}
 					} else if (sequenceNumber == 2) {
-						ivTwo.setImage(imageBlue);
+						if (ReuseServermethode.getTeam().equals("X")) {
+							ivThree.setImage(imageGreen);
+						} else {
+							ivThree.setImage(imageBlue);
+						}
 					} else {
-						ivThree.setImage(imageBlue);
+						if (ReuseServermethode.getTeam().equals("X")) {
+							ivThree.setImage(imageGreen);
+						} else {
+							ivThree.setImage(imageBlue);
+						}
 					}
-				} else if (result != ReuseServermethode.getTeam() && result != "offen") {
+				} else if (result != eigenesTeam && result != "offen") {
 					if (sequenceNumber == 1) {
-						ivOne.setImage(imageGreen);
+						if (ReuseServermethode.getGegnerfarbe() == false) {
+							ivOne.setImage(imageGreen);
+						} else {
+							ivOne.setImage(imageBlue);
+						}
 					} else if (sequenceNumber == 2) {
-						ivTwo.setImage(imageGreen);
+						if (ReuseServermethode.getGegnerfarbe() == false) {
+							ivOne.setImage(imageGreen);
+						} else {
+							ivOne.setImage(imageBlue);
+						}
 					} else {
-						ivThree.setImage(imageGreen);
+						if (ReuseServermethode.getGegnerfarbe() == false) {
+							ivOne.setImage(imageGreen);
+						} else {
+							ivOne.setImage(imageBlue);
+						}
 					}
+
 				} else {
 					if (sequenceNumber == 1) {
 						ivOne.setImage(imageG);
@@ -256,13 +344,92 @@ public class ControllerField implements Initializable {
 			@Override
 			public void run() {
 				bNewSatz.setVisible(visible);
+				bSatzVerwerfen.setVisible(visible);
+				tbGewonnen.setVisible(visible);
+				tbVerloren.setVisible(visible);
+				
+				if(sieger.equals("Claire")){
+					tbGewonnen.setSelected(true);
+					lGewonnen.setText("Claire hat gewonnen");
+				}else{
+					tbVerloren.setSelected(true);
+					lGewonnen.setText("Claire hat verloren");
+				}
 
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Sieger");
 				alert.setHeaderText("Der Gewinner des Satzes ist");
 				alert.setContentText(sieger);
 				alert.show();
+				
+	
 			}
 		});
+	}
+
+	public void setGespielteSaetze(String[] gewonneneSaetze) {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+
+				for (int i = 0; i < gewonneneSaetze.length - 1; i++) {
+					if (gewonneneSaetze[i].equals(ReuseServermethode.getTeam())) {
+						if (i == 0) {
+							if (ReuseServermethode.getTeam().equals("X")) {
+								ivOne.setImage(imageGreen);
+							} else {
+								ivOne.setImage(imageBlue);
+							}
+
+						} else if (i == 1) {
+							if (ReuseServermethode.getTeam().equals("X")) {
+								ivTwo.setImage(imageGreen);
+							} else {
+								ivTwo.setImage(imageBlue);
+							}
+						} else {
+							if (ReuseServermethode.getTeam().equals("X")) {
+								ivThree.setImage(imageGreen);
+							} else {
+								ivThree.setImage(imageBlue);
+							}
+						}
+					} // end of wir Gewonnen
+						// Setzten des Gegner Steins, falls der gewonnen
+					else if (gewonneneSaetze[i] != ReuseServermethode.getTeam() && gewonneneSaetze[i] != "offen") {
+						if (i == 0) {
+							if (ReuseServermethode.getGegnerfarbe() == false) {
+								ivOne.setImage(imageGreen);
+							} else {
+								ivOne.setImage(imageBlue);
+							}
+
+						} else if (i == 1) {
+							if (ReuseServermethode.getGegnerfarbe() == false) {
+								ivTwo.setImage(imageGreen);
+							} else {
+								ivTwo.setImage(imageBlue);
+							}
+						} else {
+							if (ReuseServermethode.getGegnerfarbe() == false) {
+								ivThree.setImage(imageGreen);
+							} else {
+								ivThree.setImage(imageBlue);
+							}
+						}
+					} else {
+						if (i == 0) {
+							ivOne.setImage(imageG);
+						} else if (i == 1) {
+							ivTwo.setImage(imageG);
+						} else {
+							ivThree.setImage(imageG);
+						}
+					}
+
+				}
+			}
+		});
+
 	}
 }// end of class
