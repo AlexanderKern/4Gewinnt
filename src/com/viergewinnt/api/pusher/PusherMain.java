@@ -49,7 +49,7 @@ public class PusherMain {
 						Database db = new Database();
 						
 						try {
-							if(db.getGewonneneSaetze(ReuseableSpiel.getId()) !=  null){
+							if(sequenceNumber != 1){
 								cf.setGespielteSaetze(db.getGewonneneSaetze(ReuseableSpiel.getId()));
 							}
 							

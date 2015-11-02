@@ -90,6 +90,14 @@ public class ControllerField implements Initializable {
 		tbVerloren.setToggleGroup(myToggleGroup);
 		lGewonnen.setVisible(false);
 		try {
+				setGespielteSaetze(db.getGewonneneSaetze(ReuseableSpiel.getId()));
+			
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		try {
 			lSatz.setText(String.valueOf(db.getAnzahlSaetze(ReuseableSpiel.getId())+1));
 		} catch (SQLException e2) {
 			e2.printStackTrace();
@@ -379,8 +387,10 @@ public class ControllerField implements Initializable {
 			@Override
 			public void run() {
 
-				for (int i = 0; i <= gewonneneSaetze.length - 1; i++) {
-						if (i == 0) {
+System.out.println(gewonneneSaetze.length);
+				for (int i = 0; i < gewonneneSaetze.length; i++) {
+					System.out.println(gewonneneSaetze[i]);
+						if (i == 0 && gewonneneSaetze[i] != null) {
 							if (gewonneneSaetze[i].equals("X")) {
 								ivOne.setImage(imageGreen);
 							} else if(gewonneneSaetze[i].equals("O")) {
@@ -389,21 +399,21 @@ public class ControllerField implements Initializable {
 								ivOne.setImage(imageG);
 							}
 
-						} else if (i == 1) {
+						} else if (i == 1 && gewonneneSaetze[i] != null) {
 							if (gewonneneSaetze[i].equals("X")) {
-								ivOne.setImage(imageGreen);
+								ivTwo.setImage(imageGreen);
 							} else if(gewonneneSaetze[i].equals("O")) {
-								ivOne.setImage(imageBlue);
+								ivTwo.setImage(imageBlue);
 							} else{
-								ivOne.setImage(imageG);
+								ivTwo.setImage(imageG);
 							}
-						} else {
+						} else if(gewonneneSaetze[i] != null){
 							if (gewonneneSaetze[i].equals("X")) {
-								ivOne.setImage(imageGreen);
+								ivThree.setImage(imageGreen);
 							} else if(gewonneneSaetze[i].equals("O")) {
-								ivOne.setImage(imageBlue);
+								ivThree.setImage(imageBlue);
 							} else{
-								ivOne.setImage(imageG);
+								ivThree.setImage(imageG);
 							}
 						}
 					}
