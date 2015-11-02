@@ -52,11 +52,23 @@ public class KiMain {
 		 */
 		public void setEigenerStein(int spalte) {
 
-			spalte_rueckgabe = spalte;			
-			feld [akt_zeile[spalte]][spalte_rueckgabe] = 1; //TODO: Array Index out of bound
-			letzter_zug[1] = spalte_rueckgabe;
-			letzter_zug[0] = akt_zeile[spalte];
-			akt_zeile[spalte]--;
+			spalte_rueckgabe = spalte;
+			if(akt_zeile[spalte] != 6){
+				feld [akt_zeile[spalte]][spalte_rueckgabe] = 1; //TODO: Array Index out of bound
+				letzter_zug[1] = spalte_rueckgabe;
+				letzter_zug[0] = akt_zeile[spalte];
+				akt_zeile[spalte]--;
+			} else {
+				for(spalte = 0; spalte < 7; spalte++){
+					if(akt_zeile[spalte] != 6){
+						feld [akt_zeile[spalte]][spalte_rueckgabe] = 1; //TODO: Array Index out of bound
+						letzter_zug[1] = spalte_rueckgabe;
+						letzter_zug[0] = akt_zeile[spalte];
+						akt_zeile[spalte]--;
+						break;
+					}
+				}
+			}
 		}// end setter
 
 		/**
