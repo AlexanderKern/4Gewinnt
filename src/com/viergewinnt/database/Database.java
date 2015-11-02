@@ -117,6 +117,8 @@ public class Database {
 			PreparedStatement st = conn.prepareStatement("SELECT COUNT(*) FROM spieler WHERE name = ?");
 			st.setString(1, spielerName);
 			ResultSet rs = st.executeQuery();
+			
+			
 			rs.next();
 			
 			 if (rs.getInt(1) == 0){ //Existiert bereits ein Spieler mit dem Namen in der Datenbank? 
@@ -212,11 +214,15 @@ public class Database {
 		public int getSpielPkt(int spielId) throws SQLException{
 
 			 int punkte = 0; 
-			 PreparedStatement st = conn.prepareStatement("SELECT * FROM satz WHERE spiel_Id = ? AND gewonnen = ?");
+			 PreparedStatement st = conn.prepareStatement("SELECT COUNT(*) FROM satz WHERE spiel_Id = ? AND gewonnen = ?");
 			 st.setInt(1, spielId);
 			 st.setString(2, "gewonnen");
 			 ResultSet rs = st.executeQuery();
-			 
+			
+			 if(rs.next()){
+				punkte =rs.getInt(1);
+			}
+			 /*
 			  if (rs.next()) {
 			        rs.last();
 			        punkte = rs.getRow();
@@ -224,7 +230,7 @@ public class Database {
 			    } else {
 			        System.out.println("No Data");
 			    }
-
+*/
 				return punkte;
 		}
 		
@@ -310,36 +316,57 @@ public class Database {
 			PreparedStatement gewonneneSaetze = conn.prepareStatement("SELECT gewonnen FROM satz WHERE spiel_id = ?");
 			gewonneneSaetze.setInt(1 , spielId);
 			ResultSet rsGewSa = gewonneneSaetze.executeQuery();
-			
 			int i = 0; 
-			int j =1; 
-			
-			String[] gewonnen = new String[2];
-			
-			if(rsGewSa.next() != false){
-			if(rsGewSa.next()){
-				if(rsGewSa.getString(j).equals("verloren")){
-					if(ReuseServermethode.getGegnerfarbe() == false){
-						gewonnen[i] = "X";
+			String[] gewonnen = new String[3];
+			while(rsGewSa.next()){
+				if(rsGewSa.getString(1) != null){
+					if(rsGewSa.getString(1).equals("verloren")){
+						if(ReuseServermethode.getGegnerfarbe() == false){
+							gewonnen[i] = "X";
+						}else{
+							gewonnen[i] = "O";
+						}
+						
+					}else if(rsGewSa.getString(1).equals("gewonnen")){
+						gewonnen[i]  = ReuseServermethode.getTeam();
 					}else{
-						gewonnen[i] = "O";
+						gewonnen[i] = "offen";
 					}
-					
-				}else if(rsGewSa.getString(j).equals("gewonnen")){
-					gewonnen[i]  = ReuseServermethode.getTeam();
-				}else{
-					gewonnen[i] = "offen";
 				}
-			}
-				
-				
-				
-				i= i+1;  
-				j = j+1;
-			}// endif
+				i= i+1;
+				}
+				  
 			
 			return gewonnen;
 
+		}
+		
+		public String spielGewinner() throws SQLException{
+			int pkt = 0;
+		
+			String[] gewonneneSaetze = getGewonneneSaetze(ReuseableSpiel.getId());
+			 if(gewonneneSaetze.length == 0){
+				 System.out.println("leer problem!!!");
+			 }
+			 
+			for(int i = 0; i<= gewonneneSaetze.length-1;i++){
+				if(gewonneneSaetze[i] == null){
+					 System.out.println("chaka null");
+				 }
+				else if(gewonneneSaetze[i].equals("gewonnen")){
+					pkt = pkt+1;
+				}else if(gewonneneSaetze[i].equals("verloren")){
+					pkt = pkt-1;
+				}
+			}
+				
+			if(pkt>0){
+				return "Claire";
+			}else if(pkt<0){
+				return ReuseServermethode.getGegner();
+			}else{
+				return "unentschieden";
+			}
 		}
 		
 		/**

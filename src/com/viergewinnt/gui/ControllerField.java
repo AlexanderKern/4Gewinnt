@@ -62,7 +62,7 @@ public class ControllerField implements Initializable {
 	ImageView ivOne, ivTwo, ivThree, ivGreen, ivBlue;
 
 	@FXML
-	Label lPlayerY, lPlayerR, lGewonnen;
+	Label lPlayerY, lPlayerR, lGewonnen,lSatz;
 	
 	
 	@FXML
@@ -81,6 +81,7 @@ public class ControllerField implements Initializable {
 		/*--------------------------------------------------------------------------------------------------------------
 		 * Satz in Datenbank anlegen
 		 */
+		Database db = new Database();
 		bNewSatz.setVisible(false);
 		bSatzVerwerfen.setVisible(false);
 		tbGewonnen.setVisible(false);
@@ -88,9 +89,11 @@ public class ControllerField implements Initializable {
 		tbVerloren.setVisible(false);
 		tbVerloren.setToggleGroup(myToggleGroup);
 		lGewonnen.setVisible(false);
-
-		
-		Database db = new Database();
+		try {
+			lSatz.setText(String.valueOf(db.getAnzahlSaetze(ReuseableSpiel.getId())+1));
+		} catch (SQLException e2) {
+			e2.printStackTrace();
+		}
 		try {
 			System.out.println("Satz anlegen Spiel id"+ReuseableSpiel.getId());
 			db.createSatz(ReuseableSpiel.getId());
@@ -285,15 +288,15 @@ public class ControllerField implements Initializable {
 				if (result.equals(eigenesTeam)) {
 					if (sequenceNumber == 1) {
 						if (ReuseServermethode.getTeam().equals("X")) {
-							ivThree.setImage(imageGreen);
+							ivOne.setImage(imageGreen);
 						} else {
-							ivThree.setImage(imageBlue);
+							ivOne.setImage(imageBlue);
 						}
 					} else if (sequenceNumber == 2) {
 						if (ReuseServermethode.getTeam().equals("X")) {
-							ivThree.setImage(imageGreen);
+							ivTwo.setImage(imageGreen);
 						} else {
-							ivThree.setImage(imageBlue);
+							ivTwo.setImage(imageBlue);
 						}
 					} else {
 						if (ReuseServermethode.getTeam().equals("X")) {
@@ -304,22 +307,22 @@ public class ControllerField implements Initializable {
 					}
 				} else if (result != eigenesTeam && result != "offen") {
 					if (sequenceNumber == 1) {
-						if (ReuseServermethode.getGegnerfarbe() == false) {
+						if (ReuseServermethode.getGegnerfarbe() == true) {
 							ivOne.setImage(imageGreen);
 						} else {
 							ivOne.setImage(imageBlue);
 						}
 					} else if (sequenceNumber == 2) {
-						if (ReuseServermethode.getGegnerfarbe() == false) {
-							ivOne.setImage(imageGreen);
+						if (ReuseServermethode.getGegnerfarbe() == true) {
+							ivTwo.setImage(imageGreen);
 						} else {
-							ivOne.setImage(imageBlue);
+							ivTwo.setImage(imageBlue);
 						}
 					} else {
-						if (ReuseServermethode.getGegnerfarbe() == false) {
-							ivOne.setImage(imageGreen);
+						if (ReuseServermethode.getGegnerfarbe() == true) {
+							ivThree.setImage(imageGreen);
 						} else {
-							ivOne.setImage(imageBlue);
+							ivThree.setImage(imageBlue);
 						}
 					}
 
@@ -376,63 +379,36 @@ public class ControllerField implements Initializable {
 			@Override
 			public void run() {
 
-				for (int i = 0; i < gewonneneSaetze.length - 1; i++) {
-					if (gewonneneSaetze[i].equals(ReuseServermethode.getTeam())) {
+				for (int i = 0; i <= gewonneneSaetze.length - 1; i++) {
 						if (i == 0) {
-							if (ReuseServermethode.getTeam().equals("X")) {
+							if (gewonneneSaetze[i].equals("X")) {
 								ivOne.setImage(imageGreen);
-							} else {
+							} else if(gewonneneSaetze[i].equals("O")) {
 								ivOne.setImage(imageBlue);
+							} else{
+								ivOne.setImage(imageG);
 							}
 
 						} else if (i == 1) {
-							if (ReuseServermethode.getTeam().equals("X")) {
-								ivTwo.setImage(imageGreen);
-							} else {
-								ivTwo.setImage(imageBlue);
-							}
-						} else {
-							if (ReuseServermethode.getTeam().equals("X")) {
-								ivThree.setImage(imageGreen);
-							} else {
-								ivThree.setImage(imageBlue);
-							}
-						}
-					} // end of wir Gewonnen
-						// Setzten des Gegner Steins, falls der gewonnen
-					else if (gewonneneSaetze[i] != ReuseServermethode.getTeam() && gewonneneSaetze[i] != "offen") {
-						if (i == 0) {
-							if (ReuseServermethode.getGegnerfarbe() == false) {
+							if (gewonneneSaetze[i].equals("X")) {
 								ivOne.setImage(imageGreen);
-							} else {
+							} else if(gewonneneSaetze[i].equals("O")) {
 								ivOne.setImage(imageBlue);
-							}
-
-						} else if (i == 1) {
-							if (ReuseServermethode.getGegnerfarbe() == false) {
-								ivTwo.setImage(imageGreen);
-							} else {
-								ivTwo.setImage(imageBlue);
+							} else{
+								ivOne.setImage(imageG);
 							}
 						} else {
-							if (ReuseServermethode.getGegnerfarbe() == false) {
-								ivThree.setImage(imageGreen);
-							} else {
-								ivThree.setImage(imageBlue);
+							if (gewonneneSaetze[i].equals("X")) {
+								ivOne.setImage(imageGreen);
+							} else if(gewonneneSaetze[i].equals("O")) {
+								ivOne.setImage(imageBlue);
+							} else{
+								ivOne.setImage(imageG);
 							}
-						}
-					} else {
-						if (i == 0) {
-							ivOne.setImage(imageG);
-						} else if (i == 1) {
-							ivTwo.setImage(imageG);
-						} else {
-							ivThree.setImage(imageG);
 						}
 					}
 
 				}
-			}
 		});
 
 	}

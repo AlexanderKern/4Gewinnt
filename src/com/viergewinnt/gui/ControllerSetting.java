@@ -113,8 +113,12 @@ public class ControllerSetting implements Initializable {
 				ReuseServermethode.setMethode("File");
 				ReuseServermethode.setPfad(tfPath.getText());
 			}
-
-			ReuseServermethode.setGegner(tfEnemy.getText());
+			if(tfEnemy.getText().isEmpty()){
+				
+			}else{
+				ReuseServermethode.setGegner(tfEnemy.getText());
+			}
+			
 
 			// Spiel anlegen in
 			// Datenbank---------------------------------------------------------------------------

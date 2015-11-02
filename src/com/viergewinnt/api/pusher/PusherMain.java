@@ -146,22 +146,32 @@ public class PusherMain {
 							}else{
 								ReuseableSatz.setGewonnen(ReuseServermethode.getGegner());
 							}
+							String status = "";
 							
-							cf.sichtbar(true, ReuseableSatz.getGewonnen());
-							
+							if(ReuseableSatz.getGewonnen().equals("Claire")){
+								status="gewonnen";
+							}else{
+								status = "verloren";
+							}
 							try {
-								db.updateSatz(ReuseableSatz.getGewonnen(), ReuseableSatz.getId());
-								System.out.println(db.getAnzahlSaetze(ReuseableSpiel.getId()));;
+								db.updateSatz(status, ReuseableSatz.getId());
+								System.out.println(db.getAnzahlSaetze(ReuseableSpiel.getId()));
 								db.getAnzahlSaetze(ReuseableSpiel.getId());
-								if(db.getAnzahlSaetze(ReuseableSpiel.getId()) ==3){
+								if(db.getAnzahlSaetze(ReuseableSpiel.getId()) == 3){
 									System.out.println("es wurden 3 Seatze gespielt vom Spiel mit der ID "+ReuseableSpiel.getId());
 									
 									db.spielEnde(ReuseableSpiel.getId(), db.getSpielPkt(ReuseableSpiel.getId()));
+									
+									db.spielGewinner();
 								}
 							} catch (SQLException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
+							
+							cf.sichtbar(true, ReuseableSatz.getGewonnen());
+							
+							
 							
 							//-------------------------------------------------------------------------------------------------------
 						}
