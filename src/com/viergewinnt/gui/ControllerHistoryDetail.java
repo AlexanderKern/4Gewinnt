@@ -63,7 +63,7 @@ TableColumn<ValueClass, String> col1, col2, col3,col4, col5;
 
 	           // Spielfeld für die Historienbetrachtung wieder aufbauen
 	            	try {
-						FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("spielfeld2.fxml"));
+						FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("spielfeldRec.fxml"));
 						Parent root1 = (Parent) fxmlLoader.load();
 						Stage stage = new Stage();
 						stage.initModality(Modality.APPLICATION_MODAL);
