@@ -102,22 +102,45 @@ public class ControllerRec implements Initializable {
 			e.printStackTrace();
 		}
 		
+		bBack.setOnAction((ev) -> {
+			try {
+				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("historyDetail.fxml"));
+				Parent root1 = (Parent) fxmlLoader.load();
+				Stage stage = new Stage();
+				stage.initModality(Modality.APPLICATION_MODAL);
+				stage.initStyle(StageStyle.UNDECORATED);
+				stage.setTitle("ABC");
+				stage.setScene(new Scene(root1));
+				stage.show();
+
+				((Node) (ev.getSource())).getScene().getWindow().hide();
+			}
+
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+		}); // end of bBack
+
+		bExit.setOnAction((ev) -> {
+			
+			((Node) (ev.getSource())).getScene().getWindow().hide();
+		}); // end of bExit
 
 
-	}
+	}// end of initi
 
 	private void setStone(boolean gegner, int spalte, int zeile) 
 	{
 		//Booelan true = blau false = grün
 		
-		if (gegner = true)
+		if (gegner == true)
 		{
 			ImageView iv = new ImageView(imageBlue);
 			grid.setRowIndex(iv, zeile);
 			grid.setColumnIndex(iv, spalte);
 			grid.getChildren().addAll(iv);		
 		}
-		else
+		else if(gegner == false)
 		{
 			ImageView iv = new ImageView(imageGreen);
 			grid.setRowIndex(iv, zeile);

@@ -12,10 +12,10 @@
             <Image url="@../../../../assets/img/background.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="225.0" layoutY="200.0" text="Spiele die gespielt wurden" />
-      <ScrollPane layoutX="75.0" layoutY="46.0" prefHeight="146.0" prefViewportHeight="151.0" prefViewportWidth="439.0" prefWidth="441.0">
+      <Label layoutX="200.0" layoutY="23.0" text="Sätze die gespielt wurden" />
+      <ScrollPane layoutX="52.0" layoutY="46.0" prefHeight="339.0" prefViewportHeight="151.0" prefViewportWidth="439.0" prefWidth="464.0">
          <content>
-            <TableView fx:id="tableViewSatz" layoutX="75.0" layoutY="51.0" prefHeight="151.0" prefWidth="439.0">
+            <TableView fx:id="tableViewSatz" layoutX="75.0" layoutY="51.0" prefHeight="333.0" prefWidth="455.0">
               <columns>
                 <TableColumn fx:id="col1" prefWidth="136.0" text="C1" />
                   <TableColumn fx:id="col2" prefWidth="154.0" text="C2" />
