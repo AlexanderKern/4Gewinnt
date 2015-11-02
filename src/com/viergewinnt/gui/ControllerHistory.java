@@ -66,9 +66,8 @@ TableColumn<ValueClass, String> col1, col2, col3,col4, col5;
 				int spielId = Integer.parseInt(((ValueClass) newValue).getColumn1()); //ausgewaehlte Spielid
 				System.out.println("Ausgewähltes Spiele ID = "+spielId);
 				
-				ReuseableSatz reuseSatz = new ReuseableSatz();
-				reuseSatz.setSpielId(spielId);
-				
+				ReuseableSatz.setId(spielId);
+
 				// Neues Fenster mit ausgewählten Sätzen soll aufgerufen werden
 				try {
 					FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("historyDetail.fxml"));
@@ -126,8 +125,6 @@ TableColumn<ValueClass, String> col1, col2, col3,col4, col5;
 	                 
 	                 ValueClass cl = new ValueClass(spiel.getId(), spiel.getPunkte(), spiel.getGegener(), spiel.getDatum(), spiel.getFarbe());
 	                 data.add(cl); 
-	                 
-	                 System.out.println("Spielfarbe"+spiel.getFarbe());
 
 	                col1.setText("ID");
 	                col2.setText("Punkte");

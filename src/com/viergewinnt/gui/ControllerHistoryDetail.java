@@ -51,7 +51,7 @@ TableColumn<ValueClass, String> col1, col2, col3,col4, col5;
 	 */
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources)
 	{
-		ReuseableSatz reuseSatz = new ReuseableSatz();
+		
 
 		
 		 tableViewSatz.getSelectionModel().selectedItemProperty().addListener((observable2, oldValue2, newValue2) -> {
@@ -59,7 +59,7 @@ TableColumn<ValueClass, String> col1, col2, col3,col4, col5;
            	if (newValue2 != null) 
            	{
 	            	System.out.println("Ausgewähltes SatzID = "+((ValueClass) newValue2).getColumn1());
-	            	reuseSatz.setId(Integer.parseInt(((ValueClass) newValue2).getColumn1()));
+	            	ReuseableSatz.setId(Integer.parseInt(((ValueClass) newValue2).getColumn1()));
 
 	           // Spielfeld für die Historienbetrachtung wieder aufbauen
 	            	try {
@@ -87,7 +87,7 @@ TableColumn<ValueClass, String> col1, col2, col3,col4, col5;
 		ObservableList<ValueClass> data = FXCollections.observableArrayList(); //Darzustellebde Daten
 		try {
 			Database db = new Database();
-			ResultSet rs = db.getSaetze(reuseSatz.getId());
+			ResultSet rs = db.getSaetze(ReuseableSatz.getId());
 			 
 			String satzId = null;
 			String satzSpielid = null;
