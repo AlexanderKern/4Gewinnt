@@ -227,6 +227,9 @@ public class ControllerField implements Initializable {
 				e.printStackTrace();
 			}
 			System.out.println("Satz gelöscht");
+			lGewonnen.setText("Satz wurde verworfen");
+			tbGewonnen.setVisible(false);
+			tbVerloren.setVisible(false);
 		});
 		
 	}// end of init
@@ -347,6 +350,7 @@ public class ControllerField implements Initializable {
 				bSatzVerwerfen.setVisible(visible);
 				tbGewonnen.setVisible(visible);
 				tbVerloren.setVisible(visible);
+				lGewonnen.setVisible(visible);
 				
 				if(sieger.equals("Claire")){
 					tbGewonnen.setSelected(true);
