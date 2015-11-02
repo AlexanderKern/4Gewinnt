@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="414.0" prefWidth="611.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.viergewinnt.gui.ControllerSpielEnde">
+<AnchorPane prefHeight="414.0" prefWidth="611.0" styleClass="welcome.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.viergewinnt.gui.ControllerSpielEnde">
    <children>
       <ImageView fitHeight="415.0" fitWidth="625.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>

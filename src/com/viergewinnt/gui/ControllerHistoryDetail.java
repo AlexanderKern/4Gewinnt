@@ -8,7 +8,7 @@ import com.viergewinnt.database.Database;
 import com.viergewinnt.database.ValueClass;
 import com.viergewinnt.database.ReuseableSatz;
 
-
+import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -134,29 +134,14 @@ TableColumn<ValueClass, String> col1, col2, col3,col4, col5;
 		//-------------------------------------------------------------------
 		
 		bBack.setOnAction((ev) -> {
-			try {
-				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("welcome.fxml"));
-				Parent root1 = (Parent) fxmlLoader.load();
-				Stage stage = new Stage();
-				stage.initModality(Modality.APPLICATION_MODAL);
-				stage.initStyle(StageStyle.UNDECORATED);
-				stage.setTitle("Spiel Starten");
-				stage.setScene(new Scene(root1));
-				stage.show();
+		
+		((Node) (ev.getSource())).getScene().getWindow().hide();
 
-				((Node) (ev.getSource())).getScene().getWindow().hide();
-			
-				}// enf of try
-			catch(Exception e)
-			{
-				e.printStackTrace();
-			}
 		}); // end of bBack
 		
-		bExit.setOnAction((ev)-> {
-			
-			((Node) (ev.getSource())).getScene().getWindow().hide();
-
+		bExit.setOnAction((ev)-> 
+		{
+			Platform.exit();
 		}); // end of bExit
 		
 		

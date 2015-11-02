@@ -102,28 +102,15 @@ public class ControllerRec implements Initializable {
 			e.printStackTrace();
 		}
 		
-		bBack.setOnAction((ev) -> {
-			try {
-				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("historyDetail.fxml"));
-				Parent root1 = (Parent) fxmlLoader.load();
-				Stage stage = new Stage();
-				stage.initModality(Modality.APPLICATION_MODAL);
-				stage.initStyle(StageStyle.UNDECORATED);
-				stage.setTitle("ABC");
-				stage.setScene(new Scene(root1));
-				stage.show();
-
-				((Node) (ev.getSource())).getScene().getWindow().hide();
-			}
-
-			catch (Exception e) {
-				e.printStackTrace();
-			}
+		bBack.setOnAction((ev) -> 
+		{
+						((Node) (ev.getSource())).getScene().getWindow().hide();
+			
 		}); // end of bBack
 
-		bExit.setOnAction((ev) -> {
-			
-			((Node) (ev.getSource())).getScene().getWindow().hide();
+		bExit.setOnAction((ev) -> 
+		{
+			Platform.exit();
 		}); // end of bExit
 
 
