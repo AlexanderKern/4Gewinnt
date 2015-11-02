@@ -93,7 +93,7 @@ public class FileMain extends Thread {
 				// Nächsten Zug an Server senden
 				// Zug an Server senden
 				final FileWriter writer = new FileWriter(clientFile);
-				writer.write(String.valueOf(ki.get_spalte()));
+				writer.write(String.valueOf(zug[1]));
 				writer.flush();
 				writer.close();
 				serverFile.delete();

@@ -74,12 +74,10 @@ public class PusherMain {
  
 								// KI berechnet Zug
 								ki.berechne();
-
-								// Zug an Server senden
-								channel.trigger("client-event", "{\"move\":\"" + ki.get_spalte() + "\"}");
-								System.out.println(ki.get_spalte());
 								
-								ki.setEigenerStein(ki.get_spalte());
+								// Stein in KI setzen
+								ki.setEigenerStein(ki.get_spalte());								
+								
 								int[] zug = ki.getletzter_zug();
 								//Zug in Datenbank---------------------------------------------------------------------------------------------
 								try {
@@ -90,9 +88,12 @@ public class PusherMain {
 								}
 								//-------------------------------------------------------------------------------------------------------
 
-								// Stein in KI setzen
 								// ControllerField cf = new ControllerField();
 								cf.setStone(zug[0], zug[1], ReuseServermethode.getTeamfarbe());
+								
+								// Zug an Server senden
+								channel.trigger("client-event", "{\"move\":\"" + zug[1] + "\"}");
+								System.out.println(zug[1]);
 
 							} else {
 								// Gegnerzug in KI setzen
@@ -131,7 +132,7 @@ public class PusherMain {
 								cf.setStone(zug[0], zug[1], ReuseServermethode.getTeamfarbe());
 
 								// Nächsten Zug an Server senden
-								channel.trigger("client-event", "{\"move\":\"" + ki.get_spalte() + "\"}");
+								channel.trigger("client-event", "{\"move\":\"" + zug[1] + "\"}");
 							}
 
 						} else {
