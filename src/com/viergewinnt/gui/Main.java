@@ -28,19 +28,16 @@ public class Main extends Application {
 		try {
 			db.createTable(db);
 		} catch (SQLException e2) {
-			// System.out.println("Tabellen sind bereits angelegt");
+			e2.printStackTrace();
 		}
-
+		
 		Parent root = FXMLLoader.load(getClass().getResource("welcome.fxml"));
-
 		Scene scene = new Scene(root);
 		stage.setTitle("FXML Welcome");
 		stage.setScene(scene);
 		stage.sizeToScene();
-
-		// Show stage
 		stage.show();
-	} // end of start
+	} 
 
 	/**
 	 * 
@@ -48,5 +45,5 @@ public class Main extends Application {
 	 */
 	public static void main(String[] args) {
 		launch(args);
-	}// end of Main
+	}
 }// end of class

@@ -21,6 +21,7 @@ import javafx.stage.StageStyle;
 
 /**
  * Die Klasse ControllerStart kuemmert sich um das Eventhandling
+ * 
  * @author Cara Damm
  *
  */
@@ -29,33 +30,28 @@ public class ControllerStart implements Initializable {
 	public Button statistic, play, exit;
 
 	@FXML
-	public TableView tableView = new TableView<>();
+	public TableView<Object> tableView = new TableView<>();
 
 	@FXML
 	public Label coinYel, coinRed;
-	
+
 	@FXML
 	public Pane pane;
-	
 
-	
 	@Override
 	/**
 	 * Initailisiert den Startbildschirm
+	 * 
 	 * @param fxmlFileLocation
 	 * @param resources
 	 */
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
-		
-		
-		
-				play.setOnAction((ev) -> {
+
+		play.setOnAction((ev) -> {
 			try {
-			
-				//Datenbank--------------------------------------------------------------------------------
 				Database db = new Database();
 				db.createSpiel();
-				//-----------------------------------------------------------------------------------------
+
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("selectScreen.fxml"));
 				Parent root1 = (Parent) fxmlLoader.load();
 				Stage stage = new Stage();
@@ -64,16 +60,12 @@ public class ControllerStart implements Initializable {
 				stage.setTitle("ABC");
 				stage.setScene(new Scene(root1));
 				stage.show();
-
 				((Node) (ev.getSource())).getScene().getWindow().hide();
-				
 			}
-
 			catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}); // end of play
+		}); 
 
 		statistic.setOnAction((ev) -> {
 			try {
@@ -85,24 +77,16 @@ public class ControllerStart implements Initializable {
 				stage.setTitle("ABC");
 				stage.setScene(new Scene(root1));
 				stage.show();
-				// 
 				((Node) (ev.getSource())).getScene().getWindow().hide();
 			}
-
 			catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
-		}); // end of statistic
+		}); 
 
 		exit.setOnAction((ev) -> {
 			((Node) (ev.getSource())).getScene().getWindow().hide();
-
-		}); // end of exit()
-
-	}// end of initialize
-	
-	
-
-}// end of Class
+		}); 
+		
+	}
+}

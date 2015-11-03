@@ -50,14 +50,14 @@ public class ReuseableSpiel {
 	 * @param farbe Steinfarbe der Intellegenz Claire
 	 */
 	public void setFarbe(boolean farbe){
-		this.farbe = farbe;
+		ReuseableSpiel.farbe = farbe;
 	}
 	/**
 	 * Gibt die Steinfarbe der Intellegenz Claire zurueck
 	 * @return Steinfarbe der Intellegenz Claire
 	 */
 	public boolean getFarbe(){
-		return this.farbe;
+		return ReuseableSpiel.farbe;
 	}
 
 }

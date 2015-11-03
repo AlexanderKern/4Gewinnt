@@ -8,13 +8,10 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.Properties;
 import java.util.ResourceBundle;
-
 import com.viergewinnt.api.common.util.ReuseServermethode;
 import com.viergewinnt.api.pusher.PusherMain;
 import com.viergewinnt.database.Database;
 import com.viergewinnt.database.ReuseableSpiel;
-import com.viergewinnt.database.Spiel;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -53,9 +50,9 @@ public class ControllerSetting implements Initializable {
 
 	@FXML
 	Button bExit;
-	
+
 	@FXML
-	Label lClaireIst,lEnemy;
+	Label lClaireIst, lEnemy;
 
 	PusherMain pusherMain;
 
@@ -64,34 +61,28 @@ public class ControllerSetting implements Initializable {
 	 * Initailisiert das Einstellungsfenster
 	 */
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
-
+		Database db = new Database();
+		
 		// Loading from Properties-File
 		try {
 			File configFile = new File(System.getProperty("user.dir") + "/assets/properties/config.properties");
-
 			FileReader reader = new FileReader(configFile);
-
 			Properties props = new Properties();
 			props.load(reader);
-
 			tfkey.setText(props.getProperty("key"));
 			tfsecret.setText(props.getProperty("secret"));
-			
-			Database db = new Database();
+
 			try {
-				if( db.getAnzahlSaetze(ReuseableSpiel.getId()) >0){
+				if (db.getAnzahlSaetze(ReuseableSpiel.getId()) > 0) {
 					tfEnemy.setVisible(false);
 					cO.setVisible(false);
 					cX.setVisible(false);
 					lClaireIst.setVisible(false);
 					lEnemy.setVisible(false);
 				}
-					
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
 		} catch (IOException e2) {
 			e2.printStackTrace();
 		}
@@ -101,15 +92,12 @@ public class ControllerSetting implements Initializable {
 			// Set new Properties-File
 			try {
 				File configFile = new File(System.getProperty("user.dir") + "/assets/properties/config.properties");
-
 				Properties props = new Properties();
 				props.setProperty("key", tfkey.getText());
 				props.setProperty("secret", tfsecret.getText());
 				FileWriter writer = new FileWriter(configFile);
 				props.store(writer, "Konfigurationsdatei fuer Pusher-Schnittstelle");
-				
 				writer.close();
-				
 			} catch (IOException e2) {
 				e2.printStackTrace();
 			}
@@ -134,32 +122,23 @@ public class ControllerSetting implements Initializable {
 				ReuseServermethode.setMethode("File");
 				ReuseServermethode.setPfad(tfPath.getText());
 			}
-			if(tfEnemy.getText().isEmpty()){
-				
-			}else{
+			if (tfEnemy.getText().isEmpty()) {
+
+			} else {
 				ReuseServermethode.setGegner(tfEnemy.getText());
 			}
-			
-
-			// Spiel anlegen in
-			// Datenbank---------------------------------------------------------------------------
-			Database db = new Database();
 
 			try {
 				db.updateSpiel(ReuseServermethode.getGegner(), ReuseServermethode.getTeamfarbe());
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 
 			try {
 				db.createSpieler(ReuseServermethode.getGegner());
 			} catch (Exception e2) {
-				// TODO Auto-generated catch block
 				e2.printStackTrace();
-				System.out.println(ReuseServermethode.getGegner() + " konnte nicht angelegt werden!!!");
 			}
-			// -------------------------------------------------------------------------------
 
 			if (rSocket.isSelected()) {
 				if (!tfkey.getText().isEmpty() || !tfsecret.getText().isEmpty()) {
@@ -174,7 +153,6 @@ public class ControllerSetting implements Initializable {
 						stage.setTitle("Spielfeld");
 						stage.setScene(new Scene(root1));
 						stage.show();
-
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -208,7 +186,6 @@ public class ControllerSetting implements Initializable {
 				alert.setContentText("Bitte überprüfen Sie die Eingaben der File-Kommunikation!");
 				alert.show();
 			}
-
 		}); // end of play
 
 		bCancel.setOnAction((ev) -> {
@@ -231,17 +208,15 @@ public class ControllerSetting implements Initializable {
 		}); // end of cancel
 
 		bSelect.setOnAction((ev) -> {
-
 			DirectoryChooser directoryChooser = new DirectoryChooser();
 			directoryChooser.setTitle("Directory for FILE-API");
 			File file = directoryChooser.showDialog(null);
 			tfPath.setText(file.getPath() + System.getProperty("file.separator"));
-
 		}); // end of select
 
 		bExit.setOnAction((ev) -> {
 			((Node) (ev.getSource())).getScene().getWindow().hide();
 		}); // end of cancel
 
-	}// end of initializize
-}// END OF class
+	}
+}

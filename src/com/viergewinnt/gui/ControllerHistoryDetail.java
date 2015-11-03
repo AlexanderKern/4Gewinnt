@@ -3,13 +3,10 @@ package com.viergewinnt.gui;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.util.ResourceBundle;
-
 import com.viergewinnt.database.Database;
 import com.viergewinnt.database.ValueClass;
 import com.viergewinnt.database.ReuseableSatz;
-
 import javafx.application.Platform;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,12 +14,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TableView.TableViewSelectionModel;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -51,16 +44,12 @@ TableColumn<ValueClass, String> col1, col2, col3,col4, col5;
 	 */
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources)
 	{
-		
-
-		
 		 tableViewSatz.getSelectionModel().selectedItemProperty().addListener((observable2, oldValue2, newValue2) -> {
 	          System.out.println(newValue2);
            	if (newValue2 != null) 
            	{
-	            	System.out.println("Ausgewähltes SatzID = "+((ValueClass) newValue2).getColumn1());
 	            	ReuseableSatz.setId(Integer.parseInt(((ValueClass) newValue2).getColumn1()));
-
+	            	
 	           // Spielfeld für die Historienbetrachtung wieder aufbauen
 	            	try {
 						FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("spielfeldRec.fxml"));
@@ -71,20 +60,15 @@ TableColumn<ValueClass, String> col1, col2, col3,col4, col5;
 						stage.setTitle("Spiel Starten");
 						stage.setScene(new Scene(root1));
 						stage.show();
-
-						//((Node) (ev.getSource())).getScene().getWindow().hide();
-					
 						}// enf of try
 	            	catch(Exception e)
 					{
 						e.printStackTrace();
 					}
-	            	//____________Ende Spielfeld aufruf_____________________
            	}		
            	}); // end of tableView handle
-		
 	
-		ObservableList<ValueClass> data = FXCollections.observableArrayList(); //Darzustellebde Daten
+		ObservableList<ValueClass> data = FXCollections.observableArrayList(); //Darzustellende Daten
 		try {
 			Database db = new Database();
 			ResultSet rs = db.getSaetze(ReuseableSatz.getId());
@@ -93,8 +77,8 @@ TableColumn<ValueClass, String> col1, col2, col3,col4, col5;
 			String satzSpielid = null;
 		    String satzGewonnen = null;
 
-	         while(rs.next()){//Itariere über Zeile
-	             for(int i=1 ; i<=rs.getMetaData().getColumnCount(); i++){   //Itariere über Spalten
+	         while(rs.next()){//Iteration über Zeilen
+	             for(int i=1 ; i<=rs.getMetaData().getColumnCount(); i++){ // Iteration über Spalten
 	                 switch(i){
 	                 case 1:
 	                	 satzId = (rs.getString(i));
@@ -110,7 +94,6 @@ TableColumn<ValueClass, String> col1, col2, col3,col4, col5;
 	            ValueClass cl = new ValueClass(satzId,satzSpielid,satzGewonnen, null, null);
 	             data.add(cl);
 	         }// end of while
-	         
 	     
 	         // Spaltendefinition 
 	         col1.setText("ID");
@@ -121,33 +104,22 @@ TableColumn<ValueClass, String> col1, col2, col3,col4, col5;
   		     col3.setCellValueFactory(new PropertyValueFactory<ValueClass, String>("column3"));
 	         
   		    tableViewSatz.setItems(data);
-
-			// Zusätzliche Spalten vermeiden
 			tableViewSatz.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
   
 		} // end of Try
 		catch (Exception e) 
 		{
-			System.out.println(e);// TODO: handle exception
+			System.out.println(e);
 		}
 	
-		//-------------------------------------------------------------------
-		
 		bBack.setOnAction((ev) -> {
-		
 		((Node) (ev.getSource())).getScene().getWindow().hide();
-
-		}); // end of bBack
+		}); 
 		
 		bExit.setOnAction((ev)-> 
 		{
 			Platform.exit();
-		}); // end of bExit
-		
-		
-		
-		
-	}// end of method
-	
+		}); 
 
+	}// end of method
 }// end of class

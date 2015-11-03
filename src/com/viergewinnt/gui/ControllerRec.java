@@ -1,40 +1,24 @@
 package com.viergewinnt.gui;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Properties;
 import java.util.ResourceBundle;
-
-import com.viergewinnt.api.common.util.ReuseServermethode;
-import com.viergewinnt.api.file.FileMain;
-import com.viergewinnt.api.pusher.PusherMain;
 import com.viergewinnt.database.Database;
 import com.viergewinnt.database.ReuseableSatz;
-import com.viergewinnt.database.ReuseableSpiel;
-
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.*;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 /**
  * Die Klasse ControllerField
@@ -42,14 +26,13 @@ import javafx.stage.StageStyle;
  * @author Cara Damm
  *
  */
-// Controller Field
 public class ControllerRec implements Initializable {
 	@FXML
 	Button button, bExit, bBack, bNewSatz, bSatzVerwerfen;
-	
+
 	@FXML
 	ToggleGroup myToggleGroup;
-	
+
 	@FXML
 	ToggleButton tbGewonnen, tbVerloren;
 
@@ -63,9 +46,8 @@ public class ControllerRec implements Initializable {
 	ImageView ivOne, ivTwo, ivThree, ivGreen, ivBlue;
 
 	@FXML
-	Label lPlayerY, lPlayerR, lGewonnen,lSatz;
-	
-	
+	Label lPlayerY, lPlayerR, lGewonnen, lSatz;
+
 	@FXML
 	Pane pane;
 
@@ -73,66 +55,45 @@ public class ControllerRec implements Initializable {
 	Image imageGreen = new Image("file:///" + System.getProperty("user.dir") + "/assets/img/coinGreen.png");
 	Image imageG = new Image("file:///" + System.getProperty("user.dir") + "/assets/img/coinGrey.png");
 
-	@SuppressWarnings("static-access")
 	@Override
-	public void initialize(URL fxmlFileLocation, ResourceBundle resources)
-
-	{
-		
+	public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
 		Database db = new Database();
 		try {
-			
-		ResultSet rs =	db.getZuege(ReuseableSatz.getId());
-		//spalte(int), zeile(int), gegner(boolean)
-	
-		 boolean gegner;
-		int spalte;
-		int zeile;
-		while(rs.next())
-		{
-			gegner = rs.getBoolean(3);
-			spalte = rs.getInt(1);
-			zeile = rs.getInt(2);
-			setStone(gegner, spalte, zeile);
-		}
-		
-		
+			ResultSet rs = db.getZuege(ReuseableSatz.getId());
+			boolean gegner;
+			int spalte;
+			int zeile;
+			while (rs.next()) {
+				gegner = rs.getBoolean(3);
+				spalte = rs.getInt(1);
+				zeile = rs.getInt(2);
+				setStone(gegner, spalte, zeile);
+			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		bBack.setOnAction((ev) -> 
-		{
-						((Node) (ev.getSource())).getScene().getWindow().hide();
-			
-		}); // end of bBack
 
-		bExit.setOnAction((ev) -> 
-		{
+		bBack.setOnAction((ev) -> {
+			((Node) (ev.getSource())).getScene().getWindow().hide();
+		});
+
+		bExit.setOnAction((ev) -> {
 			Platform.exit();
-		}); // end of bExit
+		});
+	}
 
+	private void setStone(boolean gegner, int spalte, int zeile) {
 
-	}// end of initi
-
-	private void setStone(boolean gegner, int spalte, int zeile) 
-	{
-		//Booelan true = blau false = grün
-		
-		if (gegner == true)
-		{
+		if (gegner == true) {
 			ImageView iv = new ImageView(imageBlue);
-			grid.setRowIndex(iv, zeile);
-			grid.setColumnIndex(iv, spalte);
-			grid.getChildren().addAll(iv);		
-		}
-		else if(gegner == false)
-		{
+			GridPane.setRowIndex(iv, zeile);
+			GridPane.setColumnIndex(iv, spalte);
+			grid.getChildren().addAll(iv);
+		} else if (gegner == false) {
 			ImageView iv = new ImageView(imageGreen);
-			grid.setRowIndex(iv, zeile);
-			grid.setColumnIndex(iv, spalte);
+			GridPane.setRowIndex(iv, zeile);
+			GridPane.setColumnIndex(iv, spalte);
 			grid.getChildren().addAll(iv);
 		}
 	}
-}// end of class
+}

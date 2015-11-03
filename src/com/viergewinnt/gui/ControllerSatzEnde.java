@@ -19,12 +19,6 @@ public class ControllerSatzEnde {
 	
 	@FXML
 	public AnchorPane anchorPane;
-	
-	@FXML
-	public void neuenSatz(){
-		System.out.println("Buhu");
-		//Aufruf des Spielfeld
-	}
 
 	@FXML
 	public void siegerAendern( ) throws SQLException{
@@ -36,7 +30,6 @@ public class ControllerSatzEnde {
 		}
 		db.updateSatz(ReuseableSatz.gewonnen, ReuseableSatz.id);
 		gewinner.setText("Claire hat" +ReuseableSatz.gewonnen);
-		
 	}
 
 	@FXML
