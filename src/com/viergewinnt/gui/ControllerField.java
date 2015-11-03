@@ -44,7 +44,7 @@ import javafx.stage.StageStyle;
 // Controller Field
 public class ControllerField implements Initializable {
 	@FXML
-	Button button, bExit, bBack, bNewSatz, bSatzVerwerfen;
+	Button button, bExit, bBack, bNewSatz, bSatzVerwerfen, bSpielBeenden;
 	
 	@FXML
 	ToggleGroup myToggleGroup;
@@ -243,6 +243,27 @@ public class ControllerField implements Initializable {
 			tbVerloren.setVisible(false);
 		});
 		
+		bSpielBeenden.setOnAction((ev) ->{
+		try{
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SpielEnde.fxml"));
+			Parent root1 = (Parent) fxmlLoader.load();
+			Stage stage = new Stage();
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.initStyle(StageStyle.UNDECORATED);
+			stage.setTitle("Spiel Beendet");
+			stage.setScene(new Scene(root1));
+			stage.show();
+
+			((Node) (ev.getSource())).getScene().getWindow().hide();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+
+			
+		});
+		
+		
 	}// end of init
 
 	/**
@@ -357,7 +378,22 @@ public class ControllerField implements Initializable {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				bNewSatz.setVisible(visible);
+				
+				Database db = new Database();
+				try {
+					if(db.getAnzahlSaetze(ReuseableSpiel.getId()) == 3){
+						bSpielBeenden.setVisible(visible);
+					}else{
+						bNewSatz.setVisible(visible);
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			
+				
+				
+				
 				bSatzVerwerfen.setVisible(visible);
 				tbGewonnen.setVisible(visible);
 				tbVerloren.setVisible(visible);
