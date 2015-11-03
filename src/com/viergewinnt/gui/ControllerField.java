@@ -162,6 +162,11 @@ public class ControllerField implements Initializable {
 				e.printStackTrace();
 			}
 			lGewonnen.setText("Claire hat gewonnen");
+			try {
+				setGespielteSaetze(db.getGewonneneSaetze(ReuseableSpiel.getId()));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		});
 
 		tbVerloren.setOnAction((ev) -> {
@@ -172,6 +177,11 @@ public class ControllerField implements Initializable {
 				e.printStackTrace();
 			}
 			lGewonnen.setText("Claire hat verloren");
+			try {
+				setGespielteSaetze(db.getGewonneneSaetze(ReuseableSpiel.getId()));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		});
 
 		bSatzVerwerfen.setOnAction((ev) -> {
@@ -354,9 +364,7 @@ public class ControllerField implements Initializable {
 			@Override
 			public void run() {
 
-				System.out.println(gewonneneSaetze.length);
 				for (int i = 0; i < gewonneneSaetze.length; i++) {
-					System.out.println(gewonneneSaetze[i]);
 					if (i == 0 && gewonneneSaetze[i] != null) {
 						if (gewonneneSaetze[i].equals("X")) {
 							ivOne.setImage(imageGreen);

@@ -45,11 +45,9 @@ TableColumn<ValueClass, String> col1, col2, col3,col4, col5;
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources)
 	{
 		 tableViewSatz.getSelectionModel().selectedItemProperty().addListener((observable2, oldValue2, newValue2) -> {
-	          System.out.println(newValue2);
            	if (newValue2 != null) 
            	{
 	            	ReuseableSatz.setId(Integer.parseInt(((ValueClass) newValue2).getColumn1()));
-	            	
 	           // Spielfeld für die Historienbetrachtung wieder aufbauen
 	            	try {
 						FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("spielfeldRec.fxml"));
@@ -109,7 +107,7 @@ TableColumn<ValueClass, String> col1, col2, col3,col4, col5;
 		} // end of Try
 		catch (Exception e) 
 		{
-			System.out.println(e);
+			e.printStackTrace();
 		}
 	
 		bBack.setOnAction((ev) -> {

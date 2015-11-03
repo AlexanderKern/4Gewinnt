@@ -189,6 +189,15 @@ public class ControllerSetting implements Initializable {
 		}); // end of play
 
 		bCancel.setOnAction((ev) -> {
+			
+		try {
+			if(db.getAnzahlSaetze(ReuseableSpiel.getId())==0){
+			db.spielloeschen(ReuseableSpiel.getId());
+			}
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+			
 			try {
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("welcome.fxml"));
 				Parent root1 = (Parent) fxmlLoader.load();
@@ -215,6 +224,13 @@ public class ControllerSetting implements Initializable {
 		}); // end of select
 
 		bExit.setOnAction((ev) -> {
+			try {
+				if(db.getAnzahlSaetze(ReuseableSpiel.getId())==0){
+				db.spielloeschen(ReuseableSpiel.getId());
+				}
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
 			((Node) (ev.getSource())).getScene().getWindow().hide();
 		}); // end of cancel
 

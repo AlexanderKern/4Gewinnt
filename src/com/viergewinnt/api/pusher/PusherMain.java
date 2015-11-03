@@ -20,6 +20,7 @@ import com.viergewinnt.ki.KiMain;
 
 /**
  * Die Klasse PusherMain ermoeglciht die Kommunikation mittels Websockets
+ * 
  * @author Alexander Kern
  *
  */
@@ -36,8 +37,10 @@ public class PusherMain {
 
 	/**
 	 * 
-	 * @param team Name des Teams
-	 * @param sequenceNumber Nummer des Satzes ? 
+	 * @param team
+	 *            Name des Teams
+	 * @param sequenceNumber
+	 *            Nummer des Satzes ?
 	 */
 	public void pusher(String team, int sequenceNumber) {
 		KiMain ki = new KiMain();
@@ -45,19 +48,18 @@ public class PusherMain {
 		final PusherConnectionHandler pch = new PusherConnectionHandler().registerHandler("MoveToAgent",
 				new Function<Pusher, PrivateChannel, String>() {
 					public void execute(Pusher pusher, PrivateChannel channel, String data) throws IOException {
-						//Datenbank---------------------------------------------------------------------------------------------
+						// Datenbank---------------------------------------------------------------------------------------------
 						Database db = new Database();
-						
+
 						try {
-							if(sequenceNumber != 1){
+							if (sequenceNumber != 1) {
 								cf.setGespielteSaetze(db.getGewonneneSaetze(ReuseableSpiel.getId()));
 							}
-							
+
 						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
-						//------------------------------------------------------------------------------------------------------
+						// ------------------------------------------------------------------------------------------------------
 						// Parsen
 						ObjectMapper mapper = new ObjectMapper();
 						Message message = mapper.readValue(data, Message.class);
@@ -66,52 +68,48 @@ public class PusherMain {
 						message.setSatzstatus(messageParts[1]);
 						message.setGegnerzug(messageParts[2]);
 						message.setSieger(messageParts[3]);
-					
-						
+
 						if (message.getFreigabe() && message.getSatzstatus().equals("Satz spielen")
 								&& message.getSieger().equals("offen")) {
 							if (message.getGegnerzug() < 0) {
- 
+
 								// KI berechnet Zug
 								ki.berechne();
-								
+
 								// Stein in KI setzen
-								ki.setEigenerStein(ki.get_spalte());								
-								
+								ki.setEigenerStein(ki.get_spalte());
+
 								int[] zug = ki.getletzter_zug();
-								//Zug in Datenbank---------------------------------------------------------------------------------------------
+								// Zug in
+								// Datenbank---------------------------------------------------------------------------------------------
 								try {
 									db.Zug(ReuseableSatz.getId(), false, zug[1], zug[0]);
 								} catch (SQLException e) {
-									// TODO Auto-generated catch block
 									e.printStackTrace();
 								}
-								//-------------------------------------------------------------------------------------------------------
+								// -------------------------------------------------------------------------------------------------------
 
 								// ControllerField cf = new ControllerField();
 								cf.setStone(zug[0], zug[1], ReuseServermethode.getTeamfarbe());
-								
+
 								// Zug an Server senden
 								channel.trigger("client-event", "{\"move\":\"" + zug[1] + "\"}");
-								System.out.println(zug[1]);
-
 							} else {
 								// Gegnerzug in KI setzen
 								ki.setGegnerStein(message.getGegnerzug());
-								
-								
+
 								int[] zug = ki.getletzter_zug();
-								//Zug in Datenbank---------------------------------------------------------------------------------------------
+								// Zug in
+								// Datenbank---------------------------------------------------------------------------------------------
 								try {
 									db.Zug(ReuseableSatz.getId(), true, zug[1], zug[0]);
 								} catch (SQLException e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
 								}
-								//-------------------------------------------------------------------------------------------------------
-								//Gegnerzug in GUI setzen
+								// -------------------------------------------------------------------------------------------------------
+								// Gegnerzug in GUI setzen
 								cf.setStone(zug[0], zug[1], ReuseServermethode.getGegnerfarbe());
-								System.out.println(ReuseServermethode.getGegnerfarbe());
 
 								// Berechne nächsten Zug
 								ki.berechne();
@@ -120,15 +118,16 @@ public class PusherMain {
 								ki.setEigenerStein(ki.get_spalte());
 
 								zug = ki.getletzter_zug();
-								//Zug in Datenbank---------------------------------------------------------------------------------------------
+								// Zug in
+								// Datenbank---------------------------------------------------------------------------------------------
 								try {
 									db.Zug(ReuseableSatz.getId(), false, zug[1], zug[0]);
 								} catch (SQLException e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
 								}
-								//-------------------------------------------------------------------------------------------------------
-								//Zug in GUI setzen
+								// -------------------------------------------------------------------------------------------------------
+								// Zug in GUI setzen
 								cf.setStone(zug[0], zug[1], ReuseServermethode.getTeamfarbe());
 
 								// Nächsten Zug an Server senden
@@ -138,43 +137,33 @@ public class PusherMain {
 						} else {
 							cf.setResult(message.getSieger(), sequenceNumber);
 							pusher.disconnect();
-							//Satz Ende-------------------------------------------------------------------------------------------------------
-							// X = grün // 0 blau 
-						
-		
-							if( ("Spieler " + ReuseServermethode.getTeam()).equals( message.getSieger()) ){
+							// Satzende
+							// X = grün // 0 blau
+							if (("Spieler " + ReuseServermethode.getTeam()).equals(message.getSieger())) {
 								ReuseableSatz.setGewonnen("Claire");
-							}else{
+							} else {
 								ReuseableSatz.setGewonnen(ReuseServermethode.getGegner());
 							}
 							String status = "";
-							
-							if(ReuseableSatz.getGewonnen().equals("Claire")){
-								status="gewonnen";
-							}else{
+
+							if (ReuseableSatz.getGewonnen().equals("Claire")) {
+								status = "gewonnen";
+							} else {
 								status = "verloren";
 							}
 							try {
 								db.updateSatz(status, ReuseableSatz.getId());
-								System.out.println(db.getAnzahlSaetze(ReuseableSpiel.getId()));
 								db.getAnzahlSaetze(ReuseableSpiel.getId());
-								if(db.getAnzahlSaetze(ReuseableSpiel.getId()) == 3){
-									System.out.println("es wurden 3 Seatze gespielt vom Spiel mit der ID "+ReuseableSpiel.getId());
-									
+								if (db.getAnzahlSaetze(ReuseableSpiel.getId()) == 3) {
 									db.spielEnde(ReuseableSpiel.getId(), db.getSpielPkt(ReuseableSpiel.getId()));
-									
 									db.spielGewinner();
 								}
 							} catch (SQLException e) {
-								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
-							
+
 							cf.sichtbar(true, ReuseableSatz.getGewonnen());
-							
-							
-							
-							//-------------------------------------------------------------------------------------------------------
+							// -------------------------------------------------------------------------------------------------------
 						}
 						Toolkit.getDefaultToolkit().beep();
 
@@ -194,10 +183,9 @@ public class PusherMain {
 						e.printStackTrace();
 					}
 				} while (con.getState() == ConnectionState.CONNECTED || con.getState() == ConnectionState.CONNECTING);
-				
+
 			}
 		}).start();
-		
 
 	}
 

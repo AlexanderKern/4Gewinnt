@@ -28,7 +28,7 @@ public class Main extends Application {
 		try {
 			db.createTable(db);
 		} catch (SQLException e2) {
-			e2.printStackTrace();
+			//Tabellen wurden bereits angelegt
 		}
 		
 		Parent root = FXMLLoader.load(getClass().getResource("welcome.fxml"));

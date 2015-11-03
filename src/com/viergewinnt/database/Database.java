@@ -285,7 +285,7 @@ public class Database {
 	 * @throws SQLException
 	 */
 	public int getAnzahlSaetze(int spielId) throws SQLException {
-		int anzahlSaetze= 0 ;
+		int anzahlSaetze = 0;
 
 		PreparedStatement dritterSatz = conn.prepareStatement("SELECT COUNT(*) FROM satz WHERE spiel_id = ? ");
 		dritterSatz.setInt(1, spielId);
@@ -315,11 +315,10 @@ public class Database {
 			if (rsGewSa.getString(1) != null) {
 				if (rsGewSa.getString(1).equals("verloren")) {
 					if (ReuseServermethode.getGegnerfarbe() == false) {
-						gewonnen[i] = "X";
-					} else {
 						gewonnen[i] = "O";
+					} else {
+						gewonnen[i] = "X";
 					}
-
 				} else if (rsGewSa.getString(1).equals("gewonnen")) {
 					gewonnen[i] = ReuseServermethode.getTeam();
 				} else {
@@ -328,29 +327,23 @@ public class Database {
 			}
 			i = i + 1;
 		}
-
 		return gewonnen;
 
 	}
 
 	public String spielGewinner() throws SQLException {
 		int pkt = 0;
-
 		String[] gewonneneSaetze = getGewonneneSaetze(ReuseableSpiel.getId());
-		if (gewonneneSaetze.length == 0) {
-			System.out.println("leer problem!!!");
-		}
-
+		
 		for (int i = 0; i <= gewonneneSaetze.length - 1; i++) {
 			if (gewonneneSaetze[i] == null) {
-				System.out.println("chaka null");
 			} else if (gewonneneSaetze[i].equals("gewonnen")) {
 				pkt = pkt + 1;
 			} else if (gewonneneSaetze[i].equals("verloren")) {
 				pkt = pkt - 1;
 			}
 		}
-
+		
 		if (pkt > 0) {
 			return "Claire";
 		} else if (pkt < 0) {
@@ -368,13 +361,10 @@ public class Database {
 	 * @throws SQLException
 	 */
 	public void satzende(int satzId, String gewonnen) throws SQLException {
-
 		PreparedStatement stSatzende = Database.conn.prepareStatement("UPDATE satz SET gewonnen = ? WHERE id = ?");
 		stSatzende.setString(1, gewonnen);
 		stSatzende.setInt(2, satzId);
-
 		stSatzende.executeUpdate();
-
 	}
 
 	/**
@@ -391,7 +381,6 @@ public class Database {
 		st.setInt(1, spielId);
 		ResultSet rs = st.executeQuery();
 		return rs;
-
 	}
 
 	public void satzloeschen(int satzId) throws SQLException {
@@ -400,6 +389,12 @@ public class Database {
 		st.executeUpdate();
 	}
 
+	public void spielloeschen(int spielId) throws SQLException {
+		PreparedStatement st = Database.conn.prepareStatement("DELETE FROM spiel WHERE id = ?");
+		st.setInt(1, spielId);
+		st.executeUpdate();
+	}
+	
 	/**
 	 * erstellt einen neuen Zug in der Datenbank
 	 * 
@@ -410,17 +405,14 @@ public class Database {
 	 * @throws SQLException
 	 */
 	public void Zug(int satzId, boolean gegner, int spalte, int zeile) throws SQLException {
-
 		PreparedStatement stZug = conn
 				.prepareStatement("INSERT INTO zug(satz_id, spalte, zeile, gegner) VALUES( ? , ? , ? , ?)");
 		stZug.setInt(1, satzId);
 		stZug.setInt(2, spalte);
 		stZug.setInt(3, zeile);
 		stZug.setBoolean(4, gegner);
-
 		stZug.execute();
 		stZug.close();
-
 	}
 
 	/**
