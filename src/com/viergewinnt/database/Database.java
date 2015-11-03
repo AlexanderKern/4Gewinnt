@@ -400,7 +400,7 @@ public class Database {
 		}
 		
 		public void satzloeschen(int satzId) throws SQLException{
-			PreparedStatement st = Database.conn.prepareStatement("DELETE satz WHERE id = ?");
+			PreparedStatement st = Database.conn.prepareStatement("DELETE FROM satz WHERE id = ?");
 		    st.setInt(1, satzId); 
 		    st.executeUpdate();
 		}
@@ -442,9 +442,9 @@ public class Database {
 		}
 		
 		public void loeschenZuege(int satzId) throws SQLException{
-			PreparedStatement st = conn.prepareStatement("DELETE * FROM zug WHERE satz_id = ?");
+			PreparedStatement st = conn.prepareStatement("DELETE FROM zug WHERE satz_id = ?");
 			st.setInt(1, satzId);
-			st.executeQuery();
+			 st.executeUpdate();
 		}
 		
 	

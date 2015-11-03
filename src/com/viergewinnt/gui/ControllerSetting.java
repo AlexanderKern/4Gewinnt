@@ -12,6 +12,7 @@ import java.util.ResourceBundle;
 import com.viergewinnt.api.common.util.ReuseServermethode;
 import com.viergewinnt.api.pusher.PusherMain;
 import com.viergewinnt.database.Database;
+import com.viergewinnt.database.ReuseableSpiel;
 import com.viergewinnt.database.Spiel;
 
 import javafx.fxml.FXML;
@@ -20,6 +21,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.*;
@@ -51,6 +53,9 @@ public class ControllerSetting implements Initializable {
 
 	@FXML
 	Button bExit;
+	
+	@FXML
+	Label lClaireIst,lEnemy;
 
 	PusherMain pusherMain;
 
@@ -71,6 +76,22 @@ public class ControllerSetting implements Initializable {
 
 			tfkey.setText(props.getProperty("key"));
 			tfsecret.setText(props.getProperty("secret"));
+			
+			Database db = new Database();
+			try {
+				if( db.getAnzahlSaetze(ReuseableSpiel.getId()) >0){
+					tfEnemy.setVisible(false);
+					cO.setVisible(false);
+					cX.setVisible(false);
+					lClaireIst.setVisible(false);
+					lEnemy.setVisible(false);
+				}
+					
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		} catch (IOException e2) {
 			e2.printStackTrace();
 		}
@@ -123,21 +144,20 @@ public class ControllerSetting implements Initializable {
 			// Spiel anlegen in
 			// Datenbank---------------------------------------------------------------------------
 			Database db = new Database();
-			
 
 			try {
-				db.updateSpiel(tfEnemy.getText(), ReuseServermethode.getTeamfarbe());
+				db.updateSpiel(ReuseServermethode.getGegner(), ReuseServermethode.getTeamfarbe());
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 
 			try {
-				db.createSpieler(tfEnemy.getText());
+				db.createSpieler(ReuseServermethode.getGegner());
 			} catch (Exception e2) {
 				// TODO Auto-generated catch block
 				e2.printStackTrace();
-				System.out.println(tfEnemy.getText() + " konnte nicht angelegt werden!!!");
+				System.out.println(ReuseServermethode.getGegner() + " konnte nicht angelegt werden!!!");
 			}
 			// -------------------------------------------------------------------------------
 

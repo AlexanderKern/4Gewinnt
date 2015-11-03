@@ -36,13 +36,13 @@
 
       </ImageView>
 
-      <Label layoutX="5.0" layoutY="15.0" text="Gegnername: " />
+      <Label fx:id="lEnemy" layoutX="5.0" layoutY="15.0" text="Gegnername: " />
 
       <TextField fx:id="tfEnemy" layoutX="85.0" layoutY="10.0" />
 
       
 
-      <Label layoutX="23.0" layoutY="50.0" text="Clarie ist:" />
+      <Label fx:id="lClaireIst" layoutX="23.0" layoutY="50.0" text="Clarie ist:" />
 
       
 

@@ -28,6 +28,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.*;
@@ -83,6 +84,7 @@ public class ControllerField implements Initializable {
 		 */
 		Database db = new Database();
 		bNewSatz.setVisible(false);
+		bSpielBeenden.setVisible(false);
 		bSatzVerwerfen.setVisible(false);
 		tbGewonnen.setVisible(false);
 		tbGewonnen.setToggleGroup(myToggleGroup);
@@ -224,6 +226,10 @@ public class ControllerField implements Initializable {
 		});
 		
 		bSatzVerwerfen.setOnAction((ev) ->{
+			
+	
+			bSpielBeenden.setVisible(false);
+			bNewSatz.setVisible(true);
 			try {
 				db.loeschenZuege(ReuseableSatz.getId());
 			} catch (Exception e) {
@@ -244,21 +250,22 @@ public class ControllerField implements Initializable {
 		});
 		
 		bSpielBeenden.setOnAction((ev) ->{
-		try{
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SpielEnde.fxml"));
-			Parent root1 = (Parent) fxmlLoader.load();
-			Stage stage = new Stage();
-			stage.initModality(Modality.APPLICATION_MODAL);
-			stage.initStyle(StageStyle.UNDECORATED);
-			stage.setTitle("Spiel Beendet");
-			stage.setScene(new Scene(root1));
-			stage.show();
-
+	
 			((Node) (ev.getSource())).getScene().getWindow().hide();
-		}
-		catch(Exception e){
-			e.printStackTrace();
-		}
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SpielEnde.fxml"));
+			Parent root1;
+			try {
+				root1 = (Parent) fxmlLoader.load();
+				Stage stage = new Stage();
+				stage.initModality(Modality.APPLICATION_MODAL);
+				stage.initStyle(StageStyle.UNDECORATED);
+				stage.setTitle("Spiel Ende");
+				stage.setScene(new Scene(root1));
+				stage.show();
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 
 			
 		});

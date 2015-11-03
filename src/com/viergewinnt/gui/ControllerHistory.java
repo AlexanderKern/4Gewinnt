@@ -153,7 +153,7 @@ TableColumn<ValueClass, String> col1, col2, col3,col4, col5;
 		
 		bBack.setOnAction((ev) -> {
 			try {
-				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("welcome.fxml"));
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("welcome.fxml"));
 				Parent root1 = (Parent) fxmlLoader.load();
 				Stage stage = new Stage();
 				stage.initModality(Modality.APPLICATION_MODAL);
@@ -168,7 +168,7 @@ TableColumn<ValueClass, String> col1, col2, col3,col4, col5;
 			catch(Exception e)
 			{
 				e.printStackTrace();
-			}
+			}	
 		}); // end of bBack
 		
 		bExit.setOnAction((ev)-> {
