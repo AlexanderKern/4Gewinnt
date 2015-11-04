@@ -24,6 +24,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+/**
+ * Controller des FXML "SpielEnde" zeigt die gespielten Spiele an
+ * 
+ * @author MajkenPlugge
+ */
 public class ControllerSpielEnde implements Initializable {
 
 	@FXML
@@ -53,7 +58,6 @@ public class ControllerSpielEnde implements Initializable {
 			while (rs.next()) {// Iteration über Zeilen
 				for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) { // Iteration
 																				// über
-																				// Spalten
 					switch (i) {
 					case 1:
 						satzId = (rs.getString(i));
@@ -77,11 +81,13 @@ public class ControllerSpielEnde implements Initializable {
 
 			tableViewGespielteSatz.setItems(data);
 			tableViewGespielteSatz.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-		} 
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
+		/**
+		 * Aufruf des Welcome Screens und schließen des aktuellen Fensters
+		 */
 		bBeenden.setOnAction((ev) -> {
 			try {
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("welcome.fxml"));
@@ -93,8 +99,7 @@ public class ControllerSpielEnde implements Initializable {
 				stage.setScene(new Scene(root1));
 				stage.show();
 				((Node) (ev.getSource())).getScene().getWindow().hide();
-			} 
-			catch (Exception e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		});

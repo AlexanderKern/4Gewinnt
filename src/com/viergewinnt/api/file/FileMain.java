@@ -12,7 +12,7 @@ import com.viergewinnt.gui.ControllerField;
 import com.viergewinnt.ki.KiMain;
 
 /**
- * Die Klasse FileMain ermoeglich die Kommunikation mittels des Files
+ * Die Klasse FileMain ermoeglicht die Kommunikation mittels des Files
  * 
  * @author Alexander Kern
  *

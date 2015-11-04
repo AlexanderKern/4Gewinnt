@@ -331,6 +331,11 @@ public class Database {
 
 	}
 
+	/**
+	 * gibt den Gewinner eines Spiels zurueck
+	 * @return Gewinner
+	 * @throws SQLException
+	 */
 	public String spielGewinner() throws SQLException {
 		int pkt = 0;
 		String[] gewonneneSaetze = getGewonneneSaetze(ReuseableSpiel.getId());
@@ -383,12 +388,22 @@ public class Database {
 		return rs;
 	}
 
+	/**
+	 * loescht Satz einen Satz aus der Datenbank
+	 * @param satzId Id des Satzes
+	 * @throws SQLException
+	 */
 	public void satzloeschen(int satzId) throws SQLException {
 		PreparedStatement st = Database.conn.prepareStatement("DELETE FROM satz WHERE id = ?");
 		st.setInt(1, satzId);
 		st.executeUpdate();
 	}
 
+	/**
+	 * loescht ein Spiel aus der Datenbank
+	 * @param spielId Id des Spiels
+	 * @throws SQLException
+	 */
 	public void spielloeschen(int spielId) throws SQLException {
 		PreparedStatement st = Database.conn.prepareStatement("DELETE FROM spiel WHERE id = ?");
 		st.setInt(1, spielId);
@@ -431,6 +446,11 @@ public class Database {
 		return rs;
 	}
 
+	/**
+	 * loescht alle Zuege eines Satz aus der Datenbank
+	 * @param satzId Id des Satzes
+	 * @throws SQLException
+	 */
 	public void loeschenZuege(int satzId) throws SQLException {
 		PreparedStatement st = conn.prepareStatement("DELETE FROM zug WHERE satz_id = ?");
 		st.setInt(1, satzId);
