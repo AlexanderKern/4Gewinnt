@@ -3,7 +3,6 @@ package com.viergewinnt.api.file;
 import java.io.File;
 import java.io.FileWriter;
 import java.sql.SQLException;
-
 import javax.xml.parsers.DocumentBuilderFactory;
 import com.viergewinnt.api.common.util.Message;
 import com.viergewinnt.api.common.util.ReuseServermethode;
@@ -14,7 +13,8 @@ import com.viergewinnt.ki.KiMain;
 
 /**
  * Die Klasse FileMain ermoeglich die Kommunikation mittels des Files
- * @author Alexander Kern 
+ * 
+ * @author Alexander Kern
  *
  */
 public class FileMain extends Thread {
@@ -38,36 +38,33 @@ public class FileMain extends Thread {
 		final File serverFile = new File(filePath + serverFilename);
 		final File clientFile = new File(filePath + clientFilename);
 		int[] zug;
-		//Datenbank---------------------------------------------------------------------------------------------
 		Database db = new Database();
-		ReuseableSatz reuseSatz = new ReuseableSatz();
-		//------------------------------------------------------------------------------------------------------
-		
+
 		while (!serverFile.exists() || isRunning(factory, filePath, serverFilename)) {
 			if (message == null) {
 				continue;
 			}
-			
-			System.out.println(message.getGegnerzug() + " - " + message.getSatzstatus() + " - " + message.getFreigabe() + " - " + message.getSieger());
+
+			System.out.println(message.getGegnerzug() + " - " + message.getSatzstatus() + " - " + message.getFreigabe()
+					+ " - " + message.getSieger());
 
 			if (message.getGegnerzug() >= 0) {
 				// Gegnerzug in KI setzen
 				ki.setGegnerStein(message.getGegnerzug());
 
 				zug = ki.getletzter_zug();
-				//Datenbank---------------------------------------------------------------------------------------------
+				// Datenbank---------------------------------------------------------------------------------------------
 				try {
-					db.Zug(reuseSatz.getId(), true, zug[1], zug[0]);
+					db.Zug(ReuseableSatz.getId(), true, zug[1], zug[0]);
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				//---------------------------------------------------------------------------------------------
+				// ---------------------------------------------------------------------------------------------
 
 				// Gegnerzug in GUI setzen
 				cf.setStone(zug[0], zug[1], true);
 			}
-			
+
 			// Berechne nächsten Zug
 			ki.berechne();
 
@@ -75,17 +72,15 @@ public class FileMain extends Thread {
 			ki.setEigenerStein(ki.get_spalte());
 
 			zug = ki.getletzter_zug();
-			
-			
-			//Datenbank---------------------------------------------------------------------------------------------
+
+			// Datenbank---------------------------------------------------------------------------------------------
 			try {
-				db.Zug(reuseSatz.getId(), false, zug[1], zug[0]);
+				db.Zug(ReuseableSatz.getId(), false, zug[1], zug[0]);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			//-------------------------------------------------------------------------------------------------------
-			
+			// -------------------------------------------------------------------------------------------------------
+
 			// Zug in GUI setzen
 			cf.setStone(zug[0], zug[1], false);
 
@@ -100,7 +95,7 @@ public class FileMain extends Thread {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
+
 			// Message ist gelesen worden.
 			message = null;
 		}
