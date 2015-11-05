@@ -46,7 +46,7 @@ public class ControllerHistory implements Initializable {
 		tableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 
 			if (((ValueClass) newValue).getColumn1() != null) {
-				int spielId = Integer.parseInt(((ValueClass) newValue).getColumn1()); // ausgewaehlte Spielid
+				int spielId = Integer.parseInt(((ValueClass) newValue).getColumn1()); 
 				ReuseableSatz.setId(spielId);
 
 				try {
