@@ -138,7 +138,7 @@
   </class>  
   <class id="16" language="java" name="com.viergewinnt.api.pusher.PusherConnectionHandler" project="4Gewinnt" 
     file="/4Gewinnt/src/com/viergewinnt/api/pusher/PusherConnectionHandler.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1920" y="872"/>    
+    <position height="-1" width="-1" x="340" y="1008"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
