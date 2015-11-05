@@ -4,8 +4,8 @@ package com.viergewinnt.database;
 public class ValueClass {
 	
 	/**
-	 * Die Klasse ValueClass dient zur Herstellung der Tabellenueberischt aller Spiele und aller Saetze
-	 * Mit Hilfe dieser Klasse werden die Spaltennamen gesetzt und die Spalteninhalte herausgeholt werden 
+	 * Die Klasse dient zur Herstellung der Tabellenueberischt der Spiele und der Saetze
+	 * Mit Hilfe dieser Klasse werden die Spaltennamen und Inhalte gesetzt und bei Bedarf ausgelesen
 	 * @author MajkenPlugge
 	 *
 	 */
@@ -18,7 +18,7 @@ public class ValueClass {
 	  private String column5;
 
 	  /**
-	   * Setzt die Namen der Spalten 
+	   * Setzt die Namen  und Inhalt der Spalten
 	   * @param column1 Name der Spalte 1
 	   * @param column2 Name der Spalte 2
 	   * @param column3 Name der Spalte 3

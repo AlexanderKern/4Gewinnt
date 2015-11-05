@@ -25,7 +25,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 /**
- * Controller des FXML "SpielEnde" zeigt die gespielten Spiele an
+ * Der Controller des FXML "SpielEnde" zeigt die gespielten Zuege des Spiels an 
  * 
  * @author MajkenPlugge
  */

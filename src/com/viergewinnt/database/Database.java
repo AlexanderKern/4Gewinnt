@@ -13,8 +13,8 @@ import java.util.GregorianCalendar;
 import com.viergewinnt.api.common.util.ReuseServermethode;
 
 /**
- * Die Klasse Database beinhaltet alle notwendigen Methoden, die fuer die
- * Erstellung der Datenbank und der Ausfuehrung von Operationen notwendig sind
+ * Die Klasse verwaltet die Datenbank von der Erstellung über den
+ * Verbindungsaufbau bis hin aller Zugriffe auf die Datenbank
  * 
  * @author MajkenPlugge
  *
@@ -25,9 +25,7 @@ public class Database {
 									// gesamten Laufzeit des Programms
 
 	/**
-	 * Konstruktor: laedt den HSQL Database Engine JDBC driver und stellt eine
-	 * Verbindung zur Datenbank her (laeddt die benoetigten Datenbank-Files und
-	 * startet die Datenbank, falls diese nocht nicht laeuft)
+	 * Der Konstruktor stellt die Verbindung zur Datenbank her
 	 */
 	public Database() {
 		try {
@@ -46,13 +44,13 @@ public class Database {
 	}
 
 	/**
-	 * Erstellt die alle Tabellen, d.h. die Tabelle Spieler, Spiel, Satz und Zug
+	 * Erstellt die notwendigen Tabellen(Spieler, Spiel, Satz und Zug)
 	 * 
 	 * @param db
 	 *            Datenbankverbindung
+	 * 
 	 * @throws SQLException
 	 */
-	// create table person, spiel, satz, zug
 	public void createTable(Database db) throws SQLException {
 
 		String person_table = ("CREATE TABLE spieler ( id INTEGER IDENTITY PRIMARY KEY,  name VARCHAR(256) UNIQUE )");
@@ -66,7 +64,7 @@ public class Database {
 	}
 
 	/**
-	 * loescht die Datenbank Tabellen udn Eintraege
+	 * loescht die Datenbank Tabellen und Eintraege
 	 * 
 	 * @param db
 	 *            Datenbankverbindung
@@ -80,7 +78,7 @@ public class Database {
 	}
 
 	/**
-	 * führt die SQL-Statements CREATE, DROP, INSERT und Update aus
+	 * fuehrt die SQL-Statements CREATE, DROP, INSERT und UPDATE aus
 	 * 
 	 * @param sql_command
 	 *            SQL-Befehl
@@ -94,7 +92,7 @@ public class Database {
 	}
 
 	/**
-	 * führt die SQL-Abfragen aus und gibt ein das Ergebnis in Form eines
+	 * fuehrt die SQL-Abfragen aus und gibt ein das Ergebnis in Form eines
 	 * ResultSets zurück
 	 * 
 	 * @param stmnt
@@ -120,7 +118,7 @@ public class Database {
 	}
 
 	/**
-	 * erstellt einen neuen Spieler in der Datenbank
+	 * legt ein Spieler in der Datenbank an
 	 * 
 	 * @param Name
 	 *            des gegnerischen Spielers
@@ -142,8 +140,7 @@ public class Database {
 	}
 
 	/**
-	 * erstellt einen Eintrag eines Spiels in der Datenbank und setzt die Werte
-	 * gegner und farbe von der Instanz Spiels
+	 * legt ein Spiel in der Datenbank an 
 	 * 
 	 * @param gegner
 	 *            Name des gegnerischen Spielers
@@ -176,7 +173,7 @@ public class Database {
 	}
 
 	/**
-	 * Setze den Gegnername zur aktuellen Spiele Id
+	 * speichert den Gegnername zur aktuellen Spiele Id in die Datenbank
 	 * 
 	 * @param gegner
 	 *            Gegnername
@@ -211,7 +208,7 @@ public class Database {
 	}
 
 	/**
-	 * gibt erreichten Punkte eines Spiels zurück
+	 * gibt erreichten Punkte eines Spiels zurueck
 	 * 
 	 * @param spielId
 	 *            Id des Spiels
@@ -232,7 +229,7 @@ public class Database {
 	}
 
 	/**
-	 * gibt alle Eintraege aus der Datenbank zurück
+	 * gibt alle Eintraege aus der Datenbank zurueck
 	 * 
 	 * @return alle Spiele als ResultSet
 	 * @throws SQLException
@@ -245,10 +242,9 @@ public class Database {
 	}
 
 	/**
-	 * erstellt einen einen Satz in der Datenbank und setz die SatzId bei der
-	 * Instanz Satz
+	 *legt einen Statz in der Datenbank an
 	 * 
-	 * @param spielId
+	 * @param spielId Id des Spiels
 	 * @throws SQLException
 	 */
 	public void createSatz(int spielId) throws SQLException {
@@ -297,8 +293,7 @@ public class Database {
 	}
 
 	/**
-	 * gibt eine Tabelle zurück, die anzeigt wie die Saetze zu einem Spiel
-	 * ausgegangen sind
+	 * gibt den Ausgang der einzelnen Saetze zurueck
 	 * 
 	 * @param spielId
 	 * @return gewonnen ; X; O ; oder "offen"
@@ -333,13 +328,14 @@ public class Database {
 
 	/**
 	 * gibt den Gewinner eines Spiels zurueck
+	 * 
 	 * @return Gewinner
 	 * @throws SQLException
 	 */
 	public String spielGewinner() throws SQLException {
 		int pkt = 0;
 		String[] gewonneneSaetze = getGewonneneSaetze(ReuseableSpiel.getId());
-		
+
 		for (int i = 0; i <= gewonneneSaetze.length - 1; i++) {
 			if (gewonneneSaetze[i] == null) {
 			} else if (gewonneneSaetze[i].equals("gewonnen")) {
@@ -348,7 +344,7 @@ public class Database {
 				pkt = pkt - 1;
 			}
 		}
-		
+
 		if (pkt > 0) {
 			return "Claire";
 		} else if (pkt < 0) {
@@ -359,7 +355,7 @@ public class Database {
 	}
 
 	/**
-	 * aktualisiert den Eintrag Satz in der Datenbank nach Beendigung des Satzes
+	 * speichert den Satzausgang in die Datenbank
 	 * 
 	 * @param satzId
 	 * @param gewonnen
@@ -373,7 +369,7 @@ public class Database {
 	}
 
 	/**
-	 * gibt alle Saetze zu einer bestimmten Spielid zurieck
+	 * gibt alle Saetze zu einem ausgewaehlten Spiel zurueck
 	 * 
 	 * @param spielId
 	 *            Id des Spiels
@@ -389,8 +385,10 @@ public class Database {
 	}
 
 	/**
-	 * loescht Satz einen Satz aus der Datenbank
-	 * @param satzId Id des Satzes
+	 * loescht einen Satz aus der Datenbank
+	 * 
+	 * @param satzId
+	 *            Id des Satzes
 	 * @throws SQLException
 	 */
 	public void satzloeschen(int satzId) throws SQLException {
@@ -401,7 +399,9 @@ public class Database {
 
 	/**
 	 * loescht ein Spiel aus der Datenbank
-	 * @param spielId Id des Spiels
+	 * 
+	 * @param spielId
+	 *            Id des Spiels
 	 * @throws SQLException
 	 */
 	public void spielloeschen(int spielId) throws SQLException {
@@ -409,9 +409,9 @@ public class Database {
 		st.setInt(1, spielId);
 		st.executeUpdate();
 	}
-	
+
 	/**
-	 * erstellt einen neuen Zug in der Datenbank
+	 *legt einen Zug in der Datenbank an
 	 * 
 	 * @param satzId
 	 * @param gegner
@@ -448,7 +448,9 @@ public class Database {
 
 	/**
 	 * loescht alle Zuege eines Satz aus der Datenbank
-	 * @param satzId Id des Satzes
+	 * 
+	 * @param satzId
+	 *            Id des Satzes
 	 * @throws SQLException
 	 */
 	public void loeschenZuege(int satzId) throws SQLException {
