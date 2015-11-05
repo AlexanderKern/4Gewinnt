@@ -38,6 +38,8 @@
     -fx-table-cell-border-color: #6C563C;
     -fx-table-header-border-color: #6C563C;
     -fx-padding: 5;
+    -fx-width: 100%;
+    -fx-height: auto;
 }
 
 .table-view .column-header-background 
