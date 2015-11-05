@@ -13,13 +13,15 @@ import javafx.scene.Scene;
 
 /**
  * Die Klasse Main startet die 4Gewinnt Applikation und ruft den Controller des Startbildschrims auf
+ * 
  * @author Cara Damm
  */
 
 public class Main extends Application {
 	
 	/**
-	 * Aufruf des Controller des Startbildschrims und anlegen der Datenbanktabellen
+	 * Die FXML Seite Welcome wird von hieraus aufgerufen. Bei diesem Auruf wird definiert, dass ab diesem Aufruf 
+	 * die entsprechende Kontrollerklasse das weiter handling übernimmt. Desweiteren wird hier eine Datenbanktabelle angelegt
 	 */
 	@Override
 	public void start(Stage stage) throws IOException {

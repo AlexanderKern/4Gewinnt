@@ -20,7 +20,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 /**
- * Die Klasse ControllerStart kuemmert sich um das Eventhandling
+ * Die Klasse ControllerStart ist die Kontrollerklase für das Welcome FXML
+ * Hier wird definiert, welche Aktionen von den einzelnen Elementen der Benutzeroberfläche ausgefuehrt werden
  * 
  * @author Cara Damm
  *
@@ -44,9 +45,13 @@ public class ControllerStart implements Initializable {
 	 * 
 	 * @param fxmlFileLocation
 	 * @param resources
+	 * 
+	 * Es wird definiert, welches Coding ausgefuehrt werden soll, wenn ein bestimmter Butto geklickt wird.
 	 */
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
-
+/**
+ * Beim drucken des play - Buttons wird der selectScreen aufgerufen.
+ */
 		play.setOnAction((ev) -> {
 			try {
 				Database db = new Database();
@@ -67,6 +72,9 @@ public class ControllerStart implements Initializable {
 			}
 		}); 
 
+		/**
+		 * Beim druecken auf das statistic-Buttons wird das History.fxml aufgerufen.
+		 */
 		statistic.setOnAction((ev) -> {
 			try {
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("history.fxml"));
@@ -83,7 +91,9 @@ public class ControllerStart implements Initializable {
 				e.printStackTrace();
 			}
 		}); 
-
+		/**
+		 * Mit dem Exit Button wird das aktuelle Fenster geschlossen
+		 */
 		exit.setOnAction((ev) -> {
 			((Node) (ev.getSource())).getScene().getWindow().hide();
 		}); 
