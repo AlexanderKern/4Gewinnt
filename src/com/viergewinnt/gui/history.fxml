@@ -9,7 +9,7 @@
    <children>
       <ImageView fitHeight="626.0" fitWidth="621.0" layoutX="-7.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../assets/img/background.jpg" />
+            <Image url="@pictures/background.jpg" />
          </image>
       </ImageView>
       <Label layoutX="223.0" layoutY="20.0" prefHeight="21.0" prefWidth="162.0" text="Spiele die gespielt wurden" />

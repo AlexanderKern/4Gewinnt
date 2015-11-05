@@ -13,7 +13,7 @@
    <children>
       <ImageView fitHeight="600.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../assets/img/field.jpg" />
+            <Image url="@pictures/field.jpg" />
          </image>
       </ImageView>
       <Label fx:id="lSatz" layoutX="318.0" layoutY="10.0" text="" />
@@ -21,13 +21,13 @@
       <Button fx:id="bBack" mnemonicParsing="false" text="&lt; Zurück" />
       <ImageView fx:id="ivBlue" fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../assets/img/coinBlue.png" />
+            <Image url="@pictures/coinBlue.png" />
          </image>
       </ImageView>
       <Label fx:id="lPlayerR" layoutX="67.0" layoutY="40.0" prefHeight="19.0" prefWidth="80.0" />
       <ImageView fx:id="ivGreen" fitHeight="50.0" fitWidth="50.0" layoutX="545.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../assets/img/coinGreen.png" />
+            <Image url="@pictures/coinGreen.png" />
          </image>
       </ImageView>
       <Label fx:id="lPlayerY" layoutX="456.0" layoutY="40.0" prefHeight="19.0" prefWidth="80.0" />
