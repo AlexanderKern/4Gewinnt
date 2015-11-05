@@ -1,7 +1,7 @@
 package com.viergewinnt.database;
 
 /**
- * Die Klasse Spiel bildet das Objekt Spiel mit allen zugehoerigen Attributen
+ * Die Klasse bildet das Objekt Spiel mit allen zugehoerigen Attributen
  * Verwendung findet diese Klasse bei der Erstellung der Uebersicht aller Spiele
  * 
  * @author MajkenPlugge

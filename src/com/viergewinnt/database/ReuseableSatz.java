@@ -1,9 +1,8 @@
 package com.viergewinnt.database;
 
 /**
- * Die Klasse ReusableSatz ermoeglicht die Attribute des Satzes in einer Instanz
- * der Klasse zu speichern und im Laufe des Programms von allen Packeten daruaf
- * zuzugreifen
+ * Die Klasse ermoeglicht die Attribute des Satz in einem Objekt zu halten und
+ * im gesamten Programm waehrend der Laufzeit darauf zuzugreifen
  * 
  * @author MajkenPlugge
  *
