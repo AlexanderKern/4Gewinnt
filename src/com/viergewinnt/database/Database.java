@@ -13,7 +13,7 @@ import java.util.GregorianCalendar;
 import com.viergewinnt.api.common.util.ReuseServermethode;
 
 /**
- * Die Klasse verwaltet die Datenbank von der Erstellung über den
+ * Die Klasse verwaltet die Datenbank von der Erstellung ueber den
  * Verbindungsaufbau bis hin aller Zugriffe auf die Datenbank
  * 
  * @author MajkenPlugge
