@@ -30,7 +30,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 /**
- * Die Klasse ControllerField
+ * Die Klasse ControllerField kontrolliert das Spielfeld.
+ * Hier ist die Steuerung zum Anzeigen der einzelnen Spielsteine definiert.
  * 
  * @author Cara Damm
  *
@@ -116,7 +117,9 @@ public class ControllerField implements Initializable {
 				e.printStackTrace();
 			}
 		}
-
+		/**
+		 * Zurueck zum Selectscreen
+		 */
 		bBack.setOnAction((ev) -> {
 			try {
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("selectScreen.fxml"));
@@ -133,11 +136,16 @@ public class ControllerField implements Initializable {
 				e.printStackTrace();
 			}
 		});
-
+		/**
+		 * Beenden des Programms
+		 */
 		bExit.setOnAction((ev) -> {
 			((Node) (ev.getSource())).getScene().getWindow().hide();
 		});
-
+		/**
+		 * Nachdem ein Satz erfolgreich gespielt wurde, kann der User auswaehlen, dass er einen weiteren Satz spielen moechte.
+		 * Er gelangt, zunaecht zurueck zum Selectscreen um seine Einstellungen noch einmal ueberpruefen zu koennen.
+		 */
 		bNewSatz.setOnAction((ev) -> {
 			try {
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("selectScreen.fxml"));
@@ -183,7 +191,9 @@ public class ControllerField implements Initializable {
 				e.printStackTrace();
 			}
 		});
-
+		/**
+		 * Verwerfen eines Satzes
+		 */
 		bSatzVerwerfen.setOnAction((ev) -> {
 			bSpielBeenden.setVisible(false);
 			bNewSatz.setVisible(true);
@@ -202,6 +212,9 @@ public class ControllerField implements Initializable {
 			tbVerloren.setVisible(false);
 		});
 
+		/**
+		 * Programm wird beendet
+		 */
 		bSpielBeenden.setOnAction((ev) -> {
 			((Node) (ev.getSource())).getScene().getWindow().hide();
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SpielEnde.fxml"));
@@ -231,6 +244,7 @@ public class ControllerField implements Initializable {
 	 * @param coin
 	 *            Steinfarbe
 	 */
+
 	public void setStone(int row, int col, boolean coin) {
 		// coin green = true coin blue = false
 		Platform.runLater(new Runnable() {

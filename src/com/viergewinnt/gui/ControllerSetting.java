@@ -87,7 +87,10 @@ public class ControllerSetting implements Initializable {
 			e2.printStackTrace();
 		}
 
-		// Spielfeld soll aufgerufen werden
+		/**
+		 * Die Daten die der User auf der Oberflaeche eintraegt werden verwendet und gespeichert.
+		 * Anschliessend wird das Spielfeld aufgerufen. 
+		 */
 		bStart.setOnAction((ev) -> {
 			// Set new Properties-File
 			try {
@@ -188,6 +191,9 @@ public class ControllerSetting implements Initializable {
 			}
 		}); // end of play
 
+		/**
+		 * Durch das druecken des cancel Buttons kehrt man zur Startseite zurueck.
+		 */
 		bCancel.setOnAction((ev) -> {
 			
 		try {
@@ -215,14 +221,19 @@ public class ControllerSetting implements Initializable {
 				e.printStackTrace();
 			}
 		}); // end of cancel
-
+		/**
+		 * Der Select- Button ermoeglicht den Anwender, dass ein Filesshooser geoeffnet wird, das er bequem die Fileschnittstelle auswaehlen kann.
+		 */
 		bSelect.setOnAction((ev) -> {
 			DirectoryChooser directoryChooser = new DirectoryChooser();
 			directoryChooser.setTitle("Directory for FILE-API");
 			File file = directoryChooser.showDialog(null);
 			tfPath.setText(file.getPath() + System.getProperty("file.separator"));
 		}); // end of select
-
+		
+		/**
+		 * Mit Ecit (X) wird das Programm beendet
+		 */
 		bExit.setOnAction((ev) -> {
 			try {
 				if(db.getAnzahlSaetze(ReuseableSpiel.getId())==0){

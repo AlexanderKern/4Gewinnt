@@ -56,8 +56,16 @@ public class ControllerRec implements Initializable {
 	Image imageG = new Image("file:///" + System.getProperty("user.dir") + "/assets/img/coinGrey.png");
 
 	@Override
+	/**
+	 * Mit dem Aufruf der Klasse wird das Spielfeld eines bereits gespielten Spiels wieder aufgerufen
+	 * 
+	 * Die gemachten Zuege werden aus der Datenbank geladen und nochmals auf dem Spielfeld angezeigt.
+	 */
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
 		Database db = new Database();
+		/**
+		 * Auslesen der gespielten Zuege aus der DB
+		 */
 		try {
 			ResultSet rs = db.getZuege(ReuseableSatz.getId());
 			boolean gegner;
@@ -72,18 +80,29 @@ public class ControllerRec implements Initializable {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		/**
+		 * Der User wird zurueck zur Tabellenauswahl gefuehrt
+		 */
 		bBack.setOnAction((ev) -> {
 			((Node) (ev.getSource())).getScene().getWindow().hide();
 		});
-
+		/**
+		 * Das Programm wird beendet
+		 */
 		bExit.setOnAction((ev) -> {
 			Platform.exit();
 		});
 	}
 
 	private void setStone(boolean gegner, int spalte, int zeile) {
-
+		/**
+		 *Nach jedem Zug, der aus der DB geladen wird, wird die Methode setStone aufgerufen.
+		 *
+		 *Die Methode uberprueft ob es sich um ein Stein vom Gegner oder von Claire handelt und setzt anschliessend 
+		 *die Steinfarbe.
+		 *
+		 *Die Zeile und Spalte des Zuges wird ebenfalls aus der DB gelesen. Der Stein wird an der jeweils uebergebenen Zeilen / Spalten Position wieder dem Spielfeld hinzugefuegt
+		 */
 		if (gegner == true) {
 			ImageView iv = new ImageView(imageBlue);
 			GridPane.setRowIndex(iv, zeile);

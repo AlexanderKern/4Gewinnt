@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 /**
- * Die Klasse ControllerStart ist die Kontrollerklase für das Welcome FXML
+ * Die Klasse ControllerStart ist die Kontrollerklase für das Welcome FXML.
  * Hier wird definiert, welche Aktionen von den einzelnen Elementen der Benutzeroberfläche ausgefuehrt werden
  * 
  * @author Cara Damm
@@ -46,7 +46,8 @@ public class ControllerStart implements Initializable {
 	 * @param fxmlFileLocation
 	 * @param resources
 	 * 
-	 * Es wird definiert, welches Coding ausgefuehrt werden soll, wenn ein bestimmter Butto geklickt wird.
+	 * Es wird definiert, welches Coding ausgefuehrt werden soll, wenn die Klasse ausgefuert wird.
+	 * Innerhlab dieser Klasse wird das Handling der verschiedenen Buttons der Oberflaeche definiert..
 	 */
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
 /**

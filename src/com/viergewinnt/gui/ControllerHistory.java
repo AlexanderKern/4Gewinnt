@@ -40,6 +40,12 @@ public class ControllerHistory implements Initializable {
 	@Override
 	/**
 	 * Initalisierung des Screens History
+	 * 
+	 * Der ControllerHostory ermoeglicht es, dass bei der Anzeige der History-FXML Seite die vergangenden Spieldaten aus der Datenbank geladen werden und in einer Tabelle angezeigt werden.
+	 * 
+	 * Durch das Anklicken eines Spiels in der Tabelle kann der Benutzer noch einmal sehen, wie die einzelnen Saetze innerhalb eines Spiels gespielt wurden.
+	 * 
+	 * 
 	 */
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
 		// Listener für die Tabelle von den Spielen

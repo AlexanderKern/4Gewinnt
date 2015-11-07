@@ -20,8 +20,8 @@ import javafx.scene.Scene;
 public class Main extends Application {
 	
 	/**
-	 * Die FXML Seite Welcome wird von hieraus aufgerufen. Bei diesem Auruf wird definiert, dass ab diesem Aufruf 
-	 * die entsprechende Kontrollerklasse das weiter handling übernimmt. Desweiteren wird hier eine Datenbanktabelle angelegt
+	 * Die FXML Seite Welcome wird von  aufgerufen. Nachdem die Seite welcome.fxml ausgerufen wurde uebernimmt der Controller, der fuer diese Seite definiert wurde, das weiter handling.
+	 * Desweiteren wird hier eine Datenbanktabelle angelegt.
 	 */
 	@Override
 	public void start(Stage stage) throws IOException {

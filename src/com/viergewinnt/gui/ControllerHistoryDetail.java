@@ -40,7 +40,10 @@ TableColumn<ValueClass, String> col1, col2, col3,col4, col5;
 
 	@Override
 	/**
+	 * Beim Aufruf der HistoryDetailed FXML Seite uebernimmt der Controller die Funktion, dass die Spieldaten aus der Datenbank geladen werden.
+	 * Und anschliessend in einer Tabelle ausgegeben werden.
 	 * 
+	 * Durch das anklicken der einzelnen Tabelleneinträge wird dem Benutzer ermöglicht, sich das Spielfeld dieser Spiele noch einmal anzeigen zu lassen.
 	 */
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources)
 	{
@@ -109,11 +112,16 @@ TableColumn<ValueClass, String> col1, col2, col3,col4, col5;
 		{
 			e.printStackTrace();
 		}
-	
+		/**
+		 * Zurueck zur Histroy Auswahl Seite
+		 */
 		bBack.setOnAction((ev) -> {
 		((Node) (ev.getSource())).getScene().getWindow().hide();
 		}); 
 		
+		/**
+		 * Beenden des Programms
+		 */
 		bExit.setOnAction((ev)-> 
 		{
 			Platform.exit();
