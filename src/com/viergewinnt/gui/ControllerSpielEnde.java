@@ -43,7 +43,7 @@ public class ControllerSpielEnde implements Initializable {
 	@FXML
 	Label lGewinner, lGegner;
 /**
- * In der Methode initialize wird definiert, welche Aktionen ausgeführt werden koennen. Solange die entsprechende FXML-Seite geoeffnet ist.
+ * In der Methode initialize wird definiert, welche Aktionen ausgefuehrt werden koennen. Solange die entsprechende FXML-Seite geoeffnet ist.
  */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

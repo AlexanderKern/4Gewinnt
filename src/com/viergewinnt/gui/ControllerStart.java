@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 /**
- * Die Klasse ControllerStart ist die Kontrollerklase für das Welcome FXML.
+ * Die Klasse ControllerStart ist die Kontrollerklase fuer das Welcome FXML.
  * Hier wird definiert, welche Aktionen von den einzelnen Elementen der Benutzeroberfläche ausgefuehrt werden
  * 
  * @author Cara Damm

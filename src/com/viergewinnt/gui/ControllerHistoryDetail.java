@@ -22,7 +22,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 /**
- * Die Klasse ControllerHistoryDetail zeigt alle gespielten Saetze zum gewaehöetn Spiel an
+ * Die Klasse ControllerHistoryDetail zeigt alle gespielten Saetze zum gewaehlten Spiel an
  * @author Cara Damm
  *
  */

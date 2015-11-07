@@ -58,7 +58,7 @@ public class ControllerSetting implements Initializable {
 
 	@Override
 	/**
-	 * Initailisiert das Einstellungsfenster
+	 * In der Methode initialize wird definiert, welche Aktionen ausgefuehrt werden koennen. Solange die entsprechende FXML-Seite geoeffnet ist.
 	 */
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
 		Database db = new Database();
@@ -232,7 +232,7 @@ public class ControllerSetting implements Initializable {
 		}); // end of select
 		
 		/**
-		 * Mit Ecit (X) wird das Programm beendet
+		 * Mit Exit (X) wird das Programm beendet
 		 */
 		bExit.setOnAction((ev) -> {
 			try {

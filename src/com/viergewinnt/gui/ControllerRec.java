@@ -21,7 +21,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.*;
 
 /**
- * Die Klasse ControllerField
+ * Die Klasse ControllerRec wird aufgerufen, um vergangene Saetze in der Historie anzuzeigen 
  * 
  * @author Cara Damm
  *

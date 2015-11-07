@@ -3,4 +3,5 @@ com.viergewinnt.api.file
 com.viergewinnt.api.pusher
 com.viergewinnt.database
 com.viergewinnt.gui
+com.viergewinnt.gui.pictures
 com.viergewinnt.ki
