@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import com.viergewinnt.database.Database;
 import com.viergewinnt.database.ReuseableSatz;
+import com.viergewinnt.database.ReuseableSpiel;
+
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,7 +23,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.*;
 
 /**
- * Die Klasse ControllerRec wird aufgerufen, um vergangene Saetze in der Historie anzuzeigen 
+ * Die Klasse ControllerRec wird aufgerufen, um vergangene Saetze in der
+ * Historie anzuzeigen
  * 
  * @author Cara Damm
  *
@@ -57,9 +60,11 @@ public class ControllerRec implements Initializable {
 
 	@Override
 	/**
-	 * Mit dem Aufruf der Klasse wird das Spielfeld eines bereits gespielten Spiels wieder aufgerufen
+	 * Mit dem Aufruf der Klasse wird das Spielfeld eines bereits gespielten
+	 * Spiels wieder aufgerufen
 	 * 
-	 * Die gemachten Zuege werden aus der Datenbank geladen und nochmals auf dem Spielfeld angezeigt.
+	 * Die gemachten Zuege werden aus der Datenbank geladen und nochmals auf dem
+	 * Spielfeld angezeigt.
 	 */
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
 		Database db = new Database();
@@ -76,7 +81,81 @@ public class ControllerRec implements Initializable {
 				spalte = rs.getInt(1);
 				zeile = rs.getInt(2);
 				setStone(gegner, spalte, zeile);
+
 			}
+
+			String[] gewonneneSaetze = db.getGewonneneSaetze(ReuseableSpiel.getId());
+System.out.println(ReuseableSpiel.getFarbeString());
+System.out.println(gewonneneSaetze[1x]);
+			
+
+			for (int i = 0; i <= gewonneneSaetze.length; i++) {
+				switch (i) {
+				case 0:
+					if (gewonneneSaetze[i] == "gewonnen") {
+						if (ReuseableSpiel.getFarbeString() == "grün") {
+							ivOne.setImage(imageGreen);
+						} else {
+							ivOne.setImage(imageBlue);
+						}
+					}else if(gewonneneSaetze[i] == "verloren"){
+						
+						if (ReuseableSpiel.getFarbeString() == "grün") {
+							ivOne.setImage(imageBlue);
+						} else {
+							ivOne.setImage(imageGreen);
+						}
+						
+					}else{
+						ivOne.setImage(imageG);
+					}
+
+					break;
+				case 1:
+					if (gewonneneSaetze[i] == "gewonnen") {
+
+						if (ReuseableSpiel.getFarbeString() == "grün") {
+							ivTwo.setImage(imageGreen);
+						} else {
+							ivTwo.setImage(imageBlue);
+						}
+					}else if(gewonneneSaetze[i] == "verloren"){
+						
+						if (ReuseableSpiel.getFarbeString() == "grün") {
+							ivTwo.setImage(imageBlue);
+						} else {
+							ivTwo.setImage(imageGreen);
+						}
+						
+					}else{
+						ivTwo.setImage(imageG);
+					}
+					break;
+
+				case 2:
+					if (gewonneneSaetze[i] == "gewonnen") {
+
+						if (ReuseableSpiel.getFarbeString() == "grün") {
+							ivThree.setImage(imageGreen);
+						} else {
+							ivThree.setImage(imageBlue);
+						}
+					}else if(gewonneneSaetze[i] == "verloren"){
+						
+						if (ReuseableSpiel.getFarbeString() == "grün") {
+							ivThree.setImage(imageBlue);
+						} else {
+							ivThree.setImage(imageGreen);
+						}
+						
+					}else{
+						ivThree.setImage(imageG);
+					}
+					break;
+				}
+
+			}
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -96,12 +175,15 @@ public class ControllerRec implements Initializable {
 
 	private void setStone(boolean gegner, int spalte, int zeile) {
 		/**
-		 *Nach jedem Zug, der aus der DB geladen wird, wird die Methode setStone aufgerufen.
+		 * Nach jedem Zug, der aus der DB geladen wird, wird die Methode
+		 * setStone aufgerufen.
 		 *
-		 *Die Methode uberprueft ob es sich um ein Stein vom Gegner oder von Claire handelt und setzt anschliessend 
-		 *die Steinfarbe.
+		 * Die Methode uberprueft ob es sich um ein Stein vom Gegner oder von
+		 * Claire handelt und setzt anschliessend die Steinfarbe.
 		 *
-		 *Die Zeile und Spalte des Zuges wird ebenfalls aus der DB gelesen. Der Stein wird an der jeweils uebergebenen Zeilen / Spalten Position wieder dem Spielfeld hinzugefuegt
+		 * Die Zeile und Spalte des Zuges wird ebenfalls aus der DB gelesen. Der
+		 * Stein wird an der jeweils uebergebenen Zeilen / Spalten Position
+		 * wieder dem Spielfeld hinzugefuegt
 		 */
 		if (gegner == true) {
 			ImageView iv = new ImageView(imageBlue);

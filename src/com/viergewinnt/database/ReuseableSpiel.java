@@ -13,6 +13,8 @@ public class ReuseableSpiel {
 	private static String name;
 	public static int id;
 	public static boolean farbe;
+	public static String farbeString;
+
 
 	/**
 	 * Setzt den Namen des Gegners eines Spiels
@@ -61,7 +63,6 @@ public class ReuseableSpiel {
 	public void setFarbe(boolean farbe) {
 		ReuseableSpiel.farbe = farbe;
 	}
-
 	/**
 	 * Gibt die Steinfarbe der Intellegenz Claire zurueck
 	 * 
@@ -70,5 +71,27 @@ public class ReuseableSpiel {
 	public boolean getFarbe() {
 		return ReuseableSpiel.farbe;
 	}
+	
+	/**
+	 * Setzt die Steinfarbe der Intellegenz Claire als String
+	 * @param farbeString 
+	 * 
+	 * @param farbe
+	 *            Steinfarbe der Intellegenz Claire
+	 */
+	public static void setFarbeString(String farbeString) {
+		ReuseableSpiel.farbeString = farbeString;
+	}
+
+	/**
+	 * Gibt die Steinfarbe der Intellegenz Claire als String zurueck
+	 * 
+	 * @return Steinfarbe der Intellegenz Claire
+	 */
+	public static String getFarbeString() {
+		return ReuseableSpiel.farbeString;
+	}
+
+	
 
 }

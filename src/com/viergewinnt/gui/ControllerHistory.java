@@ -7,6 +7,8 @@ import com.viergewinnt.database.Database;
 import com.viergewinnt.database.Spiel;
 import com.viergewinnt.database.ValueClass;
 import com.viergewinnt.database.ReuseableSatz;
+import com.viergewinnt.database.ReuseableSpiel;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -54,6 +56,8 @@ public class ControllerHistory implements Initializable {
 			if (((ValueClass) newValue).getColumn1() != null) {
 				int spielId = Integer.parseInt(((ValueClass) newValue).getColumn1()); 
 				ReuseableSatz.setId(spielId);
+				ReuseableSpiel.setFarbeString(((ValueClass) newValue).getColumn5());
+			
 
 				try {
 					FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("historyDetail.fxml"));
