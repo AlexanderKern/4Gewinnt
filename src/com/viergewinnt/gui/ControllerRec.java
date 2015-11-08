@@ -86,7 +86,7 @@ public class ControllerRec implements Initializable {
 
 			String[] gewonneneSaetze = db.getGewonneneSaetze(ReuseableSpiel.getId());
 System.out.println(ReuseableSpiel.getFarbeString());
-System.out.println(gewonneneSaetze[1x]);
+System.out.println(gewonneneSaetze[1]);
 			
 
 			for (int i = 0; i <= gewonneneSaetze.length; i++) {
