@@ -36,8 +36,7 @@ public class ReuseableSatz {
 	/**
 	 * Setzt die zugehoerige Spiel Id
 	 * 
-	 * @param Id
-	 *            des zugehoerigen Spiels
+	 * @param spielId des zugehoerigen Spiels
 	 */
 	public static void setSpielId(int spielId) {
 		ReuseableSatz.spielId = spielId;
@@ -53,10 +52,9 @@ public class ReuseableSatz {
 	}
 
 	/**
-	 * Setzt das Attribut gewonnen auf "gewonnen", "offen" oder "verloren" Das
-	 * Attribut gewonnen gibt Auskunft über das Ergebnis des Satzes
+	 * Setzt den Ausgang des Satzes im Attribut gewonnen
 	 * 
-	 * @param Gewonnen
+	 * @param gewonnen "gewonnen", "verloren", "offen"
 	 */
 	public static void setGewonnen(String gewonnen) {
 		ReuseableSatz.gewonnen = gewonnen;

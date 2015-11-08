@@ -135,7 +135,7 @@ public class PusherMain {
 								// Zug in GUI setzen
 								cf.setStone(zug[0], zug[1], ReuseServermethode.getTeamfarbe());
 
-								// Nächsten Zug an Server senden
+								// Naechsten Zug an Server senden
 								channel.trigger("client-event", "{\"move\":\"" + zug[1] + "\"}");
 							}
 
@@ -143,7 +143,7 @@ public class PusherMain {
 							cf.setResult(message.getSieger(), sequenceNumber);
 							pusher.disconnect();
 							// Satzende
-							// X = grün // 0 blau
+							// X = gruen // 0 blau
 							if (("Spieler " + ReuseServermethode.getTeam()).equals(message.getSieger())) {
 								ReuseableSatz.setGewonnen("Claire");
 							} else {

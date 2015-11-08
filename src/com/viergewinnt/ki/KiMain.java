@@ -73,15 +73,15 @@ public class KiMain {
 
 		/**
 		 * 
-		 * @return
+		 * @return ergebnis 
 		 */
 	public int get_spalte(){		
 		return ergebnis;	
 	}// end get spalte
 	
 	/**
-	 * 
-	 * @return
+	 * gibt den letzen Zug zurueck
+	 * @return letzer Zug
 	 */
 	public int[] getletzter_zug(){	
 		return letzter_zug;
@@ -90,7 +90,7 @@ public class KiMain {
 	/**
 	 * Berechnet die zu setzende Spalte.
 	 * 
-	 * Der Parameter ergebnis ist standardmae�ig zuerst auf 99 gesetzt, um so ueberpruefen zu koennen ob noch kein sinnvoller Zug berechnet worden ist.
+	 * Der Parameter ergebnis ist standardmaessig zuerst auf 99 gesetzt, um so ueberpruefen zu koennen ob noch kein sinnvoller Zug berechnet worden ist.
 	 * Wird ein sinnvolles Ergebnis gefunden, wird die Berechnungsschleife abgebrochen, ansonsten wird eine Zufallszahl bestimmt.
 	 * Die Schleife geht von links nach rechts die Spalten durch und berechnet vom aktuell obersten Feld der Spalte aus.
 	 * 

@@ -266,10 +266,9 @@ public class ControllerField implements Initializable {
 	}// end of setStone
 
 	/**
-	 * 
-	 * @param result
-	 * @param sequenceNumber
-	 *            aktuelle Satznummer
+	 * Setzt den Spielstein vom Satzsieger in die Anzeige der gewonnen Saetze auf dem Spielfeld 
+	 * @param result Sieger des Satzes
+	 * @param sequenceNumber aktuelle Satznummer
 	 */
 	public void setResult(String result, int sequenceNumber) {
 		Platform.runLater(new Runnable() {
@@ -332,7 +331,8 @@ public class ControllerField implements Initializable {
 	/**
 	 * Bei Satzende wird der Button zum Aufruf eines neuen Satz angeziegt
 	 * 
-	 * @param visible
+	 * @param visible "true"
+	 * @param sieger Name des Siegers vom Satz
 	 */
 	public void sichtbar(boolean visible, String sieger) {
 		Platform.runLater(new Runnable() {

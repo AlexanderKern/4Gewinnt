@@ -96,7 +96,7 @@ public class FileMain extends Thread {
 			cf.setStone(zug[0], zug[1], ReuseServermethode.getTeamfarbe());
 
 			try {
-				// Nächsten Zug an Server senden
+				// Naechsten Zug an Server senden
 				// Zug an Server senden
 				final FileWriter writer = new FileWriter(clientFile);
 				writer.write(String.valueOf(zug[1]));
@@ -112,7 +112,7 @@ public class FileMain extends Thread {
 		}
 		cf.setResult(message.getSieger(), sequenceNumber);
 		// Satzende
-		// X = grün // 0 blau
+		// X = gruen // 0 blau
 		// Gewinner setzen
 		if (("Spieler " + ReuseServermethode.getTeam()).equals(message.getSieger())) {
 			ReuseableSatz.setGewonnen("Claire");

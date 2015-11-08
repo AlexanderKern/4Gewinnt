@@ -66,9 +66,8 @@ public class Database {
 	/**
 	 * loescht die Datenbank Tabellen und Eintraege
 	 * 
-	 * @param db
-	 *            Datenbankverbindung
-	 * @throws SQLException
+	 * @param db Datenbankverbindung
+	 * @throws SQLException  Datenbankfehler
 	 */
 	public void deleteTable(Database db) throws SQLException {
 		db.update("DROP table person");
@@ -120,8 +119,7 @@ public class Database {
 	/**
 	 * legt ein Spieler in der Datenbank an
 	 * 
-	 * @param Name
-	 *            des gegnerischen Spielers
+	 * @param spielerName  des gegnerischen Spielers
 	 */
 	public void createSpieler(String spielerName) throws SQLException {
 
@@ -210,10 +208,9 @@ public class Database {
 	/**
 	 * gibt erreichten Punkte eines Spiels zurueck
 	 * 
-	 * @param spielId
-	 *            Id des Spiels
+	 * @param spielId Id des Spiels
 	 * @return Punkte des Spiels
-	 * @throws SQLException
+	 * @throws SQLException  Datenbankfehler
 	 */
 	public int getSpielPkt(int spielId) throws SQLException {
 
@@ -232,7 +229,7 @@ public class Database {
 	 * gibt alle Eintraege aus der Datenbank zurueck
 	 * 
 	 * @return alle Spiele als ResultSet
-	 * @throws SQLException
+	 * @throws SQLException 
 	 */
 	public ResultSet getSpiele() throws SQLException {
 
@@ -262,9 +259,9 @@ public class Database {
 	/**
 	 * speichert den Ausgang des Satzes in die Datenbank
 	 * 
-	 * @param gewonnen
-	 * @param satzId
-	 * @throws SQLException
+	 * @param gewonnen "gewonnen", "verloren", "offen"
+	 * @param satzId Id des SAtzes
+	 * @throws SQLException  Datenbankfehler
 	 */
 	public void updateSatz(String gewonnen, int satzId) throws SQLException {
 		PreparedStatement stSatzende = conn.prepareStatement("UPDATE satz SET gewonnen = ? WHERE id = ?");
@@ -295,9 +292,9 @@ public class Database {
 	/**
 	 * gibt den Ausgang der einzelnen Saetze zurueck
 	 * 
-	 * @param spielId
+	 * @param spielId Id des Spiels
 	 * @return gewonnen ; X; O ; oder "offen"
-	 * @throws SQLException
+	 * @throws SQLException Datenbankfehler
 	 */
 	public String[] getGewonneneSaetze(int spielId) throws SQLException {
 
@@ -357,9 +354,9 @@ public class Database {
 	/**
 	 * speichert den Satzausgang in die Datenbank
 	 * 
-	 * @param satzId
-	 * @param gewonnen
-	 * @throws SQLException
+	 * @param satzId Id des Satzes
+	 * @param gewonnen "gewonnen", "verloren", "offen"
+	 * @throws SQLException Datenbankfehler
 	 */
 	public void satzende(int satzId, String gewonnen) throws SQLException {
 		PreparedStatement stSatzende = Database.conn.prepareStatement("UPDATE satz SET gewonnen = ? WHERE id = ?");
@@ -387,9 +384,8 @@ public class Database {
 	/**
 	 * loescht einen Satz aus der Datenbank
 	 * 
-	 * @param satzId
-	 *            Id des Satzes
-	 * @throws SQLException
+	 * @param satzId Id des Satzes
+	 * @throws SQLException Datenbankfehler
 	 */
 	public void satzloeschen(int satzId) throws SQLException {
 		PreparedStatement st = Database.conn.prepareStatement("DELETE FROM satz WHERE id = ?");
@@ -413,11 +409,11 @@ public class Database {
 	/**
 	 *legt einen Zug in der Datenbank an
 	 * 
-	 * @param satzId
-	 * @param gegner
-	 * @param spalte
-	 * @param zeile
-	 * @throws SQLException
+	 * @param satzId Id des Satzes
+	 * @param gegner gibt an, ob es sich um den gegnerischen Zug oder eigenen Zug handelt
+	 * @param spalte Spalte
+	 * @param zeile Zeile
+	 * @throws SQLException Datenbankfehler
 	 */
 	public void Zug(int satzId, boolean gegner, int spalte, int zeile) throws SQLException {
 		PreparedStatement stZug = conn
@@ -436,7 +432,7 @@ public class Database {
 	 * @param satzId
 	 *            Id des Satzes
 	 * @return alle Zuege in Form eines ResultSets
-	 * @throws SQLException
+	 * @throws SQLException Datenbankfehler
 	 */
 	public ResultSet getZuege(int satzId) throws SQLException {
 
@@ -449,9 +445,8 @@ public class Database {
 	/**
 	 * loescht alle Zuege eines Satz aus der Datenbank
 	 * 
-	 * @param satzId
-	 *            Id des Satzes
-	 * @throws SQLException
+	 * @param satzId Id des Satzes
+	 * @throws SQLException Datenbankfehler
 	 */
 	public void loeschenZuege(int satzId) throws SQLException {
 		PreparedStatement st = conn.prepareStatement("DELETE FROM zug WHERE satz_id = ?");

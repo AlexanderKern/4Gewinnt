@@ -21,7 +21,6 @@ public class FileConnectionHandler {
 	 * Einlesen der XML-Files
 	 * 
 	 */
-	
 	public static Message handleXml(DocumentBuilderFactory factory, String directorypath, String serverFilename) {
 		try {
 			final DocumentBuilder builder = factory.newDocumentBuilder();
