@@ -139,11 +139,6 @@ public class Database {
 
 	/**
 	 * legt ein Spiel in der Datenbank an 
-	 * 
-	 * @param gegner
-	 *            Name des gegnerischen Spielers
-	 * @param farbe
-	 *            Steinfarbe
 	 * @throws SQLException
 	 */
 	public void createSpiel() throws SQLException {
