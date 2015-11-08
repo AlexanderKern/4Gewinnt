@@ -10,7 +10,18 @@ import org.w3c.dom.NodeList;
 
 import com.viergewinnt.api.common.util.Message;
 
+/**
+ * Die Klasse FileConnectionHandler liest die XML Files ein und setzt die Attribute in das Objekt Message.
+ * 
+ * @author Alexander Kern
+ *
+ */
 public class FileConnectionHandler {
+	/**
+	 * Einlesen der XML-Files
+	 * 
+	 */
+	
 	public static Message handleXml(DocumentBuilderFactory factory, String directorypath, String serverFilename) {
 		try {
 			final DocumentBuilder builder = factory.newDocumentBuilder();
@@ -40,6 +51,11 @@ public class FileConnectionHandler {
 		return null;
 	}
 
+	/**
+	 * Methode zum setzen der Attribute durch Switch Case.
+	 * 
+	 */
+	
 	private static void set(Message message, Element values) {
 		switch (values.getTagName()) {
 			case "freigabe":

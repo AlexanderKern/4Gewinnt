@@ -1,7 +1,8 @@
 package com.viergewinnt.api.common.util;
 
 /**
- * Die Klasse Message..
+ * Die Klasse Message beinhaltet Getter und Setter Methode für die Attribute,
+ * die über die File oder Push-Schnittstelle gesendet werden.
  * @author Alexander Kern
  *
  */
@@ -24,33 +25,82 @@ public class Message {
 		
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public String getMessage() {
 		return message;
 	}
+	
+	/**
+	 * 
+	 * @param message
+	 */
 	public void setMessage(String message) {
 		this.message = message;
 	}
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public boolean getFreigabe() {
 		return freigabe;
 	}
+	
+	/**
+	 * 
+	 * @param freigabe
+	 */
 	public void setFreigabe(boolean freigabe) {
 		this.freigabe = freigabe;
 	}
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public String getSatzstatus() {
 		return satzstatus;
 	}
+	
+	/**
+	 * 
+	 * @param satzstatus
+	 */
 	public void setSatzstatus(String satzstatus) {
 		this.satzstatus = satzstatus;
 	}
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public int getGegnerzug() {
 		return gegnerzug;
 	}
+	
+	/**
+	 * 
+	 * @param gegnerzug
+	 */
 	public void setGegnerzug(String gegnerzug) {
 		this.gegnerzug = Integer.parseInt(gegnerzug);
 	}
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public String getSieger() {
 		return sieger;
 	}
+	
+	/**
+	 * 
+	 * @param sieger
+	 */
 	public void setSieger(String sieger) {
 		this.sieger = sieger;
 	}

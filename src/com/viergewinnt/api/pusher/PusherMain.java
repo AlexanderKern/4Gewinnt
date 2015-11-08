@@ -19,7 +19,7 @@ import com.viergewinnt.gui.ControllerField;
 import com.viergewinnt.ki.KiMain;
 
 /**
- * Die Klasse PusherMain ermoeglciht die Kommunikation mittels Websockets
+ * Die Klasse PusherMain ermoeglicht die Kommunikation mittels Websockets
  * 
  * @author Alexander Kern
  *
@@ -40,10 +40,15 @@ public class PusherMain {
 	 * @param team
 	 *            Name des Teams
 	 * @param sequenceNumber
-	 *            Nummer des Satzes ?
+	 *            Nummer des Satzes
 	 */
 	public void pusher(String team, int sequenceNumber) {
 		KiMain ki = new KiMain();
+		
+		/**
+		 * Beim Erhalt einer Nachricht wird diese Methode (Interface) aufgerufen.
+		 * Hier wird dann mit der Nachricht umgegangen.
+		 */
 
 		final PusherConnectionHandler pch = new PusherConnectionHandler().registerHandler("MoveToAgent",
 				new Function<Pusher, PrivateChannel, String>() {
@@ -130,7 +135,7 @@ public class PusherMain {
 								// Zug in GUI setzen
 								cf.setStone(zug[0], zug[1], ReuseServermethode.getTeamfarbe());
 
-								// NÃ¤chsten Zug an Server senden
+								// Nächsten Zug an Server senden
 								channel.trigger("client-event", "{\"move\":\"" + zug[1] + "\"}");
 							}
 
@@ -138,7 +143,7 @@ public class PusherMain {
 							cf.setResult(message.getSieger(), sequenceNumber);
 							pusher.disconnect();
 							// Satzende
-							// X = grÃ¼n // 0 blau
+							// X = grün // 0 blau
 							if (("Spieler " + ReuseServermethode.getTeam()).equals(message.getSieger())) {
 								ReuseableSatz.setGewonnen("Claire");
 							} else {
@@ -172,7 +177,9 @@ public class PusherMain {
 
 		final Connection con = pch.connect();
 
-		// Connection zu Pusher offen halten.
+		/**
+		 * Connection zu Pusher offen halten.
+		 */
 		new Thread(new Runnable() {
 
 			public void run() {

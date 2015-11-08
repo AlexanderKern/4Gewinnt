@@ -2,7 +2,7 @@ package com.viergewinnt.api.common.util;
 
 /**
  * Die Klasse ReuseServermethode speichert die Attribute, welche Serverkommunikation relevant sind 
- * und ermoeglich einen Zugriff auf diese Attribute waehrend der Programmlaufzeit
+ * und ermoeglicht einen Zugriff auf diese Attribute waehrend der Programmlaufzeit
  * @author Alexander Kern
  *
  */

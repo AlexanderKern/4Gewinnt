@@ -1,5 +1,6 @@
 package com.viergewinnt.api.file;
 
+import java.awt.Toolkit;
 import java.io.File;
 import java.io.FileWriter;
 import java.sql.SQLException;
@@ -8,6 +9,7 @@ import com.viergewinnt.api.common.util.Message;
 import com.viergewinnt.api.common.util.ReuseServermethode;
 import com.viergewinnt.database.Database;
 import com.viergewinnt.database.ReuseableSatz;
+import com.viergewinnt.database.ReuseableSpiel;
 import com.viergewinnt.gui.ControllerField;
 import com.viergewinnt.ki.KiMain;
 
@@ -44,6 +46,15 @@ public class FileMain extends Thread {
 			if (message == null) {
 				continue;
 			}
+			
+			try {
+				if (sequenceNumber != 1) {
+					cf.setGespielteSaetze(db.getGewonneneSaetze(ReuseableSpiel.getId()));
+				}
+
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 
 			System.out.println(message.getGegnerzug() + " - " + message.getSatzstatus() + " - " + message.getFreigabe()
 					+ " - " + message.getSieger());
@@ -62,7 +73,7 @@ public class FileMain extends Thread {
 				// ---------------------------------------------------------------------------------------------
 
 				// Gegnerzug in GUI setzen
-				cf.setStone(zug[0], zug[1], true);
+				cf.setStone(zug[0], zug[1], ReuseServermethode.getGegnerfarbe());
 			}
 
 			// Berechne nÃ¤chsten Zug
@@ -82,10 +93,10 @@ public class FileMain extends Thread {
 			// -------------------------------------------------------------------------------------------------------
 
 			// Zug in GUI setzen
-			cf.setStone(zug[0], zug[1], false);
+			cf.setStone(zug[0], zug[1], ReuseServermethode.getTeamfarbe());
 
 			try {
-				// NÃ¤chsten Zug an Server senden
+				// Nächsten Zug an Server senden
 				// Zug an Server senden
 				final FileWriter writer = new FileWriter(clientFile);
 				writer.write(String.valueOf(zug[1]));
@@ -100,7 +111,36 @@ public class FileMain extends Thread {
 			message = null;
 		}
 		cf.setResult(message.getSieger(), sequenceNumber);
-		System.out.println("Gewonnen!");
+		// Satzende
+		// X = grün // 0 blau
+		// Gewinner setzen
+		if (("Spieler " + ReuseServermethode.getTeam()).equals(message.getSieger())) {
+			ReuseableSatz.setGewonnen("Claire");
+		} else {
+			ReuseableSatz.setGewonnen(ReuseServermethode.getGegner());
+		}
+		String status = "";
+
+		if (ReuseableSatz.getGewonnen().equals("Claire")) {
+			status = "gewonnen";
+		} else {
+			status = "verloren";
+		}
+		
+		//Ergebnis in Datenbank aktualisieren
+		try {
+			db.updateSatz(status, ReuseableSatz.getId());
+			db.getAnzahlSaetze(ReuseableSpiel.getId());
+			if (db.getAnzahlSaetze(ReuseableSpiel.getId()) == 3) {
+				db.spielEnde(ReuseableSpiel.getId(), db.getSpielPkt(ReuseableSpiel.getId()));
+				db.spielGewinner();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		cf.sichtbar(true, ReuseableSatz.getGewonnen());
+		Toolkit.getDefaultToolkit().beep();
 	}
 
 	private boolean isRunning(DocumentBuilderFactory factory, String filePath, String serverFilename) {

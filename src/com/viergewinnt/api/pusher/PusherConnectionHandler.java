@@ -16,7 +16,8 @@ import com.viergewinnt.api.common.util.Function;
 import com.viergewinnt.api.common.util.ReuseServermethode;
 
 /**
- * Die Klasse PusherMain ...
+ * Die Klasse PusherConnectionHandler baut eine Verbindung zum PusherServer auf und handelt die Connection
+ * Beim Empfangen eines Spielzugs wird die Klasse PusherMain aufgerufen, um auf den Gegnerzug zu reagieren
  * @author Alexander Kern
  *
  */
@@ -37,7 +38,7 @@ public class PusherConnectionHandler implements ConnectionEventListener, Private
 	private PrivateChannel channel;
 	
 	/**
-	 * 
+	 * Implementierung des Authorizers
 	 */
 	public PusherConnectionHandler() {
 		this.handlers = new HashMap<>();
@@ -59,8 +60,8 @@ public class PusherConnectionHandler implements ConnectionEventListener, Private
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Aufbau der Verbindung zum Pusher-Server
+	 * @return connection
 	 */
 	public Connection connect() {
 		pusher.connect(this);
@@ -100,6 +101,10 @@ public class PusherConnectionHandler implements ConnectionEventListener, Private
 
 	/* PrivateChannelEventListener implementation */
 
+	/**
+	 * Methode wird aufgerugen, wenn eine Nachricht erhalten wurde.
+	 */
+	
 	@Override
 	public void onEvent(final String channelName, final String eventName, final String data) {
 
