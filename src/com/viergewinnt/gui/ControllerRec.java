@@ -49,7 +49,7 @@ public class ControllerRec implements Initializable {
 	ImageView ivOne, ivTwo, ivThree, ivGreen, ivBlue;
 
 	@FXML
-	Label lPlayerY, lPlayerR, lGewonnen, lSatz;
+	Label lPlayerY, lPlayerR, lGewonnen, lSatz, lSatzGespielt;
 
 	@FXML
 	Pane pane;
@@ -83,77 +83,95 @@ public class ControllerRec implements Initializable {
 				setStone(gegner, spalte, zeile);
 
 			}
+			lSatzGespielt.setText("Satzid: " + ReuseableSatz.getId());
 
-			String[] gewonneneSaetze = db.getGewonneneSaetze(ReuseableSpiel.getId());
-System.out.println(ReuseableSpiel.getFarbeString());
-System.out.println(gewonneneSaetze[1]);
-			
+			ResultSet rsGS = db.getSaetze(ReuseableSpiel.getId());
+			String satzId = null;
+			String satzGewonnen = null;
 
-			for (int i = 0; i <= gewonneneSaetze.length; i++) {
-				switch (i) {
+			while (rsGS.next()) {// Iteration über Zeilen
+				for (int i = 1; i <= rsGS.getMetaData().getColumnCount(); i++) { // Iteration
+																					// über
+					switch (i) {
+					case 1:
+						satzId = (rsGS.getString(i));
+						break;
+					case 2:
+						break;
+					case 3:
+						satzGewonnen = (rsGS.getString(i));
+						break;
+					}// end of switch case
+
+				}
+
+System.out.println("Satzid"+Integer.parseInt(satzId));
+				switch (Integer.parseInt(satzId)) {
 				case 0:
-					if (gewonneneSaetze[i] == "gewonnen") {
-						if (ReuseableSpiel.getFarbeString() == "grün") {
+					if (satzGewonnen.equals("gewonnen")) {
+
+						if (ReuseableSpiel.getFarbeString().equals("grün")) {
 							ivOne.setImage(imageGreen);
 						} else {
+							System.out.println("hierdrinnen");
 							ivOne.setImage(imageBlue);
 						}
-					}else if(gewonneneSaetze[i] == "verloren"){
-						
-						if (ReuseableSpiel.getFarbeString() == "grün") {
+					} else if (satzGewonnen.equals("verloren")) {
+
+						if (ReuseableSpiel.getFarbeString().equals("grün")) {
 							ivOne.setImage(imageBlue);
 						} else {
 							ivOne.setImage(imageGreen);
 						}
-						
-					}else{
+
+					} else {
 						ivOne.setImage(imageG);
 					}
 
 					break;
 				case 1:
-					if (gewonneneSaetze[i] == "gewonnen") {
+
+					if (satzGewonnen.equals("gewonnen")) {
 
 						if (ReuseableSpiel.getFarbeString() == "grün") {
 							ivTwo.setImage(imageGreen);
 						} else {
 							ivTwo.setImage(imageBlue);
 						}
-					}else if(gewonneneSaetze[i] == "verloren"){
-						
+					} else if (satzGewonnen.equals("verloren")) {
+
 						if (ReuseableSpiel.getFarbeString() == "grün") {
 							ivTwo.setImage(imageBlue);
 						} else {
 							ivTwo.setImage(imageGreen);
 						}
-						
-					}else{
+
+					} else {
 						ivTwo.setImage(imageG);
 					}
 					break;
 
 				case 2:
-					if (gewonneneSaetze[i] == "gewonnen") {
+					if (satzGewonnen.equals("gewonnen")) {
 
 						if (ReuseableSpiel.getFarbeString() == "grün") {
 							ivThree.setImage(imageGreen);
 						} else {
 							ivThree.setImage(imageBlue);
 						}
-					}else if(gewonneneSaetze[i] == "verloren"){
-						
-						if (ReuseableSpiel.getFarbeString() == "grün") {
+					} else if (satzGewonnen.equals("verloren")) {
+
+						if (ReuseableSpiel.getFarbeString().equals("grün")) {
 							ivThree.setImage(imageBlue);
 						} else {
 							ivThree.setImage(imageGreen);
 						}
-						
-					}else{
+
+					} else {
 						ivThree.setImage(imageG);
 					}
 					break;
 				}
-
 			}
 
 		} catch (SQLException e) {
