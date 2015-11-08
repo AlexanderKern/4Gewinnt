@@ -105,15 +105,14 @@ public class ControllerRec implements Initializable {
 
 				}
 
-System.out.println("Satzid"+Integer.parseInt(satzId));
+				System.out.println(satzId);
+				System.out.println(satzGewonnen);
 				switch (Integer.parseInt(satzId)) {
 				case 0:
 					if (satzGewonnen.equals("gewonnen")) {
-
 						if (ReuseableSpiel.getFarbeString().equals("grün")) {
 							ivOne.setImage(imageGreen);
 						} else {
-							System.out.println("hierdrinnen");
 							ivOne.setImage(imageBlue);
 						}
 					} else if (satzGewonnen.equals("verloren")) {
@@ -130,17 +129,16 @@ System.out.println("Satzid"+Integer.parseInt(satzId));
 
 					break;
 				case 1:
-
 					if (satzGewonnen.equals("gewonnen")) {
 
-						if (ReuseableSpiel.getFarbeString() == "grün") {
+						if (ReuseableSpiel.getFarbeString().equals("grün") ){
 							ivTwo.setImage(imageGreen);
 						} else {
 							ivTwo.setImage(imageBlue);
 						}
 					} else if (satzGewonnen.equals("verloren")) {
 
-						if (ReuseableSpiel.getFarbeString() == "grün") {
+						if (ReuseableSpiel.getFarbeString().equals("grün")) {
 							ivTwo.setImage(imageBlue);
 						} else {
 							ivTwo.setImage(imageGreen);
@@ -154,7 +152,7 @@ System.out.println("Satzid"+Integer.parseInt(satzId));
 				case 2:
 					if (satzGewonnen.equals("gewonnen")) {
 
-						if (ReuseableSpiel.getFarbeString() == "grün") {
+						if (ReuseableSpiel.getFarbeString().equals("grün") ){
 							ivThree.setImage(imageGreen);
 						} else {
 							ivThree.setImage(imageBlue);
