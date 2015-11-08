@@ -51,7 +51,7 @@ public class ControllerSpielEnde implements Initializable {
 																				// Daten
 		try {
 			Database db = new Database();
-			lGewinner.setText("Der Gewinner des Spiels ist " + db.spielGewinner());
+			//lGewinner.setText("Der Gewinner des Spiels ist " + db.spielGewinner());
 			lGegner.setText("Das Spiel wurde gespielt gegen " + ReuseServermethode.getGegner());
 			ResultSet rs = db.getSaetze(ReuseableSpiel.getId());
 			String satzId = null;

@@ -326,11 +326,14 @@ public class Database {
 	 */
 	public String spielGewinner() throws SQLException {
 		int pkt = 0;
-		String[] gewonneneSaetze = getGewonneneSaetze(ReuseableSpiel.getId());
+		 String[] gewonneneSaetze= getGewonneneSaetze(ReuseableSpiel.getId());
 
-		for (int i = 0; i <= gewonneneSaetze.length - 1; i++) {
+		System.out.println("Arraylänge"+gewonneneSaetze.length);
+		for (int i = 0; i < gewonneneSaetze.length; i++) {
+			System.out.println("i"+i);
 			if (gewonneneSaetze[i] == null) {
 			} else if (gewonneneSaetze[i].equals("gewonnen")) {
+				System.out.println("buhu");
 				pkt = pkt + 1;
 			} else if (gewonneneSaetze[i].equals("verloren")) {
 				pkt = pkt - 1;

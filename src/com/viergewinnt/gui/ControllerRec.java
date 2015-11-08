@@ -88,8 +88,10 @@ public class ControllerRec implements Initializable {
 			ResultSet rsGS = db.getSaetze(ReuseableSpiel.getId());
 			String satzId = null;
 			String satzGewonnen = null;
+			int j = 0;
 
 			while (rsGS.next()) {// Iteration über Zeilen
+
 				for (int i = 1; i <= rsGS.getMetaData().getColumnCount(); i++) { // Iteration
 																					// über
 					switch (i) {
@@ -105,10 +107,9 @@ public class ControllerRec implements Initializable {
 
 				}
 
-				System.out.println(satzId);
-				System.out.println(satzGewonnen);
-				switch (Integer.parseInt(satzId)) {
-				case 0:
+				j = j + 1;
+				switch (j) {
+				case 1:
 					if (satzGewonnen.equals("gewonnen")) {
 						if (ReuseableSpiel.getFarbeString().equals("grün")) {
 							ivOne.setImage(imageGreen);
@@ -128,10 +129,10 @@ public class ControllerRec implements Initializable {
 					}
 
 					break;
-				case 1:
+				case 2:
 					if (satzGewonnen.equals("gewonnen")) {
 
-						if (ReuseableSpiel.getFarbeString().equals("grün") ){
+						if (ReuseableSpiel.getFarbeString().equals("grün")) {
 							ivTwo.setImage(imageGreen);
 						} else {
 							ivTwo.setImage(imageBlue);
@@ -149,10 +150,10 @@ public class ControllerRec implements Initializable {
 					}
 					break;
 
-				case 2:
+				case 3:
 					if (satzGewonnen.equals("gewonnen")) {
 
-						if (ReuseableSpiel.getFarbeString().equals("grün") ){
+						if (ReuseableSpiel.getFarbeString().equals("grün")) {
 							ivThree.setImage(imageGreen);
 						} else {
 							ivThree.setImage(imageBlue);
@@ -170,6 +171,7 @@ public class ControllerRec implements Initializable {
 					}
 					break;
 				}
+
 			}
 
 		} catch (SQLException e) {
