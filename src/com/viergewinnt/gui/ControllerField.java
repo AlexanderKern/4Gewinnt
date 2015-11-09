@@ -62,9 +62,9 @@ public class ControllerField implements Initializable {
 	Pane pane;
 
 
-	Image imageGreen = new Image(getClass().getResourceAsStream("/pictures/coinGreen.png"));
-	Image imageBlue = new Image(getClass().getResourceAsStream("/pictures/coinBlue.png"));
-	Image imageG= new Image(getClass().getResourceAsStream("/pictures/coinGrey.png"));
+	Image imageGreen = new Image(getClass().getResourceAsStream("/assets/coinGreen.png"));
+	Image imageBlue = new Image(getClass().getResourceAsStream("/assets/coinBlue.png"));
+	Image imageG= new Image(getClass().getResourceAsStream("/assets/coinGrey.png"));
 
 
 	@Override

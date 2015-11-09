@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.Properties;
@@ -64,14 +65,14 @@ public class ControllerSetting implements Initializable {
 		Database db = new Database();
 		
 		// Loading from Properties-File
+		InputStream is = null;
 		try {
-			File configFile = new File(System.getProperty("user.dir") + "/assets/properties/config.properties");
-			FileReader reader = new FileReader(configFile);
 			Properties props = new Properties();
-			props.load(reader);
+            is = this.getClass().getResourceAsStream("/assets/config.properties");
+            props.load(is);
 			tfkey.setText(props.getProperty("key"));
 			tfsecret.setText(props.getProperty("secret"));
-
+			
 			try {
 				if (db.getAnzahlSaetze(ReuseableSpiel.getId()) > 0) {
 					tfEnemy.setVisible(false);
