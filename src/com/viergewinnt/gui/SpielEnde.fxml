@@ -20,8 +20,8 @@
           <TableColumn fx:id="col2" prefWidth="77.0" text="C2" />
         </columns>
       </TableView>
-      <Label fx:id="lGewinner" layoutX="269.0" layoutY="43.0" text="Label" />
-      <Label fx:id="lGegner" layoutX="269.0" layoutY="80.0" text="Label" />
+      <Label fx:id="lGewinner" layoutX="269.0" layoutY="43.0" text="" />
+      <Label fx:id="lGegner" layoutX="269.0" layoutY="80.0" text="" />
       
    </children>
 </Pane>

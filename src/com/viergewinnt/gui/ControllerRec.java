@@ -54,9 +54,9 @@ public class ControllerRec implements Initializable {
 	@FXML
 	Pane pane;
 
-	Image imageBlue = new Image("file:///" + System.getProperty("user.dir") + "/assets/img/coinBlue.png");
-	Image imageGreen = new Image("file:///" + System.getProperty("user.dir") + "/assets/img/coinGreen.png");
-	Image imageG = new Image("file:///" + System.getProperty("user.dir") + "/assets/img/coinGrey.png");
+	Image imageGreen = new Image(getClass().getResourceAsStream("/assets/coinGreen.png"));
+	Image imageBlue = new Image(getClass().getResourceAsStream("/assets/coinBlue.png"));
+	Image imageG= new Image(getClass().getResourceAsStream("/assets/coinGrey.png"));
 
 	@Override
 	/**

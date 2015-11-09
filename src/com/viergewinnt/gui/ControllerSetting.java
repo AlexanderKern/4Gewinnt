@@ -1,6 +1,7 @@
 package com.viergewinnt.gui;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -94,17 +95,27 @@ public class ControllerSetting implements Initializable {
 		 */
 		bStart.setOnAction((ev) -> {
 			// Set new Properties-File
-			try {
-				File configFile = new File(System.getProperty("user.dir") + "/assets/properties/config.properties");
-				Properties props = new Properties();
-				props.setProperty("key", tfkey.getText());
-				props.setProperty("secret", tfsecret.getText());
-				FileWriter writer = new FileWriter(configFile);
-				props.store(writer, "Konfigurationsdatei fuer Pusher-Schnittstelle");
-				writer.close();
-			} catch (IOException e2) {
-				e2.printStackTrace();
-			}
+//			try {
+//				File configFile = new File(System.getProperty("user.dir") + "/assets/properties/config.properties");
+//				Properties props = new Properties();
+//				props.setProperty("key", tfkey.getText());
+//				props.setProperty("secret", tfsecret.getText());
+//				FileWriter writer = new FileWriter(configFile);
+//				props.store(writer, "Konfigurationsdatei fuer Pusher-Schnittstelle");
+//				writer.close();
+//			} catch (IOException e2) {
+//				e2.printStackTrace();
+//			}
+			
+//			try {
+//			Properties props = new Properties();
+//			props.setProperty("key", tfkey.getText());
+//			props.setProperty("secret", tfsecret.getText());
+//			InputStream url = ClassLoader.getResourceAsStream("/assets/config.properties");
+//			props.store(new FileWriter(new File(url.toURI())), "Konfigurationsdatei fuer Pusher-Schnittstelle");
+//		} catch (IOException e2) {
+//			e2.printStackTrace();
+//		}
 
 			// Settingsparameter setzen
 			if (cX.isSelected()) {
